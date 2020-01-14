@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+<c:import url="../template/boot.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/board/boardList.css" rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
 			<h2>${boardName}</h2>
 		</div>
 	</div>
-	
+
 	<!-- container -->
 	<div class="container">
 		<div class="notice_wrap">
@@ -26,7 +26,30 @@
 					<label for="sch_bar" class="lab">검색어</label>
 					<input type="text" id="sch_bar" name="search" placeholder="검색어를 입력해주세요.">
 					<a href="#none">검색</a>
+				
+				<form id="frm" action="noticeList">
+					<input type="hidden" id="curPage" value="1" name="curPage">
+					<select name="kind">
+						<option id="kt" value="kt">Title</option>
+						<option id="kw" value="kw">Writer</option>
+						<option id="kc" value="kc">Contents</option>
+					</select>
+					<input type="text" name="search" value="${pager.search}">
+					<button>검색</button>
+				</form>
+				<script type="text/javascript">
+					var kind = '${pager.kind}';
+					if (kind == '') {
+						kind = 'kt';
+					}
+					$("#" + kind).prop("selected", true);
+					$(".list").click(function() {
+						$("#curPage").val($(this).attr("id"))
+						$("#frm").submit();
+					});
+				</script>
 				</p>
+				
 			</div>
 		
 			<table class="notice_tb">
@@ -35,7 +58,6 @@
 						<th>NO</th>
 						<th>제목</th>
 						<th>날짜</th>
-						<th>조회수</th>			
 					</tr>
 				</thead>
 				
@@ -45,7 +67,6 @@
 						<td>${list.num}</td>
 						<td class="select_1"><a href="./noticeSelect?num=${list.num}">${list.title}</a></td>
 						<td>${list.regDate}</td>
-						<td>${list.hit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -53,7 +74,7 @@
 		</div>
 	</div>
 
-	<%-- <div class="container">
+	<div class="container" style="margin: 0 auto;">
 		<ul class="pagination">
 			<c:if test="${pager.curBlock gt 1}">
 				<li class="previous"><a href="./noticeList?curPage=${pager.startNum-1}">Previous</a></li>
@@ -67,6 +88,7 @@
 				<li class="next"><a href="./noticeList?curPage=${pager.lastNum+1}">Next</a></li>
 			</c:if>
 		</ul>
-	</div> --%>
+	</div>
+	
 </body>
 </html>
