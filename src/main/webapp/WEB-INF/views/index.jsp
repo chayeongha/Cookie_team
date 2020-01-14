@@ -127,10 +127,22 @@
 			<h2 style="text-align: center;font-family: CookieRun-Black;">인건비는 줄이고, 매출을 늘리세요</h2>
 			<div class="main_2_inner">
 				<div class="main_2_img"></div>
-				<div class="main_2_txt">짱입니다!</div>
-			</div>
-		
+				<div class="main_2_txt">
+					<ul>
+						<li><img src="./images/main/check-line.png"><span>　선주문접수 시스템으로 인건비를 줄여보세요.</span></li>
+						<li><img src="./images/main/check-line.png"><span>　맞춤형 광고 진행으로 매장 홍보를 지원해드려요.</span></li>
+						<li><img src="./images/main/check-line.png"><span>　매장별, 시간대별 자체적인 할인혜택 적용으로 매출을 늘리세요.</span></li>
+					</ul>
+					<h2 style="text-align: center;font-family: CookieRun-Black; line-height:30px;letter-spacing: 0px;">이미 제휴매장의 월 매출이 상승하고 있습니다!
+					<br>초기 진입하셔서 매출 증대의 기회를 놓치지 마세요!</h2>
+					<button class="storebtn">점주 회원가입</button>
+				</div>
+			</div><!-- main2_inner끝 -->
 		</div><!-- main_2끝 -->
+		
+		<div class="main_3">
+		
+		</div>
 		
 	</div><!-- bodymain끝 -->
 

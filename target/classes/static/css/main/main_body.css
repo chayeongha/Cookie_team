@@ -199,7 +199,7 @@
 
 .main_2{
 	width: 100%;
-	height: 1000px;
+	height: 730px;
 	
 }
 
@@ -241,5 +241,38 @@
 }
 
 .main_2_txt{
+	line-height:80px;
+	margin-left:20px;
 	float: left;
+	letter-spacing: -2px;
+	font-size: 18px;
+}
+
+
+.main_2_txt > ul > li >img{
+	margin:0 auto;
+}
+
+.storebtn{
+	width: 200px;
+	height: 50px;
+	background:#f23600;
+	margin-left:150px;
+	margin-top:30px;
+	line-height: 50px;
+	text-align: center;
+	color:white;
+	border-radius: 5px;
+	font-size: 17px;
+	letter-spacing: -2px;
+	border: none;
+}
+
+/* main_3 */
+
+.main_3{
+	width: 100%;
+	height: 500px;
+	background: #ffd5bf;
+	
 }
