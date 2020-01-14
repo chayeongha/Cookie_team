@@ -10,8 +10,10 @@
   		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="java.util.Map" alias="Map"/>
   		<typeAlias type="java.util.List" alias="List"/>
+  		<typeAlias type="java.util.ArrayList" alias="ArrayList"/>
   		
   		<typeAlias type="com.cookie.basic.menu.MenuVO" alias="MenuVO"/>
+  		<typeAlias type="com.cookie.basic.menu.MenuFilesVO" alias="MenuFilesVO"/>
   		
   	</typeAliases>
 

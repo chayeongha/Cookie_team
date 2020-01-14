@@ -11,8 +11,8 @@
 <body>
 <h1>Menu Insert Page</h1>
 
-div class="container">
-  <form action="./menuInsert" method="post" enctype="multipart/form-data">
+<div class="container">
+  <form action="./menuInsert"  id="frm" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="mName">메뉴 이름</label>
       <input type="text" class="form-control" id="mName" placeholder="Enter mName" name="mName">
@@ -45,14 +45,22 @@ div class="container">
      <input type="radio" name="mTemp" value="0">아이스
      <input type="radio" name="mTemp" value="1">핫
     </div>
+    
+    <div class="row" >
+		    	<input type="button"  class="btn btn-info col-sm-3" id="add" value="ADD FILE">
+		    	<div id="files" class="col-sm-12"></div>
+		    </div>
       <button type="submit" class="btn btn-default">Submit</button>
     
 </form>
+</div>
 
 
 
 
 
+<script type="text/javascript" src="../js/fileCount.js"></script>
 
 </body>
+
 </html>

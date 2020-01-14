@@ -3,6 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cookie.basic.menu.MenuMapper">
+
+	<!--  매퍼 조인 -->
+	<resultMap type="MenuVO" id="menuFile">
+		<id column="mNum" property="mNum"/>
+		<result column="mName"  property="mName"/>
+		<result column="mPrice"  property="mPrice"/>
+		<result column="mCount"  property="mCount"/>
+		<result column="cNum"  property="cNum"/>
+		<result column="mTenp"  property="mTenp"/>
+		<result column="optNums"  property="optNums"/>
+		<collection property="menuFiles" javaType="ArrayList" ofType="MenuFilesVO" >
+			<id column="mfNum" property="mfNum"/>
+			<result column="mfName" property="mfName"/>
+			<result column="moNum" property="moNum"/>
+			
+		</collection>
+		
+	
+	
+	</resultMap>
+
+
+
 	<insert id="menuInsert" parameterType="MenuVO">
 		insert into menu values(null, #{mName}, #{mPrice}, #{mCount}, #{cNum}, #{mTemp}, #{optNums})
 	</insert>
@@ -11,6 +34,8 @@
 		select * from menu where mNum=#{mNum}
 	</select>
 	
-	<select id="menuList" resultType="MenuVO"></select>
+	<select id="menuList" resultType="List">
+		select * from menu
+	</select>
 
 </mapper>

@@ -2,6 +2,9 @@ package com.cookie.basic.menu;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +13,9 @@ class MenuTest {
 	
 	@Autowired
 	private MenuMapper menuMapper;
+	
+	@Autowired
+	private MenuFilesMapper menuFilesMapper;
 
 	
 	//@Test
@@ -24,6 +30,20 @@ class MenuTest {
 	}
 	
 	@Test
+	public void test()throws Exception{
+		List<MenuFilesVO> menuFilesVOs = new ArrayList<>();
+		for(int i=0; i<2;i++) {
+		MenuFilesVO menuFilesVO = new MenuFilesVO();
+		menuFilesVO.setMfName(i+"번f");
+		menuFilesVO.setMoName(i+"번O");
+		menuFilesVO.setMNum(i+3);
+		menuFilesVOs.add(menuFilesVO);}
+		menuFilesMapper.menuFilesInsert(menuFilesVOs);
+		
+		
+	}
+	
+	//@Test
 	public void mSelect()throws Exception{
 		MenuVO menuVO = new MenuVO();
 		menuVO.setMNum(1);
