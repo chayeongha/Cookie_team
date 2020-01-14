@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.cookie.basic.store.StoreMapper">
+  	<insert id="storeInsert" parameterType="com.cookie.basic.store.StoreVO">
+  			insert into store values(0,#{sName},#{sTel},#{sSite},#{Id},0,#{sNotice})
+  	</insert>
+  	
+  	<update id="storeUpdate" parameterType="com.cookie.basic.store.StoreVO">
+  		update store set sName=#{sName}, sTel=#{sTel}, sSite=#{sSite} where id=#{id}
+  	</update>
+  	
+  	
+  	
+  </mapper>
+  
+  
