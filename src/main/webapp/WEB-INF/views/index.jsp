@@ -85,7 +85,7 @@
       <div class="main_1">
          <div class="main_title">이용방법</div>
          <div class="main_1_inner">
-            <div class="main_1_1"></div>엥
+            <div class="main_1_1"></div>
          </div>
       </div>
    </div><!-- bodymain끝 -->
