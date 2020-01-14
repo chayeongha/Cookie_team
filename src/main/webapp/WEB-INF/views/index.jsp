@@ -9,7 +9,44 @@
 <link href="/css/reset.css" rel="stylesheet"/>
 <link href="/css/header.css" rel="stylesheet"/>
 <link href="/css/body.css" rel="stylesheet"/>
+<link href="/css/footer.css" rel="stylesheet"/>
 <link href="/css/main/main_body.css" rel="stylesheet"/>
+
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6ba0b2e0894b510063b292edfad86999"></script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        function getLocation(position) {
+
+            var latitud = position.coords.latitude;
+            var longitude = position.coords.longitude;
+        	
+            var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
+            var mapOption = {
+                  center : new daum.maps.LatLng(latitud, longitude),    // 지도의 중심좌표
+                  level : 2    // 지도의 확대레벨
+            };
+            
+            // 지도를 생성
+            var map = new daum.maps.Map(mapContainer, mapOption);
+
+            // 마커가 표시될 위치
+            var markerPosition = new daum.maps.LatLng(latitud, longitude);
+
+            // 마커를 생성
+            var marker = new daum.maps.Marker({ position:markerPosition });
+
+            marker.setMap(map);
+        }
+
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getLocation, function(error) {
+                consol.log(error.message);    
+            });
+        } else {
+            consol.log("Geolocation을 지원하지 않는 브라우저 입니다.");
+        }
+    });
+</script>
 </head>
 <body>
 
@@ -124,7 +161,7 @@
 		<div class="main_2">
 			<div class="main_title2"><br>Cookie Order에 등록이 아직 안 되어있는 점주님!</div>
 			<div class="main_box2"></div>
-			<h2 style="text-align: center;font-family: CookieRun-Black;">인건비는 줄이고, 매출을 늘리세요</h2>
+			<h2 style="text-align: center;font-family: CookieRun-Black; width:1500px">인건비는 줄이고, 매출을 늘리세요</h2>
 			<div class="main_2_inner">
 				<div class="main_2_img"></div>
 				<div class="main_2_txt">
@@ -141,9 +178,35 @@
 		</div><!-- main_2끝 -->
 		
 		<div class="main_3">
-		
+			<h1 style="text-align: center;font-family: CookieRun-Black; padding:45px; color:#181818;width:1400px;">주문가능한 매장을 찾아보세요!</h1>
+			<div id="map" style="width:1100px;height:400px;"></div>
 		</div>
 		
+		<div class="main_4">
+			<div class="main_title2" style="width: 1480px;">적립금도 UP! 혜택도 UP!</div>
+			<div class="main_4_box"></div><!-- main4 짝대기 -->
+			<div class="main_4_inner">
+				<div class="main_4_img"></div>
+				<div class="main_4_txt">
+					<h1 style="text-align: center;font-family: CookieRun-Black;letter-spacing: 0px">더 커진 혜택!</h1>
+					<h1 style="text-align: center;font-family: CookieRun-Black;letter-spacing: 0px">더 높아진 적립금!</h1>
+					<br>
+					<span>기존 적립금보다 더 높아진 적립금으로 <br>만나볼 수 있습니다.</span>
+				</div>
+				<div class="m4_img2">
+				</div>
+			</div>
+		</div>
+		<br>
+		<!-- footer -->
+		<div class="footer">
+			<div class="footer_inner">
+				<div class="f_title">Cookie Order</div>
+				<div class="f_inner">(주)쿠키오더 | 대표 : 쿠키맨 | 사업자 등록번호. 202-00-11400 | 주소. 서울 마포구 쌍용강북센터
+				<br>고객센터 | Q & A
+				</div>
+			</div>
+		</div>
 	</div><!-- bodymain끝 -->
 
 </body>
