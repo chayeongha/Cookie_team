@@ -8,12 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Repository
 @Mapper
-public interface StoreMapper {
+public interface StoreFilesMapper {
 
-	public int storeInsert(StoreVO storeVO) throws Exception;
-
-	public int storeUpdate(StoreVO storeVO) throws Exception;
-	
-	public StoreVO sNumSearch(StoreVO storeVO)throws Exception;
+	public int storeFilesInsert(StoreFilesVO storeFilesVO) throws Exception;
 
 }

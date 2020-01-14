@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cookie.basic.store.StoreFilesMapper">
+  	<insert id="storeFilesInsert" parameterType = "com.cookie.basic.store.StoreFilesVO">
+			insert into storeFiles values (null,#{fName},#{oName},#{sNum});
+	</insert>
+ </mapper>

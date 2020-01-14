@@ -13,6 +13,9 @@
   		update store set sName=#{sName}, sTel=#{sTel}, sSite=#{sSite} where id=#{id}
   	</update>
   	
+  	<select id="sNumSearch" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
+  		select * from store where sName=#{sName}
+  	</select>
   	
   	
   </mapper>

@@ -13,7 +13,7 @@
 	<h1>지점가입</h1>
 
 	<h2>Join</h2>
-		<form action="storeInsert" method="post">
+		<form action="storeInsert" method="post" enctype="multipart/form-data">
 
 
 			<div>
@@ -45,7 +45,10 @@
 				<label for="sNotice"></label> 
 				<input type="hidden"id="sNotice" name="sNotice" placeholder="개업시작 공지를 알리세요">
 			</div>
-			
+		 	<div>
+    			 <label for="files">파일:</label>
+     			 <input type="file" class="form-control" id="files" name="files">
+    		</div>
 			<input type="submit" id="join"value="Join">
 		</form>
 

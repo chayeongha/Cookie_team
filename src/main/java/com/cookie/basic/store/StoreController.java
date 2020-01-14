@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,9 +23,9 @@ public class StoreController {
 
 	// 지점 등록
 	@PostMapping("storeInsert")
-	public ModelAndView storeInsert(StoreVO storeVO) throws Exception {
+	public ModelAndView storeInsert(StoreVO storeVO, MultipartFile files) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = storeService.storeInsert(storeVO);
+		int result = storeService.storeInsert(storeVO, files);
 		String message = "등록 성공";
 		String path = "../";
 		mv.addObject("msg", message);
@@ -46,7 +47,7 @@ public class StoreController {
 
 	}
 
-	//점주 정보 업데이트 
+	// 점주 정보 업데이트
 	@PostMapping("storeUpdate")
 	public void storeUpdate(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
