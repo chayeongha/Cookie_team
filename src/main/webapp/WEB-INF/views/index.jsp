@@ -27,7 +27,7 @@
 		<div class="cate">
 			<p><a href="#">제휴매장</a></p>
 			<p><a href="#">공지사항</a></p>
-			<p><a href="#">이용방법</a></p>
+
 			<p><a href="#">이용후기</a></p>
 			<p><a href="#">Q & A</a></p>
 			<p><a href="#">매장등록</a></p>
@@ -37,6 +37,15 @@
 	<!-- body -->	
 	<div class="body_main">
 		<div class="b"></div>
+		<div class="bar">
+			<div class="bar_inner">
+				<ul>
+					<li>a</li>
+					<li>b</li>
+				</ul>
+			</div>
+			<img src="./images/main/top.png">
+		</div><!-- bar 끝 -->
 		<div class="m_1_top">
 			<div class="m_1">
 				<h4>아직도 매장에서 주문하고 계시나요?</h4>
@@ -70,6 +79,9 @@
 					<p>프렌차이즈가 아닌 일반 매장에서도<br> 선주문하세요</p>
 				</div>
 			</div>
+		</div><!-- 위에끝 -->
+		<div class="main_1">
+		
 		</div>
 	</div><!-- bodymain끝 -->
 
