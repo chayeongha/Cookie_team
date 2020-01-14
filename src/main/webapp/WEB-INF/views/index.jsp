@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,24 +17,24 @@
 	<!-- header -->
 	<div class="header1">
 		<div class="h1_1"></div>
-	</div><!-- À§¿¡ Çì´õ -->
+	</div><!-- ìœ„ì— í—¤ë” -->
 	<div class="header2">
 		<div class="h_img">
 			<div class="M_imgg"></div>
-		</div><!-- ÀÌ¹ÌÁö -->
+		</div><!-- ì´ë¯¸ì§€ -->
 		<br><br>
 		<div class="cate_1">Cookie</div>
 		<div class="cate_2">Order</div>
 		<div class="cate">
-			<p><a href="#">Á¦ÈÞ¸ÅÀå</a></p>
-			<p><a href="#">°øÁö»çÇ×</a></p>
+			<p><a href="#">ì œíœ´ë§¤ìž¥</a></p>
+			<p><a href="#">ê³µì§€ì‚¬í•­</a></p>
 
-			<p><a href="#">ÀÌ¿ëÈÄ±â</a></p>
+			<p><a href="#">ì´ìš©í›„ê¸°</a></p>
 			<p><a href="#">Q & A</a></p>
-			<p><a href="#">¸ÅÀåµî·Ï</a></p>
+			<p><a href="#">ë§¤ìž¥ë“±ë¡</a></p>
 		</div>
 		
-	</div><!-- ¿ÞÂÊ Çì´õ -->
+	</div><!-- ì™¼ìª½ í—¤ë” -->
 	<!-- body -->	
 	<div class="body_main">
 		<div class="b"></div>
@@ -46,45 +46,45 @@
 				</ul>
 			</div>
 			<img src="./images/main/top.png">
-		</div><!-- bar ³¡ -->
+		</div><!-- bar ë -->
 		<div class="m_1_top">
 			<div class="m_1">
-				<h4>¾ÆÁ÷µµ ¸ÅÀå¿¡¼­ ÁÖ¹®ÇÏ°í °è½Ã³ª¿ä?</h4>
+				<h4>ì•„ì§ë„ ë§¤ìž¥ì—ì„œ ì£¼ë¬¸í•˜ê³  ê³„ì‹œë‚˜ìš”?</h4>
 				<h1>Cookie Order</h1>
-				<p style="font-size: 25px;">¸ÅÀå¿¡¼­ À½½ÄÀ» ¸Ôµç, Å×ÀÌÅ©¾Æ¿ôÀ» ÇÏµç ÃÊ°£Æí À¥À¸·Î ¹Ì¸® ÁÖ¹®ÇÏ¼¼¿ä.</p>
-				<p style="font-size: 25px; margin-bottom: 30px;">´Ü, 1ÃÊµµ ±â´Ù¸± ÇÊ¿ä°¡ ¾ø½À´Ï´Ù.</p>
+				<p style="font-size: 25px;">ë§¤ìž¥ì—ì„œ ìŒì‹ì„ ë¨¹ë“ , í…Œì´í¬ì•„ì›ƒì„ í•˜ë“  ì´ˆê°„íŽ¸ ì›¹ìœ¼ë¡œ ë¯¸ë¦¬ ì£¼ë¬¸í•˜ì„¸ìš”.</p>
+				<p style="font-size: 25px; margin-bottom: 30px;">ë‹¨, 1ì´ˆë„ ê¸°ë‹¤ë¦´ í•„ìš”ê°€ ì—†ìŠµë‹ˆë‹¤.</p>
 				<img src="./images/main/mainC.gif">
 			</div>
-		</div><!-- m_1_top³¡ -->
+		</div><!-- m_1_topë -->
 		<div class="m1_top2"></div>
-		<p class="m1_t2">¹Ù»Û Çö´ëÀÎÀÇ ÁÖ¹® ¼Ö·ç¼Ç Cookie Order</p>
+		<p class="m1_t2">ë°”ìœ í˜„ëŒ€ì¸ì˜ ì£¼ë¬¸ ì†”ë£¨ì…˜ Cookie Order</p>
 		<div style="height: 400px; overflow: hidden;">
 			<div class="m1_t2_1">
 				<img style="margin-left:110px; margin-top:20px"src="./images/main/ic-feature-01.png">
 				<div class="m1_t2_txt">
-					<h2 style="font-family: CookieRun-Black; margin-top:10px">ÁÙ¼­Áö ¾Ê°í, ½±°í ºü¸£°Ô</h2>
-					<p>¼± ÁÖ¹®/°áÁ¦·Î ¸ÅÀå¿¡¼­ ÁÙ ¼­Áö ¾Ê°í,<br>¹Ù·Î À½½Ä°ú À½·á¸¦ Áñ±â½Ã°Å³ª<br> Å×ÀÌÅ©¾Æ¿ôÇÏ¼¼¿ä.</p>
+					<h2 style="font-family: CookieRun-Black; margin-top:10px">ì¤„ì„œì§€ ì•Šê³ , ì‰½ê³  ë¹ ë¥´ê²Œ</h2>
+					<p>ì„  ì£¼ë¬¸/ê²°ì œë¡œ ë§¤ìž¥ì—ì„œ ì¤„ ì„œì§€ ì•Šê³ ,<br>ë°”ë¡œ ìŒì‹ê³¼ ìŒë£Œë¥¼ ì¦ê¸°ì‹œê±°ë‚˜<br> í…Œì´í¬ì•„ì›ƒí•˜ì„¸ìš”.</p>
 				</div>
 			</div>
 			<div class="m1_t2_2">
 				<img style="margin-left:110px; margin-top:20px"src="./images/main/ic-feature-02.png">
 				<div class="m1_t2_txt">
-					<h2 style="font-family: CookieRun-Black; margin-top:10px">Áö±Ý ÀÖ´Â °÷¿¡¼­ ÁÖ¹®ÇÏ±â</h2>
-					<p>Á¾¾÷¿ø¿¡°Ô ¸Þ´º, Æ÷ÀÎÆ® Àû¸³ ¿©ºÎ¸¦ <br>¼³¸íÇÒ ÇÊ¿ä ¾ø¾î¿ä.</p>
+					<h2 style="font-family: CookieRun-Black; margin-top:10px">ì§€ê¸ˆ ìžˆëŠ” ê³³ì—ì„œ ì£¼ë¬¸í•˜ê¸°</h2>
+					<p>ì¢…ì—…ì›ì—ê²Œ ë©”ë‰´, í¬ì¸íŠ¸ ì ë¦½ ì—¬ë¶€ë¥¼ <br>ì„¤ëª…í•  í•„ìš” ì—†ì–´ìš”.</p>
 				</div>
 			</div>
 			<div class="m1_t2_3">
 				<img style="margin-left:110px; margin-top:20px"src="./images/main/ic-feature-03.png">
 				<div class="m1_t2_txt">
-					<h2 style="font-family: CookieRun-Black; margin-top:10px">Àü±¹ ¾îµð¼­³ª ´Ù¾çÇÑ ¸ÅÀå</h2>
-					<p>ÇÁ·»Â÷ÀÌÁî°¡ ¾Æ´Ñ ÀÏ¹Ý ¸ÅÀå¿¡¼­µµ<br> ¼±ÁÖ¹®ÇÏ¼¼¿ä</p>
+					<h2 style="font-family: CookieRun-Black; margin-top:10px">ì „êµ­ ì–´ë””ì„œë‚˜ ë‹¤ì–‘í•œ ë§¤ìž¥</h2>
+					<p>í”„ë Œì°¨ì´ì¦ˆê°€ ì•„ë‹Œ ì¼ë°˜ ë§¤ìž¥ì—ì„œë„<br> ì„ ì£¼ë¬¸í•˜ì„¸ìš”</p>
 				</div>
 			</div>
-		</div><!-- À§¿¡³¡ -->
+		</div><!-- ìœ„ì—ë -->
 		<div class="main_1">
 		
 		</div>
-	</div><!-- bodymain³¡ -->
+	</div><!-- bodymainë -->
 
 </body>
 </html>
