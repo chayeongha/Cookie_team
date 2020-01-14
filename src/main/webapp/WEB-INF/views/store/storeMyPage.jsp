@@ -71,7 +71,7 @@
 			}
 
 			if (currentSeconds >= 50) {// 50초 이상일 때 색을 변환해 준다.
-				currentSeconds = '<span style="color:#de1951;">'
+				currentSeconds = '<span style="color:black;">'
 						+ currentSeconds + '</span>'
 			}
 			clock.innerHTML = currentHours + ":" + currentMinute + ":"
