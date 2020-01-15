@@ -4,17 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.cookie.basic.board.notice.NoticeMapper">
+  	<sql id="bs">
+  		<choose>
+  			<when test="kind == 'kt'">
+  				where title like CONCAT('%',#{search},'%') and
+  			</when>
+  			<when test="kind == 'kc'">
+  				where contents like CONCAT('%',#{search},'%') and
+  			</when>
+  			<when test="kind == 'kw'">
+  				where writer like CONCAT('%',#{search},'%') and
+  			</when>
+  			<otherwise>
+  				where
+  			</otherwise>
+  		</choose>
+  	</sql>
+  	
+  	
   	<insert id="noticeWrite" parameterType="NoticeVO">
   		insert into notice values(#{num}, #{title}, #{writer}, #{contents}, now())
   	</insert>
   	
   	<select id="noticeList" parameterType="Pager" resultType="NoticeVO">
   		select * from notice
-  		where num > 0
+  		<include refid="bs"></include> num > 0
   		order by num desc LIMIT #{startRow}, #{perPage}
   	</select>
   	
   	<select id="noticeCount" resultType="Integer" parameterType="Pager">
   		select count(num) from notice
+  		<include refid="bs"></include> num > 0
   	</select>
   </mapper>
