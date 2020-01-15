@@ -3,5 +3,43 @@
 .sinner{
 	width:100%;
 	height:693px;
+	background-image: url("../../../images/main/main1.jpg");
+}
+
+.select_member{
+	width:910px;
+	height: 430px;
+	background: white;
+	opacity:0.95;
+	border: 2px solid #ffd6bf;
+
+}
+
+.select_member > div > div> img{
+	margin-left: 100px;
+	margin-top:30px;
+}
+
+.mem1{
+	width:450px;
+	float:left;
+}
+.mem2{
+	width:450px;
+	float:left;
+}
+
+.me1{
+		opacity:1;
+	width:250px;
+	height: 80px;
+	margin-left:100px;
+	margin-top: 30px;
+	font-size: 18px;
+	background: #f23600;
+	letter-spacing:-2.5px;
+	border:none;
+	color:white;
+	border-radius: 5px;
 
 }

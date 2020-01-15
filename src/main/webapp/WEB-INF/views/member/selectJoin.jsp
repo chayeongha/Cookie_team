@@ -17,14 +17,32 @@
 	<div class="sinner">
 		<div class="container">
 
-			<h1 style="font-family: CookieRun-Black; padding:50px">쿠키오더 회원 가입</h1>
- 
-				<button type="button" onclick="location.href='memberJoin?grade=1&kind=Personalman' ">개인 회원가입</button>
-				<button type="button" onclick="location.href='memberJoin?grade=8888&kind=Buisnessman' ">사업자 회원가입</button>
+			<h1 style="font-family: CookieRun-Black; color:#270c0c; padding:40px">쿠키오더 회원 가입</h1>
+ 			<div class="select_member">
+ 				<div class="mem1">
+ 					<div><img src="/images/member/mem2.png"></div>
+					<form action="./memberJoin" method="get">
+		             <button type="submit" class="me1">개인 회원가입</button>
+		             <input type="hidden" name="kind" value="Personal">
+		             <input type="hidden" name="grade" value="1">
+		          </form>
+      			</div>    
 
-		</div>
-	</div><!--sinner-->
+				
+				<div class="mem2">
+					<div><img src="/images/member/mem.png"></div>
+					<form action="./memberJoin" method="get">
+		             <button type="submit" class="me1">사업자 회원가입</button>
+		             <input type="hidden" name="kind" value="Buisness">
+		             <input type="hidden" name="grade" value="8888">
+		          </form>
+				</div>
+				
+			</div>
+			</div>	
+		</div><!--sinner-->
 	<c:import url="../layout/footer.jsp" />
+
 </div><!-- body_main끝 -->
 </body>
 </html>
