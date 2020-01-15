@@ -1,7 +1,6 @@
 package com.cookie.basic.util;
 
 
-
 import java.io.File;
 import java.util.UUID;
 
@@ -19,9 +18,12 @@ public class FileSaver {
 		
 		String fileName = UUID.randomUUID().toString()+"_"+files.getOriginalFilename();
 		file = new File(file,fileName);
+
 		
 		files.transferTo(file);
 		
 		return fileName;
+
 	}
+
 }

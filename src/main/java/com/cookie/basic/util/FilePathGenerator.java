@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class FilePathGenerator {
 
+
+		@Autowired
+		private ServletContext servletContext;
+
 		@Autowired
 		private ResourceLoader resourceLoader;
 	
@@ -32,7 +36,6 @@ public class FilePathGenerator {
 		}
 		
 		
-		
 		public File getUseResourceLoader(String filePath)throws Exception {
 			String path ="classpath:/static/";
 			
@@ -51,10 +54,10 @@ public class FilePathGenerator {
 		System.out.println(file.getAbsolutePath());
 		
 		return file;
+
 		}
 		
 		
-		private ServletContext servletContext;
 		
 		public File getUseServletContext(String filePath) {
 			
@@ -65,4 +68,7 @@ public class FilePathGenerator {
 			}
 			return file;
 		}
+
+		
+	
 }

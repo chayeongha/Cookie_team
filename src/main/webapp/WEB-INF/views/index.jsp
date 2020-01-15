@@ -51,6 +51,7 @@
 			<div class="h1_txt"><a href="#">Join</a></div>
 			<div class="h1_txt"><a href="#">Login</a></div>
 		</div>
+
 	</div><!-- 위에 헤더 -->
 	<div class="header2">
 		<div class="h_img">
@@ -85,11 +86,13 @@
 			<!-- <a href="#"><img src="./images/main/top.png"></a> -->
 		</div><!-- bar 끝 -->
 		<div class="m_1_top" id="m5">
+
 			<div class="m_1">
 				<h4>아직도 매장에서 주문하고 계시나요?</h4>
 				<h1>Cookie Order</h1>
 				<p style="font-size: 25px;">매장에서 음식을 먹든, 테이크아웃을 하든 초간편 웹으로 미리 주문하세요.</p>
 				<p style="font-size: 25px; margin-bottom: 30px;">단, 1초도 기다릴 필요가 없습니다.</p>
+
 				<!-- <img src="./images/main/mainC.gif"> -->
 				<div>
 					<div class="m1_img m1_img1"></div>
@@ -99,6 +102,7 @@
 					<div class="m1_img m1_img5"></div>
 				</div>
 				<div class="m_1inner2"></div>
+
 			</div>
 		</div><!-- m_1_top끝 -->
 		<div class="m1_top2"></div>
@@ -126,6 +130,7 @@
 				</div>
 			</div>
 		</div><!-- 위에끝 -->
+
 		<div class="main_box"></div><!-- 위에 짝대기 -->
 		
 		<div class="main_1" id="m1">
@@ -166,6 +171,7 @@
 			</div>
 			
 		</div><!-- main_1끝 -->
+
 		
 		<div class="main_2" id="m2">
 			<div class="main_title2"><br>Cookie Order에 등록이 아직 안 되어있는 점주님!</div>
@@ -230,6 +236,7 @@
 			 
 			
 	</script>
+
 
 </body>
 </html>
