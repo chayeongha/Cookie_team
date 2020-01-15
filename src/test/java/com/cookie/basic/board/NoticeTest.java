@@ -17,6 +17,17 @@ class NoticeTest {
 	@Autowired
 	private NoticeMapper noticeMapper;
 	
+	
+	@Test
+	void noticeSelectTest() throws Exception {
+		NoticeVO noticeVO = new NoticeVO();
+		noticeVO.setNum(5);
+		noticeVO = noticeMapper.noticeSelect(noticeVO);
+		
+		assertNotNull(noticeVO);
+	}
+	
+	
 	//@Test
 	void noticeListTest() throws Exception {
 		//List<NoticeVO> list = noticeMapper.noticeList();

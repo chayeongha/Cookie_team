@@ -11,10 +11,16 @@ import com.cookie.basic.util.Pager;
 @Repository
 public interface NoticeMapper {
 
+	//글 하나 조회
+	public NoticeVO noticeSelect(NoticeVO noticeVO) throws Exception;
+	
+	//글 생성
 	public int noticeWrite(NoticeVO noticeVO) throws Exception;
 	
+	//전체 글 개수
 	public int noticeCount(Pager pager) throws Exception;
 	
+	//리스트
 	public List<NoticeVO> noticeList(Pager pager) throws Exception;
 	
 	

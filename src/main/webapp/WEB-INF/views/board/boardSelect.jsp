@@ -11,6 +11,34 @@
 <link href="${pageContext.request.contextPath}/css/board/boardSelect.css" rel="stylesheet">
 </head>
 <body>
-
+	<!-- 서브 타이틀 -->
+	<div class="subTitle_wrap">
+		<div class="subTitle_inner">
+			<h2>${boardName}</h2>
+		</div>
+	</div>
+	
+	<!-- container -->
+	<div class="container">
+		<div class="content_wrap">
+			<section class="notice_view_wrap">
+				<header>
+					<h3>${select.title}</h3>
+				</header>
+				
+				<article class="notice_view_info">
+					<div class="notice_view_info_inner">
+						<div class="">${select.contents}</div>
+					</div>
+				</article>
+				
+				<div class="btn_notice_wrap">
+				</div>
+			</section>
+			
+			<table summary="새소식 윗글, 아랫글" class="content_tb">
+			</table>
+		</div>
+	</div>
 </body>
 </html>

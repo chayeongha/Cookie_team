@@ -22,6 +22,10 @@
   	</sql>
   	
   	
+  	<select id="noticeSelect" parameterType="NoticeVO" resultType="NoticeVO">
+  		select * from notice where num = #{num}
+  	</select>
+  	
   	<insert id="noticeWrite" parameterType="NoticeVO">
   		insert into notice values(#{num}, #{title}, #{writer}, #{contents}, now())
   	</insert>
