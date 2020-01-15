@@ -22,14 +22,14 @@
 			<td>아뜨여부</td>
 		</tr>
 		
-		<c:forEach items="${list}" var="vo">
+		<c:forEach items="${lists}" var="vos">
 		<tr>
-			<td>${vo.mNum}</td>
-			<td> <a href="menuSelect?num=${vo.mNum}">${vo.mName}</a></td>
-			<td>${vo.mPrice}</td>
-			<td>${vo.mCount}</td>
-			<td>${vo.mCnum}</td>
-			<td>${vo.mTemp}</td>
+			<td>${vos.mmNum}</td>
+			<td> <a href="menuSelect?mmNum=${vos.mmNum}">${vos.mmName}</a></td>
+			<td>${vos.mmPrice}</td>
+			<td>${vos.mmCount}</td>
+			<td>${vos.cmNum}</td>
+			<td>${vos.mmTemp}</td>
 		</tr>
 		
 		</c:forEach>

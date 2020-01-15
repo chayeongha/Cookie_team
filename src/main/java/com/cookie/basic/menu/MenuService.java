@@ -25,23 +25,17 @@ public class MenuService {
 	
 	//menuInsert
 	public int menuInsert(MenuVO menuVO, MultipartFile[] files)throws Exception{
-		System.out.println(menuVO.getMName());
-		System.out.println(menuVO.getMPrice());
-		System.out.println(menuVO.getMNum());
-		System.out.println(menuVO.getMCount());
-		System.out.println(menuVO.getCNum());
-		System.out.println(menuVO.getOptNums());
+	
 		int result = menuMapper.menuInsert(menuVO);
+		System.out.println("메뉴번호 1: "+menuVO.getMmNum());
 		File file = filePathGenerator.getUseClassPathResource("menu");
 		
 		List<MenuFilesVO> menuFilesVOs = new ArrayList<>();
 		for(int i = 0; i<files.length; i++) {
 			String fileName = fileSaver.save(file, files[i]);
 			MenuFilesVO menuFilesVO = new MenuFilesVO();
-			menuFilesVO.setMNum(3);
-			System.out.println(fileName);
-			System.out.println(files[i].getOriginalFilename());
-			System.out.println(menuVO.getMNum());
+			menuFilesVO.setMmNum(menuVO.getMmNum());
+			System.out.println(menuVO.getMmNum());
 			menuFilesVO.setMoName(files[i].getOriginalFilename());
 			menuFilesVO.setMfName(fileName);
 			
@@ -54,12 +48,12 @@ public class MenuService {
 	
 	
 	
-	
+	//selectOne
 	public MenuVO menuSelect(MenuVO menuVO)throws Exception{
 		
 		return menuMapper.menuSelect(menuVO);
 	}
-	
+	//List
 	public List<MenuVO> menuList()throws Exception{
 		return menuMapper.menuList();
 	}

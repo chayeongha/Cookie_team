@@ -17,6 +17,8 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
+	
+	//Insert
 	@GetMapping("menuInsert")
 	public String menuInsert()throws Exception{
 		return "menu/menuInsert";
@@ -29,7 +31,7 @@ public class MenuController {
 		
 		int result = menuService.menuInsert(menuVO, files);
 		String message="Insert fail";
-		String path="../";
+		String path="menu/menuList";
 		if(result>0) {
 			message="Insert Success";
 		}
@@ -39,17 +41,29 @@ public class MenuController {
 		return mv;
 	}
 	
+	//List
 	@GetMapping("menuList")
 	public ModelAndView menuList()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<MenuVO> ar = menuService.menuList();
 		
-		mv.addObject("list", ar);
+		mv.addObject("lists", ar);
 		mv.setViewName("menu/menuList");
 		
 		
 		return mv;
 		
+	}
+	
+	//selectOne
+	@GetMapping("menuSelect")
+	public ModelAndView menuSelet(MenuVO menuVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		menuVO = menuService.menuSelect(menuVO);
+		mv.addObject("vo", menuVO);
+		mv.setViewName("menu/menuSelect");
+		
+		return mv;
 	}
 	
 	

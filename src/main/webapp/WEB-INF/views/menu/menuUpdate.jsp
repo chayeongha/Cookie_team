@@ -7,16 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
-   <style type="text/css">
-        .imgs_wrap {
-            width: 600px;
-            margin-top: 50px;
-        }
-        .imgs_wrap img {
-            max-width: 200px;
-        }
- 
-    </style>
 </head>
 <body>
 <h1>Menu Insert Page</h1>
@@ -66,52 +56,7 @@
 </div>
 
 
- 
-    <div>
-        <h2><b>다중 이미지 미리보기</b></h2>
-        <p class="title">다중 이미지 업로드</p>
-        <input type="file" id="input_imgs" multiple />
-    </div>
- 
-    <div>
-        <div class="imgs_wrap">
-            
-        </div>
-    </div>
 
-
-
-
-
-<script type="text/javascript">
-
-var sel_files = [];
-
-$(document).ready(function() {
-    $("#input_imgs").on("change", handleImgsFilesSelect);
-}); 
-
-function handleImgsFilesSelect(e) {
-    var files = e.target.files;
-    var filesArr = Array.prototype.slice.call(files);
-
-    filesArr.forEach(function(f) {
-        if(!f.type.match("image.*")) {
-            alert("확장자는 이미지 확장자만 가능합니다.");
-            return;
-        }
-
-        sel_files.push(f);
-
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            var img_html = "<img src=\"" + e.target.result + "\" />";
-            $(".imgs_wrap").append(img_html);
-        }
-        reader.readAsDataURL(f);
-    });
-}
-</script>
 
 
 <script type="text/javascript" src="../../js/fileCount.js"></script>

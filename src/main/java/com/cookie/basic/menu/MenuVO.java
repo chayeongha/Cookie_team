@@ -8,12 +8,12 @@ import lombok.Data;
 
 @Data
 public class MenuVO {
-	private int mNum;
-	private String mName;
-	private int mPrice;
-	private int mCount;
-	private int cNum;
-	private int mTemp;
+	private int mmNum;
+	private String mmName;
+	private int mmPrice;
+	private int mmCount;
+	private int cmNum;
+	private int mmTemp;
 	private int optNums;
 	private List<MenuFilesVO> menuFiles;
 	

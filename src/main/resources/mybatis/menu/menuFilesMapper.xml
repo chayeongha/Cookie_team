@@ -6,7 +6,7 @@
 	<insert id="menuFilesInsert" parameterType="java.util.List">
 		insert into menuFiles values
 		<foreach collection="list" item="item" separator=",">
-  			(null, #{item.mfName}, #{item.moName}, #{item.mNum})
+  			(null, #{item.mfName}, #{item.moName}, #{item.mmNum})
   		</foreach>
 	</insert>
 	

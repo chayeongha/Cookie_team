@@ -8,6 +8,6 @@ public class MenuFilesVO {
 	private int mfNum;
 	private String mfName;
 	private String moName;
-	private int mNum;
+	private int mmNum;
 
 }

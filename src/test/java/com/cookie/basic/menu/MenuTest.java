@@ -21,11 +21,11 @@ class MenuTest {
 	//@Test
 	public void mInserttest() throws Exception{
 		MenuVO menuVO = new MenuVO();
-		menuVO.setMName("핫 라떼");
-		menuVO.setMPrice(2500);
-		menuVO.setMCount(200);
-		menuVO.setCNum(100);
-		menuVO.setMTemp(1);
+		menuVO.setMmName("핫 라떼");
+		menuVO.setMmPrice(2500);
+		menuVO.setMmCount(200);
+		menuVO.setCmNum(100);
+		menuVO.setMmTemp(1);
 		int result = menuMapper.menuInsert(menuVO);
 	}
 	
@@ -36,7 +36,7 @@ class MenuTest {
 		MenuFilesVO menuFilesVO = new MenuFilesVO();
 		menuFilesVO.setMfName(i+"번f");
 		menuFilesVO.setMoName(i+"번O");
-		menuFilesVO.setMNum(i+3);
+		menuFilesVO.setMmNum(i+3);
 		menuFilesVOs.add(menuFilesVO);}
 		menuFilesMapper.menuFilesInsert(menuFilesVOs);
 		
@@ -46,10 +46,10 @@ class MenuTest {
 	//@Test
 	public void mSelect()throws Exception{
 		MenuVO menuVO = new MenuVO();
-		menuVO.setMNum(1);
+		menuVO.setMmNum(1);
 	
 		menuVO = menuMapper.menuSelect(menuVO);
-		assertNotNull(menuVO.getMName());
+		assertNotNull(menuVO.getMmName());
 	}
 
 }
