@@ -7,10 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/board/boardList.css" rel="stylesheet">
 </head>
 <body>
+<div class="body_main">
+	<div class="b"></div>
 	<!-- 서브 타이틀 -->
 	<div class="subTitle_wrap">
 		<div class="subTitle_inner">
@@ -81,7 +84,7 @@
 			<a href="noticeWrite" class="btn btn-primary" id="btnW">글쓰기</a>
 		</div>
 	</div>
-	
+</div>	
 <script type="text/javascript">
 	var kind = '${pager.kind}';
 	if (kind == '') {

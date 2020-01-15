@@ -8,12 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </head>
 <body>
-
+<div class="body_main">
+	<div class="b"></div>
 	<div class="container">
 	  <h2>공지사항 글쓰기</h2>
 	  
@@ -52,6 +54,6 @@
 
 	<script type="text/javascript" src="../js/summernote.js"></script>
 	<!-- <script type="text/javascript" src="../js/fileCount.js"></script> -->
-
+</div>
 </body>
 </html>
