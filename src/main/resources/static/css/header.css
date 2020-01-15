@@ -4,16 +4,32 @@
 	background: #ffede3;
 	width:100%;
 	height: 43px;
-	border-bottom: 1px solid #ffd6bf;;
+	border-bottom: 1px solid #ffd6bf;
 	position: fixed;
 	z-index: 999;
 }
 
 .h1_1{
-	background: pink;
+
 	float:right;
 	height: 100%;
-	width:500px;
+	width:300px;
+}
+.h1_txt{
+	float: right;
+	margin-left: 15px;
+	margin-right: 15px;
+	line-height: 43px;
+	font-size: 20px;
+	font-family: CookieRun-Black;
+}
+
+.h1_txt > a{
+	color:#ff712d;
+}
+
+.h1_txt > a:hover{
+	color:#f23600;
 }
 
 /* header2 */
