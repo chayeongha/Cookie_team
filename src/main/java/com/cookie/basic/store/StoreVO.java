@@ -11,7 +11,18 @@ public class StoreVO {
 	private String sNotice;
 	private int sOn;
 	
+	private StoreFilesVO storeFilesVO;
 	
+	
+	
+	
+	
+	public StoreFilesVO getStoreFilesVO() {
+		return storeFilesVO;
+	}
+	public void setStoreFilesVO(StoreFilesVO storeFilesVO) {
+		this.storeFilesVO = storeFilesVO;
+	}
 	public String getId() {
 		return id;
 	}

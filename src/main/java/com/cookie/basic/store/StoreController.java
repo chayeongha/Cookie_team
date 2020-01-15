@@ -1,5 +1,6 @@
 package com.cookie.basic.store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -39,7 +40,7 @@ public class StoreController {
 		String path = "../";
 		if (result > 0) {
 			message = "등록 성공!";
-			path = "../";
+			path = "./myInfo";
 			session.setAttribute("store", storeVO);
 		}
 
@@ -57,13 +58,21 @@ public class StoreController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		storeVO.setId(memberVO.getId());
 
-		System.out.println(storeVO.getId());
-
+		//System.out.println(storeVO.getId());
+		
 		List<StoreVO> ar = storeService.searchInfo(storeVO);
-
-		System.out.println(storeVO.getId());
-		System.out.println(ar.get(0).getsName());
-
+		
+		/*
+		 * System.out.println(ar.get(0).getsNum());
+		 * 
+		 * for (StoreVO storeVO2 : ar) { StoreFilesVO storeFilesVO = new StoreFilesVO();
+		 * storeFilesVO.setsNum(storeVO2.getsNum()); storeFilesVO =
+		 * (StoreFilesVO)storeService.storeFilesSelect(storeFilesVO);
+		 * ar2.add(storeFilesVO); System.out.println(storeFilesVO.getfName());
+		 * System.out.println(storeFilesVO.getoName()); }
+		 */
+		 
+		
 		mv.addObject("list", ar);
 		mv.setViewName("store/myInfo");
 

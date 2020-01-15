@@ -21,35 +21,38 @@ public class StoreService {
 	private FileSaver fileSaver;
 	@Autowired
 	private StoreFilesMapper storeFilesMapper;
-	
-	
-	public int storeInsert(StoreVO storeVO,MultipartFile files) throws Exception {
-				File file = filePathGenerator.getUseClassPathResource("upload");
-				String fileName = fileSaver.save(file, files);
-				String originalName = files.getOriginalFilename();
-				System.out.println(fileName);
-				int result = storeMapper.storeInsert(storeVO);
-				storeVO = storeMapper.sNumSearch(storeVO);
-				if (result > 0) {
-					StoreFilesVO storeFilesVO = new StoreFilesVO();
-					storeFilesVO.setfName(fileName);
-					storeFilesVO.setsNum(storeVO.getsNum());
-					storeFilesVO.setoName(originalName);
-					result = storeFilesMapper.storeFilesInsert(storeFilesVO);
-				}
-				return result;
+
+	public int storeInsert(StoreVO storeVO, MultipartFile files) throws Exception {
+		File file = filePathGenerator.getUseClassPathResource("upload");
+		String fileName = fileSaver.save(file, files);
+		String originalName = files.getOriginalFilename();
+		System.out.println(fileName);
+		int result = storeMapper.storeInsert(storeVO);
+		storeVO = storeMapper.sNumSearch(storeVO);
+		if (result > 0) {
+			StoreFilesVO storeFilesVO = new StoreFilesVO();
+			storeFilesVO.setfName(fileName);
+			storeFilesVO.setsNum(storeVO.getsNum());
+			storeFilesVO.setoName(originalName);
+			result = storeFilesMapper.storeFilesInsert(storeFilesVO);
+		}
+		return result;
 	}
 
 	public int storeUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.storeUpdate(storeVO);
 	}
-	
-	public List<StoreVO> searchInfo(StoreVO storeVO)throws Exception{
+
+	public List<StoreVO> searchInfo(StoreVO storeVO) throws Exception {
 		return storeMapper.searchInfo(storeVO);
 	}
-	
-	public StoreVO info(StoreVO storeVO)throws Exception{
+
+	public StoreVO info(StoreVO storeVO) throws Exception {
 		return storeMapper.info(storeVO);
+	}
+
+	public List<StoreFilesVO> storeFilesSelect(StoreFilesVO storeFilesVO) throws Exception {
+		return storeFilesMapper.storeFilesSelect(storeFilesVO);
 	}
 
 }
