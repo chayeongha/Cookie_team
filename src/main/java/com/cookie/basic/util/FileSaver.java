@@ -15,13 +15,11 @@ public class FileSaver {
 		//if(!file.exists()) {
 		//	file.mkdirs();
 		//}
-		
-		String fileName = UUID.randomUUID().toString()+"_"+files.getOriginalFilename();
-		file = new File(file,fileName);
 
-		
+		String fileName = UUID.randomUUID().toString() + "_" + files.getOriginalFilename();
+		file = new File(file, fileName);
+		System.out.println(file);
 		files.transferTo(file);
-		
 		return fileName;
 
 	}

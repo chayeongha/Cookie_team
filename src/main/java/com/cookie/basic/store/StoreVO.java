@@ -7,9 +7,17 @@ public class StoreVO {
 	private String sName; 
 	private String sTel; 
 	private String sSite; 
-	private String Id;
-	private int sOn;
+	private String id;
 	private String sNotice;
+	private int sOn;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getsNum() {
 		return sNum;
 	}
@@ -34,12 +42,7 @@ public class StoreVO {
 	public void setsSite(String sSite) {
 		this.sSite = sSite;
 	}
-	public String getId() {
-		return Id;
-	}
-	public void setId(String id) {
-		Id = id;
-	}
+
 	public int getsOn() {
 		return sOn;
 	}

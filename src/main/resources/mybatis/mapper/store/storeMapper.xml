@@ -6,12 +6,25 @@
   
   <mapper namespace="com.cookie.basic.store.StoreMapper">
   	<insert id="storeInsert" parameterType="com.cookie.basic.store.StoreVO">
-  			insert into store values(0,#{sName},#{sTel},#{sSite},#{Id},0,#{sNotice})
+  			insert into store values(0,#{sName},#{sTel},#{sSite},#{sNotice},0,#{id})
   	</insert>
   	
   	<update id="storeUpdate" parameterType="com.cookie.basic.store.StoreVO">
-  		update store set sName=#{sName}, sTel=#{sTel}, sSite=#{sSite} where id=#{id}
+  		update store set sName=#{sName}, sTel=#{sTel}, sSite=#{sSite} where sNum=#{sNum}
   	</update>
+  	
+  	<select id="sNumSearch" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
+  		select * from store where sName=#{sName}
+  	</select>
+  	  	
+  	<select id="searchInfo" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
+  		select * from store where id=#{id}
+  	</select>
+  	
+  	<select id="info" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
+  		select * from store where sNum=#{sNum}
+  	</select>
+  	
   	
   	
   	

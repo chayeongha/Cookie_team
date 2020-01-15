@@ -2,6 +2,8 @@ package com.cookie.basic.store;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,6 +45,14 @@ class StoreMapperTest {
 		int result = storeMapper.storeUpdate(storeVO);
 		
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void storeSelectTest()throws Exception{
+		StoreVO storeVO = new StoreVO();
+		storeVO.setId("cha2");
+		List<StoreVO> ar = storeMapper.searchInfo(storeVO);
+		assertEquals(1, ar.size());
 	}
 	
 	
