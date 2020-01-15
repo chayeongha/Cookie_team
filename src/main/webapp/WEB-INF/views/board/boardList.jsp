@@ -22,34 +22,19 @@
 	<div class="container">
 		<div class="notice_wrap">
 			<div class="search_wrap">
-				<p>
-					<label for="sch_bar" class="lab">검색어</label>
-					<input type="text" id="sch_bar" name="search" placeholder="검색어를 입력해주세요.">
-					<a href="#none">검색</a>
-				
 				<form id="frm" action="noticeList">
-					<input type="hidden" id="curPage" value="1" name="curPage">
-					<select name="kind">
-						<option id="kt" value="kt">Title</option>
-						<option id="kw" value="kw">Writer</option>
-						<option id="kc" value="kc">Contents</option>
-					</select>
-					<input type="text" name="search" value="${pager.search}">
-					<button>검색</button>
+					<p>
+						<input type="hidden" id="curPage" value="1" name="curPage">
+						<select id="kind" name="kind">
+							<option id="kt" value="kt">Title</option>
+							<option id="kw" value="kw">Writer</option>
+							<option id="kc" value="kc">Contents</option>
+						</select>
+						<label for="sch_bar" class="lab">검색어</label>
+						<input type="text" id="sch_bar" name="search" placeholder="검색어를 입력해주세요." value="${pager.search}">
+						<button id="btnS">검색</button>
+					</p>
 				</form>
-				<script type="text/javascript">
-					var kind = '${pager.kind}';
-					if (kind == '') {
-						kind = 'kt';
-					}
-					$("#" + kind).prop("selected", true);
-					$(".list").click(function() {
-						$("#curPage").val($(this).attr("id"))
-						$("#frm").submit();
-					});
-				</script>
-				</p>
-				
 			</div>
 		
 			<table class="notice_tb">
@@ -71,24 +56,44 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
+			<ul class="pagination">
+				<c:if test="${pager.curBlock gt 1}">
+					<li class="previous"><span id="${pager.startNum-1}" class="index">Previous</span></li>
+				</c:if>
+				
+				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+					<li class="list"><span id="${i}" class="index">${i}</span></li>
+				</c:forEach>
+				
+				<c:if test="${pager.curBlock lt pager.totalBlock}">
+					<li class="next"><span id="${pager.lastNum+1}" class="index">Next</span></li>
+				</c:if>
+			</ul>
+			<!-- <script type="text/javascript">
+				$('.pagination li.index:first').addClass('active');
+				$('ul li.index a').click(function(){
+					$('.pagination li.index:first').removeClass('active');
+					$(this).parent().addClass('active');
+				});
+			</script> -->
+			
+			<a href="noticeWrite" class="btn btn-primary" id="btnW">글쓰기</a>
 		</div>
 	</div>
-
-	<div class="container" style="margin: 0 auto;">
-		<ul class="pagination">
-			<c:if test="${pager.curBlock gt 1}">
-				<li class="previous"><a href="./noticeList?curPage=${pager.startNum-1}">Previous</a></li>
-			</c:if>
-			
-			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<li><a href="./noticeList?curPage=${i}">${i}</a></li>
-			</c:forEach>
-			
-			<c:if test="${pager.curBlock lt pager.totalBlock}">
-				<li class="next"><a href="./noticeList?curPage=${pager.lastNum+1}">Next</a></li>
-			</c:if>
-		</ul>
-	</div>
 	
+<script type="text/javascript">
+	var kind = '${pager.kind}';
+	if (kind == '') {
+		kind = 'kt';
+	}
+	
+	$("#" + kind).prop("selected", true);
+	
+	$(".index").click(function() {
+		$("#curPage").val($(this).attr("id"))
+		$("#frm").submit();
+	});
+</script>
 </body>
 </html>
