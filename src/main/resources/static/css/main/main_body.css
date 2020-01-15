@@ -2,25 +2,34 @@
 
 .bar{
 	position: fixed;
-	width:100px;
+	width:50px;
 	height:500px;
 	background:transparent;
-	top:250px;
+	top:100px;
 	right: 50px;
 	z-index: 990;
 }
 
 .bar > a >img{
-	padding:25px;
+
 	width:50px;
 	height: 50px;
 }
 
 .bar_inner{
 	position: relative;
-	height: 400px;
-	background: pink;
-	
+	background: transparent;
+	font-family: CookieRun-Black;
+	font-size:40px;
+	text-align: center;
+}
+
+.bar_inner > ul > li > a{
+	color: #ff550d;
+}
+
+.bar_inner > ul > li > a:hover{
+	color: #ff986c;
 }
 
 .bar_inner > ul > li{
@@ -30,6 +39,7 @@
 .m_1_top{
 	width: 100%;
 	background: #ffa97b;
+	/* background-image:url("../../images/main/main1.jpg"); */
 	height: 450px;	
 }
 
@@ -44,12 +54,63 @@
 	
 }
 
+.m_1inner{
+	width:550px;
+	height: 258px;
+	position: absolute;
+	background-image: url("../../images/main/mmm2.jpg");
+	background-size:cover;
+	top:254px;
+	left:403px;
+	z-index: 4;
+	
+}
+.m1_img{
+	float:left;
+	margin-left:10px;
+}
+.m1_img1{
+	width:300px;
+	height: 350px;
+	background-image: url("../../images/main/c1.jpg");
+	background-size: cover;
+}
+.m1_img2{
+	width:300px;
+	height: 350px;
+	background-image: url("../../images/main/c2.jpg");
+	background-size: cover;
+}
+.m1_img3{
+	width:300px;
+	height: 350px;
+	background-image: url("../../images/main/c3.jpg");
+	background-size: cover;
+}
+
+.m1_img4{
+	width:300px;
+	height: 350px;
+	background-image: url("../../images/main/c4.jpg");
+	background-size: cover;
+}
+
+.m1_img5{
+	width:300px;
+	height: 350px;
+	background-image: url("../../images/main/c5.jpg");
+	background-size: cover;
+	position: absolute;
+	left:1240px;
+}
+
+
 .m1_top2{
 	width: 1200px;
 	margin: 0 auto;
 	height: 200px;
 	border-bottom: 8px solid #ffa97b;
-	
+	margin-top:50px;
 }
 
 .m1_t2{
@@ -57,7 +118,7 @@
 	font-family: CookieRun-Black;
 	font-size: 30px;
 	position: absolute;
-	top:675px;
+	top:725px;
 	margin-left: 500px;
 	width:800px;
 }
@@ -304,11 +365,11 @@
 }
 .main_4_box{
 	width:420px;
-	margin-left:555px;
+	margin-left:570px;
 	height:8px;
 	background: #ffa97b;
 	position: absolute;
-	top:3800px;
+	top:3850px;
 	z-index: 1;
 }
 

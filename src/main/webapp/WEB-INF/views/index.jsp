@@ -11,7 +11,7 @@
 <link href="/css/body.css" rel="stylesheet"/>
 <link href="/css/footer.css" rel="stylesheet"/>
 <link href="/css/main/main_body.css" rel="stylesheet"/>
-
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6ba0b2e0894b510063b292edfad86999"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
@@ -52,7 +52,10 @@
 
 	<!-- header -->
 	<div class="header1">
-		<div class="h1_1"></div>
+		<div class="h1_1">
+			<div class="h1_txt"><a href="#">Join</a></div>
+			<div class="h1_txt"><a href="#">Login</a></div>
+		</div>
 	</div><!-- 위에 헤더 -->
 	<div class="header2">
 		<div class="h_img">
@@ -77,19 +80,30 @@
 		<div class="bar">
 			<div class="bar_inner">
 				<ul>
-					<li>a</li>
-					<li>b</li>
+					<li class="barselect"><a href="#m1">1</a></li>
+					<li class="barselect"><a href="#m2">2</a></li>
+					<li class="barselect"><a href="#m3">3</a></li>
+					<li class="barselect"><a href="#m4">4</a></li>
+					<li class="barselect"><a href="#m5"><img src="./images/main/top.png" style="width: 50px; height: 50px"></a></li>
 				</ul>
 			</div>
-			<a href="#"><img src="./images/main/top.png"></a>
+			<!-- <a href="#"><img src="./images/main/top.png"></a> -->
 		</div><!-- bar 끝 -->
-		<div class="m_1_top">
+		<div class="m_1_top" id="m5">
 			<div class="m_1">
 				<h4>아직도 매장에서 주문하고 계시나요?</h4>
 				<h1>Cookie Order</h1>
 				<p style="font-size: 25px;">매장에서 음식을 먹든, 테이크아웃을 하든 초간편 웹으로 미리 주문하세요.</p>
 				<p style="font-size: 25px; margin-bottom: 30px;">단, 1초도 기다릴 필요가 없습니다.</p>
-				<img src="./images/main/mainC.gif">
+				<!-- <img src="./images/main/mainC.gif"> -->
+				<div>
+					<div class="m1_img m1_img1"></div>
+					<div class="m1_img m1_img2"></div>
+					<div class="m1_img m1_img3"></div>
+					<div class="m1_img m1_img4"></div>
+					<div class="m1_img m1_img5"></div>
+				</div>
+				<div class="m_1inner2"></div>
 			</div>
 		</div><!-- m_1_top끝 -->
 		<div class="m1_top2"></div>
@@ -119,7 +133,7 @@
 		</div><!-- 위에끝 -->
 		<div class="main_box"></div><!-- 위에 짝대기 -->
 		
-		<div class="main_1">
+		<div class="main_1" id="m1">
 			<div class="main_title">이용방법</div>
 			<div class="main_1_inner">
 				<div class="main_1_1"></div>
@@ -158,7 +172,7 @@
 			
 		</div><!-- main_1끝 -->
 		
-		<div class="main_2">
+		<div class="main_2" id="m2">
 			<div class="main_title2"><br>Cookie Order에 등록이 아직 안 되어있는 점주님!</div>
 			<div class="main_box2"></div>
 			<h2 style="text-align: center;font-family: CookieRun-Black; width:1500px">인건비는 줄이고, 매출을 늘리세요</h2>
@@ -177,12 +191,12 @@
 			</div><!-- main2_inner끝 -->
 		</div><!-- main_2끝 -->
 		
-		<div class="main_3">
+		<div class="main_3" id="m3">
 			<h1 style="text-align: center;font-family: CookieRun-Black; padding:45px; color:#181818;width:1400px;">주문가능한 매장을 찾아보세요!</h1>
 			<div id="map" style="width:1100px;height:400px;"></div>
 		</div>
 		
-		<div class="main_4">
+		<div class="main_4" id="m4">
 			<div class="main_title2" style="width: 1480px;">적립금도 UP! 혜택도 UP!</div>
 			<div class="main_4_box"></div><!-- main4 짝대기 -->
 			<div class="main_4_inner">
@@ -208,6 +222,20 @@
 			</div>
 		</div>
 	</div><!-- bodymain끝 -->
+	
+	
+	<script type="text/javascript">
+			 $(document).on('click','.barselect a',function(event){
+				 var headerHeight = $('.bar_inner').outerHeight();
+				  event.preventDefault();
+
+				  	$("html,body").animate({
+				    	scrollTop : $(this.hash).offset().top
+				    },300)
+				  });
+			 
+			
+	</script>
 
 </body>
 </html>
