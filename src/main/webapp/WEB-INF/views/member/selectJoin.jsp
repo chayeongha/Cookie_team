@@ -8,19 +8,23 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
+<link href="/css/member/member.css" rel="stylesheet"/>
 </head>
 <body>
+<div class="body_main">
+	<div class="b"></div>
+	<div class="sinner">
+		<div class="container">
 
-	<div class="container">
-		 <div class="form-group">  
-		<h1>SELECT JOIN PAGE</h1>
+			<h1 style="font-family: CookieRun-Black; padding:50px">쿠키오더 회원 가입</h1>
+ 
+				<button type="button" onclick="location.href='memberJoin?grade=1&kind=Personalman' ">개인 회원가입</button>
+				<button type="button" onclick="location.href='memberJoin?grade=8888&kind=Buisnessman' ">사업자 회원가입</button>
+
 		</div>
-			  <div class="form-group">  
-			<button type="button" onclick="location.href='memberJoin?grade=1&kind=Personalman' ">개인 회원가입</button>
-			<button type="button" onclick="location.href='memberJoin?grade=8888&kind=Buisnessman' ">사업자 회원가입</button>
-				</div>
-	</div>
-
-
+	</div><!--sinner-->
+	<c:import url="../layout/footer.jsp" />
+</div><!-- body_main끝 -->
 </body>
 </html>
