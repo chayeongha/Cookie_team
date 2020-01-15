@@ -13,6 +13,12 @@ public class NoticeService {
 	@Autowired
 	private NoticeMapper noticeMapper;
 	
+	//글 하나 조회
+	public NoticeVO noticeSelect(NoticeVO noticeVO) throws Exception {
+		return noticeMapper.noticeSelect(noticeVO);
+	}
+	
+	//리스트
 	public List<NoticeVO> noticeList(Pager pager) throws Exception {
 		pager.makeRow();
 		pager.makePage(noticeMapper.noticeCount(pager));
