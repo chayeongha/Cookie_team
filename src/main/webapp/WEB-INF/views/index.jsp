@@ -26,7 +26,7 @@
       <div class="cate_2">Order</div>
       <div class="cate">
          <p><a href="#">제휴매장</a></p>
-         <p><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></p>
+         <p><a href="#">공지사항</a></p>
 
          <p><a href="#">이용후기</a></p>
          <p><a href="#">Q & A</a></p>
