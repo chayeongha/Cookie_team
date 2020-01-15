@@ -10,5 +10,15 @@
     		insert into memberFiles values(null,#{id},#{fname},#{oname})
     	</insert>
     
-    
+    	<!--셀렉트  -->
+    	<select id="memberFilesSelect" parameterType="memberFilesVO">
+ 			select * from memberFiles where fnum= #{fnum}
+ 		</select>
+ 		
+ 		<!--이미지 수정 -->
+    	<update id="memberFilesUpdate" parameterType="memberFilesVO">
+			   
+			   	update memberFiles set fname=#{fname}, oname=#{oname}
+			   	where id=#{id} 
+    	</update>
     </mapper>

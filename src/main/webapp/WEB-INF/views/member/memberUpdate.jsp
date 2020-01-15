@@ -18,22 +18,22 @@
 
 <div class="container">
 	
-<h1>${kind} Join Page</h1>
-  <form:form class="form-horizontal" action="./memberJoin" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
+<h1>Update Page</h1>
+  <form:form class="form-horizontal" action="./memberUpdate" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
     
     <div class="form-group">
       <label class="control-label col-sm-2" for="id">Id:</label>
       <div class="col-sm-10">
-        <form:input path="id" placeholder="Enter id" class="form-control" id="id"/>
-      	<form:errors path="id" />
+        <input type="text" class="form-control" id="Id" value="${member.id}" readonly="readonly" name="id">
+      	
       </div>
     </div>
     
     <div class="form-group">
       <label class="control-label col-sm-2" for="pw">Password:</label>
       <div class="col-sm-10">          
-      <form:password path="pw" class="form-control" id="pw" placeholder="Enter password"/>
-		 <form:errors path="pw" cssStyle="color:red;" />
+      <form:password path="pw" class="form-control" id="pw" name="pw" placeholder="Enter password"/>
+		 
       </div>
      </div>
      
@@ -41,50 +41,50 @@
       <label class="control-label col-sm-2" for="pw2">Pw Confirm:</label>
       <div class="col-sm-10">          
         <form:password path="pw2" class="form-control" id="pw2" placeholder="Enter password"/>
-		<form:errors path="pw2" />
+		
       </div>
      </div>
      
      <div class="form-group">
       <label class="control-label col-sm-2" for="name">Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="Id" placeholder="Enter name" name="name">
+        <input type="text" class="form-control" id="Id" name="name" placeholder="${member.name}">
       </div>
     </div>
      
         <div class="form-group">
       <label class="control-label col-sm-2" for="nickname">Nickname:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="nickname" placeholder="Enter nickname" name="nickname">
+        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="${member.nickname}">
       </div>
     </div>
     
      <div class="form-group">
       	<label class="control-label col-sm-2" for="email">Phone number:</label>
      	 <div class="col-sm-10">          
-        	<input type="text" class="form-control" id="phone" placeholder="Enter phone number" name="phone">
+        	<input type="text" class="form-control" id="phone" name="phone" placeholder="${member.phone}">
       	</div>
      </div>
      
+     
      <div class="form-group">
-      	<div class="col-sm-10"> 
-  			<input type="hidden" class="form-control" name="grade" value="${grade}"> 
-     		<input type="hidden" class="form-control" name="kind" value="${kind}"> 
-     	</div>
- 	</div>
-   
+      		<label for="name">grade</label>
+      		<input type="text" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly">
+    </div>
+     
+     
    		
     
-    <div class="form-group">
-		<label for="files">Profile:</label> 
-			<input type="file"class="form-control" id="files" name="files">
-	</div>
+<!--     <div class="form-group"> -->
+<!-- 		<label for="files">Profile:</label>  -->
+<!-- 			<input type="file"class="form-control" id="files" name="files"> -->
+<!-- 	</div> -->
 	
 
     
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">JOIN</button>
+        <button type="submit" class="btn btn-primary">update</button>
       </div>
     </div>
   
