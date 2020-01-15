@@ -10,15 +10,15 @@
 
 
 
-	<h1>지점가입</h1>
+	<h1>매장등록</h1>
 
-	<h2>Join</h2>
+	<h2>Join Us</h2>
 		<form action="storeInsert" method="post" enctype="multipart/form-data">
 
 
 			<div>
-				<label for="Id">점주 아이디:</label> <!-- id 세션에서 점주 아이디만 받아오기 -->
-				<input type="text"id="Id" name="Id" >  <%-- value="${session.memberVO.Id}" --%>
+				<label for="id">점주 아이디:</label> <!-- id 세션에서 점주 아이디만 받아오기 -->
+				<input type="text"id="id" name="id" value="${member.id}"> 
 			</div>
 			
 			<div>

@@ -1,6 +1,7 @@
 package com.cookie.basic.store;
 
 import java.io.File;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,14 @@ public class StoreService {
 
 	public int storeUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.storeUpdate(storeVO);
+	}
+	
+	public List<StoreVO> searchInfo(StoreVO storeVO)throws Exception{
+		return storeMapper.searchInfo(storeVO);
+	}
+	
+	public StoreVO info(StoreVO storeVO)throws Exception{
+		return storeMapper.info(storeVO);
 	}
 
 }
