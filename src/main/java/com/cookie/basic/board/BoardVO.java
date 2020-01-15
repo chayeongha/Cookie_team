@@ -1,6 +1,7 @@
 package com.cookie.basic.board;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
