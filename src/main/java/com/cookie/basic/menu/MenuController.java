@@ -25,13 +25,13 @@ public class MenuController {
 	}
 	
 	@PostMapping("menuInsert")
-	public ModelAndView menuInsert(MenuVO menuVO, MultipartFile[] files)throws Exception{
-		System.out.println(files.length);
+	public ModelAndView menuInsert(MenuVO menuVO,  List<MultipartFile> files, String [] opto, String[] optName, String[] optPrice)throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		
-		int result = menuService.menuInsert(menuVO, files);
+		int result = menuService.menuInsert(menuVO, files, opto, optName, optPrice);
 		String message="Insert fail";
-		String path="menu/menuList";
+		String path=".	/menuList";
 		if(result>0) {
 			message="Insert Success";
 		}

@@ -60,7 +60,6 @@ public class FilePathGenerator {
 		
 		
 		public File getUseServletContext(String filePath) {
-			
 			String files = servletContext.getRealPath(filePath);
 			File file = new File(files);
 			if(!file.exists()) {

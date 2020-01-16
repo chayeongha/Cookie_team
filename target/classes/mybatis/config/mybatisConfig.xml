@@ -19,6 +19,7 @@
   		
   		<typeAlias type="com.cookie.basic.menu.MenuVO" alias="MenuVO"/>
   		<typeAlias type="com.cookie.basic.menu.MenuFilesVO" alias="MenuFilesVO"/>
+  		<typeAlias type="com.cookie.basic.menu.MoptVO" alias="MoptVO"/>
   	</typeAliases>
 
   </configuration>

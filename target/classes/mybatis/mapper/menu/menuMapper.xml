@@ -12,11 +12,17 @@
 		<result column="mmCount"  property="mmCount"/>
 		<result column="cmNum"  property="cmNum"/>
 		<result column="mmTenp"  property="mmTenp"/>
-		<result column="optNums"  property="optNums"/>
+		<result column="sNum"  property="sNum"/>
 		<collection property="menuFiles" javaType="ArrayList" ofType="MenuFilesVO" >
 			<id column="mfNum" property="mfNum"/>
 			<result column="mfName" property="mfName"/>
 			<result column="moNum" property="moNum"/>
+		</collection>
+		<collection property="menuOptions" javaType="ArrayList" ofType="MoptVO">
+			<id column="optNum" property="optNum"/>
+			<result column="optName" property="optName"/>
+			<result column="optPrice" property="optPrice"/>
+			<result column="optCount" property="optCount"/>
 			
 		</collection>
 		
@@ -27,17 +33,15 @@
 
 
 	<insert id="menuInsert" parameterType="MenuVO" useGeneratedKeys="true" keyProperty="mmNum">
-		insert into menu values(null, #{mmName}, #{mmPrice}, #{mmCount}, #{cmNum}, #{mmTemp}, #{optNums})
+		insert into menu values(null, #{mmName}, #{mmPrice}, #{mmCount}, #{cmNum}, #{mmTemp}, #{sNum})
 	</insert>
 	
 	<select id="menuSelect" resultMap="selectResult" parameterType="MenuVO">
-	select M.*,F.* from menu M left join menuFiles F
-		on M.mmNum = F.mmNum
-        where M.mmNum = #{mmNum}
-        union
-        select M.*,F.* from menu M right join menuFiles F
-		on M.mmNum = F.mmNum
-		where M.mmNum = #{mmNum}
+	select M.*,F.*, Mo.* 
+        from menu M 
+        left outer join menuFiles F on M.mmNum = F.mmNum
+        left outer join mopt Mo on M.mmNum = Mo.mmNum
+        where M.mmNum = #{mmNum};
 	</select>
 	
 	<select id="menuList" resultType="MenuVO"> 

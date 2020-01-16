@@ -20,29 +20,72 @@ public class MenuService {
 	private FilePathGenerator filePathGenerator;
 	@Autowired
 	private FileSaver fileSaver;
-	@Autowired
+	@Autowired	
 	private MenuFilesMapper menuFilesMapper;
+	@Autowired
+	private MoptMapper moptMapper;
 	
 	//menuInsert
-	public int menuInsert(MenuVO menuVO, MultipartFile[] files)throws Exception{
-	
-		int result = menuMapper.menuInsert(menuVO);
-		System.out.println("메뉴번호 1: "+menuVO.getMmNum());
-		File file = filePathGenerator.getUseClassPathResource("menu");
+	public int menuInsert(MenuVO menuVO,List<MultipartFile> files, String [] opto, String[] optName, String[] optPrice)throws Exception{
+		List<MenuFilesVO> menuFilesVOs = null;
 		
-		List<MenuFilesVO> menuFilesVOs = new ArrayList<>();
-		for(int i = 0; i<files.length; i++) {
-			String fileName = fileSaver.save(file, files[i]);
-			MenuFilesVO menuFilesVO = new MenuFilesVO();
-			menuFilesVO.setMmNum(menuVO.getMmNum());
-			System.out.println(menuVO.getMmNum());
-			menuFilesVO.setMoName(files[i].getOriginalFilename());
-			menuFilesVO.setMfName(fileName);
+		int result = menuMapper.menuInsert(menuVO);
+		
+		boolean check=false;
+		
+		if(files.size()>0) {
+			for(MultipartFile multipartFile: files) {
+				if(multipartFile.getSize() > 0) {
+					check=true;
+					break;
+				}
+			}
 			
-			menuFilesVOs.add(menuFilesVO);
+			if(check) {
+			menuFilesVOs = new ArrayList<MenuFilesVO>();
+			for(MultipartFile multipartFile:files) {
+				if(multipartFile.getSize()>0) {
+				MenuFilesVO menuFilesVO = new MenuFilesVO();
+				menuFilesVO.setMmNum(menuVO.getMmNum());
+				File file = filePathGenerator.getUseClassPathResource("menu");
+				String fileName = fileSaver.save(file,multipartFile);
+				menuFilesVO.setMoName(multipartFile.getOriginalFilename());
+				menuFilesVO.setMfName(fileName);
+				
+				menuFilesVOs.add(menuFilesVO);
+			}
+		}	
+			}
+			
+			
+			
+			
+		 List<MoptVO>moptVOs = new ArrayList<>(); 
+		 for(int i = 0; i<opto.length; i++) { 
+			String[] spt = opto[i].split(":");
+			MoptVO moptVO = new MoptVO(); 
+			moptVO.setMmNum(menuVO.getMmNum());
+			moptVO.setOptName(spt[0]);
+			moptVO.setOptPrice(Integer.parseInt(spt[1]));
+			moptVOs.add(moptVO);
 			
 		}
+		 for(int i = 0; i<optName.length; i++) { 
+				MoptVO moptVO = new MoptVO(); 
+				moptVO.setMmNum(menuVO.getMmNum());
+				moptVO.setOptName(optName[i]);
+				moptVO.setOptPrice(Integer.parseInt(optPrice[i]));
+				moptVOs.add(moptVO);
+				
+			}
+		 
+		  
+		  moptMapper.moptInsert(moptVOs);
+		 
+		
 		menuFilesMapper.menuFilesInsert(menuFilesVOs);
+	
+		}
 		return result;
 	}
 	
