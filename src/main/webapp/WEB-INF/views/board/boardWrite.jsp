@@ -53,6 +53,7 @@
        <input type="button" class="btn btn-primary" id="write" value="Submit">
      </form:form>
      
+     <a href="./noticeList" class="btn btn-warning">목록</a>
    </div>
    
 <script type="text/javascript">
@@ -121,7 +122,9 @@
 					//OnImageUpload End
 					onMediaDelete : function(files) {
 						var fileName = $(files[0]).attr('src');
-						console.log(fileName);
+						//console.log(fileName);
+						fileName = fileName.substring(fileName.lastIndexOf('/')+1);
+						//console.log(fileName);
 						$.ajax({
 							type : "POST",
 							url : "./summerFileDelete",
@@ -129,13 +132,11 @@
 								fileName : fileName
 							},
 							success : function(data) {
-								console.log(data);
+								//console.log(data);
 							}
-
 						});
 					}
 				//onMediaDelete End
-
 				}
 			});
 </script>

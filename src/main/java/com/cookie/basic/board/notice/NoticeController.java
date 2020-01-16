@@ -28,8 +28,8 @@ public class NoticeController {
 	//summernote 파일 삭제
 	@ResponseBody
 	@PostMapping("summerFileDelete")
-	public ModelAndView summerFileDelete(String file) throws Exception {
-		boolean check = noticeService.summerFileDelete(file);
+	public ModelAndView summerFileDelete(String fileName) throws Exception {
+		boolean check = noticeService.summerFileDelete(fileName);
 		String result = "Delete Fail";
 		
 		if(check) {
@@ -37,8 +37,7 @@ public class NoticeController {
 		}
 		
 		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("common/common_ajaxResult");
+		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", result);
 		
 		return mv;
@@ -48,14 +47,14 @@ public class NoticeController {
 	@ResponseBody
 	@PostMapping("summerFile")
 	public ModelAndView summerFile(MultipartFile file) throws Exception {
-		System.out.println(file.getOriginalFilename());
+		//System.out.println(file.getOriginalFilename());
 		
 		String fileName = noticeService.summerFile(file);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", fileName);
-		System.out.println("fileName:"+fileName);
+		//System.out.println("fileName:"+fileName);
 		
 		return mv;
 	}
