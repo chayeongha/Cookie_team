@@ -17,7 +17,7 @@ class MemberTest {
 	@Autowired
 	private MemberFilesMapper MemberFilesMapper;
 	
-	@Test
+	//@Test
 	void insertFilesTest()throws Exception{
 		MemberFilesVO memberFilesVO= new MemberFilesVO();
 		memberFilesVO.setFnum(1);
@@ -29,11 +29,18 @@ class MemberTest {
 		
 		assertEquals(1, result);
 		
+	}//성공
+	
+	//@Test
+	void deleteTest( )throws Exception{
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId("test");
+		int result= memberMapper.memberDelete(memberVO);
 		
-	}
-	
-	
-	
+		assertEquals(1, result);
+		
+	}//성공
+
 	//@Test
 	void insertTest() throws Exception{
 		MemberVO memberVO= new MemberVO();
@@ -47,6 +54,6 @@ class MemberTest {
 		int result = memberMapper.memberJoin(memberVO);
 		assertEquals(1, result);
 		
-	}
+	}//성공
 
 }

@@ -1,5 +1,7 @@
 package com.cookie.basic.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.cookie.basic.util.Pager;
 
 import net.bytebuddy.asm.Advice.Return;
 
@@ -69,7 +73,7 @@ public class MemberController {
 		}else {
 			
 			String msg = "회원가입 실패";
-			String path ="../";
+			String path ="./memberIndex";
 			int result= memberService.memberJoin(memberVO, files);
 			
 			if(result >0) {
@@ -146,28 +150,68 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberUpdate")
-	public ModelAndView memberUpdate(MemberVO memberVO)throws Exception {
+	public ModelAndView memberUpdate(MemberVO memberVO, MultipartFile files, HttpSession session)throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		int result = memberService.memberUpdate(memberVO);
+		int result = memberService.memberUpdate(memberVO,files);
+		
+		String msg="실패";
 		
 		if(result>0) {
-			mv.addObject("msg", "Success");
-			mv.addObject("path", "./memberIndex");
-			mv.setViewName("common/result");
-			mv.addObject("member", memberVO);
-		}else {
-			mv.addObject("msg", "Fail");	
-			mv.addObject("path", "./memberIndex");
-			mv.setViewName("common/result");
+			memberVO=memberService.memberLogin(memberVO);
+			session.setAttribute("member", memberVO);
+			msg="성공";
 		}
+			mv.addObject("msg", msg);
+			mv.addObject("path","./memberMypage");
+			mv.setViewName("common/result");
 		
 		
 		return mv;
 	}
 	
+	//회원 탈퇴
+	@GetMapping("memberDelete")
+	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session)throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		int result =memberService.memberDelete(memberVO);
+		
+		String msg = "0";
+		if (result>0) {
+			msg = "1";
+			session.invalidate();
+		}
+
+		mv.addObject("msg", msg);
+		mv.setViewName("common/ajax_result");
+		
+		return mv;
+		}
+	
+		//회원 리스트
+//		@GetMapping("memberList")
+//		public ModelAndView memberList(Pager pager)throws Exception{
+//			
+//			ModelAndView mv = new ModelAndView();
+//			List<MemberVO> ar = memberService.memberList(pager);
+//			
+//			mv.addObject("pager", pager);
+//			mv.addObject("list", ar);
+//			
+//			mv.setViewName("member/memberList");
+//			
+//			return mv;
+//		}
+	
 	
 	
 	
 }
+	
+	
+	
+	
+

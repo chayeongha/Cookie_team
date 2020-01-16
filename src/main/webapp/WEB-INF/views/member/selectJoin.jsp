@@ -22,7 +22,7 @@
 		<div class="form-group">  
 			
 			 <form action="./memberJoin" method="get">
-			 	<button type="submit" class="btn-primary">개인 회원가입</button>
+			 	<button type="submit" class="btn btn-primary">개인 회원가입</button>
 			 	<input type="hidden" name="kind" value="Personal">
 			 	<input type="hidden" name="grade" value="1">
 			 </form>
@@ -31,7 +31,7 @@
 		<div class="form-group">   
 			 
 			 <form action="./memberJoin" method="get">
-			 	<button type="submit" class="btn-danger">사업자 회원가입</button>
+			 	<button type="submit" class="btn btn-danger">사업자 회원가입</button>
 			 	<input type="hidden" name="kind" value="Buisness">
 			 	<input type="hidden" name="grade" value="8888">
 			 </form>

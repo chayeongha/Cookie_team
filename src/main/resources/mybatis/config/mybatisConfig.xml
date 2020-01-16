@@ -6,5 +6,6 @@
   		<typeAliases>
   					<typeAlias type="com.cookie.basic.member.MemberVO" alias="memberVO" />
   					<typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="memberFilesVO" />
+  					<typeAlias type="com.cookie.basic.util.Pager" alias="pager" />
 	  	</typeAliases>
   </configuration>

@@ -47,5 +47,17 @@
    			where id=#{id}
    	</update>
    	
+   	<!--회원 탈퇴  -->
+   	<delete id="memberDelete" parameterType="memberVO">
+   			delete from members where id=#{id}
+   	</delete>
+   	
+   	<!--회원리스트  -->
+   	<select id ="memberList" parameterType="pager" resultType="memberVO">
+   			select M.*,F.fname from members M left join memberFiles F 
+   			on M.id=F.id
+   			limit #{startRow},#{perPage}
+   	</select>
+   	
    	
   </mapper>

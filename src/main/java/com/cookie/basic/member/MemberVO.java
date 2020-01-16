@@ -27,5 +27,7 @@ public class MemberVO {
 	private String kind;
 	
 	private MemberFilesVO memberFilesVO;
+	
+	private Integer fnum;
 
 }
