@@ -8,34 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp" />
-<c:import url="../layout/header.jsp" />
-<link href="/css/member/member.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="body_main">
-	<div class="b"></div>
-	<div class="sinner">	
+	
 	<div class="container">
-		  <h2>memberLogin</h2>
-		  <form action="./memberLogin" method="post">
-		    <div class="form-group">
-		      <label for="id">id:</label>
-		      <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
-		    </div>
-		    <div class="form-group">
-		      <label for="pw">Password:</label>
-		      <input type="password" class="form-control" id="pw" placeholder="Enter password" name="pw">
-		    </div>
-		    <div class="checkbox">
-		      <label><input type="checkbox" name="remember"> Remember me</label>
-		    </div>
-		    <button type="submit" class="btn btn-default">Submit</button>
-		  </form>
-		</div>
-</div><!--sinner-->
-	<c:import url="../layout/footer.jsp" />
-
-</div><!-- body_main끝 -->	
+  <h2>memberLogin</h2>
+  <form action="./memberLogin" method="post">
+    <div class="form-group">
+      <label for="id">id:</label>
+      <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
+    </div>
+    <div class="form-group">
+      <label for="pw">Password:</label>
+      <input type="password" class="form-control" id="pw" placeholder="Enter password" name="pw">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+	
 	
 </body>
 </html>
