@@ -5,6 +5,8 @@ import java.sql.Date;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -24,8 +26,10 @@ public class BoardVO {
 	
 	@Id
 	private int num;
+	@NotEmpty(message = "제목을 작성해주세요.")
 	private String title;
 	private String writer;
+	@NotEmpty(message = "내용을 작성해주세요.")
 	private String contents;
 	private Date regDate;
 	

@@ -10,6 +10,20 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileSaver {
 	
+	//파일 삭제
+	public boolean fileDelete(File file, String fileName) throws Exception {
+		file = new File(file, fileName);
+		
+		boolean check = false;
+		
+		if(file.exists()) {
+			check = file.delete();
+		}
+		
+		return check;
+	}
+	
+	//파일 저장
 	public String save(File file, MultipartFile files)throws Exception{
 		//File file = new File(filepath);
 		//if(!file.exists()) {

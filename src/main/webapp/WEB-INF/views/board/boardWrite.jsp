@@ -26,7 +26,7 @@
        
        <div class="form-group">
          <label for="writer">Writer:</label>
-         <form:input path="writer" readonly="true" class="form-control" id="writer" value=""/>
+         <form:input path="writer" class="form-control" id="writer" value=""/>
        </div>
        
        <div class="form-group">
@@ -40,7 +40,7 @@
             <label for="file">File:</label>
             <br>
             <div class="col-sm-11">
-               <input type="file" class="form-control" id="file" name="file">
+               <input type="file" class="form-control" id="file" name="files">
             </div>
             <div class="col-sm-1">
                <input type="button" class="btn btn-danger del" value="Del">
@@ -50,7 +50,7 @@
        
        <input type="button" id="btn_add" class="btn btn-success" value="Add File">
        
-        <button class="btn btn-info">Submit</button>
+       <input type="button" class="btn btn-primary" id="write" value="Submit">
      </form:form>
      
    </div>
@@ -81,9 +81,65 @@
          alert("최대 5개까지 가능합니다.");
       }
    });
-   
+
+ 
+	$("#write").click(function() {
+		//다른 input들 검증.
+		if($("#contents").summernote('isEmpty')) {
+			alert("내용을 입력해주세요.");
+		}else {
+			$("#frm").submit();
+		}
+	});
+
+	//summer Note
+	$("#contents").summernote(
+			{
+				height : 400,
+				callbacks : {
+					onImageUpload : function(files) {
+						var formData = new FormData();
+						formData.append('file', files[0]);
+
+						$.ajax({
+							type : "POST",
+							url : "./summerFile",
+							data : formData,
+							enctype : "multipart/form-data",
+							cache : false,
+							contentType : false,
+							processData : false,
+							success : function(data) {
+								data = data.trim();
+								//console.log(data);
+								data = '../summernote/'+data;
+								//console.log(data);
+								$('#contents').summernote('insertImage', data);
+							}
+						});
+					},
+					//OnImageUpload End
+					onMediaDelete : function(files) {
+						var fileName = $(files[0]).attr('src');
+						console.log(fileName);
+						$.ajax({
+							type : "POST",
+							url : "./summerFileDelete",
+							data : {
+								fileName : fileName
+							},
+							success : function(data) {
+								console.log(data);
+							}
+
+						});
+					}
+				//onMediaDelete End
+
+				}
+			});
 </script>
-   <script type="text/javascript" src="../js/summernote.js"></script>
+   <!-- <script type="text/javascript" src="../js/summernote.js"></script> -->
    <!-- <script type="text/javascript" src="../js/fileCount.js"></script> -->
 
 </body>
