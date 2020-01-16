@@ -14,10 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FilePathGenerator {
 
-
 	@Autowired
 	private ResourceLoader resourceLoader;
-
 
 	public File getUseClassPathResource(String filePath) throws Exception {
 		// classpath 경로를 받아오기 위해 사용..
@@ -25,10 +23,10 @@ public class FilePathGenerator {
 		// 나머지는 ResourceLoader와 같음
 		String path = "/static";
 		ClassPathResource classPathResource = new ClassPathResource(path);
+		
 		File file = new File(classPathResource.getFile(), filePath);
 		if (!file.exists()) {
 			file.mkdirs();
-
 		}
 		System.out.println(file.getAbsolutePath());
 
@@ -53,7 +51,6 @@ public class FilePathGenerator {
 		System.out.println(file.getAbsolutePath());
 
 		return file;
-
 	}
 
 	private ServletContext servletContext;

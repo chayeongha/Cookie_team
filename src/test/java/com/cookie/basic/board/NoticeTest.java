@@ -18,7 +18,7 @@ class NoticeTest {
 	private NoticeMapper noticeMapper;
 	
 	
-	@Test
+	//@Test
 	void noticeSelectTest() throws Exception {
 		NoticeVO noticeVO = new NoticeVO();
 		noticeVO.setNum(5);
