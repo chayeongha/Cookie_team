@@ -2,6 +2,7 @@ package com.cookie.basic.util;
 
 public class Pager {
 
+
 	private Integer curPage;	//현재 페이지 번호
 	private Integer perPage;	//불러올 페이지 개수
 	
@@ -124,4 +125,5 @@ public class Pager {
 			lastNum = totalPage;
 		}
 	}
+
 }

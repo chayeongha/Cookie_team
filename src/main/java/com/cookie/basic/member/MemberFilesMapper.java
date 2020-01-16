@@ -9,4 +9,7 @@ public interface MemberFilesMapper {
 	
 	public int memberFilesInsert(MemberFilesVO memberFilesVO)throws Exception;
 	
+	public MemberFilesVO memberFilesSelect(MemberFilesVO memberFilesVO)throws Exception;
+
+	public  int memberFilesUpdate(MemberFilesVO memberFilesVO)throws Exception;
 }
