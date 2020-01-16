@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>Cookie Order</title>
 <link href="/css/reset.css" rel="stylesheet"/>
 <link href="/css/header.css" rel="stylesheet"/>
 <link href="/css/body.css" rel="stylesheet"/>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cookie Notice</title>
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
@@ -45,7 +45,7 @@
 					<tr>
 						<th>NO</th>
 						<th>제목</th>
-						<th>날짜</th>
+						<th>Date</th>
 					</tr>
 				</thead>
 				
@@ -62,7 +62,7 @@
 			
 			<ul class="pagination">
 				<c:if test="${pager.curBlock gt 1}">
-					<li class="previous"><span id="${pager.startNum-1}" class="index">Previous</span></li>
+					<li class="previous"><span id="${pager.startNum-1}" class="index"><</span></li>
 				</c:if>
 				
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -70,7 +70,7 @@
 				</c:forEach>
 				
 				<c:if test="${pager.curBlock lt pager.totalBlock}">
-					<li class="next"><span id="${pager.lastNum+1}" class="index">Next</span></li>
+					<li class="next"><span id="${pager.lastNum+1}" class="index">></span></li>
 				</c:if>
 			</ul>
 			<!-- <script type="text/javascript">
@@ -84,6 +84,7 @@
 			<a href="noticeWrite" class="btn btn-primary" id="btnW">글쓰기</a>
 		</div>
 	</div>
+		<c:import url="../layout/footer.jsp" />
 </div>	
 <script type="text/javascript">
 	var kind = '${pager.kind}';

@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />
+<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/board/boardWrite.css" rel="stylesheet">
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
@@ -17,8 +19,13 @@
 <div class="body_main">
 	<div class="b"></div>
 	<div class="container">
-	  <h2>공지사항 글쓰기</h2>
-	  
+	<!-- 서브 타이틀 -->
+	<div class="subTitle_wrap">
+		<div class="subTitle_inner">
+	  		<h2>공지사항 글쓰기</h2>
+		</div>
+	</div>	  
+	
 	  <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
 	  	<div class="form-group">
 	      <label for="title">Title:</label>
