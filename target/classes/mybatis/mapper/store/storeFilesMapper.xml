@@ -4,7 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.cookie.basic.store.StoreFilesMapper">
-  	<insert id="storeFilesInsert" parameterType = "com.cookie.basic.store.StoreFilesVO">
+  	<insert id="storeFilesInsert" parameterType = "StoreFilesVO">
 			insert into storeFiles values (null,#{fName},#{oName},#{sNum});
 	</insert>
+	
+	<select id="storeFilesSelect" parameterType="StoreFilesVO" resultType="StoreFilesVO">
+			select * from storeFiles where sNum=#{sNum}
+	</select>
+	
  </mapper>

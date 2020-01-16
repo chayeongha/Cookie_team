@@ -22,7 +22,7 @@ class StoreMapperTest {
 		StoreVO storeVO = new StoreVO();
 		storeVO.setsName("ok카페");
 		storeVO.setsTel("02-1133-3322");
-		storeVO.setsSite("마포구");
+		storeVO.setRoadFullAddr("마포구");
 		storeVO.setId("jiyun");
 		storeVO.setsNotice("많이 사랑해주세요");
 
@@ -38,7 +38,7 @@ class StoreMapperTest {
 		
 		storeVO.setsName("ko카페");
 		storeVO.setsTel("02-1133-3322");
-		storeVO.setsSite("마포구");
+		storeVO.setRoadFullAddr("마포구");
 		storeVO.setsNotice("많이 사랑해주세요");
 		storeVO.setId("jiyun");
 		
@@ -47,12 +47,21 @@ class StoreMapperTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	public void storeSelectTest()throws Exception{
 		StoreVO storeVO = new StoreVO();
 		storeVO.setId("cha2");
 		List<StoreVO> ar = storeMapper.searchInfo(storeVO);
 		assertEquals(1, ar.size());
+	}
+	
+	@Test
+	public void storeOnTest()throws Exception{
+		StoreVO storeVO = new StoreVO();
+		storeVO.setsNum(1);
+		int result = storeMapper.onUpdate(storeVO);
+		assertEquals(1, result);
+		
 	}
 	
 	

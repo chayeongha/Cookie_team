@@ -5,25 +5,59 @@
   
   
   <mapper namespace="com.cookie.basic.store.StoreMapper">
-  	<insert id="storeInsert" parameterType="com.cookie.basic.store.StoreVO">
-  			insert into store values(0,#{sName},#{sTel},#{sSite},#{sNotice},0,#{id})
+  	<insert id="storeInsert" parameterType="StoreVO">
+  			insert into store values(0,#{sName},#{sTel},#{roadFullAddr},#{sNotice},0,#{id})
   	</insert>
   	
-  	<update id="storeUpdate" parameterType="com.cookie.basic.store.StoreVO">
-  		update store set sName=#{sName}, sTel=#{sTel}, sSite=#{sSite} where sNum=#{sNum}
+  	<update id="storeUpdate" parameterType="StoreVO">
+  		update store set sName=#{sName}, sTel=#{sTel}, roadFullAddr=#{roadFullAddr} where sNum=#{sNum}
   	</update>
   	
-  	<select id="sNumSearch" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
+  	<select id="sNumSearch" parameterType="StoreVO" resultType="StoreVO">
   		select * from store where sName=#{sName}
   	</select>
   	  	
-  	<select id="searchInfo" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
-  		select * from store where id=#{id}
-  	</select>
-  	
-  	<select id="info" parameterType="com.cookie.basic.store.StoreVO" resultType="com.cookie.basic.store.StoreVO">
+  	<select id="info" parameterType="StoreVO" resultType="StoreVO">
   		select * from store where sNum=#{sNum}
   	</select>
+  	
+  	
+  	<resultMap type="StoreVO" id="storeResult">
+  		<id column="sNum" property="sNum"/>
+  		<result column="sName" property="sName"/>
+  		<result column="sTel" property="sTel"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
+  		<result column="sNotice" property="sNotice"/>
+  		<result column="sOn" property="sOn"/>
+  		<result column="id" property="id"/>
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  	</resultMap>
+  	
+ 
+  	<select id="searchInfo" parameterType="StoreVO" resultMap="storeResult">
+  		select * from store S left outer join storeFiles F 
+  		on S.sNum = F.sNum  		
+  		where S.id=#{id}
+  	</select>
+  	
+  	<update id="onUpdate" parameterType="StoreVO">
+  		update store set sOn=1 where sNum=#{sNum}  	
+  	</update>
+  	
+  	<update id="offUpdate" parameterType="StoreVO">
+  		update store set sOn=0 where sNum=#{sNum}
+  	</update>
+  	
+  	
+  	<select id="checkStore" parameterType="StoreVo" resultType="StoreVO">
+		select * from store where sName=#{sName}  	
+  	</select>
+  	
+  	
   	
   	
   	
