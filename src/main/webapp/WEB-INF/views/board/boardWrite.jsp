@@ -6,51 +6,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cookie Notice Write</title>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
+<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/board/boardWrite.css" rel="stylesheet">
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </head>
 <body>
-
+<div class="body_main">
+	<div class="b"></div>
+		<!-- 서브 타이틀 -->
+	<div class="subTitle_wrap">
+		<div class="subTitle_inner">
+			<h2>공지사항 글쓰기</h2>
+		</div>
+	</div>
+	
+	
    <div class="container">
-     <h2>공지사항 글쓰기</h2>
-     
      <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
         <div class="form-group">
-         <label for="title">Title:</label>
+         <label for="title" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">제목</label>
          <form:input path="title" placeholder="Enter Title" class="form-control" id="title" />
          <form:errors path="title" cssStyle="color:red;" />
        </div>
        
        <div class="form-group">
-         <label for="writer">Writer:</label>
+         <label for="writer" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">작성자</label>
          <form:input path="writer" readonly="true" class="form-control" id="writer" value=""/>
        </div>
        
        <div class="form-group">
-         <label for="contents">Contents:</label>
+         <label for="contents"></label>
          <form:textarea path="contents" class="form-control" id="contents" placeholder="Enter Cotents" />
          <form:errors path="contents" />
        </div>
        
+       <button class="btngo">등록</button>
+       <input type="button" id="btn_add" class="btn_add" value="Add File">
        <div id="files">
           <div class="form-group tt">
-            <label for="file">File:</label>
+            <label for="file"></label>
             <br>
             <div class="col-sm-11">
                <input type="file" class="form-control" id="file" name="file">
             </div>
             <div class="col-sm-1">
-               <input type="button" class="btn btn-danger del" value="Del">
+               <input type="button" class="del" value="X">
             </div>
           </div>
        </div>
        
-       <input type="button" id="btn_add" class="btn btn-success" value="Add File">
        
-        <button class="btn btn-info">Submit</button>
+       
+        
      </form:form>
      
    </div>
@@ -85,6 +97,7 @@
 </script>
    <script type="text/javascript" src="../js/summernote.js"></script>
    <!-- <script type="text/javascript" src="../js/fileCount.js"></script> -->
-
+	<c:import url="../layout/footer.jsp" />
+</div>
 </body>
 </html>
