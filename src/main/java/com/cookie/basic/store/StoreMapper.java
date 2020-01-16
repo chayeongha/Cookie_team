@@ -21,5 +21,12 @@ public interface StoreMapper {
 	public List<StoreVO> searchInfo(StoreVO storeVO)throws Exception;
 	
 	public StoreVO info (StoreVO storeVO)throws Exception;
+	
+	public int onUpdate(StoreVO storeVO)throws Exception;
+	
+	public int offUpdate(StoreVO storeVO)throws Exception;
+	
+	public StoreVO checkStore(StoreVO storeVO)throws Exception;
+	
 
 }
