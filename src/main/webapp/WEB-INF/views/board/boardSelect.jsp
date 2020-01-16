@@ -36,10 +36,33 @@
 				</article>
 				
 				<div class="btn_notice_wrap">
+					<p class="btn_notice_list">
+						<a href="noticeList">목록</a>
+					</p>
 				</div>
 			</section>
 			
 			<table summary="새소식 윗글, 아랫글" class="content_tb">
+				<colgroup>
+					<col width="20%">
+					<col width="80%">
+				</colgroup>
+				
+				<tbody id="next">
+					<tr>
+						<th class="fth" scope="row" id="next_title">윗글</th>
+						<td class="ftd">
+							<a href="./noticeSelect?num=${select.num +1}">해당 글이 없습니다.</a>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="lth" scope="row" id="prev_title">아랫글</th>
+						<td class="ltd">
+							<a href="./noticeSelect?num=${select.num -1}">콜마이 네임 서비스 운영 정책 변경 안내</a>
+						</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	</div>
