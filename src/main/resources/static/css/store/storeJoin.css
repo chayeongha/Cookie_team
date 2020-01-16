@@ -67,6 +67,20 @@
 	font-size: 18px;
 }
 
+.addrbtn {
+	width: 80px;
+	height: 40px;
+	background-color: #ff674efa;
+	float: right;
+	border: none;
+	margin-top: 10px;
+	border-radius: 4px;
+	font-family: CookieRun-Black;
+	font-size: 18px;
+	
+}
+
+
 /**************storeInfo***************/
 .class_select_store {
 	width: 100%;
@@ -86,7 +100,7 @@
 .storeSection_1 {
 	width: 1250px;
 	height: 900px;
-	background-color: #f6f6f6; 
+	background-color: #f6f6f6;
 	margin: 0 auto;
 }
 
@@ -117,9 +131,6 @@
 	margin-left: 20px;
 }
 
-.photo_store{
+.photo_store {
 	border: none;
-	
-	
 }
-

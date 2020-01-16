@@ -6,11 +6,11 @@
   
   <mapper namespace="com.cookie.basic.store.StoreMapper">
   	<insert id="storeInsert" parameterType="StoreVO">
-  			insert into store values(0,#{sName},#{sTel},#{sSite},#{sNotice},0,#{id})
+  			insert into store values(0,#{sName},#{sTel},#{roadFullAddr},#{sNotice},0,#{id})
   	</insert>
   	
   	<update id="storeUpdate" parameterType="StoreVO">
-  		update store set sName=#{sName}, sTel=#{sTel}, sSite=#{sSite} where sNum=#{sNum}
+  		update store set sName=#{sName}, sTel=#{sTel}, roadFullAddr=#{roadFullAddr} where sNum=#{sNum}
   	</update>
   	
   	<select id="sNumSearch" parameterType="StoreVO" resultType="StoreVO">
@@ -26,7 +26,7 @@
   		<id column="sNum" property="sNum"/>
   		<result column="sName" property="sName"/>
   		<result column="sTel" property="sTel"/>
-  		<result column="sSite" property="sSite"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
   		<result column="sNotice" property="sNotice"/>
   		<result column="sOn" property="sOn"/>
   		<result column="id" property="id"/>
@@ -44,9 +44,18 @@
   		where S.id=#{id}
   	</select>
   	
+  	<update id="onUpdate" parameterType="StoreVO">
+  		update store set sOn=1 where sNum=#{sNum}  	
+  	</update>
+  	
+  	<update id="offUpdate" parameterType="StoreVO">
+  		update store set sOn=0 where sNum=#{sNum}
+  	</update>
   	
   	
-  	
+  	<select id="checkStore" parameterType="StoreVo" resultType="StoreVO">
+		select * from store where sName=#{sName}  	
+  	</select>
   	
   	
   	

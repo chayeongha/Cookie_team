@@ -29,7 +29,7 @@ class MenuTest {
 		int result = menuMapper.menuInsert(menuVO);
 	}
 	
-	@Test
+	//@Test
 	public void test()throws Exception{
 		List<MenuFilesVO> menuFilesVOs = new ArrayList<>();
 		for(int i=0; i<2;i++) {
@@ -52,4 +52,8 @@ class MenuTest {
 		assertNotNull(menuVO.getMmName());
 	}
 
+	
+	
+	
+	
 }

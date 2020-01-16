@@ -6,7 +6,7 @@ public class StoreVO {
 	private int sNum; 
 	private String sName; 
 	private String sTel; 
-	private String sSite; 
+	private String roadFullAddr; 
 	private String id;
 	private String sNotice;
 	private int sOn;
@@ -47,13 +47,14 @@ public class StoreVO {
 	public void setsTel(String sTel) {
 		this.sTel = sTel;
 	}
-	public String getsSite() {
-		return sSite;
-	}
-	public void setsSite(String sSite) {
-		this.sSite = sSite;
-	}
+	
 
+	public String getRoadFullAddr() {
+		return roadFullAddr;
+	}
+	public void setRoadFullAddr(String roadFullAddr) {
+		this.roadFullAddr = roadFullAddr;
+	}
 	public int getsOn() {
 		return sOn;
 	}

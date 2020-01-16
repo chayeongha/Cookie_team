@@ -16,7 +16,8 @@
 
 	<div class="storeHeader">
 			<div class="header_Update">
-				<a href="./storeUpdate" style="color: white; font-weight: bold;">매장관리</a>
+			
+				<a href="./myInfo" style="color: white; font-weight: bold;">My 매장</a>
 			</div>
 	</div>
 
@@ -44,9 +45,12 @@
 
 
 	<div class="storeFooter">
-		<button class="power_button">
+	<form action="storeMyPage" method="post" id="infoBye">
+		<input type="hidden" name="sNum" id="sNum" value="${store.sNum}">
+		<button class="power_button" id="goOff">
 			<i class="fa fa-power-off" style="font-size: 48px; color: white;"></i>
 		</button>
+	</form>
 	</div>
 
 
@@ -91,6 +95,12 @@
 			}
 			return zero + num;
 		}
+	</script>
+	
+	<script type="text/javascript">
+	$("#goOff").click(function() {
+		$("#infoBye").submit();
+	});
 	</script>
 
 

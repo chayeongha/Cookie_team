@@ -58,10 +58,10 @@ public class StoreController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		storeVO.setId(memberVO.getId());
 
-		//System.out.println(storeVO.getId());
-		
+		// System.out.println(storeVO.getId());
+
 		List<StoreVO> ar = storeService.searchInfo(storeVO);
-		
+
 		/*
 		 * System.out.println(ar.get(0).getsNum());
 		 * 
@@ -71,43 +71,86 @@ public class StoreController {
 		 * ar2.add(storeFilesVO); System.out.println(storeFilesVO.getfName());
 		 * System.out.println(storeFilesVO.getoName()); }
 		 */
-		 
-		
+
 		mv.addObject("list", ar);
 		mv.setViewName("store/myInfo");
 
 		return mv;
 	}
 
-	// 매장상세정보
+	// 매장상세정보//Pos 작동 (ON)
 	@GetMapping("myinfoS")
+	public ModelAndView myInfoS(StoreVO storeVO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		storeVO = storeService.info(storeVO);
+		session.setAttribute("store", storeVO);
+		mv.addObject("store", storeVO);
+
+		return mv;
+	}
+
+	@PostMapping("myinfoS")
 	public ModelAndView myInfoS(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		storeVO.getsNum();
+		int result = storeService.onUpdate(storeVO);
+		System.out.println(storeVO.getsNum());
 		
-		storeVO = storeService.info(storeVO);
+
+		String msg = "업데이트 실패";
+		String path = "../";
+		if (result > 0) {
+			msg = "영업시작";
+			path = "./storeMyPage?sNum=" + storeVO.getsNum();
+		}
 		mv.addObject("store", storeVO);
-		
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		mv.setViewName("common/result");
+
 		return mv;
 	}
 
 	// 점주 페이지
 	@GetMapping("storeMyPage")
-	public void storeMyPage() throws Exception {
+	public void storeMyPage(StoreVO storeVO,Model model) throws Exception {
+		model.addAttribute("store", storeVO);
+	}
+
+	@PostMapping("storeMyPage")
+	public ModelAndView storeMyPage(StoreVO storeVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		storeVO.getsNum();
+		int result = storeService.offUpdate(storeVO);
+		System.out.println(storeVO.getsNum());
+		String msg = "업데이트 실패";
+		String path = "../";
+		if (result > 0) {
+			msg = "영업종료";
+			path = "../";
+		}
+		mv.addObject("store", storeVO);
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		mv.setViewName("common/result");
+
+		return mv;
+		
 
 	}
 
 	// 점주 업데이트 폼
-
 	@GetMapping("storeUpdate")
 	public ModelAndView storeUpdate(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+
 		storeVO = storeService.info(storeVO);
 		System.out.println(storeVO.getsName());
-		
+
 		mv.addObject("store", storeVO);
 		mv.setViewName("store/storeUpdate");
-		
+
 		return mv;
 
 	}
@@ -134,5 +177,16 @@ public class StoreController {
 
 		return mv;
 	}
+	
+	
+	// 매장 아이디 중복 체크 페이지 
+	@GetMapping("storeNameCheck")
+	public void checkStore(StoreVO storeVO, Model model)throws Exception{
+		
+	}
+	
+	
+	
+	
 
 }

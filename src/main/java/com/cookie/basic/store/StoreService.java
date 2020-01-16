@@ -3,6 +3,7 @@ package com.cookie.basic.store;
 import java.io.File;
 import java.util.List;
 
+import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,4 +56,17 @@ public class StoreService {
 		return storeFilesMapper.storeFilesSelect(storeFilesVO);
 	}
 
+	public int onUpdate(StoreVO storeVO)throws Exception{
+		return storeMapper.onUpdate(storeVO);
+	}
+	
+	public int offUpdate(StoreVO storeVO)throws Exception{
+		return storeMapper.offUpdate(storeVO);
+	}
+	
+	public StoreVO checkStore(StoreVO storeVO)throws Exception{
+		return storeMapper.checkStore(storeVO);
+	}
+	
+	
 }
