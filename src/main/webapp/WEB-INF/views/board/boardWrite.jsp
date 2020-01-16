@@ -8,24 +8,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp" />
-<c:import url="../layout/header.jsp" />
-<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/board/boardWrite.css" rel="stylesheet">
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </head>
 <body>
-<div class="body_main">
-	<div class="b"></div>
+
 	<div class="container">
-	<!-- 서브 타이틀 -->
-	<div class="subTitle_wrap">
-		<div class="subTitle_inner">
-	  		<h2>공지사항 글쓰기</h2>
-		</div>
-	</div>	  
-	
+	  <h2>공지사항 글쓰기</h2>
+	  
 	  <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
 	  	<div class="form-group">
 	      <label for="title">Title:</label>
@@ -33,11 +24,10 @@
 	      <form:errors path="title" cssStyle="color:red;" />
 	    </div>
 	    
-	    <%-- <div class="form-group">
+	    <div class="form-group">
 	      <label for="writer">Writer:</label>
-	      <form:input path="writer" class="form-control" id="writer" value=""/>
-	      <form:errors path="writer" cssStyle="color:red;" />
-	    </div> --%>
+	      <form:input path="writer" readonly="true" class="form-control" id="writer" value=""/>
+	    </div>
 	    
 	    <div class="form-group">
 	      <label for="contents">Contents:</label>
@@ -45,22 +35,56 @@
 	      <form:errors path="contents" />
 	    </div>
 	    
-	    <!-- <div class="row" >
-		   <input type="button" class="btn btn-info col-sm-3" id="add" value="ADD FILE">
-		   <div id="files" class="col-sm-12"></div>
-		</div> -->
-		
-		<div class="row"></div>
-		
-		<div class="row" style="margin-top: 50px;">
-		   <input type="button" id="write" class="btn btn-danger col-sm-3" value="Write">
-		</div> 
+	    <div id="files">
+		    <div class="form-group tt">
+		      <label for="file">File:</label>
+		      <br>
+		      <div class="col-sm-11">
+		     	 <input type="file" class="form-control" id="file" name="file">
+		      </div>
+		      <div class="col-sm-1">
+		     	 <input type="button" class="btn btn-danger del" value="Del">
+		      </div>
+		    </div>
+	    </div>
+	    
+	    <input type="button" id="btn_add" class="btn btn-success" value="Add File">
+	    
+	     <button class="btn btn-info">Submit</button>
 	  </form:form>
 	  
 	</div>
-
+	
+<script type="text/javascript">
+	var files = $('#files').html();
+	$('#files').empty(); //remove vs empty ; 나 포함 전체 지우기 vs 자식만 지우기
+	var check = 0;
+	var index = 0; //index 번호
+	
+	$('#files').on("click", ".del", function() {
+		//event.preventDefault();
+		//alert("del");
+		//$("#files div:last").remove(); //선택된 게 지워지질 않아 ㅜㅠ
+		//1. $(this).closest(".tt").remove(); //가장 가까운 거!!
+		//2. $(this).parent().parent().remove();
+		//3. $(this).parents(".form-group").remove();
+		$(this).parentsUntil("#files").remove();
+		check--;
+	});   //add file은 버튼을 눌러야 추가되는데, 추가되기 전에 이벤트가 실행되므로 이벤트가 실행되지 않는다.
+			
+	$('#btn_add').click(function() {
+		//alert(files);
+		if(check<5){
+			$('#files').append(files);
+			check++;
+		}else {
+			alert("최대 5개까지 가능합니다.");
+		}
+	});
+	
+</script>
 	<script type="text/javascript" src="../js/summernote.js"></script>
 	<!-- <script type="text/javascript" src="../js/fileCount.js"></script> -->
-</div>
+
 </body>
 </html>
