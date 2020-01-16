@@ -9,8 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/board/boardSelect.css" rel="stylesheet">
+<c:import url="../layout/header.jsp" />
 </head>
 <body>
+<div class="body_main">
+	<div class="b"></div>
 	<!-- 서브 타이틀 -->
 	<div class="subTitle_wrap">
 		<div class="subTitle_inner">
@@ -40,5 +43,6 @@
 			</table>
 		</div>
 	</div>
+</div>
 </body>
 </html>
