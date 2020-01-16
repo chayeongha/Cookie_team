@@ -14,8 +14,9 @@ public class MenuVO {
 	private int mmCount;
 	private int cmNum;
 	private int mmTemp;
-	private int optNums;
+	private int sNum;
 	private List<MenuFilesVO> menuFiles;
+	private List<MoptVO> menuOptions;
 	
 
 }

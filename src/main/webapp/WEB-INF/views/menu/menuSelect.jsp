@@ -14,6 +14,12 @@
 	<h1>가격:${vo.mmPrice}</h1>
 	<c:forEach items="${vo.menuFiles}" var="file">
 	<img alt="제품이미지" src="../../images/menu/${file.mfName}">
+	<h3>${file.mfName}</h3>
+	</c:forEach>
+	
+	<c:forEach items="${vo.menuOptions}" var="opt">
+	<h3>${opt.optName}</h3>
+	<h3>${opt.optPrice}</h3>
 	</c:forEach>
 
 </div>
