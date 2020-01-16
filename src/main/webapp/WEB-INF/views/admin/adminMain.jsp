@@ -248,24 +248,11 @@
   
   <!-- 아래내용 -->
   	<div class="body2">
+  	<div>
 		<div class="memberTitle">멤버</div>
+  		
+  	</div>
   	
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="myPieChart" width="473" height="137" class="chartjs-render-monitor" style="display: block; width: 473px; height: 137px;"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
-                  </div>
-                </div>
   	
   	</div><!-- 2container -->
 </div>
