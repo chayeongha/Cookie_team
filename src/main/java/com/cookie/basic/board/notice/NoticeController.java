@@ -59,8 +59,25 @@ public class NoticeController {
 		return mv;
 	}
 	/////////////////////////////////////////////////////////////
-	
-	
+	//파일 다운
+	@GetMapping("fileDown")
+	public ModelAndView noticeFileDown(NoticeFilesVO noticeFilesVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		noticeFilesVO = noticeService.noticeFileSelect(noticeFilesVO);
+		
+		if(noticeFilesVO != null) {
+			mv.addObject("noticeFiles", noticeFilesVO);
+			mv.addObject("path", "notice");
+			mv.setViewName("fileDown");
+		}else {
+			mv.addObject("msg", "없써!!!!");
+			mv.addObject("path", "./");
+			mv.setViewName("common/result");
+		}
+		
+		return mv;
+	}
 	
 	/////////////////////////////////////////////////////////////
 	//글 작성 폼
@@ -69,6 +86,7 @@ public class NoticeController {
 		return "board/boardWrite";
 	}
 	
+	//글 등록
 	@PostMapping("noticeWrite")
 	public ModelAndView noticeWrite(@Valid NoticeVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -96,7 +114,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		
 		noticeVO = noticeService.noticeSelect(noticeVO);
-		
+		//System.out.println(noticeVO.getNoticeFilesVO().get(0).getFnum());
 		if(noticeVO != null) {
 			mv.addObject("select", noticeVO);
 			mv.addObject("boardName", "공지사항");

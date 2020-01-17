@@ -1,15 +1,13 @@
 package com.cookie.basic.board.notice;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
 
 import com.cookie.basic.board.BoardVO;
 
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "notice")
 public class NoticeVO extends BoardVO {
 	
+	private List<NoticeFilesVO> noticeFilesVO;
 }

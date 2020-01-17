@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface NoticeFilesMapper {
+
+	public NoticeFilesVO noticeFileSelect(NoticeFilesVO noticeFilesVO) throws Exception;
 	
-	public int noticeFilesInsert(List<NoticeFilesVO> noticeFilesVOs) throws Exception;
+	public int noticeFilesInsert(List<NoticeFilesVO> noticeFilesVO) throws Exception;
 }

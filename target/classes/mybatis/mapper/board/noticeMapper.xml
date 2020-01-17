@@ -21,13 +21,32 @@
   		</choose>
   	</sql>
   	
+  	<resultMap type="NoticeVO" id="Select">
+  		<id column="num" property="num"/>
+  		<result column="title" property="title"/>
+  		<result column="writer" property="writer"/>
+  		<result column="contents" property="contents"/>
+  		<result column="regDate" property="regDate"/>
+  		<collection property="noticeFilesVO" javaType="List" ofType="NoticeFilesVO">
+	  		<id column="fnum" property="fnum"/>
+	  		<result column="oname" property="oname"/>
+	  		<result column="fname" property="fname"/>
+  		</collection>
+  	</resultMap>
   	
-  	<select id="noticeSelect" parameterType="NoticeVO" resultType="NoticeVO">
-  		select * from notice where num = #{num}
+  	<select id="noticeSelect" parameterType="NoticeVO" resultMap="Select">
+  		select N.*, F.fnum, F.fname, F.oname
+  		from notice N left outer join noticeFiles F
+  		on N.num = F.num
+  		where N.num = #{num}
   	</select>
   	
-  	<insert id="noticeWrite" parameterType="NoticeVO">
-  		insert into notice values(#{num}, #{title}, #{writer}, #{contents}, now())
+  	<insert id="noticeWrite" parameterType="NoticeVO" useGeneratedKeys="true" keyProperty="num">
+  		insert into notice values(0, #{title}, #{writer}, #{contents}, now())
+  		<!-- <selectKey resultType="Integer" keyProperty="num" order="AFTER">
+  			select LAST_INSERT_ID()
+  		</selectKey> -->
+  		<!-- auto increment를 받아오려면 Select Key를 쓰거나, (useGeneratedKeys="true" keyProperty="num")를 써준다 -->
   	</insert>
   	
   	<select id="noticeList" parameterType="Pager" resultType="NoticeVO">

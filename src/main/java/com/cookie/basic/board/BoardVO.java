@@ -4,14 +4,11 @@ package com.cookie.basic.board;
 import java.sql.Date;
 
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 @Data
-@MappedSuperclass
 public class BoardVO {
 
 //	CREATE TABLE notice
@@ -24,7 +21,6 @@ public class BoardVO {
 //	    PRIMARY KEY (num)
 //	);
 	
-	@Id
 	private int num;
 	@NotEmpty(message = "제목을 작성해주세요.")
 	private String title;

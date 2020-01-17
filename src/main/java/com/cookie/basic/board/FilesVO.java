@@ -1,12 +1,10 @@
 package com.cookie.basic.board;
 
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 
 import lombok.Data;
 
 @Data
-@MappedSuperclass
 public class FilesVO {
 
 //	CREATE TABLE noticeFiles
@@ -18,10 +16,9 @@ public class FilesVO {
 //	    PRIMARY KEY (fNum)
 //	);
 	
-	@Id
-	private int fNum;
+	private int fnum;
 	private int num;
-	private String oName;
-	private String fName;
+	private String oname;
+	private String fname;
 	
 }

@@ -39,7 +39,10 @@ public class NoticeService {
 		return fileSaver.save(file, files);
 	}
 	
-	
+	//파일 다운
+	public NoticeFilesVO noticeFileSelect(NoticeFilesVO noticeFilesVO) throws Exception {
+		return noticeFilesMapper.noticeFileSelect(noticeFilesVO);
+	}
 	
 	//글 작성 + 파일 추가
 	@Transactional
@@ -56,9 +59,10 @@ public class NoticeService {
 				System.out.println(fileName);
 				
 				NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+				//System.out.println(noticeVO.getNum());
 				noticeFilesVO.setNum(noticeVO.getNum());
-				noticeFilesVO.setFName(fileName);
-				noticeFilesVO.setOName(files[i].getOriginalFilename());
+				noticeFilesVO.setFname(fileName);
+				noticeFilesVO.setOname(files[i].getOriginalFilename());
 				
 				noticeFilesVOs.add(noticeFilesVO);
 			}

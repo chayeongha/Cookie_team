@@ -34,7 +34,13 @@
 						<div class="">${select.contents}</div>
 					</div>
 				</article>
-				
+
+				<div>
+					<c:forEach items="${select.noticeFilesVO}" var="file" varStatus="i">
+						<a href="./fileDown?fnum=${file.fnum}">${file.oname}</a>
+					</c:forEach>
+				</div>
+
 				<div class="btn_notice_wrap">
 					<p class="btn_notice_update">
 						<a href="noticeUpdate">수정</a>
