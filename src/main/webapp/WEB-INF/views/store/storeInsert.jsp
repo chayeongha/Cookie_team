@@ -76,11 +76,13 @@
 		<form action="storeInsert" method="post" enctype="multipart/form-data"
 			name="form" id="form">
 
+
+			<input type="hidden" id="memNum" name="memNum" value="0">
 			<div>
 				<div class="store_label">점주 아이디:</div>
 				<!-- id 세션에서 점주 아이디만 받아오기 -->
-				<input type="text" id="id" name="id" value="${member.id}"
-					class="store_input" readonly="readonly">
+				<input type="text" id="memId" name="memId" 
+					class="store_input" >		<%-- ${member.memId} --%>
 			</div>
 
 			<div>
@@ -113,13 +115,21 @@
 				<label for="sNotice"></label> <input type="hidden" id="sNotice" name="sNotice" placeholder="	개업시작 공지를 알리세요" class="store_input">
 			</div>
 			<div>
-				<div class="store_label">로고 등록:</div>
-				<input type="file" class="store_input" id="files" name="files">
+				<!-- <div class="store_label">로고 등록:</div>
+				<input type="file" class="store_input" id="files" name="files"> -->
+				
+				<div class="filebox">
+  					<label for="files">업로드</label><input type="text" readonly="readonly" id="file_route" class="store_input">
+  					<input type="file" id="files" name="files" onchange="javascript:document.getElementById('file_route').value=this.value">
+				</div>
 
 			</div>
 			<input type="button" id="join" value="Join" class="store_join_btn">
 		</form>
 	</div>
+	
+	
+	
 
 
 

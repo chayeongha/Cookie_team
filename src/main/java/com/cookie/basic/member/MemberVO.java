@@ -9,25 +9,30 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-		
-	@NotEmpty(message = "비우지마시오!!")
-	private String id;
-	
-	@NotEmpty
-	@Size(min = 4, max = 12)
-	private String pw;
-	@Transient
-	private String pw2;
-	
-	private String name;
-	private String nickname;
-	private String phone;
-	private Integer grade;
-	
-	private String kind;
-	
-	private MemberFilesVO memberFilesVO;
-	
-	private Integer fnum;
+      
+   private Integer memNum;
+   
+   @NotEmpty(message = "비우지마시오!!")
+   private String memId;
+   
+   @NotEmpty
+   @Size(min = 4, max = 12)
+   private String pw;
+   @Transient
+   private String pw2;
+   
+   private String name;
+   private String nickname;
+   private String phone;
+   private Integer grade;
+   private Integer kind;
+
+   //셀렉트조인 회원가입종류
+   private String jkind;
+   
+   private MemberFilesVO memberFilesVO;
+   
+   private Integer fnum;
+   private String fname;
 
 }

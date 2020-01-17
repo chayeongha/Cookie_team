@@ -78,7 +78,7 @@ public class MemberService {
 		if(check) {
 			
 			MemberFilesVO memberFilesVO2 = new MemberFilesVO();
-			memberFilesVO2.setId(memberVO.getId());
+			memberFilesVO2.setId(memberVO.getMemId());
 			memberFilesVO2.setFname(fileName);
 			memberFilesVO2.setOname(files.getOriginalFilename());
 			
@@ -114,7 +114,7 @@ public class MemberService {
 		//fnum이 없을 때 파일을 인서트하는 조건을 줌.
 		if(memberVO.getFnum() ==null) {
 			
-			memberFilesVO.setId(memberVO.getId());
+			memberFilesVO.setId(memberVO.getMemId());
 			memberFilesVO.setFname(fileName);
 			memberFilesVO.setOname(files.getOriginalFilename());
 			
@@ -122,7 +122,7 @@ public class MemberService {
 		}else {
 		//fnum이 있을때 파일을 업데이트하는 조건을 줌.
 		memberFilesVO.setFnum(memberVO.getFnum());
-		memberFilesVO.setId(memberVO.getId());
+		memberFilesVO.setId(memberVO.getMemId());
 		memberFilesVO.setFname(fileName);
 		memberFilesVO.setOname(files.getOriginalFilename());
 		
