@@ -81,7 +81,7 @@
    			<include refid="search"></include> and grade =1
    	</select>
    	
-  	
+ 
   	<!-- <select id="memberSearch" parameterType="Pager" resultType="MemberVO">
   		select count(id) from members
   	
