@@ -19,12 +19,14 @@
   <form:form class="form-horizontal" action="./memberUpdate" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
     
     <div class="form-group">
-      <label class="control-label col-sm-2" for="id">Id:</label>
+      <label class="control-label col-sm-2" for="memId">Id:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="Id" value="${member.id}" readonly="readonly" name="id">
-      	
+        <input type="text" class="form-control" id="memId" value="${member.memId}" readonly="readonly" name="memId">  	
       </div>
     </div>
+    
+    <input type="hidden" class="form-control" id="memNum" name="memNum" value="${member.memNum}" readonly="readonly">
+			
     
     <div class="form-group">
       <label class="control-label col-sm-2" for="pw">Password:</label>

@@ -16,14 +16,14 @@
 
 <div class="container">
 	
-<h1>${kind} Join Page</h1>
+<h1>${jkind} Join Page</h1>
   <form:form class="form-horizontal" action="./memberJoin" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
     
     <div class="form-group">
-      <label class="control-label col-sm-2" for="id">Id:</label>
+      <label class="control-label col-sm-2" for="memId">Id:</label>
       <div class="col-sm-10">
-        <form:input path="id" placeholder="Enter id" class="form-control" id="id"/>
-      	<form:errors path="id" />
+        <form:input path="memId" placeholder="Enter id" class="form-control" id="memId"/>
+      	<form:errors path="memId" />
       </div>
     </div>
     
@@ -46,7 +46,7 @@
      <div class="form-group">
       <label class="control-label col-sm-2" for="name">Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="Id" placeholder="Enter name" name="name">
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
       </div>
     </div>
      
@@ -67,6 +67,7 @@
      <div class="form-group">
       	<div class="col-sm-10"> 
   			<input type="hidden" class="form-control" name="grade" value="${grade}"> 
+     		<input type="hidden" class="form-control" name="jkind" value="${jkind}"> 
      		<input type="hidden" class="form-control" name="kind" value="${kind}"> 
      	</div>
  	</div>
