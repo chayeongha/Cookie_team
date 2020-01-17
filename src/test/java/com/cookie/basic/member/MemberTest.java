@@ -21,7 +21,7 @@ class MemberTest {
 	void insertFilesTest()throws Exception{
 		MemberFilesVO memberFilesVO= new MemberFilesVO();
 		memberFilesVO.setFnum(1);
-		memberFilesVO.setId("t1");
+		//memberFilesVO.setId("t1");
 		memberFilesVO.setFname("t1@@@.jpg");
 		memberFilesVO.setOname("t1.jpg");
 		
