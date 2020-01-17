@@ -37,6 +37,7 @@ public class StoreController {
 	@PostMapping("storeInsert")
 	public ModelAndView storeInsert(StoreVO storeVO, MultipartFile files, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
 		int result = storeService.storeInsert(storeVO, files);
 		String message = "등록 실패! 자세한 문의는 전화주세요";
 		String path = "../";
@@ -55,11 +56,14 @@ public class StoreController {
 
 	// 매장 리스트
 	@GetMapping("myInfo")
-	public ModelAndView myInfo(StoreVO storeVO, HttpSession session) throws Exception {
+	public ModelAndView searchInfo(StoreVO storeVO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		storeVO.setMemNum(memberVO.getMemNum());
-
+		
+		 storeVO.setMemNum(memberVO.getMemNum());
+		  
+		
 		// System.out.println(storeVO.getId());
 
 		List<StoreVO> ar = storeService.searchInfo(storeVO);

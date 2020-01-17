@@ -77,12 +77,12 @@
 			name="form" id="form">
 
 
-			<input type="hidden" id="memNum" name="memNum" value="0">
+			<input type="hidden" id="memNum" name="memNum" value="${member.memNum}">
 			<div>
 				<div class="store_label">점주 아이디:</div>
 				<!-- id 세션에서 점주 아이디만 받아오기 -->
 				<input type="text" id="memId" name="memId" 
-					class="store_input" >		<%-- ${member.memId} --%>
+					class="store_input" value="${member.memId}">		
 			</div>
 
 			<div>
@@ -139,7 +139,7 @@
 			var sName = $("#sName").val();
 
 			if (sName == "") {
-				alert("아이디를 입력해주세요");
+				alert("매장명을 입력해주세요");
 			} else {
 				$.ajax({
 
