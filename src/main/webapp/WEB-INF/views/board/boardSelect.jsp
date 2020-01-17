@@ -36,6 +36,12 @@
 				</article>
 				
 				<div class="btn_notice_wrap">
+					<p class="btn_notice_update">
+						<a href="noticeUpdate">수정</a>
+					</p>
+					<p  class="btn_notice_delete">
+						<a href="noticeDelete">삭제</a>
+					</p>
 					<p class="btn_notice_list">
 						<a href="noticeList">목록</a>
 					</p>
