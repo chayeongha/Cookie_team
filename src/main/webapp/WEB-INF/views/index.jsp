@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Cookie Order</title>
+<title>Insert title here</title>
 <link href="/css/reset.css" rel="stylesheet"/>
 <link href="/css/header.css" rel="stylesheet"/>
 <link href="/css/body.css" rel="stylesheet"/>
@@ -48,9 +48,8 @@
 	<!-- header -->
 	<div class="header1">
 		<div class="h1_1">
-			<div class="h1_txt"><a href="./member/selectJoin">Join</a></div>
-			<div class="h1_txt"><a href="./member/memberLogin">Login</a></div>
-
+			<div class="h1_txt"><a href="#">Join</a></div>
+			<div class="h1_txt"><a href="#">Login</a></div>
 		</div>
 	</div><!-- 위에 헤더 -->
 	<div class="header2">
@@ -62,8 +61,7 @@
 		<div class="cate_2">Order</div>
 		<div class="cate">
 			<p><a href="#">제휴매장</a></p>
-			<p><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></p>
-
+			<p><a href="#">공지사항</a></p>
 
 			<p><a href="#">이용후기</a></p>
 			<p><a href="#">Q & A</a></p>
