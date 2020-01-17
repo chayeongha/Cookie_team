@@ -15,19 +15,24 @@ public interface MemberMapper {
 	//회원가입
 	public int memberJoin(MemberVO memberVO)throws Exception;
 	
+	//memNum찾아오기
+	public MemberVO getMemNum(MemberVO memberVO)throws Exception;
+	
 	//로그인
 	public MemberVO memberLogin(MemberVO memberVO)throws Exception;
 	
-	//id 중복검사
+	//id 중복 검사
 	public MemberVO memberIdCheck(MemberVO memberVO)throws Exception;
 	
 	//수정
 	public int memberUpdate(MemberVO memberVO)throws Exception;
 	
-	//회원탈퇴
+	//회원 탈퇴
 	public int memberDelete(MemberVO memberVO)throws Exception;
 	
-	//회원리스트
-	public List<MemberVO> memberList(Pager pager)throws Exception;
+	//개인회원 리스트
+	public List<MemberVO>pmemberList(Pager pager)throws Exception;
 	
+	//회원리스트 카운트
+	public int listCount(Pager pager)throws Exception;
 }

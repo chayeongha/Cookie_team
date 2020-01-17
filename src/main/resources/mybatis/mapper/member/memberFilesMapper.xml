@@ -6,18 +6,18 @@
     <mapper namespace="com.cookie.basic.member.MemberFilesMapper">
     
     	<!-- 회원가입시 이미지삽입 -->
-    	<insert id="memberFilesInsert" parameterType="memberFilesVO">
-    		insert into memberFiles values(null,#{id},#{fname},#{oname})
+    	<insert id="memberFilesInsert" parameterType="MemberFilesVO">
+    		insert into memberFiles values(null,#{memNum},#{fname},#{oname})
     	</insert>
     
     	<!--셀렉트  -->
-    	<select id="memberFilesSelect" parameterType="memberFilesVO" resultType="memberFilesVO">
- 			select * from memberFiles where id= #{id}
+    	<select id="memberFilesSelect" parameterType="MemberFilesVO" resultType="MemberFilesVO">
+ 			select * from memberFiles where memNum= #{memNum}
  		</select>
  		
  		<!--이미지 수정 -->
-    	<update id="memberFilesUpdate" parameterType="memberFilesVO" >
+    	<update id="memberFilesUpdate" parameterType="MemberFilesVO" >
 			 update memberFiles set fnum=#{fnum}, fname=#{fname}, oname=#{oname}
-			 where id=#{id} 
+			 where memNum=#{memNum} 
     	</update>
     </mapper>

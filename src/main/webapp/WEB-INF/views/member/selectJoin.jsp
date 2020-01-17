@@ -24,7 +24,7 @@
  					<div><img src="/images/member/mem2.png"></div>
 					<form action="./memberJoin" method="get">
 		             <button type="submit" class="me1">개인 회원가입</button>
-		             <input type="hidden" name="kind" value="Personal">
+		             <input type="hidden" name="jkind" value="Personal">
 		             <input type="hidden" name="grade" value="1">
 		          </form>
       			</div>    
@@ -34,7 +34,7 @@
 					<div><img src="/images/member/mem.png"></div>
 					<form action="./memberJoin" method="get">
 		             <button type="submit" class="me1">사업자 회원가입</button>
-		             <input type="hidden" name="kind" value="Buisness">
+		             <input type="hidden" name="jkind" value="Buisness">
 		             <input type="hidden" name="grade" value="8888">
 		          </form>
 				</div>
