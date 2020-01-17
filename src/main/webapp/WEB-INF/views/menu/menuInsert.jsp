@@ -34,7 +34,7 @@
       <label for="cmNuml">카테고리 </label>
       <select name="cmNum" id="cmNum">
       	<option value="1">coffee</option>
-      	<option value="2">non-coffee</option>
+      	<option value="2">beverage</option>
       	<option value="3">tea</option>
       	<option value="4">desert</option>
       </select>
