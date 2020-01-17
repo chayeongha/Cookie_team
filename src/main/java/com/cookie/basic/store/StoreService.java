@@ -64,7 +64,7 @@ public class StoreService {
 		return storeMapper.offUpdate(storeVO);
 	}
 	
-	public StoreVO checkStore(StoreVO storeVO)throws Exception{
+	public int checkStore(StoreVO storeVO)throws Exception{
 		return storeMapper.checkStore(storeVO);
 	}
 	
