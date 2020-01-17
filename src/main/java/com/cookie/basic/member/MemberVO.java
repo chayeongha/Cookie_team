@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
+
 		
 	private Integer memNum;
 	
@@ -34,5 +35,6 @@ public class MemberVO {
 	
 	private Integer fnum;
 	private String fname;
+
 
 }

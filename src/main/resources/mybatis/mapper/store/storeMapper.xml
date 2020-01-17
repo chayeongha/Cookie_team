@@ -6,7 +6,7 @@
   
   <mapper namespace="com.cookie.basic.store.StoreMapper">
   	<insert id="storeInsert" parameterType="StoreVO">
-  			insert into store values(0,#{sName},#{sTel},#{roadFullAddr},#{sNotice},0,#{id})
+  			insert into store values(0,#{sName},#{sTel},#{roadFullAddr},#{sNotice},0,#{memNum},#{memId})
   	</insert>
   	
   	<update id="storeUpdate" parameterType="StoreVO">
@@ -29,7 +29,8 @@
   		<result column="roadFullAddr" property="roadFullAddr"/>
   		<result column="sNotice" property="sNotice"/>
   		<result column="sOn" property="sOn"/>
-  		<result column="id" property="id"/>
+  		<result column="memNum" property="memNum"/>
+  		<result column="memId" property="memId"/>
   		<association property="storeFilesVO" javaType="StoreFilesVO">
   			<id column="fNum" property="fNum"/>
   			<result column="fName" property="fName"/>
@@ -41,7 +42,7 @@
   	<select id="searchInfo" parameterType="StoreVO" resultMap="storeResult">
   		select * from store S left outer join storeFiles F 
   		on S.sNum = F.sNum  		
-  		where S.id=#{id}
+  		where S.memId=#{Id}
   	</select>
   	
   	<update id="onUpdate" parameterType="StoreVO">

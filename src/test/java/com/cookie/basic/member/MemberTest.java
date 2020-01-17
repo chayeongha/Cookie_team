@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 //@Transactional
 class MemberTest {
 
+
 	@Autowired
 	private MemberMapper memberMapper;
 	@Autowired
@@ -55,5 +56,6 @@ class MemberTest {
 		assertEquals(1, result);
 		
 	}//성공
+
 
 }
