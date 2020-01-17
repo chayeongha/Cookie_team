@@ -35,7 +35,7 @@ class MemberTest {
 	//@Test
 	void deleteTest( )throws Exception{
 		MemberVO memberVO = new MemberVO();
-		memberVO.setId("test");
+		//memberVO.setId("test");
 		int result= memberMapper.memberDelete(memberVO);
 		
 		assertEquals(1, result);
@@ -45,7 +45,7 @@ class MemberTest {
 	//@Test
 	void insertTest() throws Exception{
 		MemberVO memberVO= new MemberVO();
-		memberVO.setId("admin");
+		//memberVO.setId("admin");
 		memberVO.setPw("admin");
 		memberVO.setName("admin");
 		memberVO.setNickname("왕왕");
