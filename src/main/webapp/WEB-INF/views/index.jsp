@@ -12,7 +12,7 @@
 <link href="/css/footer.css" rel="stylesheet"/>
 <link href="/css/main/main_body.css" rel="stylesheet"/>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6ba0b2e0894b510063b292edfad86999"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=df2f1bd915d5ed98ee4e1782f47aff61"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
         function getLocation(position) {
@@ -48,8 +48,14 @@
 	<!-- header -->
 	<div class="header1">
 		<div class="h1_1">
-			<div class="h1_txt"><a href="./member/selectJoin">Join</a></div>
-			<div class="h1_txt"><a href="./member/memberLogin">Login</a></div>
+			<c:if test="${not empty sessionScope.member}">
+				<div class="h1_txt"><a href="./member/memberLogout">Logout</a></div>
+				<div class="h1_txt"><a href="../member/memberMypage">Mypage</a></div>
+			</c:if>
+			<c:if test="${empty sessionScope.member}">
+				<div class="h1_txt"><a href="./member/selectJoin">Join</a></div>
+				<div class="h1_txt"><a href="./member/memberLogin">Login</a></div>
+			</c:if>
 		</div>
 	</div><!-- 위에 헤더 -->
 	<div class="header2">

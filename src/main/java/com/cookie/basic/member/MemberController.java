@@ -115,7 +115,7 @@ public class MemberController {
 	//로그인
 	@GetMapping("memberLogin")
 	public void memberLogin()throws Exception {
-	
+		
 	}
 	
 	@PostMapping("memberLogin")
@@ -138,6 +138,34 @@ public class MemberController {
 		
 		return mv;
 		
+	}
+	
+	@GetMapping("memberNaver")
+	public String memberNaver(String name) throws Exception{
+
+		return "member/memberNaver";
+	}
+	
+	@PostMapping("memberNaver")
+	public String memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId(email);
+		
+		memberVO = memberService.memberNaver(memberVO);
+		
+		if(memberVO.getGrade() == null) {
+			MemberVO memberVO2 = new MemberVO();
+			memberVO2.setId(email);
+			memberVO2.setName(name);
+			memberVO2.setNickname(nickname);
+			int result= memberService.naverJoin(memberVO2);
+			session.setAttribute("member", memberVO2);
+			System.out.println(result);
+		}
+		
+		session.setAttribute("member", memberVO);
+		
+		return "../";
 	}
 	
 	//마이페이지

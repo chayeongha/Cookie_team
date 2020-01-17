@@ -7,8 +7,14 @@
 <!-- header -->
 	<div class="header1">
 		<div class="h1_1">
-			<div class="h1_txt"><a href="../member/selectJoin">Join</a></div>
-			<div class="h1_txt"><a href="#">Login</a></div>
+		<c:if test="${not empty sessionScope.member}">
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></div>
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberMypage">Mypage</a></div>
+		</c:if>
+		<c:if test="${empty sessionScope.member}">
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/selectJoin">Join</a></div>
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogin">Login</a></div>
+		</c:if>
 		</div>
 	</div><!-- 위에 헤더 -->
 	<div class="header2">

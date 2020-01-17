@@ -90,6 +90,16 @@ public class MemberService {
 	
 	}
 	
+	//네이버 회원가입
+	public int naverJoin(MemberVO memberVO) throws Exception{
+		return memberMapper.naverJoin(memberVO);
+	}
+	
+	//네이버(로그인)
+	public MemberVO memberNaver(MemberVO memberVO) throws Exception{
+		return memberMapper.memberNaver(memberVO);
+	}
+	
 	//로그인
 	public MemberVO memberLogin(MemberVO memberVO)throws Exception{
 		

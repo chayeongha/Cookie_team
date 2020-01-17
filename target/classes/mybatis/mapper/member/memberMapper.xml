@@ -5,6 +5,17 @@
   
   <mapper namespace="com.cookie.basic.member.MemberMapper">
   
+  	<!-- 네이버 회원가입-->
+  	<insert id="naverJoin" parameterType="memberVO">
+  		insert into members values(#{id},null,#{name},#{nickname},000-0000-0000,2)
+  	
+  	</insert>
+  
+  	<!-- 네이버 -->
+  	<select id="memberNaver" parameterType="memberVO" resultType="memberVO">
+  		select * from members where id=#{id}
+  	</select>
+  
   	<!--회원가입  -->
   	<insert id="memberJoin" parameterType="memberVO">
   			insert into members values (#{id},#{pw},#{name},#{nickname},#{phone},#{grade})
