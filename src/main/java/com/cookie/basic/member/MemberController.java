@@ -118,6 +118,7 @@ public class MemberController {
 		
 	}
 	
+	
 	@PostMapping("memberLogin")
 	public ModelAndView memberLogin(MemberVO memberVO, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -146,16 +147,39 @@ public class MemberController {
 		return "member/memberNaver";
 	}
 	
+	@PostMapping("memberKakao")
+	public String memberKakao(HttpSession session,String nickname,String email) throws Exception{
+		MemberVO memberVO = new MemberVO();
+
+		memberVO.setMemId(email);
+		memberVO = memberService.memberKakao(memberVO);
+		
+		if(memberVO == null) {
+			System.out.println("hi");
+			MemberVO memberVO2 = new MemberVO();
+			memberVO2.setMemId(email);
+			memberVO2.setName(nickname);
+			memberVO2.setNickname(nickname);
+			int result= memberService.naverJoin(memberVO2);
+			session.setAttribute("member", memberVO2);
+			System.out.println(result);
+		}
+		
+		session.setAttribute("member", memberVO);
+		
+		return "redirect:../";
+		
+	}
+	
 	@PostMapping("memberNaver")
 	public String memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
 		MemberVO memberVO = new MemberVO();
-		memberVO.setId(email);
-		
+		memberVO.setMemId(email);
 		memberVO = memberService.memberNaver(memberVO);
 		
-		if(memberVO.getGrade() == null) {
+		if(memberVO == null) {
 			MemberVO memberVO2 = new MemberVO();
-			memberVO2.setId(email);
+			memberVO2.setMemId(email);
 			memberVO2.setName(name);
 			memberVO2.setNickname(nickname);
 			int result= memberService.naverJoin(memberVO2);

@@ -55,7 +55,7 @@ public class StoreController {
 	public ModelAndView myInfo(StoreVO storeVO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		storeVO.setId(memberVO.getId());
+		storeVO.setId(memberVO.getMemId());
 
 		System.out.println(storeVO.getId());
 

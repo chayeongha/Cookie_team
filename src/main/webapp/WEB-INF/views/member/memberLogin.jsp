@@ -12,6 +12,9 @@
 <link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 </head>
 <body>
 <div class="body_main">
@@ -48,6 +51,61 @@
 		  	naver_id_login.setPopup();
 		  	naver_id_login.init_naver_id_login();
 		  </script>
+		  
+			<div  class="btn-login-sns-box login-form-box panel-body" >
+					<a id="kakao-login-btn"></a>
+					
+			</div>
+			<script type='text/javascript'>
+
+			$(".sns-login-kakao-logo").click(function() {
+			    $("#kakao-login-btn").click();
+			 });
+			
+			  //<![CDATA[
+			    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+			    Kakao.init('df2f1bd915d5ed98ee4e1782f47aff61');
+
+			    Kakao.Auth.createLoginButton({
+				      container: '#kakao-login-btn',
+				      success: function(authObj) {
+				        // 로그인 성공시, API를 호출합니다.
+				        Kakao.API.request({
+				          url: '/v2/user/me',
+				          success: function(res) {
+				            
+				       		 $.ajax({
+					        	type: "POST",
+					        	url:"./memberKakao",
+					        	data:{
+						        	nickname: res.properties.nickname,
+						        	email:res.kakao_account.email
+					        	}, 
+					        	success : function(res)
+					        	{
+					        	  alert(res.properties.nickname+'회원님 로그인되었습니다');    
+					        	},
+					        	error: function(res) {
+								  alert('로그인실패');
+								},
+								complete : function(res) {
+									location.href="../";
+								}
+				       		 
+					        });
+				          },
+				          fail: function(error) {
+				            alert(JSON.stringify(error));
+				          }
+				        });
+				      },
+				      fail: function(err) {
+				        alert(JSON.stringify(err));
+				      }
+				    });
+				  //]]>	
+
+			</script>
 	  </div>
 	  
 	  
