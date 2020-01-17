@@ -53,14 +53,11 @@
   	</update>
   	
   	
-  	<select id="checkStore" parameterType="StoreVo" resultType="StoreVO">
-		select * from store where sName=#{sName}  	
+  	<select id="checkStore" parameterType="StoreVO" resultType="Integer">
+		select count(*) from store where sName=#{sName}  	
   	</select>
   	
-  	
-  	
-  	
-  	
+
   	
   </mapper>
   
