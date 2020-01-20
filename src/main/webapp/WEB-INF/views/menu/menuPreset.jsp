@@ -197,7 +197,7 @@
    </div>
    
    <div class="submitBtn8">
-    <button type="submit" class="btn_submit">Submit</button>
+    <button type="submit" class="btn_submit">결정하기</button>
     </div>
    
    </form>

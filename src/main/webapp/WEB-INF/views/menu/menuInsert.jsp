@@ -7,27 +7,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
+<link href="/css/reset.css" rel="stylesheet" />
+<link href="/css/menu/menuIn.css" rel="stylesheet" />
 
 </head>
 <body>
-<h1>Menu Insert Page</h1>
+
+
+	<div class="storeHeader">
+		<div class="AddMenuTi">Add Menu</div>
+	</div>
 
 <div class="container">
   <form action="./menuInsert"  id="frm" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="mmName">메뉴 이름</label>
+      <label for="mmName" class="mlabel">메뉴 이름</label>
       <input type="text" class="form-control" id="mmName" placeholder="Enter mmName" name="mmName">
     </div>
     
     <div class="form-group">
-      <label for="mmPrice">가격:</label>
+      <label for="mmPrice" class="mlabel">가격:</label>
       <input type="text" class="form-control" id="mmPrice" placeholder="Enter mPrice" name="mmPrice">
     </div>
     
 
     
      <div class="form-group">
-      <label for="mmCounte">재고수량</label>
+      <label for="mmCounte" class="mlabel">재고수량</label>
       <input type="text" class="form-control" id="mmCount" placeholder="Enter mCount" name="mmCount">
     </div>
     

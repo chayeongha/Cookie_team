@@ -24,10 +24,10 @@
 	width: 1000px;
 	height: 80px;
 	color: white;
-	font-size: 18px;
+	font-size: 20px;
 	text-align: center;
 	margin: 0 auto;
-	letter-spacing: -2px;
+	font-family: CookieRun-Regular;
 }
 
 .Tipre {
@@ -36,7 +36,7 @@
 	background-color: #ff674efa;
 	color: white;
 	font-size: 24px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	line-height: 40px;
 }
 
@@ -48,7 +48,7 @@
 	clear: both;
 	color: white;
 	font-size: 24px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	line-height: 40px;
 }
 
@@ -60,7 +60,7 @@
 	clear: both;
 	color: white;
 	font-size: 24px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	line-height: 40px;
 }
 
@@ -74,7 +74,7 @@ input[type="checkbox"]+label {
 	position: relative;
 	padding-left: 35px;
 	margin-bottom: 20px;
-	font: 14px/20px 'Open Sans', Arial, sans-serif;
+	font: 16px/20px 'Open Sans', Arial, sans-serif;
 	color: #000000;
 	cursor: pointer;
 	-webkit-user-select: none;
@@ -202,4 +202,5 @@ input[type="checkbox"]:checked+label:before {
 	float: right;
 	color: white;
 	font-size: 18px;
+	font-family: CookieRun-Regular;
 }
