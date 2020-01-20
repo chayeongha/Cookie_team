@@ -160,7 +160,7 @@ public class MemberController {
 			memberVO2.setMemId(email);
 			memberVO2.setName(nickname);
 			memberVO2.setNickname(nickname);
-			int result= memberService.naverJoin(memberVO2);
+			int result= memberService.kakaoJoin(memberVO2);
 			session.setAttribute("member", memberVO2);
 			System.out.println(result);
 		}

@@ -8,7 +8,35 @@
 	<div class="header1">
 		<div class="h1_1">
 		<c:if test="${not empty sessionScope.member}">
+			<c:if test="${2 eq sessionScope.member.kind }">
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout"><input type="submit" id="logout" value="Logout"></a></div>
+			<script type="text/javascript">
+				$("#logout").click(function(){
+					
+					window.open("https://accounts.kakao.com/logout?continue=https://accounts.kakao.com/weblogin/account", "",
+							"width=500,height=230,top=200, left=600");
+					close();
+					
+				});
+			</script>
+			</c:if>
+			
+			<c:if test="${1 eq sessionScope.member.kind }">
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout"><input type="submit" id="logout" value="Logout"></a></div>
+			<script type="text/javascript">
+				$("#logout").click(function(){
+					
+					window.open("https://nid.naver.com/nidlogin.logout?returl=localhost", "",
+							"width=500,height=230,top=200, left=600");
+					close();
+					
+				});
+			</script>
+			
+			</c:if>
+			<c:if test="${null eq sessionScope.member.kind }">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></div>
+			</c:if>
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberMypage">Mypage</a></div>
 		</c:if>
 		<c:if test="${empty sessionScope.member}">
