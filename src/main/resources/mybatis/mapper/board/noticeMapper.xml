@@ -21,6 +21,17 @@
   		</choose>
   	</sql>
   	
+  	
+  	
+  	<select id="noticeIndex" parameterType="NoticeVO" resultType="NoticeVO">
+  		select lag(num,1) over(order by num) prev,
+  				lag(title,1) over(order by num) prevT,
+           		lead(num,1) over(order by num) next,
+            	lead(title,1) over(order by num) nextT
+		from notice
+		where num = #{num}
+  	</select>
+  	
   	<resultMap type="NoticeVO" id="Select">
   		<id column="num" property="num"/>
   		<result column="title" property="title"/>
@@ -35,8 +46,17 @@
   	</resultMap>
   	
   	<select id="noticeSelect" parameterType="NoticeVO" resultMap="Select">
-  		select N.*, F.fnum, F.fname, F.oname
+  		<!-- select N.*, F.fnum, F.fname, F.oname
   		from notice N left outer join noticeFiles F
+  		on N.num = F.num
+  		where N.num = #{num} -->
+  		
+  		select N.*, F.fnum, F.fname, F.oname
+  		from (select num, lag(num,1) over(order by num) prev,
+  				lag(title,1) over(order by num) prevT,
+           		lead(num,1) over(order by num) next,
+            	lead(title,1) over(order by num) nextT
+		from notice) N left outer join noticeFiles F
   		on N.num = F.num
   		where N.num = #{num}
   	</select>
@@ -54,7 +74,7 @@
   		<include refid="bs"></include> num > 0
   		order by num desc LIMIT #{startRow}, #{perPage}
   	</select>
-  	
+
   	<select id="noticeCount" resultType="Integer" parameterType="Pager">
   		select count(num) from notice
   		<include refid="bs"></include> num > 0

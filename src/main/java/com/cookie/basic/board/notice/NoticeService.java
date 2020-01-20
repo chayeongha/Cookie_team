@@ -26,13 +26,13 @@ public class NoticeService {
 	@Autowired
 	private FileSaver fileSaver;
 	///////////////////////////////////////////////////
-	
+	//썸머파일삭제
 	public boolean summerFileDelete(String files) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		
 		return fileSaver.fileDelete(file, files);
 	}
-	
+	//썸머파일추가
 	public String summerFile(MultipartFile files) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		
@@ -42,6 +42,11 @@ public class NoticeService {
 	//파일 다운
 	public NoticeFilesVO noticeFileSelect(NoticeFilesVO noticeFilesVO) throws Exception {
 		return noticeFilesMapper.noticeFileSelect(noticeFilesVO);
+	}
+	
+	//이전글, 다음글
+	public NoticeVO noticeIndex(NoticeVO noticeVO) throws Exception {
+		return noticeMapper.noticeIndex(noticeVO);
 	}
 	
 	//글 작성 + 파일 추가
@@ -61,8 +66,8 @@ public class NoticeService {
 				NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
 				//System.out.println(noticeVO.getNum());
 				noticeFilesVO.setNum(noticeVO.getNum());
-				noticeFilesVO.setFname(fileName);
-				noticeFilesVO.setOname(files[i].getOriginalFilename());
+				noticeFilesVO.setFname(files[i].getOriginalFilename());
+				noticeFilesVO.setOname(fileName);
 				
 				noticeFilesVOs.add(noticeFilesVO);
 			}

@@ -64,14 +64,14 @@
 					<tr>
 						<th class="fth" scope="row" id="next_title">윗글</th>
 						<td class="ftd">
-							<a href="./noticeSelect?num=${select.num +1}">해당 글이 없습니다.</a>
+							<a id="next" href="#none">해당 글이 없습니다.</a>
 						</td>
 					</tr>
 					
 					<tr>
 						<th class="lth" scope="row" id="prev_title">아랫글</th>
 						<td class="ltd">
-							<a href="./noticeSelect?num=${select.num -1}">콜마이 네임 서비스 운영 정책 변경 안내</a>
+							<a id="prev" href="#none">${select.prevT}</a>
 						</td>
 					</tr>
 				</tbody>
@@ -79,5 +79,24 @@
 		</div>
 	</div>
 </div>
+
+<!-- <script type="text/javascript">
+	//윗글 불러오기
+	$('#next').click(function(){
+		var num = ${select.num};
+		//alert(num);
+		$.ajax({
+			type:"POST",
+			url:"./noticeIndex",
+			data: {num:num},
+			success: function(data){
+				alert(data);
+			},
+			error: function() {
+				alert("잠시 후에 다시 시도해주세요.");
+			}
+		});
+	}); -->
+</script>
 </body>
 </html>
