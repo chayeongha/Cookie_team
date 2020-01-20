@@ -163,10 +163,9 @@ public class MemberController {
 			int result= memberService.kakaoJoin(memberVO2);
 			session.setAttribute("member", memberVO2);
 			System.out.println(result);
-		}
-		
+		}else {
 		session.setAttribute("member", memberVO);
-		
+		}
 		return "redirect:../";
 		
 	}
@@ -176,7 +175,10 @@ public class MemberController {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemId(email);
 		memberVO = memberService.memberNaver(memberVO);
-		
+		if(name==null) {
+			name=nickname;
+		}
+
 		if(memberVO == null) {
 			MemberVO memberVO2 = new MemberVO();
 			memberVO2.setMemId(email);
@@ -184,11 +186,10 @@ public class MemberController {
 			memberVO2.setNickname(nickname);
 			int result= memberService.naverJoin(memberVO2);
 			session.setAttribute("member", memberVO2);
-			System.out.println(result);
-		}
-		
+
+		}else {
 		session.setAttribute("member", memberVO);
-		
+		}
 		return "../";
 	}
 	
