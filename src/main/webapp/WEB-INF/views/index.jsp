@@ -10,7 +10,6 @@
 <link href="/css/header.css" rel="stylesheet"/>
 <link href="/css/body.css" rel="stylesheet"/>
 <link href="/css/footer.css" rel="stylesheet"/>
-<link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <link href="/css/main/main_body.css" rel="stylesheet"/>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=df2f1bd915d5ed98ee4e1782f47aff61"></script>
