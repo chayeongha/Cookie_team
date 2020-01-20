@@ -3,12 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cookie.basic.menu.MenuFilesMapper">	
-	<insert id="menuFilesInsert" parameterType="java.util.List">
-		insert into menuFiles values
-		<foreach collection="list" item="item" separator=",">
-  			(null, #{item.mfName}, #{item.moName}, #{item.mmNum})
-  		</foreach>
+	<insert id="menuFilesInsert" parameterType="menuFilesVO" useGeneratedKeys="true" keyProperty="mfNum">
+		insert into menuFiles values (null, #{mfName}, #{moName}, #{mmNum})
 	</insert>
+	
+	<update id="menuFilesUpdate" parameterType="menuFilesVO">
+		update menuFiles set mfName = #{mfName}, moName=#{moName} where mfNum=#{mfNum}
+	</update>
 	
 
 </mapper>

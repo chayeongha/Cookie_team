@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,27 @@ public class MenuController {
 	public void menuPreset() throws Exception{
 		
 	}
+	
+	//초기 메뉴 선택
+		@PostMapping("menuPreset")
+		public ModelAndView menuPreset(String [] menuP, MenuVO menuVO) throws Exception{
+			ModelAndView mv = new ModelAndView();
+			int result = menuService.menuPreset(menuVO, menuP);
+			String message="Insert fail";
+			String path="./menuList?sNum="+menuVO.getSNum();
+			if(result>0) {
+				message="Insert Success";
+			}
+			mv.setViewName("common/result");
+			mv.addObject("msg", message);
+			mv.addObject("path", path);
+			return mv;
+			
+			
+		}
+		
+		
+		
 	//Insert
 	@GetMapping("menuInsert")
 	public String menuInsert()throws Exception{
@@ -30,7 +52,7 @@ public class MenuController {
 	}
 	
 	@PostMapping("menuInsert")
-	public ModelAndView menuInsert(MenuVO menuVO,  List<MultipartFile> files, String [] opto, String[] optName, String[] optPrice)throws Exception{
+	public ModelAndView menuInsert(MenuVO menuVO,  MultipartFile files, String [] opto, String[] optName, String[] optPrice)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -48,9 +70,9 @@ public class MenuController {
 	
 	//List
 	@GetMapping("menuList")
-	public ModelAndView menuList()throws Exception{
+	public ModelAndView menuList(MenuVO menuVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<MenuVO> ar = menuService.menuList();
+		List<MenuVO> ar = menuService.menuList(menuVO);
 		
 		mv.addObject("lists", ar);
 		mv.setViewName("menu/menuList");
@@ -71,6 +93,33 @@ public class MenuController {
 		return mv;
 	}
 	
+	//Update
+	@GetMapping("menuUpdate")
+	public String menuUpdate(MenuVO menuVO, Model model)throws Exception{
+		menuVO = menuService.menuSelect(menuVO);
+		System.out.println(menuVO.getSNum());
+		System.out.println(menuVO.getMmTemp());
+		System.out.println(menuVO.getMmName());
+		model.addAttribute("vo", menuVO);
+		return "menu/menuUpdate";
+	}
 	
+	@PostMapping("menuUpdate")
+	public ModelAndView menuUpdate(MenuVO menuVO, MultipartFile files,  String[] optName2, String[] optPrice2, String[] optNum2,String[] optName, String[] optPrice)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+
+		int result = menuService.menuUpdate(menuVO, files, optName2, optPrice2, optNum2,optName, optPrice);
+		String message="Insert fail";
+		String path=".	/menuList";
+		if(result>0) {
+			message="Insert Success";
+		}
+		mv.setViewName("common/result");
+		mv.addObject("msg", message);
+		mv.addObject("path", path);
+		return mv;
+		
+	}
 	
 }

@@ -11,9 +11,9 @@
 		<result column="mmPrice"  property="mmPrice"/>
 		<result column="mmCount"  property="mmCount"/>
 		<result column="cmNum"  property="cmNum"/>
-		<result column="mmTenp"  property="mmTenp"/>
+		<result column="mmTemp"  property="mmTemp"/>
 		<result column="sNum"  property="sNum"/>
-		<collection property="menuFiles" javaType="ArrayList" ofType="MenuFilesVO" >
+		<collection property="menuFiles" javaType="MenuFilesVO" >
 			<id column="mfNum" property="mfNum"/>
 			<result column="mfName" property="mfName"/>
 			<result column="moNum" property="moNum"/>
@@ -41,11 +41,15 @@
         from menu M 
         left outer join menuFiles F on M.mmNum = F.mmNum
         left outer join mopt Mo on M.mmNum = Mo.mmNum
-        where M.mmNum = #{mmNum};
+        where M.mmNum = #{mmNum}
 	</select>
 	
-	<select id="menuList" resultType="MenuVO"> 
-		select * from menu order by mmNum desc
+	<select id="menuList" parameterType="MenuVO" resultType="MenuVO"> 
+		select * from menu where sNum = #{sNum} order by mmNum desc
 	</select>
+	
+	<update id="menuUpdate" parameterType="MenuVO">
+		update menu set mmName=#{mmName}, mmPrice=#{mmPrice}, mmCount=#{mmCount}, cmNum=#{cmNum}, mmTemp=#{mmTemp} where mmNum=#{mmNum}
+	</update>
 
 </mapper>

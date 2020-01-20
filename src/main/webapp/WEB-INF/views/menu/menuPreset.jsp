@@ -17,7 +17,7 @@
 	<form action="./menuPreset" id="frm" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 	<!-- 스토어번호 히든으로 바꿔야함  -->
-      <input type="text" class="form-control" id="sNum" value="${store.sNum}" placeholder="Enter mmName" name="sNum">
+      <input type="text" class="form-control" id="sNum" value="${store.sNum}" placeholder="Enter sNum" name="sNum">
 	</div>
 	
 	<h2>Coffee</h2>
@@ -40,7 +40,6 @@
 	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="ICED 바닐라라떼:0:0:1:0">ICED 바닐라라떼
 	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="ICED 카푸치노:0:0:1:0">ICED 카푸치노
 	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="콜드브루:0:0:1:0">콜드브루
-	</form>
 	
 	
 	<H2>Beverage</H2>
@@ -69,9 +68,32 @@
 	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="바닐라 프라푸치노:0:0:2:0">바닐라 프라푸치노
 	
 	
+	<h2>Desert</h2>
 	
+	<h3>Bread</h3>
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="허니 브레드:0:0:3:3">허니 브레드
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="갈릭 버터 브레드:0:0:3:3">갈릭 버터 브레드
 	
+	<h3>Cake</h3>
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="티라미수:0:0:3:3">티라미수
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="레드벨벳:0:0:3:3">레드벨벳
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="초콜릿 무스:0:0:3:3">초콜릿 무스	
+	
+	<h3>Ice Cream</h3>
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="소프트 아이스크림:0:0:3:3">소프트 아이스크림	
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="아포가토:0:0:3:3">아포가토	
+	
+	<h3>마카롱/초콜릿</h3>
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="블루베리 마카롱:0:0:3:3">블루베리 마카롱
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="산딸기 마카롱:0:0:3:3">산딸기 마카롱
+	<input type="checkbox" class="Menu_checkbox" name="menuP"  id="checkbox1" value="그린티 마카롱:0:0:3:3">그린티 마카롱
+	
+	<div>
+	 <button type="submit" class="btn_submit">Submit</button>
+	 </div>
+	</form>
 </div>
 
+	
 </body>
 </html>

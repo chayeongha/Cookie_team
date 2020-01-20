@@ -28,20 +28,9 @@ class MenuTest {
 		menuVO.setMmTemp(1);
 		int result = menuMapper.menuInsert(menuVO);
 	}
-	
-	//@Test
-	public void test()throws Exception{
-		List<MenuFilesVO> menuFilesVOs = new ArrayList<>();
-		for(int i=0; i<2;i++) {
-		MenuFilesVO menuFilesVO = new MenuFilesVO();
-		menuFilesVO.setMfName(i+"번f");
-		menuFilesVO.setMoName(i+"번O");
-		menuFilesVO.setMmNum(i+3);
-		menuFilesVOs.add(menuFilesVO);}
-		menuFilesMapper.menuFilesInsert(menuFilesVOs);
+
 		
-		
-	}
+
 	
 	//@Test
 	public void mSelect()throws Exception{
