@@ -112,5 +112,12 @@
 #logout{
 	border:none;
 	background: transparent;
-	
+	font-size: 20px;
+	font-family: CookieRun-Black;
+	color:#ff712d;
+
+}
+
+#logout:hover {
+	color:#f23600;
 }
