@@ -43,7 +43,7 @@ public class StoreController {
 		String path = "../";
 		if (result > 0) {
 			message = "등록 성공!";
-			path = "./myInfo";
+			path = "../menu/menuPreset";
 			session.setAttribute("store", storeVO);
 		}
 
