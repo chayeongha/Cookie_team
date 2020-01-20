@@ -25,7 +25,7 @@
 	  <form action="./memberLogin" method="post" class="frm">
 	    <div>
 	      <label for="id" class="la">ID </label>
-	      <input type="text" class="" id="id" placeholder="Enter id" name="id">
+	      <input type="text" class="" id="memId" placeholder="Enter id" name="memId">
 	    </div>
 	    <div>
 	      <label for="pw" class="la">PW </label>

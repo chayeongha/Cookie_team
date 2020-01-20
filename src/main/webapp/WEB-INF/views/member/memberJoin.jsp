@@ -27,10 +27,10 @@
 		  <form:form class="form-horizontal" action="./memberJoin" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
 		    
 		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="id">아이디</label>
+		      <label class="control-label col-sm-2" for="memId">아이디</label>
 		      <div class="col-sm-10">
-		        <form:input path="id" placeholder="Enter id" class="form-control" id="id"/>
-		      	<form:errors path="id" />
+		        <form:input path="memId" placeholder="Enter id" class="form-control" id="memId"/>
+		      	<form:errors path="memId" />
 		      </div>
 		    </div>
 		    
@@ -53,7 +53,7 @@
 		     <div class="form-group">
 		      <label class="control-label col-sm-2" for="name">이름</label>
 		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="Id" placeholder="Enter name" name="name">
+		        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
 		      </div>
 		    </div>
 		     
