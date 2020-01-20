@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class MemberVO {
 
+
 		
 	private Integer memNum;
 	

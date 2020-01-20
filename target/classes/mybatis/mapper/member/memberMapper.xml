@@ -9,8 +9,7 @@
   	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
   			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{grade},#{kind})
   	</insert>
-  	
-  
+
   	<!--로그인 resultmap  -->
   	<resultMap type="MemberVO" id="MemberLogin">
   			<id column="memNum" property="memNum"/>
@@ -74,6 +73,29 @@
    			<include refid="search"></include> and grade =1
 			limit #{startRow},#{perPage} 	
    	</select>
+
+	<!-- 카카오 회원가입-->
+  	<insert id="kakaoJoin" parameterType="memberVO">
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',1,2)
+  	</insert>
+
+  	<!-- 카카오 -->
+  	<select id="memberKakao" parameterType="memberVO" resultType="memberVO">
+  		select * from members where memId=#{memId} and kind=2
+  	</select>
+  
+  	<!-- 네이버 회원가입-->
+  	<insert id="naverJoin" parameterType="memberVO">
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',1,1)
+  	</insert>
+  
+  	<!-- 네이버 -->
+  	<select id="memberNaver" parameterType="memberVO" resultType="memberVO">
+  		select * from members where memId=#{memId} and kind=1
+  	</select>
+  
+     
+
    	
 	<!--회원리스트 카운트 -->
    	<select id="listCount"  resultType="Integer">

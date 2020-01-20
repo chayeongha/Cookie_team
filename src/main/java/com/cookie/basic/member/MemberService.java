@@ -78,9 +78,7 @@ public class MemberService {
 		if(check) {
 			
 			MemberFilesVO memberFilesVO2 = new MemberFilesVO();
-
 			memberFilesVO2.setMemNum(memberVO.getMemNum());
-
 			memberFilesVO2.setFname(fileName);
 			memberFilesVO2.setOname(files.getOriginalFilename());
 			
@@ -91,6 +89,27 @@ public class MemberService {
 		return result;
 	
 	}
+	
+	//네이버 회원가입
+	public int naverJoin(MemberVO memberVO) throws Exception{
+		return memberMapper.naverJoin(memberVO);
+	}
+	
+	//네이버(로그인)
+	public MemberVO memberNaver(MemberVO memberVO) throws Exception{
+		return memberMapper.memberNaver(memberVO);
+	}
+	
+	//카카오 회원가입
+	public int kakaoJoin(MemberVO memberVO) throws Exception{
+		return memberMapper.kakaoJoin(memberVO);
+	}
+		
+	//카카오(로그인)
+	public MemberVO memberKakao(MemberVO memberVO) throws Exception{
+		return memberMapper.memberKakao(memberVO);
+	}
+	
 	
 	//로그인
 	public MemberVO memberLogin(MemberVO memberVO)throws Exception{
@@ -119,9 +138,7 @@ public class MemberService {
 		//fnum이 없을 때 파일을 인서트하는 조건을 줌.
 		
 		if(memberVO.getFnum() ==null) {
-
 			memberFilesVO.setMemNum(memberVO.getMemNum());
-
 			memberFilesVO.setFname(fileName);
 			memberFilesVO.setOname(files.getOriginalFilename());
 			
@@ -130,7 +147,6 @@ public class MemberService {
 		//fnum이 있을때 파일을 업데이트하는 조건을 줌.
 		memberFilesVO.setMemNum(memberVO.getMemNum());
 		memberFilesVO.setFnum(memberVO.getFnum());
-
 		memberFilesVO.setFname(fileName);
 		memberFilesVO.setOname(files.getOriginalFilename());
 		

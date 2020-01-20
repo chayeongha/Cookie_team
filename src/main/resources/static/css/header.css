@@ -108,3 +108,9 @@
 .cate > p > a:hover{
 	color:#f23600;
 }
+
+#logout{
+	border:none;
+	background: transparent;
+	
+}

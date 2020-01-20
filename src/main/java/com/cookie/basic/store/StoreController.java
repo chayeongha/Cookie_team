@@ -60,11 +60,8 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		
+
 		 storeVO.setMemNum(memberVO.getMemNum());
-		  
-		
-		// System.out.println(storeVO.getId());
 
 		List<StoreVO> ar = storeService.searchInfo(storeVO);
 

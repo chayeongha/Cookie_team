@@ -10,9 +10,10 @@
 <link href="/css/header.css" rel="stylesheet"/>
 <link href="/css/body.css" rel="stylesheet"/>
 <link href="/css/footer.css" rel="stylesheet"/>
+<link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <link href="/css/main/main_body.css" rel="stylesheet"/>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6ba0b2e0894b510063b292edfad86999"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=df2f1bd915d5ed98ee4e1782f47aff61"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
         function getLocation(position) {
@@ -45,30 +46,8 @@
 </head>
 <body>
 
-	<!-- header -->
-	<div class="header1">
-		<div class="h1_1">
-			<div class="h1_txt"><a href="#">Join</a></div>
-			<div class="h1_txt"><a href="#">Login</a></div>
-		</div>
-	</div><!-- 위에 헤더 -->
-	<div class="header2">
-		<div class="h_img">
-			<div class="M_imgg"></div>
-		</div><!-- 이미지 -->
-		<br><br>
-		<div class="cate_1">Cookie</div>
-		<div class="cate_2">Order</div>
-		<div class="cate">
-			<p><a href="#">제휴매장</a></p>
-			<p><a href="#">공지사항</a></p>
+	<c:import url="./layout/header.jsp" />
 
-			<p><a href="#">이용후기</a></p>
-			<p><a href="#">Q & A</a></p>
-			<p><a href="#">매장등록</a></p>
-		</div>
-		
-	</div><!-- 왼쪽 헤더 -->
 	<!-- body -->	
 	<div class="body_main">
 		<div class="b"></div>
@@ -207,15 +186,7 @@
 			</div>
 		</div>
 		<br>
-		<!-- footer -->
-		<div class="footer">
-			<div class="footer_inner">
-				<div class="f_title">Cookie Order</div>
-				<div class="f_inner">(주)쿠키오더 | 대표 : 쿠키맨 | 사업자 등록번호. 202-00-11400 | 주소. 서울 마포구 쌍용강북센터
-				<br>고객센터 | Q & A
-				</div>
-			</div>
-		</div>
+		<c:import url="./layout/footer.jsp" />
 	</div><!-- bodymain끝 -->
 	
 	

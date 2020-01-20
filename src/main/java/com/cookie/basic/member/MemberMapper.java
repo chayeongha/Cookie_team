@@ -12,6 +12,18 @@ import com.cookie.basic.util.Pager;
 @Mapper
 public interface MemberMapper {
 	
+	//네이버 처음 회원가입
+	public int naverJoin(MemberVO memberVO) throws Exception;
+	
+	//네이버 아이디 조회
+	public MemberVO memberNaver(MemberVO memberVO) throws Exception;
+	
+	//카카오 처음 회원가입
+	public int kakaoJoin(MemberVO memberVO) throws Exception;
+		
+	//카카오 아이디 조회
+	public MemberVO memberKakao(MemberVO memberVO) throws Exception;
+	
 	//회원가입
 	public int memberJoin(MemberVO memberVO)throws Exception;
 	
