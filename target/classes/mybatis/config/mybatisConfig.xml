@@ -15,9 +15,10 @@
   		<typeAlias type="com.cookie.basic.board.notice.NoticeVO" alias="NoticeVO"/>
   		<typeAlias type="com.cookie.basic.board.notice.NoticeFilesVO" alias="NoticeFilesVO"/>
   		<typeAlias type="com.cookie.basic.util.Pager" alias="Pager" />
-  		
-  		<typeAlias type="com.cookie.basic.member.MemberVO" alias="memberVO" />
-  		<typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="memberFilesVO" />
+
+  		<typeAlias type="com.cookie.basic.member.MemberVO" alias="MemberVO" />
+  		<typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="MemberFilesVO" />
+
   		<typeAlias type="com.cookie.basic.menu.MenuVO" alias="MenuVO"/>
   		<typeAlias type="com.cookie.basic.menu.MenuFilesVO" alias="MenuFilesVO"/>
 

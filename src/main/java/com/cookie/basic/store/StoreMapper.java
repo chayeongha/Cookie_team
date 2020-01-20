@@ -26,7 +26,7 @@ public interface StoreMapper {
 	
 	public int offUpdate(StoreVO storeVO)throws Exception;
 	
-	public StoreVO checkStore(StoreVO storeVO)throws Exception;
+	public int checkStore(StoreVO storeVO)throws Exception;
 	
 
 }

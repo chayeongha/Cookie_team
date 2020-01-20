@@ -12,11 +12,13 @@
 <body>
 		<div class="container">
 	
-		<h1><b style="color: blue;">${member.id }</b>님 환영합니다</h1>
+		<h1><b style="color: blue;">${member.memId }</b>님 환영합니다</h1>
 			
 			<div class="form-group">
 				<img alt="이미지를 넣어주세요!" src="../upload/${member.memberFilesVO.fname}" width="50%" height="30%">
 			</div> 
+			
+			<input type="hidden" class="form-control" id="memNum" value="${member.memNum}" readonly="readonly">
 			
 			<div class="form-group">
       			<label for="name">등급</label>
@@ -25,7 +27,7 @@
 			
 			<div class="form-group">
       			<label for="id">id:</label>
-      			<input type="text" class="form-control" id="id" value="${member.id}" readonly="readonly">
+      			<input type="text" class="form-control" id="memId" value="${member.memId}" readonly="readonly">
     		</div>
     
     		<div class="form-group">
@@ -69,7 +71,7 @@
 				type : "GET",
 				url : "memberDelete",
 				data : {
-						id : $("#id").val()
+						nickname : $("#nickname").val()
 				},
 				success : function(data) {
 					data =data.trim();

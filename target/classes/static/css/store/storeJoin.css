@@ -25,7 +25,7 @@
 	width: 500px;
 	height: 650px;
 	margin: 0 auto;
-	margin-top: 150px;
+	margin-top: 50px;
 	font-family: CookieRun-Black;
 	font-size: 20px;
 }
@@ -77,9 +77,7 @@
 	border-radius: 4px;
 	font-family: CookieRun-Black;
 	font-size: 18px;
-	
 }
-
 
 /**************storeInfo***************/
 .class_select_store {
@@ -133,4 +131,58 @@
 
 .photo_store {
 	border: none;
+}
+
+/*중복확인*/
+#OK {
+	width: 80px;
+	height: 40px;
+	background-color: #ff674efa;
+	border: none;
+	margin-top: 10px;
+	border-radius: 4px;
+	font-family: CookieRun-Black;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-left: 420px;
+}
+
+/*파일버튼 */
+.filebox label {
+	display: inline-block;
+	padding: .5em .75em;
+	color: #fff;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #ff674efa;
+	cursor: pointer;
+	border: 1px solid #ff674efa;
+	border-radius: .25em;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+	margin-top: 40px;
+}
+
+.filebox label:hover {
+	background-color: #ff674efa;
+}
+
+.filebox label:active {
+	background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.file_route {
+	
 }

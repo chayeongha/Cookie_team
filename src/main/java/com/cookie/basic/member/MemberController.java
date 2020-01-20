@@ -195,20 +195,23 @@ public class MemberController {
 		}
 	
 		//회원 리스트
-//		@GetMapping("memberList")
-//		public ModelAndView memberList(Pager pager)throws Exception{
-//			
-//			ModelAndView mv = new ModelAndView();
-//			List<MemberVO> ar = memberService.memberList(pager);
-//			
-//			mv.addObject("pager", pager);
-//			mv.addObject("list", ar);
-//			
-//			mv.setViewName("member/memberList");
-//			
-//			return mv;
-//		}
+		@GetMapping("memberList")
+		public ModelAndView pmemberList(Pager pager)throws Exception{
+			
+			ModelAndView mv = new ModelAndView();
+			
+			List<MemberVO> ar = memberService.memberList(pager);
+			
+			mv.addObject("pager", pager);
+			mv.addObject("list", ar);
+			
+			mv.setViewName("member/memberList");
+			
+			return mv;
+		}
 	
+		
+		
 	
 	
 	

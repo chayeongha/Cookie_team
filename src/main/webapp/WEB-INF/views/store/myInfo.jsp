@@ -22,19 +22,20 @@
 		<div class="storeJoinTi">매장 정보</div>
 	</div>
 	<div class="class_select_store">매장을 선택해주세요</div>
-
+	<input type="hidden" id="memNum" name="memNum" value="${member.memNum}">
 
 	<div class="storeSection">
 		<div class="storeSection_1">
-			<c:forEach items="${list}" var="list">
+			<c:forEach items="${list}" var="ls">
+		
 				<div class="store_list_box">
 					<div class="store_list_photo">
-						<img alt="img" src="../upload/${list.storeFilesVO.fName}"
+						<img alt="img" src="../upload/${ls.storeFilesVO.fName}"
 							width="300px" height="300px" class="photo_store">
 					</div>
 					<div class="store_list_text">
-						<a href="./myinfoS?sNum=${list.sNum}" class="store_name">지점명 :
-							${list.sName}</a>
+						<a href="./myinfoS?sNum=${ls.sNum}" class="store_name">지점명 :
+							${ls.sName}</a>
 					</div>
 				</div>
 			</c:forEach>

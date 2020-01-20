@@ -6,19 +6,21 @@
   <mapper namespace="com.cookie.basic.member.MemberMapper">
   
   	<!--회원가입  -->
-  	<insert id="memberJoin" parameterType="memberVO">
-  			insert into members values (#{id},#{pw},#{name},#{nickname},#{phone},#{grade})
+  	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
+  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{grade},#{kind})
   	</insert>
+  	
   
-  	<!--로그인  -->
-  	<resultMap type="memberVO" id="memberLogin">
-  			<id column="id" property="id"/>
+  	<!--로그인 resultmap  -->
+  	<resultMap type="MemberVO" id="MemberLogin">
+  			<id column="memNum" property="memNum"/>
+  			<result column="memId" property="memId"/>
   			<result column="pw" property="pw"/>
-  			
   			<result column="name" property="name"/>
   			<result column="nickname" property="nickname"/>
   			<result column="phone" property="phone"/>
   			<result column="grade" property="grade"/>
+  			<result column="kind" property="kind"/>
   		<association property="memberFilesVO" javaType="memberFilesVO">
   			<id column="fnum" property="fnum"/>
   			<result column="fname" property="fname"/>
@@ -26,38 +28,64 @@
   		</association>
   	</resultMap>
   	
-  	<select id= "memberLogin" parameterType="memberVO" resultMap="memberLogin">
+  	<!--로그인  -->
+  	<select id= "memberLogin" parameterType="MemberVO" resultMap="MemberLogin">
   			select M.*,F.* from members M left join memberFiles F
-			on M.id=F.id
- 			where M.id=#{id} and M.pw=#{pw}
+			on M.memNum=F.memNum
+ 			where M.memId=#{memId} and M.pw=#{pw}
 			union
 			select M.*,F.* from members M right join memberFiles F
-			on M.id=F.id
-			where M.id=#{id} and M.pw=#{pw}		
+			on M.memNum=F.memNum
+			where M.memId=#{memId} and M.pw=#{pw}		
    	</select>
    	
    	<!--아이디중복검사 -->
-   	<select id="memberIdCheck" parameterType="memberVO" resultType="memberVO">
-   			select id from members where id=#{id}
+   	<select id="memberIdCheck" parameterType="MemberVO" resultType="MemberVO">
+   			select memId from members where memId=#{memId}
    	</select>
    	
    	<!--회원정보 수정 -->
-   	<update id="memberUpdate" parameterType="memberVO">
+   	<update id="memberUpdate" parameterType="MemberVO">
    			update members set pw=#{pw}, name=#{name}, nickname=#{nickname},phone=#{phone} 
-   			where id=#{id}
+   			where memNum=#{memNum}
    	</update>
    	
    	<!--회원 탈퇴  -->
-   	<delete id="memberDelete" parameterType="memberVO">
-   			delete from members where id=#{id}
+   	<delete id="memberDelete" parameterType="MemberVO">
+   			delete from members where nickname=#{nickname}
    	</delete>
+
+   	<!--회원 검색 -->
+   	<sql id="search">
+  			<choose>
+  				<when test="kind =='ki'">
+  						where phone like CONCAT('%',#{search},'%') 
+  				</when>
+  				<otherwise>
+  						where nickname like CONCAT('%',#{search},'%')
+  				</otherwise>
+  			</choose>
+  	</sql>
    	
-   	<!--회원리스트  -->
-   	<select id ="memberList" parameterType="pager" resultType="memberVO">
-   			select M.*,F.fname from members M left join memberFiles F 
-   			on M.id=F.id
-   			limit #{startRow},#{perPage}
+   	<!--개인회원 리스트  -->
+   	<select id ="pmemberList" parameterType="Pager" resultMap="MemberLogin">
+   			select M.*,F.* from members M left join memberFiles F 
+   			on M.memNum=F.memNum
+   			<include refid="search"></include> and grade =1
+			limit #{startRow},#{perPage} 	
    	</select>
    	
+	<!--회원리스트 카운트 -->
+   	<select id="listCount"  resultType="Integer">
+   			select count(memNum) from members 
+   			<include refid="search"></include> and grade =1
+   	</select>
    	
+ 
+  	<!-- <select id="memberSearch" parameterType="Pager" resultType="MemberVO">
+  		select count(id) from members
+  	
+  	</select> -->
+  
+  
   </mapper>

@@ -18,6 +18,11 @@ public class MenuController {
 	private MenuService menuService;
 	
 	
+	//초기 메뉴 선택
+	@GetMapping("menuPreset")
+	public void menuPreset() throws Exception{
+		
+	}
 	//Insert
 	@GetMapping("menuInsert")
 	public String menuInsert()throws Exception{

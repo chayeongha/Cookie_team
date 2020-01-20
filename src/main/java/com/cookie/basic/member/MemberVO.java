@@ -9,9 +9,12 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
+
 		
+	private Integer memNum;
+	
 	@NotEmpty(message = "비우지마시오!!")
-	private String id;
+	private String memId;
 	
 	@NotEmpty
 	@Size(min = 4, max = 12)
@@ -23,11 +26,15 @@ public class MemberVO {
 	private String nickname;
 	private String phone;
 	private Integer grade;
-	
-	private String kind;
+	private Integer kind;
+
+	//셀렉트조인 회원가입종류
+	private String jkind;
 	
 	private MemberFilesVO memberFilesVO;
 	
 	private Integer fnum;
+	private String fname;
+
 
 }

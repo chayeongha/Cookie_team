@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 //@Transactional
 class MemberTest {
 
+
 	@Autowired
 	private MemberMapper memberMapper;
 	@Autowired
@@ -21,7 +22,7 @@ class MemberTest {
 	void insertFilesTest()throws Exception{
 		MemberFilesVO memberFilesVO= new MemberFilesVO();
 		memberFilesVO.setFnum(1);
-		memberFilesVO.setId("t1");
+		//memberFilesVO.setId("t1");
 		memberFilesVO.setFname("t1@@@.jpg");
 		memberFilesVO.setOname("t1.jpg");
 		
@@ -34,7 +35,7 @@ class MemberTest {
 	//@Test
 	void deleteTest( )throws Exception{
 		MemberVO memberVO = new MemberVO();
-		memberVO.setId("test");
+		//memberVO.setId("test");
 		int result= memberMapper.memberDelete(memberVO);
 		
 		assertEquals(1, result);
@@ -44,7 +45,7 @@ class MemberTest {
 	//@Test
 	void insertTest() throws Exception{
 		MemberVO memberVO= new MemberVO();
-		memberVO.setId("admin");
+		//memberVO.setId("admin");
 		memberVO.setPw("admin");
 		memberVO.setName("admin");
 		memberVO.setNickname("왕왕");
@@ -55,5 +56,6 @@ class MemberTest {
 		assertEquals(1, result);
 		
 	}//성공
+
 
 }

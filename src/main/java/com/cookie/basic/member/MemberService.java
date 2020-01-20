@@ -50,7 +50,7 @@ public class MemberService {
 		
 		if(memberVO != null) {
 			check= true;
-			bindingResult.rejectValue("id", "memberVO.id.idCheck");
+			bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
 		}
 		
 		return check;
@@ -71,14 +71,16 @@ public class MemberService {
 		
 		if(files.getSize()>0) {
 		 
-			check=true;
-			
+			check=true;			
 		}
 		
+	
 		if(check) {
 			
 			MemberFilesVO memberFilesVO2 = new MemberFilesVO();
-			memberFilesVO2.setId(memberVO.getId());
+
+			memberFilesVO2.setMemNum(memberVO.getMemNum());
+
 			memberFilesVO2.setFname(fileName);
 			memberFilesVO2.setOname(files.getOriginalFilename());
 			
@@ -106,23 +108,29 @@ public class MemberService {
 		System.out.println(fileName);
 
 		int result = memberMapper.memberUpdate(memberVO);
-				
+		
+		System.out.println(memberVO.getMemNum());
+		
 		MemberFilesVO memberFilesVO = new MemberFilesVO();
+		
 		
 		//이미지를 안넣고 회원가입을 했을때 
 		//나중에 이미지를 넣으면 fnum없어서 null오류가 뜨기때문에 
 		//fnum이 없을 때 파일을 인서트하는 조건을 줌.
+		
 		if(memberVO.getFnum() ==null) {
-			
-			memberFilesVO.setId(memberVO.getId());
+
+			memberFilesVO.setMemNum(memberVO.getMemNum());
+
 			memberFilesVO.setFname(fileName);
 			memberFilesVO.setOname(files.getOriginalFilename());
 			
 			result=memberFilesMapper.memberFilesInsert(memberFilesVO);
 		}else {
 		//fnum이 있을때 파일을 업데이트하는 조건을 줌.
+		memberFilesVO.setMemNum(memberVO.getMemNum());
 		memberFilesVO.setFnum(memberVO.getFnum());
-		memberFilesVO.setId(memberVO.getId());
+
 		memberFilesVO.setFname(fileName);
 		memberFilesVO.setOname(files.getOriginalFilename());
 		
@@ -142,7 +150,11 @@ public class MemberService {
 	//회원리스트
 	public List<MemberVO> memberList(Pager pager)throws Exception{
 		
-		return memberMapper.memberList(pager);
+		pager.makeRow();
+		pager.makePage(memberMapper.listCount(pager));
+	
+		 return memberMapper.pmemberList(pager);
 	}
+	
 	
 }

@@ -76,30 +76,30 @@
 		<form action="storeInsert" method="post" enctype="multipart/form-data"
 			name="form" id="form">
 
+
+			<input type="hidden" id="memNum" name="memNum" value="${member.memNum}">
 			<div>
 				<div class="store_label">점주 아이디:</div>
 				<!-- id 세션에서 점주 아이디만 받아오기 -->
-				<input type="text" id="id" name="id" value="${member.id}"
-					class="store_input" readonly="readonly">
+				<input type="text" id="memId" name="memId" 
+					class="store_input" value="${member.memId}">		
 			</div>
 
 			<div>
 				<div class="store_label">지점이름:</div>
-				<input type="text" id="sName" name="sName" readonly="readonly"
-					placeholder="	지점이름을 입력해주세요" class="stName store_input">
+				<input type="text" id="sName" name="sName" placeholder="	지점이름을 입력해주세요" class="stName store_input"> 
+					<input type="button" id="OK" value="중복확인">
 			</div>
 
 			<div>
 				<div class="store_label">지점전화번호:</div>
-				<input type="text" id="sTel" name="sTel"
-					placeholder="	지점의 전화번호를 입력해주세요" class="store_input">
+				<input type="text" id="sTel" name="sTel" placeholder="	지점의 전화번호를 입력해주세요" class="store_input">
 			</div>
 
 			<div>
 
 				<div class="store_label">지점주소:</div>
-				<input type="text" id="roadFullAddr" name="roadFullAddr"
-					placeholder="	지점의 주소를 입력해주세요" readonly="readonly"
+				<input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="	지점의 주소를 입력해주세요" readonly="readonly"
 					class="store_input"> <input type="button"
 					onClick="goPopup();" value="주소 검색" class="addrbtn" />
 			</div>
@@ -107,34 +107,95 @@
 			<div>
 				<label for="sOn"></label>
 				<!-- 영업여부 -->
-				<input type="hidden" id="sOn" value="0" name="sOn"
-					placeholder="	영업시간은 가입후 자세히" readonly="readonly"
+				<input type="hidden" id="sOn" value="0" name="sOn" placeholder="	영업시간은 가입후 자세히" readonly="readonly"
 					class="store_input">
 			</div>
 
 			<div>
-				<label for="sNotice"></label> <input type="hidden" id="sNotice"
-					name="sNotice" placeholder="	개업시작 공지를 알리세요" class="store_input">
+				<label for="sNotice"></label> <input type="hidden" id="sNotice" name="sNotice" placeholder="	개업시작 공지를 알리세요" class="store_input">
 			</div>
 			<div>
-				<div class="store_label">로고 등록:</div>
-				<input type="file" class="store_input" id="files" name="files">
+				<!-- <div class="store_label">로고 등록:</div>
+				<input type="file" class="store_input" id="files" name="files"> -->
+				
+				<div class="filebox">
+  					<label for="files">업로드</label><input type="text" readonly="readonly" id="file_route" class="store_input">
+  					<input type="file" id="files" name="files" onchange="javascript:document.getElementById('file_route').value=this.value">
+				</div>
 
 			</div>
-			<input type="submit" id="join" value="Join" class="store_join_btn">
+			<input type="button" id="join" value="Join" class="store_join_btn">
 		</form>
 	</div>
+	
+	
+	
 
 
 
 	<script type="text/javascript">
-		$(".stName").click(
-				function() {
-					var sName = $("#sName").val();
-					window.open("./storeNameCheck?sName=" + sName, "",
-							"width=500,height=230,top=200, left=600");
-				})
-	</script>
+			var scheck =0;
+		$("#OK").click(function() {
+			var sName = $("#sName").val();
+
+			if (sName == "") {
+				alert("매장명을 입력해주세요");
+			} else {
+				$.ajax({
+
+					type : "post",
+					url : "checkStore",
+					/* async: false, */
+					data : {
+						sName : sName
+					},
+					success : function(data) {
+						alert(data);
+						if($.trim(data)>0){
+							alert("쓰지마");
+							$("#sName").val("");
+							$("#sName").focus();		
+						}else{
+							alert("써라");
+							scheck=1;
+							alert(scheck);
+						}
+						
+					},
+					error : function() {
+						alert("ajax error");
+					}
+
+				});
+			}
+
+		});
+
+
+	$("#join").click(function(){
+
+		if($("#sName").val() ==""){
+			alert("매장명 입력해주세요");
+		}else if($("#sTel").val()== ""){
+			alert("전화번호를 입력해주세요")
+		}else if($("#roadFullAddr").val() == ""){
+			alert("주소를 입력해주세요")
+		}else{
+			confirm("회원가입을 하시겠습니까?")
+			if(scheck>0){	
+			$("#form").submit();
+			
+			}else{
+				alert("중복확인을 해주세요")
+				$("#sName").focus();
+			}
+
+		}
+
+		});
+
+</script>
+
 
 
 </body>

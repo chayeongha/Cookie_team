@@ -15,42 +15,46 @@
 
 
 	<div class="storeHeader">
-			<div class="header_Update">
-			
-				<a href="./myInfo" style="color: white; font-weight: bold;">My 매장</a>
-			</div>
+		<div class="header_Update">
+
+			<a href="./myInfo" style="color: white; font-weight: bold;">My 매장</a>
+		</div>
 	</div>
 
 	<div class="storesection">
 		<div class="storesection_1">
-			<div class="clock_icon" style="width: 30px; float: left;"><i class="fa fa-clock-o"
-				style="font-size: 42px; color: black; margin-top: 5px; margin-left: 10px;">
-			</i></div>
+			<div class="clock_icon" style="width: 30px; float: left;">
+				<i class="fa fa-clock-o"
+					style="font-size: 42px; color: black; margin-top: 5px; margin-left: 10px;">
+				</i>
+			</div>
 			<body onload="printClock()">
-			<div style="width: 270px; height: 30px; margin-top:10px; float:left; font-family: CookieRun-Black; line-height: 30px; color: black; font-size: 36px; text-align: center;"
-				id="clock"></div>
-			<button class="section_ok">완료</button>
-			<button class="section_ok">대기</button>
-			<div class="section_title">Cafe ManageMent</div>
+				<div
+					style="width: 270px; height: 30px; margin-top: 10px; float: left; font-family: CookieRun-Black; line-height: 30px; color: black; font-size: 36px; text-align: center;"
+					id="clock"></div>
+				<button class="section_ok">완료</button>
+				<button class="section_ok">대기</button>
+				<div class="section_title">Cafe ManageMent</div>
 		</div>
 		<div class="storesidebar">
-			<button class="side1">주문</button>
-			<button class="side1">질문관리</button>
-			<button class="side1">리뷰관리</button>
-			<button class="side1">매출</button>
+			<button class="side1" id="Order">주문</button>
+			<button class="side1" id="QnaT">질문관리</button>
+			<button class="side1" id="ReviewT">리뷰관리</button>
+			<button class="side1" id="Money">매출</button>
 		</div>
+		<div class="storeNextSide"></div>
 	</div>
 
 
 
 
 	<div class="storeFooter">
-	<form action="storeMyPage" method="post" id="infoBye">
-		<input type="hidden" name="sNum" id="sNum" value="${store.sNum}">
-		<button class="power_button" id="goOff">
-			<i class="fa fa-power-off" style="font-size: 48px; color: white;"></i>
-		</button>
-	</form>
+		<form action="storeMyPage" method="post" id="infoBye">
+			<input type="hidden" name="sNum" id="sNum" value="${store.sNum}">
+			<button class="power_button" id="goOff">
+				<i class="fa fa-power-off" style="font-size: 48px; color: white;"></i>
+			</button>
+		</form>
 	</div>
 
 
@@ -75,12 +79,16 @@
 			}
 
 			if (currentSeconds >= 50) {// 50초 이상일 때 색을 변환해 준다.
-				currentSeconds = '<span style="color:black;">'
-						+ currentSeconds + '</span>'
+				currentSeconds = '<span style="color:black;">' + currentSeconds
+						+ '</span>'
 			}
-			clock.innerHTML = currentHours + ":" + currentMinute + ":"
-					+ currentSeconds + " <span style='font-size:36px; font-family: CookieRun-Black;'>" + amPm
-					+ "</span>"; //날짜를 출력해 줌
+			clock.innerHTML = currentHours
+					+ ":"
+					+ currentMinute
+					+ ":"
+					+ currentSeconds
+					+ " <span style='font-size:36px; font-family: CookieRun-Black;'>"
+					+ amPm + "</span>"; //날짜를 출력해 줌
 
 			setTimeout("printClock()", 1000); // 1초마다 printClock() 함수 호출
 		}
@@ -96,12 +104,15 @@
 			return zero + num;
 		}
 	</script>
-	
+
 	<script type="text/javascript">
-	$("#goOff").click(function() {
-		$("#infoBye").submit();
-	});
+		$("#goOff").click(function() {
+			$("#infoBye").submit();
+		});
 	</script>
+
+	
+
 
 
 

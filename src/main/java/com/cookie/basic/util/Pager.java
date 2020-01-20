@@ -16,8 +16,8 @@ public class Pager {
 	private Integer curBlock;	//현재 블럭 번호
 	private Integer totalBlock;	//전체 블럭 개수
 	
-	private String kind;
-	private String search;
+	private String kind;//검색종류
+	private String search;//검색어
 	
 	public Integer getCurPage() {
 		if(curPage == null || curPage == 0) {
@@ -82,6 +82,9 @@ public class Pager {
 		this.kind = kind;
 	}
 	public String getSearch() {
+		if(search == null) {
+			search="";
+		}
 		return search;
 	}
 	public void setSearch(String search) {
