@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cookie Login</title>
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />
 <link href="/css/member/memberLogin.css" rel="stylesheet"/>
@@ -39,8 +39,11 @@
 	  
 	  <div class="add_join">
 	  		<h2>간편 로그인</h2>
-			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		  <div id="naver_id_login"></div>
+	  		<div class="aj">SNS 계정으로도 이용이 가능합니다.</div>
+	  			
+		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+		  <div id="naver_id_login" style="display: none"></div>
+		  <div class="nv_btn" onclick="document.getElementById('naver_id_login_anchor').click();"></div>
 		  <!-- //네이버아이디로로그인 버튼 노출 영역 -->
 		  <script type="text/javascript">
 		  	var naver_id_login = new naver_id_login("nG_EsxFXAS7FGKZ4Z6ED", "http://localhost/member/memberNaver");
@@ -83,7 +86,7 @@
 					        	}, 
 					        	success : function(res)
 					        	{
-					        	  alert(res.properties.nickname+'회원님 로그인되었습니다');    
+					        	  alert('로그인 성공');    
 					        	},
 					        	error: function(res) {
 								  alert('로그인실패');

@@ -102,7 +102,7 @@ public class MemberService {
 	
 	//카카오 회원가입
 	public int kakaoJoin(MemberVO memberVO) throws Exception{
-		return memberMapper.naverJoin(memberVO);
+		return memberMapper.kakaoJoin(memberVO);
 	}
 		
 	//카카오(로그인)
