@@ -12,10 +12,9 @@
 <div class="contents">
 	<h1>메뉴명 :${vo.mmName}</h1>
 	<h1>가격:${vo.mmPrice}</h1>
-	<c:forEach items="${vo.menuFiles}" var="file">
-	<img alt="제품이미지" src="../../images/menu/${file.mfName}">
-	<h3>${file.mfName}</h3>
-	</c:forEach>
+	<img alt="제품이미지" src="../menu/${vo.menuFiles.mfName}">
+	<h3>${vo.menuFiles.mfName}</h3>
+
 	
 	<c:forEach items="${vo.menuOptions}" var="opt">
 	<h3>${opt.optName}</h3>

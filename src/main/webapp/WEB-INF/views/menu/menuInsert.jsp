@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
+
 </head>
 <body>
 <h1>Menu Insert Page</h1>
@@ -35,8 +36,7 @@
       <select name="cmNum" id="cmNum">
       	<option value="1">coffee</option>
       	<option value="2">beverage</option>
-      	<option value="3">tea</option>
-      	<option value="4">desert</option>
+      	<option value="3">desert</option>
       </select>
       
     </div>
@@ -44,6 +44,7 @@
       <label for="mmTemp">아이스/핫</label>
      <input type="radio" name="mmTemp" value="0">아이스
      <input type="radio" name="mmTemp" value="1">핫
+     <input type="radio" name="mmTemp" value="3">디저트
     </div>
     
      <div class="form-group">
@@ -60,7 +61,9 @@
 	  <input type="checkbox" class="opt_checkbox" name="opto" id="checkbox3" value="휘핑:500">휘핑
 <!--       <input type="hidden" class="optName" name="" value="휘핑 추가">
 	  <input type="hidden" class="optPrice" name="" value="500" /> -->
-	  <%-- <input type="hidden" class="storeNum" name="sNum" value="${store.sNum}"> --%>
+	  <div>
+	  <input type="text" class="storeNum" name="sNum" value="${store.sNum}">
+	  </div>
       <div class="form-group">
       <label for="mmCounte">옵션 추가</label>
       
@@ -71,11 +74,23 @@
       
     </div>
     
+    <div class="form-group">
+		<label for="files">MenuPhoto:</label> 
+		<input type="file"class="form-control" id="files" name="files">
+		
+		  <img id="blah" src="#" alt="your image" />
+
+	</div>
+	
+
+     
+      
     
-    <div class="row" >
-		    	<input type="button"  class="btn btn-info col-sm-3" id="add" value="ADD FILE">
-		    	<div id="files" class="col-sm-12"></div>
-		    </div>
+	
+
+	
+	
+	
       <button type="submit" class="btn_submit">Submit</button>
     
 </form> 
@@ -83,8 +98,29 @@
    
  
 
-<script type="text/javascript" src="../../js/fileCount.js"></script>
 <script type="text/javascript" src="../../js/optAdd.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#files").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+    </script>
+
 
 </body>
 
