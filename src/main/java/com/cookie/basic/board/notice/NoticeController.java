@@ -78,20 +78,21 @@ public class NoticeController {
 		
 		return mv;
 	}
-	//이전글, 다음글
-	@ResponseBody
-	@PostMapping("noticeIndex")
-	public NoticeVO noticeIndex(NoticeVO noticeVO) throws Exception {
-		noticeVO = noticeService.noticeIndex(noticeVO);
-		
-		System.out.println(noticeVO.getNext());
-		System.out.println(noticeVO.getNextT());
-		System.out.println(noticeVO.getPrev());
-		System.out.println(noticeVO.getPrevT());
-		
-		return noticeVO;
-	}
 	/////////////////////////////////////////////////////////////
+	//글 수정
+	@GetMapping("noticeUpdate")
+	public ModelAndView noticeUpdate(NoticeVO noticeVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		noticeVO = noticeService.noticeSelect(noticeVO);
+		
+		mv.addObject("update", noticeVO);
+		mv.addObject("boardName", "공지사항");
+		mv.setViewName("board/boardUpdate");
+		
+		return mv;
+	}
+	
 	//글 작성 폼
 	@GetMapping("noticeWrite")
 	public String noticeWrite(NoticeVO noticeVO) throws Exception {
@@ -128,12 +129,11 @@ public class NoticeController {
 		noticeVO = noticeService.noticeSelect(noticeVO);
 		//System.out.println(noticeVO.getNoticeFilesVO().get(0).getFnum());
 		
-		System.out.println(noticeVO.getNum());
-		System.out.println(noticeVO.getNext());
-		System.out.println(noticeVO.getNextT());
-		System.out.println(noticeVO.getPrev());
-		System.out.println(noticeVO.getPrevT());
-		
+//		System.out.println(noticeVO.getNum());
+//		System.out.println(noticeVO.getNext());
+//		System.out.println(noticeVO.getNextT());
+//		System.out.println(noticeVO.getPrev());
+//		System.out.println(noticeVO.getPrevT());
 		
 		if(noticeVO != null) {
 			mv.addObject("select", noticeVO);

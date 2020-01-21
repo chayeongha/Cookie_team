@@ -11,9 +11,6 @@ import com.cookie.basic.util.Pager;
 @Repository
 public interface NoticeMapper {
 
-	//이전글, 다음글
-	public NoticeVO noticeIndex(NoticeVO noticeVO) throws Exception;
-	
 	//글 하나 조회
 	public NoticeVO noticeSelect(NoticeVO noticeVO) throws Exception;
 	

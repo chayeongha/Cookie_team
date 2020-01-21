@@ -21,7 +21,7 @@
 		<!-- 서브 타이틀 -->
 	<div class="subTitle_wrap">
 		<div class="subTitle_inner">
-			<h2>${boardName} 글쓰기</h2>
+			<h2>${boardName} 수정</h2>
 		</div>
 	</div>
 	
@@ -29,40 +29,46 @@
      <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
         <div class="form-group">
          <label for="title" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">제목</label>
-         <form:input path="title" placeholder="Enter Title" class="form-control" id="title" />
+         <form:input path="title" value="${update.title}" placeholder="Enter Title" class="form-control" id="title" />
          <form:errors path="title" cssStyle="color:red;" />
        </div>
        
        <div class="form-group">
          <label for="writer" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">작성자</label>
-         <form:input path="writer" class="form-control" id="writer" value=""/>
+         <form:input path="writer" value="${update.writer}" class="form-control" id="writer"/>
        </div>
        
        <div class="form-group">
          <label for="contents"></label>
-         <form:textarea path="contents" class="form-control" id="contents" placeholder="Enter Cotents" />
+         <textarea path="contents" class="form-control" id="contents" placeholder="Enter Cotents">${update.contents}</textarea>
          <form:errors path="contents" />
        </div>
        
        <button class="btngo">등록</button>
+       
        <input type="button" id="btn_add" class="btn_add" value="Add File">
-       <div id="files">
-          <div class="form-group tt">
-            <label for="file"></label>
-            <br>
-            <div class="col-sm-11">
-               <input type="file" class="form-control" id="file" name="files">
-            </div>
-            <div class="col-sm-1">
-               <input type="button" class="del" value="X">
-            </div>
-          </div>
-       </div>
-       
-       
-       
-        
-       <input type="button" class="btn btn-primary" id="write" value="Submit">
+
+		<div>
+			<ul>
+				<c:forEach items="${update.noticeFilesVO}" var="file" varStatus="i">
+					<li><a href="./fileDown?fnum=${file.fnum}">${file.oname}</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+		
+		<div id="files">
+			<div class="form-group tt">
+				<label for="file"></label> <br>
+				<div class="col-sm-11">
+					<input type="file" class="form-control" id="file" name="files">
+				</div>
+				<div class="col-sm-1">
+					<input type="button" class="del" value="X">
+				</div>
+			</div>
+		</div>
+
+		<input type="button" class="btn btn-primary" id="write" value="Submit">
      </form:form>
      
      <a href="./noticeList" class="btn btn-warning">목록</a>
@@ -73,7 +79,7 @@
    $('#files').empty(); //remove vs empty ; 나 포함 전체 지우기 vs 자식만 지우기
    var check = 0;
    var index = 0; //index 번호
-   
+
    $('#files').on("click", ".del", function() {
       //event.preventDefault();
       //alert("del");
@@ -152,8 +158,6 @@
 				}
 			});
 </script>
-   <!-- <script type="text/javascript" src="../js/summernote.js"></script> -->
-   <!-- <script type="text/javascript" src="../js/fileCount.js"></script> -->
 	<c:import url="../layout/footer.jsp" />
 </div>
 </body>

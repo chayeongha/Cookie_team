@@ -44,11 +44,6 @@ public class NoticeService {
 		return noticeFilesMapper.noticeFileSelect(noticeFilesVO);
 	}
 	
-	//이전글, 다음글
-	public NoticeVO noticeIndex(NoticeVO noticeVO) throws Exception {
-		return noticeMapper.noticeIndex(noticeVO);
-	}
-	
 	//글 작성 + 파일 추가
 	@Transactional
 	public int noticeWrite(NoticeVO noticeVO, MultipartFile[] files) throws Exception {

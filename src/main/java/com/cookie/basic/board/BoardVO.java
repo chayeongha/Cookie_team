@@ -1,10 +1,7 @@
 package com.cookie.basic.board;
 
-
 import java.sql.Date;
 
-import javax.persistence.Id;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
@@ -30,13 +27,9 @@ public class BoardVO {
 	private String contents;
 	private Date regDate;
 	
-	@Transient
 	private int prev;
-	@Transient
 	private String prevT;
-	@Transient
 	private int next;
-	@Transient
 	private String nextT;
 	
 }
