@@ -40,10 +40,26 @@ public class StoreService {
 		return result;
 	}
 
-	public int storeUpdate(StoreVO storeVO) throws Exception {
-		return storeMapper.storeUpdate(storeVO);
+	public int storeUpdate(StoreVO storeVO, MultipartFile files) throws Exception {
+		File file = filePathGenerator.getUseClassPathResource("upload");
+		String fileName=fileSaver.save(file, files);	
+		System.out.println(fileName);
+		int result = storeMapper.storeUpdate(storeVO);
+		System.out.println(storeVO.getsNum());
+		StoreFilesVO storeFilesVO = new StoreFilesVO();
+		storeFilesVO.setsNum(storeVO.getsNum());
+		storeFilesVO.setfNum(storeVO.getStoreFilesVO().getfNum());
+		storeFilesVO.setfName(fileName);
+		storeFilesVO.setoName(files.getOriginalFilename());
+		
+		result = storeFilesMapper.storeFilesUpdate(storeFilesVO);
+		
+		return result;
+		
+		
+		
 	}
-
+	
 	public List<StoreVO> searchInfo(StoreVO storeVO) throws Exception {
 		return storeMapper.searchInfo(storeVO);
 	}

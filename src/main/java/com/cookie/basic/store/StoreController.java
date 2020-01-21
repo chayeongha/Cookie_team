@@ -158,12 +158,12 @@ public class StoreController {
 
 	// 점주 정보 업데이트
 	@PostMapping("storeUpdate")
-	public ModelAndView storeUpdate(StoreVO storeVO, HttpSession session) throws Exception {
+	public ModelAndView storeUpdate(StoreVO storeVO, HttpSession session, MultipartFile files) throws Exception {
 
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		session.setAttribute("member", memberVO);
 		ModelAndView mv = new ModelAndView();
-		int result = storeService.storeUpdate(storeVO);
+		int result = storeService.storeUpdate(storeVO,files);
 
 		String msg = "업데이트 실패";
 		String path = "../";
