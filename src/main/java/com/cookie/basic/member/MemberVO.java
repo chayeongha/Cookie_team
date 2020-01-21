@@ -20,7 +20,7 @@ public class MemberVO {
 	@NotEmpty
 	@Size(min = 4, max = 12)
 	private String pw;
-	@Transient
+
 	private String pw2;
 	
 	private String name;

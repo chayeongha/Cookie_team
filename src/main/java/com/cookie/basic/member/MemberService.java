@@ -157,14 +157,20 @@ public class MemberService {
 		
 	}
 	
-	//회원탈퇴
+	//마이페이지에서 회원 탈퇴 
 	public int memberDelete(MemberVO memberVO)throws Exception{
 		
 		return memberMapper.memberDelete(memberVO);
 	}
 	
-	//회원리스트
-	public List<MemberVO> memberList(Pager pager)throws Exception{
+	//관리자가 개인회원탈퇴
+	public int pmemberDelete(MemberVO memberVO)throws Exception{
+		
+		return memberMapper.pmemberDelete(memberVO);
+	}
+	
+	//개인회원리스트
+	public List<MemberVO>pmemberList(Pager pager)throws Exception{
 		
 		pager.makeRow();
 		pager.makePage(memberMapper.listCount(pager));

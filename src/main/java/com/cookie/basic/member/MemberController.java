@@ -227,7 +227,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//회원 탈퇴
+	//마이페이지에서 회원이 탈퇴하는것. 
 	@GetMapping("memberDelete")
 	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session)throws Exception {
 		
@@ -247,18 +247,65 @@ public class MemberController {
 		return mv;
 		}
 	
-		//회원 리스트
-		@GetMapping("memberList")
+	//관리자가 개인회원탈퇴시키는것.
+	@PostMapping("pmemberDelete")
+	public ModelAndView pmemberDelete(MemberVO memberVO, String [] num)throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		int check=0;
+		
+		int result=0;
+		
+		for (String string : num) {
+			memberVO.setMemNum(Integer.parseInt(string));
+			check= memberService.pmemberDelete(memberVO);
+			Thread.sleep(200);
+			if(check ==1) {
+					result++;
+			}
+		}
+		
+		if(result == num.length) {
+			
+			 result =1;
+		}
+		
+		mv.addObject("msg", result);
+		
+		mv.setViewName("common/ajax_result");
+		
+		return mv;
+		}
+	
+		//개인회원 리스트
+		@GetMapping("pmemberList")
 		public ModelAndView pmemberList(Pager pager)throws Exception{
 			
 			ModelAndView mv = new ModelAndView();
 			
-			List<MemberVO> ar = memberService.memberList(pager);
+			List<MemberVO> ar = memberService.pmemberList(pager);
 			
 			mv.addObject("pager", pager);
-			mv.addObject("list", ar);
+			mv.addObject("pmemberList", ar);
 			
-			mv.setViewName("member/memberList");
+			mv.setViewName("member/pmemberList");
+			
+			return mv;
+		}
+		
+		//사업자회원리스트
+		@GetMapping("bmemberList")
+		public ModelAndView bmemberList(Pager pager)throws Exception{
+			
+			ModelAndView mv = new ModelAndView();
+			
+			List<MemberVO> ar = memberService.bmemberList(pager);
+			
+			mv.addObject("pager", pager);
+			mv.addObject("bmemberList", ar);
+			
+			mv.setViewName("member/bmemberList");
 			
 			return mv;
 		}
