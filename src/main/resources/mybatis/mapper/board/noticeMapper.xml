@@ -39,6 +39,11 @@
   		</collection>
   	</resultMap>
   	
+  	<update id="noticeUpdate" parameterType="NoticeVO">
+  		update notice set title = #{title}, writer = #{writer}, contents = #{contents}
+  		where num = #{num}
+  	</update>
+  	
   	<select id="noticeSelect" parameterType="NoticeVO" resultMap="Select">
   		select N.*, F.fnum, F.fname, F.oname
   		from (select *, lag(num,1) over(order by num) prev,

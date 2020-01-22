@@ -97,8 +97,12 @@ table.notice_tb td.select_1 {
 	text-align: left;
     padding-left: 20px;
 }
-
-
+table.notice_tb td a {
+	color: #666666;
+}
+table.notice_tb td a:hover {
+	text-decoration: none;
+}
 
 /****************************/
 
@@ -118,20 +122,21 @@ table.notice_tb td.select_1 {
 	margin-top:40px;
 	text-align: center;
 	margin-left:300px;
-	
 }
 
 .pagination>li>a, .pagination>li>span{
 	font-family: CookieRun-Black;
 	border:none;
 	font-size: 25px;
-	color:#f23600;
+	color:#ff712d;
 	margin-left: 30px;
 }
 
 .pagination>li>a:hover, .pagination>li>span:hover{
 	color: #f23600;
+	cursor: pointer;
 }
+
 .btn{
 	float: right;
 	margin-top: 50px;
@@ -149,6 +154,5 @@ table.notice_tb td.select_1 {
 	font-weight: 300;
 }
 .notice_tb > thead >tr{
-	background: #ffd6bf;
-	border:none;
+	border-bottom: 2px solid #f23600;
 }

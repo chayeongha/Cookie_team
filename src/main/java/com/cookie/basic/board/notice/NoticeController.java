@@ -79,7 +79,7 @@ public class NoticeController {
 		return mv;
 	}
 	/////////////////////////////////////////////////////////////
-	//글 수정
+	//글 수정 폼
 	@GetMapping("noticeUpdate")
 	public ModelAndView noticeUpdate(NoticeVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -89,6 +89,20 @@ public class NoticeController {
 		mv.addObject("update", noticeVO);
 		mv.addObject("boardName", "공지사항");
 		mv.setViewName("board/boardUpdate");
+		
+		return mv;
+	}
+	
+	//글 수정
+	@PostMapping("noticeUpdate")
+	public ModelAndView noticeUpdate(@Valid NoticeVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		if(bindingResult.hasErrors()) {
+			mv.setViewName("board/boardSelect?num="+noticeVO.getNum());
+		}else {
+			//int result = noticeService
+		}
 		
 		return mv;
 	}

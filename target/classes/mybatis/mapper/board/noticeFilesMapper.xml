@@ -14,5 +14,12 @@
 			(0, #{item.num}, #{item.fname}, #{item.oname})
 		</foreach>
 	</insert>
-  	
+	
+	<delete id="noticeFileDelete" parameterType="NoticeFilesVO">
+		delete noticeFiles where fnum=#{fnum}
+	</delete> 
+	
+	<select id="noticeFileList" parameterType="Integer" resultType="NoticeFilesVO">
+		select * from noticeFiles where num=#{num}
+	</select>
 </mapper>

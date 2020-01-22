@@ -40,21 +40,29 @@
        
        <div class="form-group">
          <label for="contents"></label>
-         <textarea path="contents" class="form-control" id="contents" placeholder="Enter Cotents">${update.contents}</textarea>
-         <form:errors path="contents" />
+         <textarea class="form-control" id="contents" placeholder="Enter Cotents">${update.contents}</textarea>
+         <%-- <form:errors path="contents" /> --%>
        </div>
        
        <button class="btngo">등록</button>
        
-       <input type="button" id="btn_add" class="btn_add" value="Add File">
+       <input type="button" id="btn_add" class="btn_add" value="첨부파일">
 
 		<div>
 			<ul>
 				<c:forEach items="${update.noticeFilesVO}" var="file" varStatus="i">
-					<li><a href="./fileDown?fnum=${file.fnum}">${file.oname}</a></li>
+					<li class="oname">${file.oname}<input type="button" class="del" id="del_${i}" value="X"></li>
 				</c:forEach>
 			</ul>
 		</div>
+		
+		<script type="text/javascript">
+			$('.del').click(function(){
+				$(this).parent().remove();
+			    check--;
+			    //alert(check);
+			});
+		</script>
 		
 		<div id="files">
 			<div class="form-group tt">
@@ -77,9 +85,9 @@
 <script type="text/javascript">
    var files = $('#files').html();
    $('#files').empty(); //remove vs empty ; 나 포함 전체 지우기 vs 자식만 지우기
-   var check = 0;
+   var check = $('.oname').length;
    var index = 0; //index 번호
-
+	//alert(check);
    $('#files').on("click", ".del", function() {
       //event.preventDefault();
       //alert("del");
