@@ -7,7 +7,7 @@
 		insert into menuFiles values (null, #{mfName}, #{moName}, #{mmNum})
 	</insert>
 	
-	<update id="menuFilesUpdate" parameterType="menuFilesVO">
+	<update id="menuFilesUpdate" parameterType="menuFilesVO" useGeneratedKeys="true" keyProperty="mfNum">
 		update menuFiles set mfNum=#{mfNum} ,mfName = #{mfName}, moName=#{moName} where mmNum=#{mmNum}
 	</update>
 	

@@ -52,6 +52,7 @@ public class MenuService {
 		File file = filePathGenerator.getUseClassPathResource("menu");
 		String fileName=fileSaver.save(file, files);
 		int result = menuMapper.menuUpdate(menuVO);
+		menuVO = menuMapper.menuSelect(menuVO);
 		boolean check=false;
 		boolean check2=false;
 		boolean check3=false;
@@ -62,13 +63,26 @@ public class MenuService {
 			
 			if(check) {
 				
-			MenuFilesVO menuFilesVO = new MenuFilesVO();
-			menuFilesVO.setMmNum(menuVO.getMmNum());
-			menuFilesVO.setMfName(fileName);
-			menuFilesVO.setMoName(files.getOriginalFilename());
-			
+			if(menuVO.getMenuFiles() == null){
+				
+				MenuFilesVO menuFilesVO = new MenuFilesVO();
+				menuFilesVO.setMmNum(menuVO.getMmNum());
+				menuFilesVO.setMfName(fileName);
+				menuFilesVO.setMoName(files.getOriginalFilename());
+				
+				result = menuFilesMapper.menuFilesInsert(menuFilesVO);
+			}else {
+				
+				MenuFilesVO menuFilesVO = new MenuFilesVO();
+				menuFilesVO.setMfNum(menuVO.getMenuFiles().getMfNum());
+				menuFilesVO.setMmNum(menuVO.getMmNum());
+				menuFilesVO.setMfName(fileName);
+				menuFilesVO.setMoName(files.getOriginalFilename());
 			result = menuFilesMapper.menuFilesUpdate(menuFilesVO);
 			}
+			}
+			
+			
 			
 			if(optName2 != null) {
 				check3 = true;
@@ -192,6 +206,11 @@ public class MenuService {
 	//delete Option
 	public int moptDelete(MoptVO moptVO)throws Exception{
 		return moptMapper.moptDelete(moptVO);
+	}
+	
+	//menuDelete
+	public int menuDelete(MenuVO menuVO)throws Exception{
+		return menuMapper.menuDelete(menuVO);
 	}
 	
 

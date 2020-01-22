@@ -51,5 +51,9 @@
 	<update id="menuUpdate" parameterType="MenuVO">
 		update menu set mmName=#{mmName}, mmPrice=#{mmPrice}, mmCount=#{mmCount}, cmNum=#{cmNum}, mmTemp=#{mmTemp} where mmNum=#{mmNum}
 	</update>
+	
+	<delete id="menuDelete" parameterType="MenuVO">
+		delete from menu where mmNum=#{mmNum}
+	</delete>
 
 </mapper>

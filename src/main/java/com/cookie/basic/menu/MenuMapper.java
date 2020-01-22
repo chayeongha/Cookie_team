@@ -15,4 +15,6 @@ public interface MenuMapper {
 	public List<MenuVO> menuList(MenuVO menuVO)throws Exception;
 	
 	public int menuUpdate(MenuVO menuVO)throws Exception;
+	
+	public int menuDelete(MenuVO menuVO)throws Exception;
 }
