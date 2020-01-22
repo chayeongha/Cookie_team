@@ -3,7 +3,7 @@ package com.cookie.basic.store;
 public class StoreVO {
 	
 	
-	private int sNum; 
+	private int ssNum; 
 	private String sName; 
 	private String sTel; 
 	private String roadFullAddr; 
@@ -40,11 +40,12 @@ public class StoreVO {
 		this.storeFilesVO = storeFilesVO;
 	}
 	
-	public int getsNum() {
-		return sNum;
+	
+	public int getSsNum() {
+		return ssNum;
 	}
-	public void setsNum(int sNum) {
-		this.sNum = sNum;
+	public void setSsNum(int ssNum) {
+		this.ssNum = ssNum;
 	}
 	public String getsName() {
 		return sName;

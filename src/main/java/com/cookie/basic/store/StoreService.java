@@ -36,7 +36,7 @@ public class StoreService {
 			if (files.getOriginalFilename() != null && !files.getOriginalFilename().equals("")) {
 				StoreFilesVO storeFilesVO = new StoreFilesVO();
 				storeFilesVO.setfName(fileName);
-				storeFilesVO.setsNum(storeVO.getsNum());
+				storeFilesVO.setSsNum(storeVO.getSsNum());
 				storeFilesVO.setoName(originalName);
 				result = storeFilesMapper.storeFilesInsert(storeFilesVO);
 			}
@@ -54,13 +54,13 @@ public class StoreService {
 		StoreFilesVO storeFilesVO = new StoreFilesVO();
 		if (files.getOriginalFilename() != null && !files.getOriginalFilename().equals("")) {
 
-			storeFilesVO.setsNum(storeVO.getsNum());
+			storeFilesVO.setSsNum(storeVO.getSsNum());
 			storeFilesVO.setfName(fileName);
 			storeFilesVO.setoName(files.getOriginalFilename());
 			result = storeFilesMapper.storeFilesInsert(storeFilesVO);
 		} else {
 
-			storeFilesVO.setsNum(storeVO.getsNum());
+			storeFilesVO.setSsNum(storeVO.getSsNum());
 			storeFilesVO.setfNum(Integer.parseInt(request.getParameter("fNum")));
 			storeFilesVO.setfName(request.getParameter("fName"));
 			storeFilesVO.setoName(request.getParameter("oName"));

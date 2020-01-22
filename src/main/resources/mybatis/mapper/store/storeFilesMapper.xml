@@ -5,15 +5,15 @@
   
  <mapper namespace="com.cookie.basic.store.StoreFilesMapper">
   	<insert id="storeFilesInsert" parameterType = "StoreFilesVO">
-			insert into storeFiles values (null,#{fName},#{oName},#{sNum});
+			insert into storeFiles values (null,#{fName},#{oName},#{ssNum});
 	</insert>
 	
 	<select id="storeFilesSelect" parameterType="StoreFilesVO" resultType="StoreFilesVO">
-			select * from storeFiles where sNum=#{sNum}
+			select * from storeFiles where ssNum=#{ssNum}
 	</select>
 	
 	<update id="storeFilesUpdate" parameterType="StoreFilesVO">
-			update storeFiles set fNum=#{fNum}, fName=#{fName}, oName=#{oName} where sNum=#{sNum}
+			update storeFiles set fNum=#{fNum}, fName=#{fName}, oName=#{oName} where ssNum=#{ssNum}
 	</update>
 	
 	

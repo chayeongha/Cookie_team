@@ -96,15 +96,15 @@ public class StoreController {
 	@PostMapping("myinfoS")
 	public ModelAndView myInfoS(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		storeVO.getsNum();
+		storeVO.getSsNum();
 		int result = storeService.onUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		System.out.println(storeVO.getSsNum());
 
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
 			msg = "영업시작";
-			path = "./storeMyPage?sNum=" + storeVO.getsNum();
+			path = "./storeMyPage?ssNum=" + storeVO.getSsNum();
 		}
 		mv.addObject("store", storeVO);
 		mv.addObject("msg", msg);
@@ -123,9 +123,9 @@ public class StoreController {
 	@PostMapping("storeMyPage")
 	public ModelAndView storeMyPage(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		storeVO.getsNum();
+		storeVO.getSsNum();
 		int result = storeService.offUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		System.out.println(storeVO.getSsNum());
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {

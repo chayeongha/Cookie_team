@@ -4,7 +4,7 @@ public class StoreFilesVO {
 	private int fNum;
 	private String fName;
 	private String oName;
-	private int sNum;
+	private int ssNum;
 
 	public int getfNum() {
 		return fNum;
@@ -30,12 +30,14 @@ public class StoreFilesVO {
 		this.oName = oName;
 	}
 
-	public int getsNum() {
-		return sNum;
+	public int getSsNum() {
+		return ssNum;
 	}
 
-	public void setsNum(int sNum) {
-		this.sNum = sNum;
+	public void setSsNum(int ssNum) {
+		this.ssNum = ssNum;
 	}
+
+
 
 }

@@ -34,7 +34,7 @@
 							width="300px" height="300px" class="photo_store">
 					</div>
 					<div class="store_list_text">
-						<a href="./myinfoS?sNum=${ls.sNum}" class="store_name">지점명 :
+						<a href="./myinfoS?ssNum=${ls.ssNum}" class="store_name">지점명 :
 							${ls.sName}</a>
 					</div>
 				</div>
