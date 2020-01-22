@@ -42,12 +42,4 @@ public interface MemberMapper {
 	//마이페이지에서 회원 탈퇴 
 	public int memberDelete(MemberVO memberVO)throws Exception;
 	
-	//관리자가 개인회원탈퇴
-	public int pmemberDelete(MemberVO memberVO)throws Exception;
-	
-	//개인회원 리스트
-	public List<MemberVO>pmemberList(Pager pager)throws Exception;
-	
-	//회원리스트 카운트
-	public int listCount(Pager pager)throws Exception;
 }

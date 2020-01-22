@@ -9,9 +9,7 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-
-
-		
+	
 	private Integer memNum;
 	
 	@NotEmpty(message = "비우지마시오!!")

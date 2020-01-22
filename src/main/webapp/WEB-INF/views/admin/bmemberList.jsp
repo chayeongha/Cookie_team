@@ -13,9 +13,7 @@
 <body>
 			
 		<div class="container">
-		
-			<h1>사업자회원 리스트</h1>	
-		
+	
 				<table class="table table-hover">
 				
 					<thead>
@@ -81,7 +79,6 @@
 		</form>
 		
 		</div>
-		
 		
 <script type="text/javascript">
 		
@@ -171,8 +168,6 @@
 			});
 		}
 	});
-
-		
 
 </script>
 	

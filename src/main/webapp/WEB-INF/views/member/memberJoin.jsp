@@ -15,9 +15,11 @@
 <link href="/css/member/memberJoin.css" rel="stylesheet"/>
 </head>
 <body>
+
 <!-- <script type="text/javascript">
 	history.replaceState({}, null, location.pathname);
 </script> -->
+
 <div class="body_main">
 	<div class="b"></div>
 
@@ -78,25 +80,43 @@
 		     	</div>
 		 	</div>
 		   
-		   		
-		    
 		    <div class="form-group">
-				<label for="files">프로필 사진</label> 
-					<input type="file"class="form-control" id="files" name="files">
+				<label for="files">Profile:</label> 
+					<input type="file" class="form-control" id="files" name="files">
+					<img id="blah" alt="your image" src="#" style="width: 300px; height: 300px;"/>	
 			</div>
 			
-		
-		    
 		    <div class="form-group">        
 		      <div class="col-sm-offset-2 col-sm-10">
 		        <button type="submit" class="btn_join">JOIN</button>
 		      </div>
 		    </div>
 		  
-		  
 		  </form:form>
 		</div>
+   	
    	<c:import url="../layout/footer.jsp" />
+
+	<script type="text/javascript">
+		//이미지를넣었을 때 미리보여지는것.
+		$(function(){
+			$("#files").on('change',function(){
+				 readURL(this);
+			});
+		});
+		function readURL(input) {
+			if(input.files && input.files[0]){
+				var reader = new FileReader();
+
+				reader.onload = function(e){
+					$('#blah').attr('src' , e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+	</script>
+
 
 </div>
 </body>

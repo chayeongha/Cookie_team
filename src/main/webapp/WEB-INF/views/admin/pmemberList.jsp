@@ -13,14 +13,12 @@
 <body>
 			
 		<div class="container">
-		
-			<h1>사업자회원 리스트</h1>	
-		
+	
 				<table class="table table-hover">
 				
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="checkAll"></th>
+							<th><input type="checkbox" id="checkAll"></th>	
 							<th>Id</th>
 							<th>Name</th>
 							<th>Nickname</th>
@@ -30,14 +28,14 @@
 					</thead>	
 						
 					<tbody>
-						<c:forEach items="${bmemberList}" var="bmember" varStatus="b">
+						<c:forEach items="${pmemberList}" var="pmember" varStatus="m">
 						<tr>
-							<td><input type="checkbox" class="bmemberCheck bmember${b.index }" value="${bmember.memNum}"></td>
-							<td>${bmember.memId}</td>
-							<td>${bmember.name}</td>
-							<td>${bmember.nickname}</td>
-							<td>${bmember.phone}</td>
-							<td>${bmember.grade}</td>
+							<td><input type="checkbox" class="pmemberCheck pmember${m.index }" value="${pmember.memNum}"></td>
+							<td>${pmember.memId}</td>
+							<td>${pmember.name}</td>
+							<td>${pmember.nickname}</td>
+							<td>${pmember.phone}</td>
+							<td>${pmember.grade}</td>
 						</tr>		
 						</c:forEach>				
 					</tbody>	
@@ -67,7 +65,7 @@
 		<div class="container">
 		
 		<!--검색창  -->
-		<form action="bmemberList" id="frm">
+		<form action="pmemberList" id="frm">
 			<input type="hidden" id="curPage" value="1" name="curPage" >
 			
 			<select name="kind">		
@@ -81,7 +79,6 @@
 		</form>
 		
 		</div>
-		
 		
 <script type="text/javascript">
 		
@@ -102,29 +99,27 @@
 
 	});	
 
-	
 	//체크했을때 모든것이 체크
 	var check= false;
 	$('#checkAll').click(function(){
 		if(check==false){
-			$('.bmemberCheck').prop("checked" ,"ture");
+			$('.pmemberCheck').prop("checked" ,"ture");
 			check=true;		
 		}else{
-			$('.bmemberCheck').prop("checked" ,"");
+			$('.pmemberCheck').prop("checked" ,"");
 			check=false;
 		}
 	});
 
-
 	//하나라도 체크안되면 all체크에서 체크가해제됨.
- 	$('.bmemberCheck').click(function() {
+ 	$('.pmemberCheck').click(function() {
 		var all=0;
-		for(var m=0; m<${bmemberList.size()}; m++){
-			if($('.bmember'+m).prop("checked")==true){
+		for(var m=0; m<${pmemberList.size()}; m++){
+			if($('.pmember'+m).prop("checked")==true){
 				all++;
 			}
 		}
-		if(all==${bmemberList.size()}){
+		if(all==${pmemberList.size()}){
 			$('#checkAll').prop("checked","true");
 			check= true;
 			
@@ -140,15 +135,15 @@
 		//ajax처리시 데이터를 배열로 넘겨줄때 설정하는것.
 		jQuery.ajaxSettings.traditional = true;
 		
-		for(var m=0; m<${bmemberList.size()}; m++){
+		for(var m=0; m<${pmemberList.size()}; m++){
 
 			 var num = new Array();
 			 var index= 0;
 
-			 for(var m=0; m<${bmemberList.size()}; m++){
+			 for(var m=0; m<${pmemberList.size()}; m++){
 
-					if($('.bmember'+m).prop("checked")==true){
-						num[index] = $('.bmember'+m).val();
+					if($('.pmember'+m).prop("checked")==true){
+						num[index] = $('.pmember'+m).val();
 						index++;
 					}
 			 }
@@ -172,10 +167,7 @@
 		}
 	});
 
-		
-
 </script>
-	
 	
 </body>
 </html>

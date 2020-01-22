@@ -15,7 +15,7 @@
 		<h1><b style="color: blue;">${member.memId }</b>님 환영합니다</h1>
 			
 			<div class="form-group">
-				<img alt="이미지를 넣어주세요!" src="../upload/${member.memberFilesVO.fname}" width="50%" height="30%">
+				<img alt="이미지를 넣어주세요!" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;">
 			</div> 
 			
 			<input type="hidden" class="form-control" id="memNum" value="${member.memNum}" readonly="readonly">

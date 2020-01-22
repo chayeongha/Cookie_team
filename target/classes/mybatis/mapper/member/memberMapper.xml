@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.cookie.basic.member.MemberMapper">
+<mapper namespace="com.cookie.basic.member.MemberMapper">
   
   	<!--회원가입  -->
   	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
@@ -49,46 +49,10 @@
    			where memNum=#{memNum}
    	</update>
    	
-   	<!--마이페이지에서 회원 탈퇴  -->
+   	<!--마이페이지에서 회원 스스로 탈퇴  -->
    	<delete id="memberDelete" parameterType="MemberVO">
    			delete from members where nickname=#{nickname}
    	</delete>
-	
-	<!--관리자가 개인회원탈퇴  -->
-	<delete id="pmemberDelete" parameterType="MemberVO">
-			delete from members where memNum=#{memNum}
-	</delete>
-
-   	<!--회원 검색 -->
-   	<sql id="search">
-  			<choose>
-  				<when test="kind =='ki'">
-  						where memId like CONCAT('%',#{search},'%') 
-  				</when>
-  				<otherwise>
-  						where nickname like CONCAT('%',#{search},'%')
-  				</otherwise>
-  			</choose>
-  	</sql>
-   	
-   	<!--개인회원 리스트  -->
-   	<select id ="pmemberList" parameterType="Pager" resultMap="MemberLogin">
-   			select M.*,F.* from members M left join memberFiles F 
-   			on M.memNum=F.memNum
-   			<include refid="search"></include> and grade =1 
-   			order by M.memNum desc
-			 limit #{startRow},#{perPage} 	
-   	</select>
-
-	<!--개인회원리스트 카운트 -->
-   	<select id="listCount"  resultType="Integer">
-   			select count(memNum) from members 
-   			<include refid="search"></include> and grade =1
-   	</select>
-
-	<!--사업자회원 리스트  -->
-	
-	
 	
 	<!-- 카카오 회원가입-->
   	<insert id="kakaoJoin" parameterType="memberVO">
@@ -109,9 +73,5 @@
   	<select id="memberNaver" parameterType="memberVO" resultType="memberVO">
   		select * from members where memId=#{memId} and kind=1
   	</select>
-  
-    
-   	
- 
-  
-  </mapper>
+	
+</mapper>

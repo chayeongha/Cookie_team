@@ -75,9 +75,8 @@
     <div class="form-group">
 		<label for="files">Profile:</label> 
 		<div class="form-group">
-			<img alt="이미지없다잉" src="../upload/${member.memberFilesVO.fname}">
+			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;"/>	
 		</div> 
-		<label for="files">프로필이미지 변경:</label> 
 			<input type="file"class="form-control" id="files" name="files">
 	</div>
 	
@@ -91,9 +90,6 @@
       </div>
     </div>
   	
-  		
-  		
-
   </form:form>
 </div>
    
@@ -106,13 +102,25 @@
 		}
 		
 		});
-		
 
+	//이미지를넣었을 때 미리보여지는것.
+	$(function(){
+		$("#files").on('change',function(){
+			 readURL(this);
+		});
+	});
+	function readURL(input) {
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
 
-
+			reader.onload = function(e){
+				$('#blah').attr('src' , e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
    </script>
    
-   
-
 </body>
 </html>

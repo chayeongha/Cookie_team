@@ -24,8 +24,6 @@ import com.cookie.basic.util.Pager;
 
 import net.bytebuddy.asm.Advice.Return;
 
-
-
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
@@ -40,14 +38,13 @@ public class MemberController {
 	
 	//가입 선택 
 	@GetMapping("selectJoin")
-	public void selectJoin(MemberVO memberVO)throws Exception{
-			
+	public void selectJoin(MemberVO memberVO)throws Exception{	
+		
 	}
 	
 	//getMemberVO
 	@ModelAttribute
 	public MemberVO getMemberVO()throws Exception{
-	
 		return new MemberVO();	
 	}
 
@@ -61,8 +58,6 @@ public class MemberController {
 		mv.addObject("kind", kind);
 		mv.setViewName("member/memberJoin");
 		return mv;
-		
-		
 	}
 	
 	@PostMapping("memberJoin")							
@@ -71,7 +66,6 @@ public class MemberController {
 		ModelAndView mv= new ModelAndView();
 		
 		if(memberService.memberJoinValidate(memberVO, bindingResult)) {
-			
 			mv.setViewName("member/memberJoin");
 		}else {
 			
@@ -80,28 +74,21 @@ public class MemberController {
 			int result= memberService.memberJoin(memberVO, files);
 			
 			if(result >0) {
-				
-				msg="회원가입 성공";
+			msg="회원가입 성공";
 			}
 			
-			
 			mv.addObject("path", path);
-			mv.addObject("msg", msg);
-			
-			mv.setViewName("common/result");
-			
+			mv.addObject("msg", msg);	
+			mv.setViewName("common/result");	
 		}
-		
 		return mv;
 	}
-	
 	
 	//로그아웃
 	@GetMapping("memberLogout")
 	public ModelAndView memberLogout(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		session.invalidate();
-		
 		String msg= "로그아웃";
 		String path="./memberIndex";
 		mv.addObject("msg", msg);
@@ -117,7 +104,6 @@ public class MemberController {
 	public void memberLogin()throws Exception {
 		
 	}
-	
 	
 	@PostMapping("memberLogin")
 	public ModelAndView memberLogin(MemberVO memberVO, HttpSession session)throws Exception{
@@ -138,19 +124,40 @@ public class MemberController {
 		mv.setViewName("common/result");
 		
 		return mv;
-		
 	}
-	
+	//네이버회원가입
 	@GetMapping("memberNaver")
 	public String memberNaver(String name) throws Exception{
-
 		return "member/memberNaver";
 	}
 	
+	@PostMapping("memberNaver")
+	public String memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMemId(email);
+		memberVO = memberService.memberNaver(memberVO);
+		
+		if(name==null) {
+			name=nickname;
+		}
+		if(memberVO == null) {
+			MemberVO memberVO2 = new MemberVO();
+			memberVO2.setMemId(email);
+			memberVO2.setName(name);
+			memberVO2.setNickname(nickname);
+			int result= memberService.naverJoin(memberVO2);
+			session.setAttribute("member", memberVO2);
+
+		}else {
+			session.setAttribute("member", memberVO);
+		}
+		return "../";
+	}
+	
+	//카카오회원가입
 	@PostMapping("memberKakao")
 	public String memberKakao(HttpSession session,String nickname,String email) throws Exception{
 		MemberVO memberVO = new MemberVO();
-
 		memberVO.setMemId(email);
 		memberVO = memberService.memberKakao(memberVO);
 		
@@ -167,47 +174,22 @@ public class MemberController {
 		session.setAttribute("member", memberVO);
 		}
 		return "redirect:../";
-		
 	}
 	
-	@PostMapping("memberNaver")
-	public String memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
-		MemberVO memberVO = new MemberVO();
-		memberVO.setMemId(email);
-		memberVO = memberService.memberNaver(memberVO);
-		if(name==null) {
-			name=nickname;
-		}
-
-		if(memberVO == null) {
-			MemberVO memberVO2 = new MemberVO();
-			memberVO2.setMemId(email);
-			memberVO2.setName(name);
-			memberVO2.setNickname(nickname);
-			int result= memberService.naverJoin(memberVO2);
-			session.setAttribute("member", memberVO2);
-
-		}else {
-		session.setAttribute("member", memberVO);
-		}
-		return "../";
-	}
-	
-	//마이페이지
+	//멤버마이페이지
 	@ GetMapping("memberMypage")
 	public void memberMypage() throws Exception{
 		
 	}
 	
-	//수정
+	//멤버업데이트
 	@GetMapping("memberUpdate")
-	public void memberUpdate(HttpSession session)throws Exception{
+	public void memberUpdate(HttpSession session)throws Exception{	
 		
 	}
 	
 	@PostMapping("memberUpdate")
 	public ModelAndView memberUpdate(MemberVO memberVO, MultipartFile files, HttpSession session)throws Exception {
-		
 		ModelAndView mv = new ModelAndView();
 		
 		int result = memberService.memberUpdate(memberVO,files);
@@ -219,18 +201,16 @@ public class MemberController {
 			session.setAttribute("member", memberVO);
 			msg="성공";
 		}
-			mv.addObject("msg", msg);
-			mv.addObject("path","./memberMypage");
-			mv.setViewName("common/result");
-		
-		
+		mv.addObject("msg", msg);
+		mv.addObject("path","./memberMypage");
+		mv.setViewName("common/result");
+			
 		return mv;
 	}
 	
-	//마이페이지에서 회원이 탈퇴하는것. 
+	//마이페이지에서 회원 스스로 탈퇴
 	@GetMapping("memberDelete")
 	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session)throws Exception {
-		
 		ModelAndView mv = new ModelAndView();
 		
 		int result =memberService.memberDelete(memberVO);
@@ -240,81 +220,12 @@ public class MemberController {
 			msg = "1";
 			session.invalidate();
 		}
-
 		mv.addObject("msg", msg);
 		mv.setViewName("common/ajax_result");
 		
 		return mv;
 		}
-	
-	//관리자가 개인회원탈퇴시키는것.
-	@PostMapping("pmemberDelete")
-	public ModelAndView pmemberDelete(MemberVO memberVO, String [] num)throws Exception {
 		
-		ModelAndView mv = new ModelAndView();
-		
-		int check=0;
-		
-		int result=0;
-		
-		for (String string : num) {
-			memberVO.setMemNum(Integer.parseInt(string));
-			check= memberService.pmemberDelete(memberVO);
-			Thread.sleep(200);
-			if(check ==1) {
-					result++;
-			}
-		}
-		
-		if(result == num.length) {
-			
-			 result =1;
-		}
-		
-		mv.addObject("msg", result);
-		
-		mv.setViewName("common/ajax_result");
-		
-		return mv;
-		}
-	
-		//개인회원 리스트
-		@GetMapping("pmemberList")
-		public ModelAndView pmemberList(Pager pager)throws Exception{
-			
-			ModelAndView mv = new ModelAndView();
-			
-			List<MemberVO> ar = memberService.pmemberList(pager);
-			
-			mv.addObject("pager", pager);
-			mv.addObject("pmemberList", ar);
-			
-			mv.setViewName("member/pmemberList");
-			
-			return mv;
-		}
-		
-		//사업자회원리스트
-		@GetMapping("bmemberList")
-		public ModelAndView bmemberList(Pager pager)throws Exception{
-			
-			ModelAndView mv = new ModelAndView();
-			
-			List<MemberVO> ar = memberService.bmemberList(pager);
-			
-			mv.addObject("pager", pager);
-			mv.addObject("bmemberList", ar);
-			
-			mv.setViewName("member/bmemberList");
-			
-			return mv;
-		}
-	
-		
-		
-	
-	
-	
 }
 	
 	

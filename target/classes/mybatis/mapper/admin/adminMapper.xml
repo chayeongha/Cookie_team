@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cookie.basic.admin.AdminMapper">
+
+<!--회원 검색 -->
+  	<sql id="search">
+ 		<choose>
+ 			<when test="kind =='ki'">
+ 				where memId like CONCAT('%',#{search},'%') 
+ 			</when>
+ 			<otherwise>
+ 				where nickname like CONCAT('%',#{search},'%')
+ 			</otherwise>
+ 		</choose>
+ 	</sql>
+ 
+<!--로그인 resultmap  -->
+ 	<resultMap type="MemberVO" id="MemberLogin">
+ 			<id column="memNum" property="memNum"/>
+ 			<result column="memId" property="memId"/>
+ 			<result column="pw" property="pw"/>
+ 			<result column="name" property="name"/>
+ 			<result column="nickname" property="nickname"/>
+ 			<result column="phone" property="phone"/>
+ 			<result column="grade" property="grade"/>
+ 			<result column="kind" property="kind"/>
+ 		<association property="memberFilesVO" javaType="memberFilesVO">
+ 			<id column="fnum" property="fnum"/>
+ 			<result column="fname" property="fname"/>
+ 			<result column="oname" property="oname"/>
+ 		</association>
+ 	</resultMap>
+ 
+<!--개인회원 리스트  -->
+  	<select id ="pmemberList" parameterType="Pager" resultMap="MemberLogin">
+  			select M.*,F.* from members M left join memberFiles F 
+  			on M.memNum=F.memNum
+  			<include refid="search"></include> and grade =1 
+  			order by M.memNum desc
+		 limit #{startRow},#{perPage} 	
+  	</select>
+  	
+<!--개인회원리스트 카운트 -->
+  	<select id="listCount"  resultType="Integer" parameterType="Pager">
+  			select count(memNum) from members 
+  			<include refid="search"></include> and grade =#{grade}
+  	</select>
+
+<!--사업자회원 리스트  -->
+	<select id ="bmemberList" parameterType="Pager" resultMap="MemberLogin">
+   			select M.*,F.* from members M left join memberFiles F 
+   			on M.memNum=F.memNum
+   			<include refid="search"></include> and grade =8888 
+   			order by M.memNum desc
+			 limit #{startRow},#{perPage} 	
+   	</select>
+   	
+<!--    	사업자회원리스트 카운트 -->
+<!--    	<select id="blistCount"  resultType="Integer" parameterType="Pager"> -->
+<!--    			select count(memNum) from members  -->
+<!--    			<include refid="search"></include> and grade =#{grade} -->
+<!--    	</select> -->
+ 
+<!--관리자가 개인회원탈퇴  -->
+	<delete id="pmemberDelete" parameterType="MemberVO">
+			delete from members where memNum=#{memNum}
+	</delete>
+
+</mapper>
