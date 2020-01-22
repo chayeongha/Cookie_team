@@ -12,7 +12,7 @@
 		<result column="mmCount"  property="mmCount"/>
 		<result column="cmNum"  property="cmNum"/>
 		<result column="mmTemp"  property="mmTemp"/>
-		<result column="sNum"  property="sNum"/>
+		<result column="ssNum"  property="ssNum"/>
 		<collection property="menuFiles" javaType="MenuFilesVO" >
 			<id column="mfNum" property="mfNum"/>
 			<result column="mfName" property="mfName"/>
@@ -33,7 +33,7 @@
 
 
 	<insert id="menuInsert" parameterType="MenuVO" useGeneratedKeys="true" keyProperty="mmNum">
-		insert into menu values(null, #{mmName}, #{mmPrice}, #{mmCount}, #{cmNum}, #{mmTemp}, #{sNum})
+		insert into menu values(null, #{mmName}, #{mmPrice}, #{mmCount}, #{cmNum}, #{mmTemp}, #{ssNum})
 	</insert>
 	
 	<select id="menuSelect" resultMap="selectResult" parameterType="MenuVO">
@@ -45,7 +45,7 @@
 	</select>
 	
 	<select id="menuList" parameterType="MenuVO" resultType="MenuVO"> 
-		select * from menu where sNum = #{sNum} order by mmNum desc
+		select * from menu where ssNum = #{ssNum} order by mmNum desc
 	</select>
 	
 	<update id="menuUpdate" parameterType="MenuVO">

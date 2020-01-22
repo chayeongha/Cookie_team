@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<h1>Menu Insert Page</h1>
+<h1>Menu Update Page</h1>
 
 <div class="container">
   <form action="./menuUpdate"  id="frm" method="post" enctype="multipart/form-data">
@@ -52,15 +52,16 @@
       <label for="mopt">옵션 </label>
       <div class="opt_group">
       
-      <c:forEach items="${vo.menuOptions}" var="opt">
-     <div class="form-group">
+      <c:forEach items="${vo.menuOptions}" var="opt" varStatus="p">
+     <div class="form-group" id="optbox${p.index}">
       <label for="mmCounte">옵션 이름</label>
      <input type="text" name="optName2" placeholder="옵션이름" value="${opt.optName}">
-     </div>
-      <div class="form-group">
       <label for="mmCounte">금액</label>
      <input type="text" name="optPrice2" placeholder="금액(원)" value="${opt.optPrice}">
-     <input type="hidden" name="optNum2" id="optNum" value="${opt.optNum}">
+     <input type="hidden" name="optNum2" id="opn${p.index}" value="${opt.optNum}">
+     <input type="hidden" name="mmNum2" id="mn${p.index}" value="${vo.mmNum}">
+     
+     <input type="button" id="optbtn${p.index}" class="optbtn" value="옵션 삭제" style="cursor: pointer;">
      </div>
   
       </c:forEach>
@@ -77,22 +78,14 @@
     
     <div class="form-group">
 		<label for="files">MenuPhoto:</label> 
-		<input type="file"class="form-control" id="files" name="files">
-		<input type="hidden" class="form-control" id="mfNum" name="mfNum" value="${vo.menuFiles.mfNum}">
+		<input type="file"class="form-control" id="files" name="files" value="">
+		<input type="text" class="form-control" id="mfNum" name="mfNum" value="${vo.menuFiles.mfNum}">
 		  <img id="blah" src="../menu/${vo.menuFiles.mfName}" alt="your image" />
 
 	</div>
-	
 
-     
-      
-    
-	
-
-	
-	
-	
-      <button type="submit" class="btn_submit">Submit</button>
+      <button type="submit" id="btn_submit" class="btn_submit">Submit</button>
+      <a href="./menuList?ssNum=${vo.ssNum}"> <input type="button" value="수정 취소" style="cursor: pointer;"></a>
     
 </form> 
 </div>
@@ -125,7 +118,54 @@
 
         /* value로 checked  */
          $(":radio[value=${vo.mmTemp}]").prop("checked", true);
+
+         /* 옵션 삭제*/
+             		
+            for(var p=0; p<${vo.menuOptions.size()};p++){
+                 var btn = document.getElementById('optbtn'+p)
+                 var mmNum = $("#mn"+p).val();
+                 var sbtn = document.getElementById('btn_submit')
+                btn.onclick=function(){
+    				$(this).parent().attr('style', 'display:none');
+    				$(this).parent().addClass('rmopt');
+                     };
+                    
+                 }; 
+
+            
+                 $("btn_submit").onclick=function(){
+               	 jQuery.ajaxSettings.traditional = true;
+                	 for(var st =0; st<${vo.menuOptions.size()}; st++){
+                		 var optnum= new Array();
+        		 			var index=0;
+
+        		 			for( var st=0; st<${vo.menuOptions.size()}; st++){
+        		 				
+        		 				if($('#optbox'+st).hasClass('rmopt')){
+        		 					optnum[index] = $('#opn'+st).val();
+        		 					index++;
+        		 				}
+                    	 
+                	 }
+                	 };
+                	 $.ajax({
+     					type : "POST",
+     					url : "./moptDelete",
+     					data : {
+     				optnum : optnum
+     				},
+     				success : function(data){
+     					
+     				}
+                	 
+     					});
+                      
+                     }; 
+             
+         
+         
     </script>
+
 
 
 </body>

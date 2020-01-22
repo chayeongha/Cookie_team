@@ -19,7 +19,7 @@
 
 	<div class="form-group">
 	<!-- 스토어번호 히든으로 바꿔야함  -->
-      <input type="text" class="form-control" id="sNum" value="${store.sNum}" placeholder="Enter sNum" name="sNum">
+      <input type="hidden" class="form-control" id="ssNum" value="${store.ssNum}" placeholder="Enter ssNum" name="ssNum">
 	</div>
 	
 	<div class="preMain">

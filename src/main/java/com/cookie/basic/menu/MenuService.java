@@ -39,7 +39,7 @@ public class MenuService {
 			menuVO2.setMmCount(Integer.parseInt(spt[2]));
 			menuVO2.setCmNum(Integer.parseInt(spt[3]));
 			menuVO2.setMmTemp(Integer.parseInt(spt[4]));
-			menuVO2.setSNum(menuVO.getSNum());			
+			menuVO2.setSsNum(menuVO.getSsNum());			
 			result= menuMapper.menuInsert(menuVO2);		
 			
 		}
@@ -54,6 +54,7 @@ public class MenuService {
 		int result = menuMapper.menuUpdate(menuVO);
 		boolean check=false;
 		boolean check2=false;
+		boolean check3=false;
 		
 		if(files.getSize()>0) {
 					check=true;
@@ -68,8 +69,12 @@ public class MenuService {
 			
 			result = menuFilesMapper.menuFilesUpdate(menuFilesVO);
 			}
-				
 			
+			if(optName2 != null) {
+				check3 = true;
+			}
+				
+			if(check3) {
 			for(int i = 0; i<optName2.length; i++) { 
 				MoptVO moptVO = new MoptVO(); 
 				moptVO.setOptName(optName2[i]);
@@ -78,14 +83,13 @@ public class MenuService {
 				moptMapper.moptUpdate(moptVO);
 				
 			}
-			if(optName2.length>0) {
-				for(String strings: optName2) {
-					if(strings.length()>0) {
-						check2 = true;
-						break;
-					}
-				}
-		}
+			}
+			
+			
+			if(optName != null) {
+				check2 = true;
+			}
+			
 		if(check2) {
 			 
 		
@@ -111,6 +115,8 @@ public class MenuService {
 		int result = menuMapper.menuInsert(menuVO);
 		String fileName=fileSaver.save(file, files);
 		boolean check=false;
+		boolean check2=false;
+		boolean check3=false;
 		
 		if(files.getSize()>0) {
 					check=true;
@@ -126,10 +132,12 @@ public class MenuService {
 			result = menuFilesMapper.menuFilesInsert(menuFilesVO);
 			}
 			
-		
+			if(opto != null) {
+				check3 = true;
+			}
 			
-			
-		 List<MoptVO>moptVOs = new ArrayList<>(); 
+			if(check3) {
+				List<MoptVO>moptVOs = new ArrayList<>(); 
 		 for(int i = 0; i<opto.length; i++) { 
 			String[] spt = opto[i].split(":");
 			MoptVO moptVO = new MoptVO(); 
@@ -138,18 +146,31 @@ public class MenuService {
 			moptVO.setOptPrice(Integer.parseInt(spt[1]));
 			moptVOs.add(moptVO);
 			
+			
 		}
+		 moptMapper.moptInsert(moptVOs);
+	
+			}
+			
+			
+		 if(optName != null) {
+				check2 = true;
+			}
+		 
+		 if(check2) {
+			 List<MoptVO>moptVO2s = new ArrayList<>(); 
 		 for(int i = 0; i<optName.length; i++) { 
 				MoptVO moptVO = new MoptVO(); 
 				moptVO.setMmNum(menuVO.getMmNum());
 				moptVO.setOptName(optName[i]);
 				moptVO.setOptPrice(Integer.parseInt(optPrice[i]));
-				moptVOs.add(moptVO);
+				moptVO2s.add(moptVO);
 				
 			}
-		 
+		 moptMapper.moptInsert(moptVO2s);
+		 }
+		
 		  
-		  moptMapper.moptInsert(moptVOs);
 		 
 	
 		  return result;
@@ -168,6 +189,10 @@ public class MenuService {
 		return menuMapper.menuList(menuVO);
 	}
 	
+	//delete Option
+	public int moptDelete(MoptVO moptVO)throws Exception{
+		return moptMapper.moptDelete(moptVO);
+	}
 	
 
 }

@@ -21,6 +21,10 @@
 	<h3>${opt.optPrice}</h3>
 	</c:forEach>
 
+
+ <a href="./menuList?ssNum=${vo.ssNum}"> <input type="button" value="리스트로" style="cursor: pointer;"></a>
+  <a href="./menuUpdate?mmNum=${vo.mmNum}"> <input type="button" value="메뉴 수정" style="cursor: pointer;"></a>
+     <a href="./menuDelete?mmNum=${vo.mmNum}"> <input type="button" value="메뉴 삭제" style="cursor: pointer;"></a>
 </div>
 
 </body>
