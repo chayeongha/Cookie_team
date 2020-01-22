@@ -42,7 +42,7 @@ class MemberTest {
 //		assertEquals(1, result);
 //		
 //	}//성공
-
+	
 
 
 }

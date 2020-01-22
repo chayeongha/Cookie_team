@@ -3,8 +3,10 @@ package com.cookie.basic.member;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.aspectj.weaver.Member;
 import org.springframework.stereotype.Repository;
 
+import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.Pager;
 
 
@@ -47,4 +49,5 @@ public interface MemberMapper {
 	
 	//회원리스트 카운트
 	public int listCount(Pager pager)throws Exception;
+	
 }

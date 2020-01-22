@@ -87,7 +87,7 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 
 		storeVO = storeService.info(storeVO);
-
+		session.setAttribute("store", storeVO);
 		mv.addObject("store", storeVO);
 
 		return mv;

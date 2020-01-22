@@ -5,6 +5,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.cookie.basic.store.StoreVO;
+
 import lombok.Data;
 
 @Data
@@ -36,6 +38,8 @@ public class MemberVO {
 	
 	private Integer fnum;
 	private String fname;
+	
+
 
 
 }
