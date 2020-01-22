@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.FilePathGenerator;
 import com.cookie.basic.util.FileSaver;
 import com.cookie.basic.util.Pager;
@@ -171,6 +172,8 @@ public class MemberService {
 	
 		 return memberMapper.pmemberList(pager);
 	}
+	
+
 	
 	
 }

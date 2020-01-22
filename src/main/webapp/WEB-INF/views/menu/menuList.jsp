@@ -38,7 +38,7 @@
 	<div>
 		</div>
 
-			<a class="btn btn-primary" href="./menuInsert">메뉴추가</a>
+			<a class="btn btn-primary" href="./menuInsert?ssNum=${store.ssNum}">메뉴추가</a>
 
 	</div>
 	

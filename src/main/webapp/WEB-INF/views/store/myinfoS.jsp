@@ -43,11 +43,13 @@
 			<div class="myMoney_1">일매출현황</div>
 		</div>
 	</div>
-	<a href="./storeUpdate?ssNum=${store.ssNum}"><div
-			class="Update_storeInfo">
+	<a href="./storeUpdate?ssNum=${store.ssNum}">
+	<div class="Update_storeInfo">
 			<i class="fa fa-history" style="font-size: 24px; color: black;"></i>
 			Update
 		</div></a>
+		
+		<a href="../menu/menuList?ssNum=${store.ssNum}">메뉴리스트</a>
 
 
 
