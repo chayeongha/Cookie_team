@@ -131,6 +131,9 @@ public class MemberController {
 		if(memberVO != null) {
 			msg="로그인 성공!!";
 			session.setAttribute("member", memberVO);
+			if(memberVO.getGrade()==8888) {
+				/* session.setAttribute("store", storeVO); */
+			}
 		}
 		
 		mv.addObject("msg", msg);

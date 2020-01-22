@@ -31,7 +31,7 @@ public class MenuController {
 			ModelAndView mv = new ModelAndView();
 			int result = menuService.menuPreset(menuVO, menuP);
 			String message="Insert fail";
-			String path="./menuList?sNum="+menuVO.getSsNum();
+			String path="./menuList?ssNum="+menuVO.getSsNum();
 			if(result>0) {
 				message="Insert Success";
 			}
