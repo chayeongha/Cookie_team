@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보 수정</title>
 <link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />

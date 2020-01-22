@@ -1,12 +1,16 @@
 package com.cookie.basic.store;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +29,8 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 
+
+	
 	// 지점 등록 폼
 	@GetMapping("storeInsert")
 	public void storeInsert(HttpSession session) throws Exception {
@@ -204,5 +210,31 @@ public class StoreController {
 		
 		return result;
 	}
-
+	
+	@GetMapping("storeList")
+	public void storeList(Model model) throws Exception{
+		Map<String,String[]> ar = storeService.mapSelect();
+		
+	
+		
+		
+		
+		
+		model.addAttribute("ar", ar);
+	}
+	
+	@GetMapping("storeList2")
+	public ModelAndView storeList2(String v) throws Exception{
+		Map<String,String[]> ar = storeService.mapSelect();
+		ModelAndView mv = new ModelAndView();
+		
+		String[] arr = ar.get(v);
+		
+		mv.addObject("arr",arr);
+		
+		
+		return mv;
+	}
+	
+	
 }

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.wrap{
+	margin:0 auto;
+	width: 1100px;
+	background: #ffede3;
+	margin-top:40px;
+	margin-bottom: 40px;
+	
+}
+
+.map1{
+	border:none;
+	width:150px;
+	height: 60px;
+	font-family: CookieRun-Regular;
+	background:transparent;
+	font-size:30px;
+	margin-left: 20px;
+	color:#f23600;
+	border-bottom: 1px solid white;
+}
+
+.map1:hover{
+	background: #ff6613;
+	border-radius: 5px;
+	color:white;
+}
+
+.a{
+	background: #ff6613;
+	color:white;
+	border-radius: 5px;
+}
+.e{
+	margin:0 auto;
+	width: 1100px;
+	padding:20px;
+	background: #ffede3;
+}
+
+.bb{
+	font-family: CookieRun-Regular;
+	background:transparent;
+	border:none;
+	width:150px;
+	height: 60px;
+	font-size:28px;
+	color:#f23600;
+}
