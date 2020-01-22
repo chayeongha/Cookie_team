@@ -13,7 +13,8 @@
 	</select>
 	
 	<update id="storeFilesUpdate" parameterType="StoreFilesVO">
-			update * from storeFiles where sNum=#{sNum}
+			update storeFiles set fNum=#{fNum}, fName=#{fName}, oName=#{oName} where sNum=#{sNum}
 	</update>
+	
 	
  </mapper>

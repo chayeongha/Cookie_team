@@ -180,9 +180,7 @@
 			alert("전화번호를 입력해주세요")
 		}else if($("#roadFullAddr").val() == ""){
 			alert("주소를 입력해주세요")
-		}else if($("#files").val() ==""){
-			alert("로고를 등록해주세요")
-			}else{
+		}else{
 			confirm("회원가입을 하시겠습니까?")
 			if(scheck>0){	
 			$("#form").submit();

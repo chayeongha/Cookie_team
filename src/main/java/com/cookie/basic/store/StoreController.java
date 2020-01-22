@@ -147,8 +147,11 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 
 		storeVO = storeService.info(storeVO);
-		System.out.println(storeVO.getsName());
-
+		/* System.out.println(storeVO.getsName()); */
+		
+		System.out.println(storeVO.getStoreFilesVO().getfNum());
+		System.out.println(storeVO.getStoreFilesVO().getfName());
+		
 		mv.addObject("store", storeVO);
 		mv.setViewName("store/storeUpdate");
 
@@ -158,20 +161,22 @@ public class StoreController {
 
 	// 점주 정보 업데이트
 	@PostMapping("storeUpdate")
-	public ModelAndView storeUpdate(StoreVO storeVO, HttpSession session, MultipartFile files) throws Exception {
+	public ModelAndView storeUpdate(StoreVO storeVO, HttpSession session, MultipartFile files, HttpServletRequest request) throws Exception {
 
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		session.setAttribute("member", memberVO);
 		ModelAndView mv = new ModelAndView();
-		int result = storeService.storeUpdate(storeVO,files);
-
+		int result = storeService.storeUpdate(storeVO,files, request);
+		
+		System.out.println(request.getParameter("fName"));
+		
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
 			msg = "업데이트 성공";
-			path = "../";
+			path = "./myInfo";
 		}
-		mv.addObject("store", storeVO);
+	
 		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/result");

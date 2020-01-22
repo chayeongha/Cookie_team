@@ -43,7 +43,7 @@
       <select name="cmNum" id="cmNum">
       	<option value="1">coffee</option>
       	<option value="2">beverage</option>
-      	<option value="3">desert</option>
+      	<option value="3">dessert</option>
       </select>
       
     </div>

@@ -58,7 +58,7 @@
 
 			<p><a href="#">이용후기</a></p>
 			<p><a href="#">Q & A</a></p>
-			<p><a href="#">매장등록</a></p>
+			<p><a href="../store/storeInsert">매장등록</a></p>
 		</div>
 		
 	</div><!-- 왼쪽 헤더 -->

@@ -14,15 +14,13 @@ public class StoreVO {
 	
 	private StoreFilesVO storeFilesVO;
 	
-	
-	
-	
 
 	
 	
 	
 	
-	
+		
+
 	public String getMemId() {
 		return memId;
 	}

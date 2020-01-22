@@ -3,6 +3,8 @@ package com.cookie.basic.store;
 import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,35 +33,45 @@ public class StoreService {
 		int result = storeMapper.storeInsert(storeVO);
 		storeVO = storeMapper.sNumSearch(storeVO);
 		if (result > 0) {
-			StoreFilesVO storeFilesVO = new StoreFilesVO();
-			storeFilesVO.setfName(fileName);
-			storeFilesVO.setsNum(storeVO.getsNum());
-			storeFilesVO.setoName(originalName);
-			result = storeFilesMapper.storeFilesInsert(storeFilesVO);
+			if (files.getOriginalFilename() != null && !files.getOriginalFilename().equals("")) {
+				StoreFilesVO storeFilesVO = new StoreFilesVO();
+				storeFilesVO.setfName(fileName);
+				storeFilesVO.setsNum(storeVO.getsNum());
+				storeFilesVO.setoName(originalName);
+				result = storeFilesMapper.storeFilesInsert(storeFilesVO);
+			}
 		}
 		return result;
 	}
 
-	public int storeUpdate(StoreVO storeVO, MultipartFile files) throws Exception {
+	public int storeUpdate(StoreVO storeVO, MultipartFile files, HttpServletRequest request) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("upload");
-		String fileName=fileSaver.save(file, files);	
+		String fileName = fileSaver.save(file, files);
 		System.out.println(fileName);
 		int result = storeMapper.storeUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		storeVO = storeMapper.sNumSearch(storeVO);
+
 		StoreFilesVO storeFilesVO = new StoreFilesVO();
-		storeFilesVO.setsNum(storeVO.getsNum());
-		storeFilesVO.setfNum(storeVO.getStoreFilesVO().getfNum());
-		storeFilesVO.setfName(fileName);
-		storeFilesVO.setoName(files.getOriginalFilename());
-		
-		result = storeFilesMapper.storeFilesUpdate(storeFilesVO);
-		
+		if (files.getOriginalFilename() != null && !files.getOriginalFilename().equals("")) {
+
+			storeFilesVO.setsNum(storeVO.getsNum());
+			storeFilesVO.setfName(fileName);
+			storeFilesVO.setoName(files.getOriginalFilename());
+			result = storeFilesMapper.storeFilesInsert(storeFilesVO);
+		} else {
+
+			storeFilesVO.setsNum(storeVO.getsNum());
+			storeFilesVO.setfNum(Integer.parseInt(request.getParameter("fNum")));
+			storeFilesVO.setfName(request.getParameter("fName"));
+			storeFilesVO.setoName(request.getParameter("oName"));
+
+			result = storeFilesMapper.storeFilesUpdate(storeFilesVO);
+		}
+
 		return result;
-		
-		
-		
+
 	}
-	
+
 	public List<StoreVO> searchInfo(StoreVO storeVO) throws Exception {
 		return storeMapper.searchInfo(storeVO);
 	}
@@ -72,17 +84,16 @@ public class StoreService {
 		return storeFilesMapper.storeFilesSelect(storeFilesVO);
 	}
 
-	public int onUpdate(StoreVO storeVO)throws Exception{
+	public int onUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.onUpdate(storeVO);
 	}
-	
-	public int offUpdate(StoreVO storeVO)throws Exception{
+
+	public int offUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.offUpdate(storeVO);
 	}
-	
-	public int checkStore(StoreVO storeVO)throws Exception{
+
+	public int checkStore(StoreVO storeVO) throws Exception {
 		return storeMapper.checkStore(storeVO);
 	}
-	
-	
+
 }

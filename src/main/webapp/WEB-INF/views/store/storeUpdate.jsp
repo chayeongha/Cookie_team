@@ -62,8 +62,7 @@
 <body>
 
 
-
-	<input type="hidden" id="sNum" name="sNum" value="${store.sNum}">
+	<%-- <input type="text" id="sNum" name="sNum" value="${store.sNum}"> --%>
 	<div class="storeHeader">
 
 		<div class="store_back">
@@ -111,9 +110,13 @@
 				<label for="sNotice"></label> <input type="hidden" id="sNotice" name="sNotice" class="store_input">
 			</div>
 			<div>
+		
 				<div class="store_label">로고 등록:</div>
 				<input type="file" class="store_input" id="files" name="files">
-
+				<input type="hidden" name="fNum" value="${store.storeFilesVO.fNum}">
+				<input type="hidden" name="fName" value="${store.storeFilesVO.fName}"> 
+				<input type="hidden" name="oName" value="${store.storeFilesVO.oName}"> 
+				
 			</div>
 			<input type="submit" id="update" value="Update"
 				class="store_join_btn">
