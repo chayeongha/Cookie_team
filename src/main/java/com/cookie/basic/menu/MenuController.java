@@ -31,7 +31,7 @@ public class MenuController {
 			ModelAndView mv = new ModelAndView();
 			int result = menuService.menuPreset(menuVO, menuP);
 			String message="Insert fail";
-			String path="./menuList?sNum="+menuVO.getSNum();
+			String path="./menuList?sNum="+menuVO.getSsNum();
 			if(result>0) {
 				message="Insert Success";
 			}
@@ -97,9 +97,10 @@ public class MenuController {
 	@GetMapping("menuUpdate")
 	public String menuUpdate(MenuVO menuVO, Model model)throws Exception{
 		menuVO = menuService.menuSelect(menuVO);
-		System.out.println(menuVO.getSNum());
+		System.out.println(menuVO.getSsNum());
 		System.out.println(menuVO.getMmTemp());
 		System.out.println(menuVO.getMmName());
+		System.out.println(menuVO.getSsNum());
 		model.addAttribute("vo", menuVO);
 		return "menu/menuUpdate";
 	}
@@ -108,10 +109,10 @@ public class MenuController {
 	public ModelAndView menuUpdate(MenuVO menuVO, MultipartFile files,  String[] optName2, String[] optPrice2, String[] optNum2,String[] optName, String[] optPrice)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-
+		System.out.println(menuVO.getSsNum());
 		int result = menuService.menuUpdate(menuVO, files, optName2, optPrice2, optNum2,optName, optPrice);
 		String message="Insert fail";
-		String path=".	/menuList";
+		String path="./menuList?ssNum="+menuVO.getSsNum();
 		if(result>0) {
 			message="Insert Success";
 		}
@@ -122,4 +123,34 @@ public class MenuController {
 		
 	}
 	
+	//Delete
+	@PostMapping("moptDelete")
+	public ModelAndView moptDelete(MoptVO moptVO, String[] optnum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int check=0;
+		
+		int result =0;
+		
+		for(String string : optnum) {
+			
+			moptVO.setOptNum(Integer.parseInt(string));
+			check = menuService.moptDelete(moptVO);
+			Thread.sleep(200);
+			if(check==1) {
+				result++;
+			}
+		}
+		if(result == optnum.length) {
+			result =1;
+		}
+		
+			
+		String path="./menuUpdate?mmNum="+moptVO.getMmNum();
+		mv.setViewName("common/result2");
+		
+		mv.addObject("path", path);
+		return mv;
+	
+		
+	}
 }

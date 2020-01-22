@@ -12,7 +12,9 @@
 	
 	<update id="moptUpdate" parameterType="MoptVO">
 		update mopt set optName = #{optName}, optPrice=  #{optPrice}, optCount=#{optCount} where optNum = #{optNum}
-		
-			</update>
+	</update>
 
+	<delete id="moptDelete" parameterType="MoptVO">
+		delete from mopt where optNum=#{optNum}
+	</delete>
 </mapper>

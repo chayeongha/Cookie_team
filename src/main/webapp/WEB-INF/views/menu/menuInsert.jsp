@@ -100,7 +100,7 @@
 <!--       <input type="hidden" class="optName" name="" value="휘핑 추가">
 	  <input type="hidden" class="optPrice" name="" value="500" /> -->
 	  <div>
-	  <input type="text" class="storeNum" name="sNum" value="${store.sNum}">
+	  <input type="text" class="storeNum" name="ssNum" placeholder="스토어 번호 자리입니다 테스트시  꼭 입력해주세요" value="${store.ssNum}">
 	  </div>
 	  <br>
       <div class="form-group">

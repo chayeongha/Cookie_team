@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface MoptMapper {
 	public int moptInsert(List<MoptVO> moptVOs)throws Exception;
-	public int moptUpdate(MoptVO moptVOs)throws Exception;
+	public int moptUpdate(MoptVO moptVO)throws Exception;
+	public int moptDelete(MoptVO moptVO)throws Exception;
 }
