@@ -28,5 +28,7 @@ public interface StoreMapper {
 	
 	public int checkStore(StoreVO storeVO)throws Exception;
 	
+	
+	
 
 }
