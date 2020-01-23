@@ -21,16 +21,17 @@
 	</div>
 
 <div class="container">
-  <form:form action="./menuInsert"  id="frm" method="post" enctype="multipart/form-data">
+  <form:form action="./menuInsert"  id="frm" method="post" enctype="multipart/form-data" modelAttribute="menuVO">
     <div class="form-group">
       <label for="mmName" class="mlabel">메뉴 이름</label>
-      <form:input type="text" class="form-control" id="mmName" placeholder="메뉴명을 입력해주세요" name="mmName"/>
-      <form action=""></form>
+      <form:input path="mmName" type="text" class="form-control" id="mmName" placeholder="메뉴명을 입력해주세요" name="mmName"/>
+      <form:errors path="mmName"/>
     </div>
     
     <div class="form-group">
       <label for="mmPrice" class="mlabel">가격:</label>
-      <input type="text" class="form-control" id="mmPrice" placeholder="메뉴 가격을 입력해주세요" name="mmPrice">
+      <form:input path="mmPrice" type="text" class="form-control" id="mmPrice" placeholder="메뉴 가격을 입력해주세요" name="mmPrice"/>
+      <form:errors path="mmPrice" />
     </div>
     
 

@@ -3,10 +3,13 @@ package com.cookie.basic.menu;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,14 +52,26 @@ public class MenuController {
 		
 	//Insert
 	@GetMapping("menuInsert")
-	public String menuInsert()throws Exception{
+	public String menuInsert(Model model)throws Exception{
+		MenuVO menuVO = new MenuVO();
+		model.addAttribute("menuVO", menuVO);
+		
 		return "menu/menuInsert";
 	}
 	
 	@PostMapping("menuInsert")
-	public ModelAndView menuInsert(MenuVO menuVO,  MultipartFile files, String [] opto, String[] optName, String[] optPrice)throws Exception{
+	public ModelAndView menuInsert(@Valid MenuVO menuVO,BindingResult bindingResult, MultipartFile files, String [] opto, String[] optName, String[] optPrice)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
+		
+		if(bindingResult.hasErrors()) {
+			mv.addObject("menuVO", menuVO);
+			mv.setViewName("menu/menuInsert");
+			List<ObjectError> err = bindingResult.getAllErrors();
+			for (int i = 0; i < err.size(); i++) {
+				System.out.println(err.get(i).toString());
+			}
+		}else {
 		
 		int result = menuService.menuInsert(menuVO, files, opto, optName, optPrice);
 		String message="Insert fail";
@@ -67,9 +82,9 @@ public class MenuController {
 		mv.setViewName("common/result");
 		mv.addObject("msg", message);
 		mv.addObject("path", path);
+	}
 		return mv;
 	}
-	
 	//List
 	@GetMapping("menuList")
 	public ModelAndView menuList(MenuVO menuVO)throws Exception{
