@@ -22,13 +22,14 @@
 				<img alt="제품이미지" src="../menu/${vo.menuFiles.mfName}" style="width: 350px; height: 350px;">
 			</div>
 			<div class="DetailBox">
-			<div class="menuN">메뉴명 :${vo.mmName}</div>
-			<div class="menuN">가격:${vo.mmPrice}</div>
-			<div class="menuN">추가 옵션</div>
+			<div class="menuN">메뉴명 : ${vo.mmName}</div>
+			<div class="menuN">가격 : ${vo.mmPrice}원</div>
+			<div class="menuN"><div class="optTi">추가 옵션</div>
 			<c:forEach items="${vo.menuOptions}" var="opt">
-				<h3>${opt.optName}</h3> 
-				<h3>${opt.optPrice}</h3>
+				<div>${opt.optName} : ${opt.optPrice}원</div> 
+
 			</c:forEach>
+			</div>
 			</div>
 
 		</div>

@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 .storeHeader {
 	width: 100%;
 	height: 150px;
@@ -19,13 +18,11 @@
 	margin-left: 640px;
 }
 
-
 .contents {
 	width: 1300px;
 	height: auto;
 	overflow: hidden;
 	padding-bottom: 30px;
-	background-color: aqua;
 	margin: 0 auto;
 	margin-top: 150px;
 }
@@ -33,34 +30,42 @@
 .SelectBox {
 	width: 900px;
 	height: 350px;
-	background-color: blue;
 	margin: 0 auto;
 	margin-top: 20px;
 }
 
-.btnBox{
+.btnBox {
 	width: 250px;
 	height: 50px;
-	background-color: fuchsia;
 	float: right;
 	margin-top: 20px;
 }
 
-.IMGBox{
+.IMGBox {
 	width: 350px;
 	height: 350px;
-	background-color: gray;
 	float: left;
+	margin-left: 50px;
 }
 
-
-.DetailBox{
-	width: 550px;
+.DetailBox {
+	width: 450px;
 	height: 350px;
-	background-color: lime;
 	float: left;
 }
 
+.menuN {
+	width: 350px;
+	height: 116.6px;
+	font-size: 28px;
+	color: black;
+	font-family: CookieRun-Regular;
+	margin-left: 100px;
+	
+}
 
-
-
+.optTi {
+	width: 200px;
+	height: 30px;
+	margin-bottom: 20px;
+}
