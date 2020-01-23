@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+.storeHeader {
+	width: 100%;
+	height: 150px;
+	background-color: #ff674efa;
+	overflow: hidden;
+}
+
+.AddMenuTi {
+	width: 600px;
+	height: 70px;
+	font-size: 42px;
+	font-family: CookieRun-Black;
+	line-height: 60px;
+	text-align: center;
+	padding-top: 20px;
+	margin-left: 640px;
+}
+
+.AddMenuTi2 {
+	width: 600px;
+	height: 10px;
+	font-size: 24px;
+	font-family: CookieRun-Regular;
+	line-height: 10px;
+	text-align: center;
+	margin-left: 640px;
+}
+
+.container {
+	width: 1300px;
+	height: auto;
+	overflow: hidden;
+	margin: 0 auto;
+	padding-bottom: 100px;
+}
+
+.mmTable {
+	width: 1000px;
+	height: 500px;
+	margin: 0 auto;
+	margin-top: 50px;
+	border-collapse: collapse;
+	
+}
+
+.clrt {
+	background-color: #ff674efa;
+	font-size: 18px;
+	font-family: CookieRun-Regular;
+	text-align: center;
+	line-height: 30px;
+	height: 30px;
+}
+
+.listTr{
+	background-color: #c58e7929;
+	border-bottom-style:none;
+	
+}
+
+
+
+tbody>tr {
+	width: 1200px;
+	height: 30px;
+
+}
+
+tr>td {
+	width: 200px;
+	height: 30px;
+	font-size: 18px;
+	font-family: CookieRun-Regular;
+	text-align: center;
+	line-height: 30px;
+	
+}
+
+.ammNum{
+	color: black;
+	
+}
+
+a:hover{
+	color:#ff674efa;
+}
+
+
+.menuselect{
+	width: 100px;
+	height: 40px;
+	background-color:#ff674efa;
+	float: right;
+	margin-top: 50px;
+	margin-right: 150px;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 40px;
+	color: black;
+	font-family: CookieRun-Regular;
+	font-size: 20px;
+	
+	
+}
+
+

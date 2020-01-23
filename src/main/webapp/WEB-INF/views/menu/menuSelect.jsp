@@ -6,15 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../template/boot.jsp"></c:import>
+<link href="/css/reset.css" rel="stylesheet" />
+<link href="/css/menu/menuSelect.css" rel="stylesheet" />
+
 </head>
 <body>
-<div class="contents">
-	<h1>메뉴명 :${vo.mmName}</h1>
-	<h1>가격:${vo.mmPrice}</h1>
-	<img alt="제품이미지" src="../menu/${vo.menuFiles.mfName}">
+	<div class="contents">
+	<div class="SelectBox">
+	<div><img alt="제품이미지" src="../menu/${vo.menuFiles.mfName}"></div>
+	<div>메뉴명 :${vo.mmName}</div>
+	<div>가격:${vo.mmPrice}</div>
 	<h3>${vo.menuFiles.mfName}</h3>
-
+	</div>
 	
 	<c:forEach items="${vo.menuOptions}" var="opt">
 	<h3>${opt.optName}</h3>

@@ -47,15 +47,21 @@ public class StoreService {
 		return result;
 	}
 
-	public int storeUpdate(StoreVO storeVO, MultipartFile files, HttpServletRequest request) throws Exception {
+	public int storeUpdate(StoreVO storeVO, MultipartFile files) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("upload");
 		String fileName = fileSaver.save(file, files);
 		System.out.println(fileName);
 		int result = storeMapper.storeUpdate(storeVO);
 		storeVO = storeMapper.sNumSearch(storeVO);
-
+		boolean check =false;
 		StoreFilesVO storeFilesVO = new StoreFilesVO();
-		if (files.getOriginalFilename() != null && !files.getOriginalFilename().equals("")) {
+		
+		if(files.getSize()>0) {
+			check=true;
+		}
+		
+		if(check) {
+		if (storeVO.getStoreFilesVO()==null) {
 
 			storeFilesVO.setSsNum(storeVO.getSsNum());
 			storeFilesVO.setfName(fileName);
@@ -63,14 +69,16 @@ public class StoreService {
 			storeFilesVO.setoName(files.getOriginalFilename());
 
 			result = storeFilesMapper.storeFilesInsert(storeFilesVO);
+			
 		} else {
 
 			storeFilesVO.setSsNum(storeVO.getSsNum());
-			storeFilesVO.setfNum(Integer.parseInt(request.getParameter("fNum")));
-			storeFilesVO.setfName(request.getParameter("fName"));
-			storeFilesVO.setoName(request.getParameter("oName"));
+			storeFilesVO.setfNum(storeVO.getStoreFilesVO().getfNum());
+			storeFilesVO.setfName(fileName);
+			storeFilesVO.setoName(files.getOriginalFilename());
 
 			result = storeFilesMapper.storeFilesUpdate(storeFilesVO);
+		}
 		}
 
 		return result;
