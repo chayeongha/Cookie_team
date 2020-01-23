@@ -92,11 +92,11 @@
     
     <div class="">
 		<label for="files">Profile:</label> 
-		<div class="">
-			<img alt="기본이미지입니다." src="../upload/${member.memberFilesVO.fname}">
+		<div class="form-group">
+			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;"/>	
 		</div> 
-		<label for="files">프로필이미지 변경:</label> 
-			<input type="file"class="" id="files" name="files">
+			<input type="file"class="form-control" id="files" name="files">
+
 	</div>
 	
   		<input type="hidden" class="form-control" id="fnum" name="fnum" value="${member.memberFilesVO.fnum}">
@@ -109,9 +109,6 @@
       </div>
     </div>
   	
-  		
-  		
-
   </form:form>
 </div>
    
@@ -124,13 +121,28 @@
 		}
 		
 		});
-		
 
+	//이미지를넣었을 때 미리보여지는것.
+	$(function(){
+		$("#files").on('change',function(){
+			 readURL(this);
+		});
+	});
+	function readURL(input) {
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
 
-
+			reader.onload = function(e){
+				$('#blah').attr('src' , e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
    </script>
    
    <c:import url="../layout/footer.jsp" />	
 </div>
+
 </body>
 </html>

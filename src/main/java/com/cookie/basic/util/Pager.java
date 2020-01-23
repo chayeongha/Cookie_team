@@ -2,6 +2,17 @@ package com.cookie.basic.util;
 
 public class Pager {
 
+	private Integer grade;//그레이드값
+	
+	//@@@@@@@중요 오류나면 여기 다시보기
+	public Integer getGrade() {
+
+		return grade;
+	}
+	
+	public void setGrade(Integer grade) {
+		this.grade = grade;
+	}
 
 	private Integer curPage;	//현재 페이지 번호
 	private Integer perPage;	//불러올 페이지 개수
@@ -104,7 +115,7 @@ public class Pager {
 		//2. totalPage
 		int totalPage = totalCount/this.getPerPage();
 		//	글개수가 perPage보다 작으면
-		if(totalCount%this.getPerPage() != 0) {
+		if(totalCount%this.getPerPage()!=0) {
 			totalPage++;
 		}
 		
@@ -116,7 +127,7 @@ public class Pager {
 		}
 		
 		//4. curPage로 curBlock 구하기
-		curBlock = this.getCurPage()/perBlock;
+		curBlock = this.getCurPage() /perBlock;
 		if(this.getCurPage()%perBlock != 0) {
 			curBlock++;
 		}
@@ -124,6 +135,7 @@ public class Pager {
 		//5. curBlock으로 startNum, lastNum 구하기
 		startNum = (curBlock-1)*perBlock +1;
 		lastNum = curBlock*perBlock;
+		
 		if(curBlock == totalBlock) {
 			lastNum = totalPage;
 		}

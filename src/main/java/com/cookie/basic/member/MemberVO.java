@@ -11,18 +11,16 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-
-
-		
+	
 	private Integer memNum;
 	
 	@NotEmpty(message = "비우지마시오!!")
 	private String memId;
 	
-	@NotEmpty
+	@NotEmpty(message = "비우지마시오!!")
 	@Size(min = 4, max = 12)
 	private String pw;
-	@Transient
+
 	private String pw2;
 	
 	private String name;
