@@ -102,15 +102,15 @@ public class StoreController {
 	@PostMapping("myinfoS")
 	public ModelAndView myInfoS(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		storeVO.getsNum();
+		storeVO.getSsNum();
 		int result = storeService.onUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		System.out.println(storeVO.getSsNum());
 
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
 			msg = "영업시작";
-			path = "./storeMyPage?sNum=" + storeVO.getsNum();
+			path = "./storeMyPage?sNum=" + storeVO.getSsNum();
 		}
 		mv.addObject("store", storeVO);
 		mv.addObject("msg", msg);
@@ -129,9 +129,9 @@ public class StoreController {
 	@PostMapping("storeMyPage")
 	public ModelAndView storeMyPage(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		storeVO.getsNum();
+		storeVO.getSsNum();
 		int result = storeService.offUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		System.out.println(storeVO.getSsNum());
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
@@ -214,12 +214,7 @@ public class StoreController {
 	@GetMapping("storeList")
 	public void storeList(Model model) throws Exception{
 		Map<String,String[]> ar = storeService.mapSelect();
-		
 	
-		
-		
-		
-		
 		model.addAttribute("ar", ar);
 	}
 	
@@ -231,8 +226,24 @@ public class StoreController {
 		String[] arr = ar.get(v);
 		
 		mv.addObject("arr",arr);
-		
-		
+		mv.addObject("v",v);
+		return mv;
+	}
+	
+	@GetMapping("storeList3")
+	public ModelAndView storeList3(String v, String v2) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		StoreVO storeVO = new StoreVO();
+		List<StoreVO> ar = new ArrayList<StoreVO>();
+		storeVO.setMemId(v);
+		if(v2=="") {
+			ar = storeService.storeList2(storeVO);
+			
+		}else {
+			storeVO.setsName(v2);
+			ar = storeService.storeList(storeVO);
+		}
+		mv.addObject("ar",ar);
 		return mv;
 	}
 	

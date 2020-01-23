@@ -59,34 +59,78 @@
 			
 			</div>
 		</div>
+		
+		<div class="wrap">
+			<div class="map3">
+			
+			</div>
+		</div>
 
 		
 		
 		<script type="text/javascript">
 			
 			$(".map1").click(function(){
-				
+				var s = '세종';
 				var v =$(this).val();
+				$(".map3").html("");
 				$(".map1").removeClass('a');
-				$(".map1").addClass('map1');
+
 				$(this).addClass('a');
 				$(".map2").empty();
-				var ar = 
-				$.ajax({
-					url:"./storeList2",
-					type:'get',
-					data:{
-						"v":v
+
+				if(s!=v){
+					$.ajax({
+						url:"./storeList2",
+						type:'get',
+						data:{
+							"v":v
+							},
+						success:function(data){
+							$(".map2").html(data);
+							}
+					});
+				}
+				if(s==v){
+					$.ajax({
+						url:"./storeList3",
+						type:'get',
+						data:{
+							"v":v,
+							"v2":""
 						},
-					success:function(data){
-						$(".map2").html(data);
-						}
-				});
-				
+						success:function(data){
+							$(".map3").html(data);
+							}
+					
+					});
+				}	
 			
-				});	
-		</script>
+		});	
 		
+		$("body").on("click",".bb",function(){
+			var v = $("#v").val();
+			var v2 = $(this).val();
+
+			$(".bb").removeClass('a');
+			$(this).addClass('a');
+			
+			$.ajax({
+				url:"./storeList3",
+				type:'get',
+				data:{
+					"v":v,
+					"v2":v2
+				},
+				success:function(data){
+					$(".map3").html(data);
+					}
+			
+			});
+
+		});
+		
+		</script>
 		
 	</div>
 <c:import url="../layout/footer.jsp" />

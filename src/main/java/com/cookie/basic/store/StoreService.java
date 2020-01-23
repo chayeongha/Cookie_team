@@ -36,7 +36,7 @@ public class StoreService {
 		if (result > 0) {
 			StoreFilesVO storeFilesVO = new StoreFilesVO();
 			storeFilesVO.setfName(fileName);
-			storeFilesVO.setsNum(storeVO.getsNum());
+			storeFilesVO.setsNum(storeVO.getSsNum());
 			storeFilesVO.setoName(originalName);
 			result = storeFilesMapper.storeFilesInsert(storeFilesVO);
 		}
@@ -165,6 +165,14 @@ public class StoreService {
 			ar.put("울산", ab17);
 			
 		return ar;
+	}
+	
+	public List<StoreVO> storeList(StoreVO storeVO) throws Exception{
+		return storeMapper.storeList(storeVO);
+	}
+	
+	public List<StoreVO> storeList2(StoreVO storeVO) throws Exception{
+		return storeMapper.storeList(storeVO);
 	}
 	
 	
