@@ -17,7 +17,8 @@
 		<div id="listcontent">
 		
 				<div class="container title">
-					<h1>회원관리</h1>
+					<a href="${pageContext.request.contextPath}/member/memberIndex">멤버인덱스로..</a>
+					<h1>${gname}회원관리</h1>
 				</div>
 				
 				<div class="container MemberMenu">
@@ -150,6 +151,9 @@
 			$(this).next().slideDown();
 	           $(this).parent().addClass("activeA");
 			}
+	
+
+			
 	});
 
 </script>

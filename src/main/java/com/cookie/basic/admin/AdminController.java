@@ -31,7 +31,13 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<MemberVO> ar = adminService.adminMemberList(pager);
-			
+			String gname=null;
+		if(pager.getGrade()==1) {
+			gname="개인";
+		}else if(pager.getGrade()==8888){
+			gname="사업자";
+		}
+		mv.addObject("gname", gname);
 		mv.addObject("pager", pager);
 		mv.addObject("memberSize", ar.size());
 		mv.addObject("memberList", ar);
