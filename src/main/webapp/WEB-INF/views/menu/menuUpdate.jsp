@@ -133,7 +133,7 @@
                  }; 
 
             
-                 $("btn_submit").onclick=function(){
+                 sbtn.onclick=function(){
                	 jQuery.ajaxSettings.traditional = true;
                 	 for(var st =0; st<${vo.menuOptions.size()}; st++){
                 		 var optnum= new Array();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +21,11 @@
 	</div>
 
 <div class="container">
-  <form action="./menuInsert"  id="frm" method="post" enctype="multipart/form-data">
+  <form:form action="./menuInsert"  id="frm" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="mmName" class="mlabel">메뉴 이름</label>
-      <input type="text" class="form-control" id="mmName" placeholder="메뉴명을 입력해주세요" name="mmName">
+      <form:input type="text" class="form-control" id="mmName" placeholder="메뉴명을 입력해주세요" name="mmName"/>
+      <form action=""></form>
     </div>
     
     <div class="form-group">
@@ -127,7 +129,7 @@
       <button type="submit" class="btn_submit">Submit</button>
       <br>
     
-</form> 
+</form:form> 
 </div>
    
  

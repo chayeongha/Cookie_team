@@ -20,12 +20,37 @@
 	<h3>${opt.optName}</h3>
 	<h3>${opt.optPrice}</h3>
 	</c:forEach>
-
+<input type="hidden" id="hssnum" value="${vo.ssNum }">
+<input type="hidden" id="hmmnum" value="${vo.mmNum }">
 
  <a href="./menuList?ssNum=${vo.ssNum}"> <input type="button" value="리스트로" style="cursor: pointer;"></a>
   <a href="./menuUpdate?mmNum=${vo.mmNum}"> <input type="button" value="메뉴 수정" style="cursor: pointer;"></a>
-     <a href="./menuDelete?mmNum=${vo.mmNum}"> <input type="button" value="메뉴 삭제" style="cursor: pointer;"></a>
+     <input type="button" value="메뉴 삭제" style="cursor: pointer;" id="delbtn">
 </div>
+
+<script type="text/javascript">
+	//delete
+	
+	var delbtn = document.getElementById('delbtn');
+	var mmNum = $("#hmmnum").val();
+	var ssNum = $("#hssnum").val();
+	delbtn.onclick = function(){
+		$.ajax({
+			type : "POST",
+			url:"./menuDelete",
+ 			data:{
+ 				mmNum : mmNum,
+ 				ssNum : ssNum
+ 			},
+ 			success:function(data){
+				alert("delete Success");
+				window.location.href="./menuList?ssNum="+ssNum;
+ 	 		}
+		}); 
+
+		}
+	
+</script>
 
 </body>
 </html>
