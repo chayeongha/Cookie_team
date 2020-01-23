@@ -53,12 +53,12 @@
 		<div class="cate_1">Cookie</div>
 		<div class="cate_2">Order</div>
 		<div class="cate">
-			<p><a href="#">제휴매장</a></p>
-			<p><a href="../notice/noticeList">공지사항</a></p>
+			<p><a href="${pageContext.request.contextPath}/store/storeList">제휴매장</a></p>
+			<p><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></p>
 
 			<p><a href="#">이용후기</a></p>
 			<p><a href="#">Q & A</a></p>
-			<p><a href="../store/storeInsert">매장등록</a></p>
+			<p><a href="${pageContext.request.contextPath}/store/storeInsert">매장등록</a></p>
 		</div>
 		
 	</div><!-- 왼쪽 헤더 -->
