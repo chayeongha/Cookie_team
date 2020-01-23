@@ -20,8 +20,27 @@ public class StoreVO {
 	
 	
 	
+	
 		
 
+	public String getRoadFullAddr() {
+		return roadFullAddr;
+	}
+	public void setRoadFullAddr(String roadFullAddr) {
+		this.roadFullAddr = roadFullAddr;
+	}
+	public String getsNotice() {
+		return sNotice;
+	}
+	public void setsNotice(String sNotice) {
+		this.sNotice = sNotice;
+	}
+	public int getsOn() {
+		return sOn;
+	}
+	public void setsOn(int sOn) {
+		this.sOn = sOn;
+	}
 	public String getMemId() {
 		return memId;
 	}

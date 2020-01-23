@@ -48,6 +48,21 @@
 		select * from menu where ssNum = #{ssNum} order by mmNum desc
 	</select>
 	
+	
+	<select id="categoryList1" parameterType="MenuVO" resultType="MenuVO">
+		select * from menu where ssNum=#{ssNum} and cmNum =1 order by mmNum asc
+	</select>
+	
+	<select id="categoryList2" parameterType="MenuVO" resultType="MenuVO">
+		select * from menu where ssNum =#{ssNum} and cmNum =2  order by mmNum asc 
+	</select>
+	
+	<select id="categoryList3" parameterType="MenuVO" resultType="MenuVO">
+		select * from menu where ssNum =#{ssNum} and cmNum =3 order by mmNum asc 
+	</select>
+	
+	
+
 	<update id="menuUpdate" parameterType="MenuVO">
 		update menu set mmName=#{mmName}, mmPrice=#{mmPrice}, mmCount=#{mmCount}, cmNum=#{cmNum}, mmTemp=#{mmTemp} where mmNum=#{mmNum}
 	</update>

@@ -22,7 +22,7 @@
 	
 		
 		
-	
+	<div class="cfTi">Coffee</div>
 		<table class="mmTable">
 			<tr class="clrt">
 				<td>NUM</td>
@@ -47,6 +47,58 @@
 		</table>
 		
 		
+		
+		<div class="BevTi">Beverage</div>
+		<table class="mmTable">
+			<tr class="clrt">
+				<td>NUM</td>
+				<td>이름</td>
+				<td>가격</td>
+				<td>수량</td>
+				<td>카테고리</td>
+				<td>아뜨여부</td>
+			</tr>
+
+			<c:forEach items="${ar2}" var="a2">
+				<tr class="listTr">
+					<td>${a2.mmNum}</td>
+					<td><a class="ammNum" href="menuSelect?mmNum=${a2.mmNum}">${a2.mmName}</a></td>
+					<td>${a2.mmPrice}</td>
+					<td>${a2.mmCount}</td>
+					<td>${a2.cmNum}</td>
+					<td>${a2.mmTemp}</td>
+				</tr>
+
+			</c:forEach>
+		</table>
+		
+		
+		
+		
+		
+		<div class="dsTi">Dessert</div>
+		<table class="mmTable">
+			<tr class="clrt">
+				<td>NUM</td>
+				<td>이름</td>
+				<td>가격</td>
+				<td>수량</td>
+				<td>카테고리</td>
+				<td>아뜨여부</td>
+			</tr>
+
+			<c:forEach items="${ar3}" var="a3">
+				<tr class="listTr">
+					<td>${a3.mmNum}</td>
+					<td><a class="ammNum" href="menuSelect?mmNum=${a3.mmNum}">${a3.mmName}</a></td>
+					<td>${a3.mmPrice}</td>
+					<td>${a3.mmCount}</td>
+					<td>${a3.cmNum}</td>
+					<td>${a3.mmTemp}</td>
+				</tr>
+
+			</c:forEach>
+		</table>
 		
 		
 		<div></div>
