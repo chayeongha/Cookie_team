@@ -66,3 +66,52 @@
 	color:#f23600;
 	
 }
+
+.container{
+	min-height: 594px;
+}
+
+/** Store List 3 ***/
+
+.selectBox{
+	width: 1100px;
+	background: transparent;
+	font-family: CookieRun-Regular;
+	font-size: 30px;
+	color:#f23600;
+}
+
+.sel{
+	width:400px;
+	height: 40px;
+	marign-left:300px;
+	border:none;
+	background: transparent;
+	border-bottom: 1px solid white;
+	margin-bottom: 10px; 
+}
+
+.btnselect{
+	font-family: CookieRun-Regular;
+	border:none;
+	font-size: 30px;
+	background: #ff6613;
+	color:white;
+	border-radius: 5px;
+	width: 130px;
+	height: 50px;
+	
+}
+
+.sList{
+	width:550px;
+	padding:20px;
+	float:left;
+	background: #ffede3;
+	
+}
+.sList > img{
+	width: 230px;
+	height: 230px;
+}
+

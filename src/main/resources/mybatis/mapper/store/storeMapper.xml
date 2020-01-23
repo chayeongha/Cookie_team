@@ -65,13 +65,14 @@
      <select id="storeList" parameterType="StoreVO" resultMap="storeResult">
      	select * from store S left outer join storeFiles F 
         on S.ssNum = F.ssNum        
-        where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE concat('%',#{sName},'%');
+        where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE concat('%',#{sName},'%')
+        and sName LIKE concat('%',#{sTel},'%')
      </select>
      
      <select id="storeList2" parameterType="StoreVO" resultMap="storeResult">
      	select * from store S left outer join storeFiles F 
         on S.ssNum = F.ssNum        
-        where roadFullAddr LIKE concat('%',#{memId}, '%');
+        where roadFullAddr LIKE concat('%',#{memId}, '%')
      </select>
      
      

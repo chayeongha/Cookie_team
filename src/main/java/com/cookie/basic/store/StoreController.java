@@ -238,11 +238,24 @@ public class StoreController {
 	}
 	
 	@GetMapping("storeList3")
-	public ModelAndView storeList3(String v, String v2) throws Exception{
+	public ModelAndView storeList3(String v, String v2,String s) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		StoreVO storeVO = new StoreVO();
 		List<StoreVO> ar = new ArrayList<StoreVO>();
+
+		if(v==null) {
+			v="";
+		}
+		if(v2==null) {
+			v2="";
+		}
+		if(s==null) {
+			s="";
+		}
+
+		
 		storeVO.setMemId(v);
+		storeVO.setsTel(s);
 		if(v2=="") {
 			ar = storeService.storeList2(storeVO);
 			
@@ -250,8 +263,18 @@ public class StoreController {
 			storeVO.setsName(v2);
 			ar = storeService.storeList(storeVO);
 		}
+		
+		mv.addObject("v",v);
+		mv.addObject("v2",v2);
 		mv.addObject("ar",ar);
+
 		return mv;
+	}
+	
+	@GetMapping("storeGoods")
+	public void storeGoods() throws Exception{
+		
+		
 	}
 	
 	
