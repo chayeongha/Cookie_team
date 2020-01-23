@@ -41,7 +41,64 @@ public class NoticeService {
 	
 	//파일 다운
 	public NoticeFilesVO noticeFileSelect(NoticeFilesVO noticeFilesVO) throws Exception {
-		return noticeFilesMapper.noticeFileSelect(noticeFilesVO);
+		return noticeFilesMapper.noticeFilesSelect(noticeFilesVO);
+	}
+	///////////////////////////////////////////////////
+	//글 수정
+	//@Transactional
+	public int noticeUpdate(NoticeVO noticeVO, MultipartFile[] files, int[] fnums) throws Exception {
+		
+		//notice 테이블 수정
+		int result = noticeMapper.noticeUpdate(noticeVO);
+		
+		File file = filePathGenerator.getUseClassPathResource("notice");
+		
+		//기존 파일 지웠을 때
+		if(fnums != null && fnums.length > 0) {
+			for (int i : fnums) {
+				//System.out.println(i);
+				
+				NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+				noticeFilesVO.setFnum(i);
+				
+				String fileName = noticeFilesMapper.noticeFilesSelect(noticeFilesVO).getFname();
+				System.out.println(fileName);
+				
+				//static의 파일 지우기
+				fileSaver.fileDelete(file, fileName);
+				
+				//DB 테이블에서 파일 지우기
+				result = noticeFilesMapper.noticeFilesDelete(noticeFilesVO);
+				System.out.println(result);
+			}
+		}
+		
+		//기존 파일 그대로
+		System.out.println("그대로당!");
+		
+		List<NoticeFilesVO> noticeFilesVOs = new ArrayList<NoticeFilesVO>();
+		
+		for(int i=0;i<files.length;i++) {
+			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
+				String fileName = fileSaver.save(file, files[i]);
+				System.out.println(fileName);
+				
+				NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+				//System.out.println(noticeVO.getNum());
+				noticeFilesVO.setNum(noticeVO.getNum());
+				noticeFilesVO.setFname(files[i].getOriginalFilename());
+				noticeFilesVO.setOname(fileName);
+				
+				noticeFilesVOs.add(noticeFilesVO);
+			}
+		}
+		
+		//file 개수가 0보다 클 때만 files에 등록
+		if(noticeFilesVOs.size() > 0) {
+			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
+		}
+		
+		return result;
 	}
 	
 	//글 작성 + 파일 추가

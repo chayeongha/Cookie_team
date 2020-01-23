@@ -27,6 +27,8 @@
 	
    <div class="container">
      <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
+       <form:hidden path="num" value="${update.num}" readonly="true" class="form-control" id="num" />
+       
         <div class="form-group">
          <label for="title" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">제목</label>
          <form:input path="title" value="${update.title}" placeholder="Enter Title" class="form-control" id="title" />
@@ -40,7 +42,7 @@
        
        <div class="form-group">
          <label for="contents"></label>
-         <textarea class="form-control" id="contents" placeholder="Enter Cotents">${update.contents}</textarea>
+         <textarea class="form-control" id="contents" name="contents">${update.contents}</textarea>
          <%-- <form:errors path="contents" /> --%>
        </div>
        
@@ -51,14 +53,23 @@
 		<div>
 			<ul>
 				<c:forEach items="${update.noticeFilesVO}" var="file" varStatus="i">
-					<li class="oname">${file.oname}<input type="button" class="del" id="del_${i}" value="X"></li>
+					<li>
+						<span class="oname">${file.oname}</span>
+						<input type="hidden" class="fnum" value="${file.fnum}">
+						<input type="button" class="del" id="del_${i}" value="X">
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
 		
 		<script type="text/javascript">
 			$('.del').click(function(){
-				$(this).parent().remove();
+				var fnum = $(this).parent().find('.fnum').val();
+				//alert(fnum);
+				$(this).parent().find('.fnum').attr("name", "fnums");
+				//console.log($(this).parent().find('.fnum').attr("name"));
+				$(this).parent().find('.oname').remove();
+				$(this).remove();
 			    check--;
 			    //alert(check);
 			});

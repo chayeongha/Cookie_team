@@ -95,13 +95,26 @@ public class NoticeController {
 	
 	//글 수정
 	@PostMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(@Valid NoticeVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception{
+	public ModelAndView noticeUpdate(@Valid NoticeVO noticeVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("fnum 들어왔냡");
+		//System.out.println(noticeVO.getNum());
 		
-		if(bindingResult.hasErrors()) {
-			mv.setViewName("board/boardSelect?num="+noticeVO.getNum());
+		if(bindingResult.hasErrors()) {//에러가 생겼을 때 다시 form으로 돌아가게끔
+			noticeVO = noticeService.noticeSelect(noticeVO);
+			mv.addObject("update", noticeVO);
+			mv.addObject("boardName", "공지사항");
+			mv.setViewName("board/boardUpdate");
 		}else {
-			//int result = noticeService
+			int result = noticeService.noticeUpdate(noticeVO, files, fnums);
+			String msg = "Update Fail";
+			
+			if(result>0) {
+				msg = "Update Success";
+			}
+			mv.setViewName("common/result");
+			mv.addObject("msg", msg);
+			mv.addObject("path", "./noticeSelect?num="+noticeVO.getNum());
 		}
 		
 		return mv;

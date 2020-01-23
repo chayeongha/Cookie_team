@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.cookie.basic.board.notice.NoticeFilesMapper">
-	<select id="noticeFileSelect" parameterType="Integer" resultType="NoticeFilesVO">
+	<select id="noticeFilesSelect" parameterType="Integer" resultType="NoticeFilesVO">
 		select * from noticeFiles where fnum = #{fnum}
 	</select>
 	
@@ -15,8 +15,8 @@
 		</foreach>
 	</insert>
 	
-	<delete id="noticeFileDelete" parameterType="NoticeFilesVO">
-		delete noticeFiles where fnum=#{fnum}
+	<delete id="noticeFilesDelete" parameterType="NoticeFilesVO">
+		delete from noticeFiles where fnum=#{fnum}
 	</delete> 
 	
 	<select id="noticeFileList" parameterType="Integer" resultType="NoticeFilesVO">
