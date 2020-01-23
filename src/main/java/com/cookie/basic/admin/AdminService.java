@@ -14,28 +14,16 @@ public class AdminService {
 	@Autowired
 	private AdminMapper adminMapper;
 	
-	//개인회원리스트
-	public List<MemberVO>pmemberList(Pager pager)throws Exception{
+	//관리자 회원리스트
+	public List<MemberVO>adminMemberList(Pager pager)throws Exception{
 		pager.makeRow();
-		pager.makePage(adminMapper.listCount(pager));
-		pager.setGrade(1);
-	
-		return adminMapper.pmemberList(pager);
-	}
-	
-	//사업자회원리스트
-	public List<MemberVO>bmemberList(Pager pager)throws Exception{
-		pager.makeRow();
-		pager.makePage(adminMapper.listCount(pager));
-		pager.setGrade(8888);
+		pager.makePage(adminMapper.adminMemberCount(pager));
 		
-		return adminMapper.bmemberList(pager);
+		return adminMapper.adminMemberList(pager);
 	}
 	
 	//관리자가 개인회원탈퇴
 	public int pmemberDelete(MemberVO memberVO)throws Exception{
 		return adminMapper.pmemberDelete(memberVO);
 	}
-	
-	
 }

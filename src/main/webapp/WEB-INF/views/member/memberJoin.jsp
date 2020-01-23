@@ -4,6 +4,7 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,7 @@
 		      <label class="control-label col-sm-2" for="memId">아이디</label>
 		      <div class="col-sm-10">
 		        <form:input path="memId" placeholder="Enter id" class="form-control" id="memId"/>
-		      	<form:errors path="memId" />
+		      	<form:errors path="memId" cssStyle="color:red;" />
 		      </div>
 		    </div>
 		    

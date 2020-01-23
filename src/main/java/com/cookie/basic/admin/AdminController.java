@@ -27,75 +27,28 @@ public class AdminController {
 	
 	//어드민멤버리스트페이지
 	@GetMapping("adminMemberList")
-	public ModelAndView adminMemberList(Pager pager) throws Exception{
+	public  ModelAndView adminMemberList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		List<MemberVO> ar = adminService.pmemberList(pager);
-		List<MemberVO> ar2 = adminService.bmemberList(pager);
+		List<MemberVO> ar = adminService.adminMemberList(pager);
+			
 		mv.addObject("pager", pager);
-		
-		mv.addObject("pmemberList", ar);
-		mv.addObject("bmemberList", ar2);
+		mv.addObject("memberSize", ar.size());
+		mv.addObject("memberList", ar);
 		mv.setViewName("admin/adminMemberList");
-		
-		return mv;
-	}
-	
-	//개인회원 리스트
-	@GetMapping("pmemberList")
-	public ModelAndView pmemberList(Pager pager)throws Exception{
-		ModelAndView mv = new ModelAndView();
-			
-		List<MemberVO> ar = adminService.pmemberList(pager);
-			
-		mv.addObject("pager", pager);
-		mv.addObject("pmemberList", ar);
-		mv.setViewName("admin/pmemberList");
 			
 		return mv;
 	}
 	
-	//사업자회원리스트
-	@GetMapping("bmemberList")
-	public ModelAndView bmemberList(Pager pager)throws Exception{
-		
-		ModelAndView mv = new ModelAndView();
-		
-		List<MemberVO> ar2 = adminService.bmemberList(pager);
-		
-		mv.addObject("pager", pager);
-		mv.addObject("bmemberList", ar2);
-		
-		mv.setViewName("admin/bmemberList");
-		
+	//회원탈퇴
+	@GetMapping("pmemberDelete")
+	public ModelAndView pmemberDelete(MemberVO memberVO)throws Exception{
+		ModelAndView mv= new ModelAndView();
+		adminService.pmemberDelete(memberVO);
+		mv.setViewName("redirect:./adminMemberList");
 		return mv;
+		
 	}
-	
-	//관리자가 회원탈퇴시키는것.
-	@PostMapping("pmemberDelete")
-	public ModelAndView pmemberDelete(MemberVO memberVO, String [] num)throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		int check=0;
-		
-		int result=0;
-		
-		for (String string : num) {
-			memberVO.setMemNum(Integer.parseInt(string));
-			check= adminService.pmemberDelete(memberVO);
-			Thread.sleep(200);
-			if(check ==1) {
-				result++;
-			}
-		}
-		if(result == num.length) {
-			 result =1;
-		}
-		mv.addObject("msg", result);
-		mv.setViewName("common/ajax_result");
-		
-		return mv;
-		}
 	
 	
 }

@@ -15,7 +15,7 @@ public class MemberVO {
 	@NotEmpty(message = "비우지마시오!!")
 	private String memId;
 	
-	@NotEmpty
+	@NotEmpty(message = "비우지마시오!!")
 	@Size(min = 4, max = 12)
 	private String pw;
 

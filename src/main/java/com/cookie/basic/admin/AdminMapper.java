@@ -12,20 +12,13 @@ import com.cookie.basic.util.Pager;
 @Mapper
 public interface AdminMapper {
 
-	//개인회원 리스트
-	public List<MemberVO>pmemberList(Pager pager)throws Exception;
-		
-	//개인회원리스트 카운트
-	public int listCount(Pager pager)throws Exception;
+	//관리자회원리스트
+	public List<MemberVO>adminMemberList(Pager pager)throws Exception;
 	
-	//사업자회원 리스트
-	public List<MemberVO>bmemberList(Pager pager)throws Exception;
+	//관리자회원카운트
+	public int adminMemberCount(Pager pager)throws Exception;
 	
-//	//사업자회원리스트 카운트
-//	public int blistCount(Pager pager)throws Exception;
-
 	//관리자가 개인회원탈퇴
 	public int pmemberDelete(MemberVO memberVO)throws Exception;
-	
 	
 }

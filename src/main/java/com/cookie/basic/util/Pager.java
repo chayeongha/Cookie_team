@@ -4,9 +4,12 @@ public class Pager {
 
 	private Integer grade;//그레이드값
 	
+	//@@@@@@@중요 오류나면 여기 다시보기
 	public Integer getGrade() {
+
 		return grade;
 	}
+	
 	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
