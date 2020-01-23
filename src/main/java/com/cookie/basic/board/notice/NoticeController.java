@@ -79,6 +79,26 @@ public class NoticeController {
 		return mv;
 	}
 	/////////////////////////////////////////////////////////////
+	//글 삭제
+	@GetMapping("noticeDelete")
+	public ModelAndView noticeDelete(NoticeVO noticeVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = noticeService.noticeDelete(noticeVO);
+		
+		String msg = "Delete Fail";
+		
+		if(result>0) {
+			msg = "Delete Success";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "noticeList");
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
 	//글 수정 폼
 	@GetMapping("noticeUpdate")
 	public ModelAndView noticeUpdate(NoticeVO noticeVO) throws Exception {
@@ -104,7 +124,7 @@ public class NoticeController {
 			noticeVO = noticeService.noticeSelect(noticeVO);
 			mv.addObject("update", noticeVO);
 			mv.addObject("boardName", "공지사항");
-			mv.setViewName("board/boardUpdate");
+			mv.setViewName("board/boardUpdate");// '/WEB-INF/views/'와 '.jsp'를 붙여줌
 		}else {
 			int result = noticeService.noticeUpdate(noticeVO, files, fnums);
 			String msg = "Update Fail";

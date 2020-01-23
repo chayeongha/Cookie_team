@@ -44,8 +44,37 @@ public class NoticeService {
 		return noticeFilesMapper.noticeFilesSelect(noticeFilesVO);
 	}
 	///////////////////////////////////////////////////
+	//글 삭제
+	@Transactional
+	public int noticeDelete(NoticeVO noticeVO) throws Exception {
+		//System.out.println(noticeVO.getNum());
+		int result = noticeMapper.noticeDelete(noticeVO);
+		
+		NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+		noticeFilesVO.setNum(noticeVO.getNum());
+		
+		List<NoticeFilesVO> noticeFilesVOs = noticeFilesMapper.noticeFilesList(noticeFilesVO);
+		
+		File file = filePathGenerator.getUseClassPathResource("notice");
+		
+		boolean check = false;
+		
+		for (NoticeFilesVO noticeFilesVO2 : noticeFilesVOs) {
+			String fileName = noticeFilesVO2.getFname();
+			check = fileSaver.fileDelete(file, fileName);
+		}
+		
+		if(check) {
+			result = 0;
+		}else {
+			result = 1;
+		}
+		
+		return result;
+	}
+	
 	//글 수정
-	//@Transactional
+	@Transactional
 	public int noticeUpdate(NoticeVO noticeVO, MultipartFile[] files, int[] fnums) throws Exception {
 		
 		//notice 테이블 수정

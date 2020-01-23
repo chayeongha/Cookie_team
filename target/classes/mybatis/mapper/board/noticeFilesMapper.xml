@@ -19,7 +19,7 @@
 		delete from noticeFiles where fnum=#{fnum}
 	</delete> 
 	
-	<select id="noticeFileList" parameterType="Integer" resultType="NoticeFilesVO">
+	<select id="noticeFilesList" parameterType="Integer" resultType="NoticeFilesVO">
 		select * from noticeFiles where num=#{num}
 	</select>
 </mapper>

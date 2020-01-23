@@ -39,6 +39,10 @@
   		</collection>
   	</resultMap>
   	
+  	<delete id="noticeDelete" parameterType="NoticeVO">
+  		delete from notice where num = #{num}
+  	</delete>
+  	
   	<update id="noticeUpdate" parameterType="NoticeVO">
   		update notice set title = #{title}, writer = #{writer}, contents = #{contents}
   		where num = #{num}
