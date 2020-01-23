@@ -1,6 +1,7 @@
 package com.cookie.basic.store;
 
 public class StoreVO {
+
 	
 	
 	private int ssNum; 
@@ -59,29 +60,13 @@ public class StoreVO {
 	public void setsTel(String sTel) {
 		this.sTel = sTel;
 	}
-	
 
-	public String getRoadFullAddr() {
-		return roadFullAddr;
-	}
-	public void setRoadFullAddr(String roadFullAddr) {
-		this.roadFullAddr = roadFullAddr;
-	}
-	public int getsOn() {
-		return sOn;
-	}
-	public void setsOn(int sOn) {
-		this.sOn = sOn;
-	}
-	public String getsNotice() {
-		return sNotice;
-	}
-	public void setsNotice(String sNotice) {
-		this.sNotice = sNotice;
-	} 
-	
-	
-	
-	
+   
+   
+   
+      
+
+   
+   
 
 }
