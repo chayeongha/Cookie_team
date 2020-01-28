@@ -50,12 +50,18 @@ public class MemberController {
 
 	//회원가입
 	@GetMapping("memberJoin")
-	public ModelAndView memberJoin(String grade , String kind)throws Exception {
+	public ModelAndView memberJoin(Pager pager)throws Exception {
+	
 		ModelAndView mv = new ModelAndView();
+		//가입종류별로 텍스트출력
+		String jname=null;
+		if(pager.getGrade()==1) {
+			jname="개인";
+		}else if(pager.getGrade()==8888){
+			jname="사업자";
+		}
 		
-		int grade2=Integer.parseInt(grade);
-		mv.addObject("grade", grade2);
-		mv.addObject("kind", kind);
+		mv.addObject("jname", jname);
 		mv.setViewName("member/memberJoin");
 		return mv;
 	}
@@ -66,7 +72,7 @@ public class MemberController {
 		ModelAndView mv= new ModelAndView();
 		
 		if(memberService.memberJoinValidate(memberVO, bindingResult)) {
-			mv.setViewName("member/memberJoin");
+			mv.setViewName("../");
 		}else {
 			
 			String msg = "회원가입 실패";
@@ -87,17 +93,19 @@ public class MemberController {
 	//로그아웃
 	@GetMapping("memberLogout")
 	public ModelAndView memberLogout(HttpSession session)throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		session.invalidate();
+		
 		String msg= "로그아웃";
-		String path="./memberIndex";
+		String path="../";
+		
 		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/result");
 		
 		return mv;
 	}
-	
 	
 	//로그인
 	@GetMapping("memberLogin")
@@ -107,15 +115,17 @@ public class MemberController {
 	
 	@PostMapping("memberLogin")
 	public ModelAndView memberLogin(MemberVO memberVO, HttpSession session)throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		
 		memberVO=memberService.memberLogin(memberVO);
 		
 		String msg="로그인 실패!!";
-		String path="./memberIndex";
+		String path="./memberLogin";
 		
 		if(memberVO != null) {
 			msg="로그인 성공!!";
+			path="../";
 			session.setAttribute("member", memberVO);
 
 		}
@@ -134,6 +144,7 @@ public class MemberController {
 	
 	@PostMapping("memberNaver")
 	public String memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
+		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemId(email);
 		memberVO = memberService.memberNaver(memberVO);
@@ -158,6 +169,7 @@ public class MemberController {
 	//카카오회원가입
 	@PostMapping("memberKakao")
 	public String memberKakao(HttpSession session,String nickname,String email) throws Exception{
+		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemId(email);
 		memberVO = memberService.memberKakao(memberVO);
@@ -191,6 +203,7 @@ public class MemberController {
 	
 	@PostMapping("memberUpdate")
 	public ModelAndView memberUpdate(MemberVO memberVO, MultipartFile files, HttpSession session)throws Exception {
+		
 		ModelAndView mv = new ModelAndView();
 		
 		int result = memberService.memberUpdate(memberVO,files);
@@ -212,6 +225,7 @@ public class MemberController {
 	//마이페이지에서 회원 스스로 탈퇴
 	@GetMapping("memberDelete")
 	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session)throws Exception {
+		
 		ModelAndView mv = new ModelAndView();
 		
 		int result =memberService.memberDelete(memberVO);
@@ -229,7 +243,3 @@ public class MemberController {
 		
 }
 	
-	
-	
-	
-

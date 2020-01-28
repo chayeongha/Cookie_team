@@ -14,24 +14,22 @@ public class MemberVO {
 	
 	private Integer memNum;
 	
-	@NotEmpty(message = "비우지마시오!!")
+	//@NotEmpty(message = "\"아이디\" 항목이 필요합니다.")
+	@NotEmpty
 	private String memId;
-	
-	@NotEmpty(message = "비우지마시오!!")
-	@Size(min = 4, max = 12)
+	@Size(min=5, max=14, message = "비밀번호는 최소6글자이상 최대14글자이하입니다.")
 	private String pw;
-
-	private String pw2;
-	
+	@NotEmpty(message = "\"비밀번호 확인\" 항목이 필요합니다.")
+	private String pwCheck;
+	@NotEmpty(message = "\"이름\" 항목이 필요합니다.")
 	private String name;
+	@NotEmpty(message = "\"닉네임\" 항목이 필요합니다.")
 	private String nickname;
+	@NotEmpty(message = "\"연락처\" 항목이 필요합니다.")
 	private String phone;
 	private Integer grade;
 	private Integer kind;
 
-	//셀렉트조인 회원가입종류
-	private String jkind;
-	
 	private MemberFilesVO memberFilesVO;
 	
 	private Integer fnum;
