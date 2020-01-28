@@ -25,7 +25,7 @@ public class MessageConfig implements WebMvcConfigurer {
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
 		cookieLocaleResolver.setDefaultLocale(Locale.KOREAN);//기본지역을 무엇으로 할지 정해주는것.
 		cookieLocaleResolver.setCookieName("lang");//파라미터이름을 무엇으로 할지 정해주는것.
-		cookieLocaleResolver.setCookieMaxAge(1);
+		//cookieLocaleResolver.setCookieMaxAge(1);
 		
 		return cookieLocaleResolver;
 		//return sessionLocaleResolver;
