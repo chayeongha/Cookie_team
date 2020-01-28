@@ -38,10 +38,10 @@
 			type="hidden" id="hmmnum" value="${vo.mmNum }">
 
 		<div class="btnBox">
-			<a href="./menuList?ssNum=${vo.ssNum}"> <input type="button" value="리스트로" style="cursor: pointer;"></a> 
+			<a href="./menuList?ssNum=${vo.ssNum}"> <input type="button" value="List" style="cursor: pointer;" class="listGO"></a> 
 			<a href="./menuUpdate?mmNum=${vo.mmNum}"> 
-			<input type="button" value="메뉴 수정" style="cursor: pointer;"></a> 
-			<input type="button" value="메뉴 삭제" style="cursor: pointer;" id="delbtn">
+			<input type="button" value="메뉴 수정" style="cursor: pointer;" class="UpdateMenu"></a> 
+			<input type="button" value="메뉴 삭제" style="cursor: pointer;" id="delbtn" class="DeletMenu">
 		</div>
 	</div>
 	<script type="text/javascript">
