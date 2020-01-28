@@ -61,12 +61,12 @@
 		</div>
 		
 		<div class="wrap">
-		
+
 			<div class="selectBox" style="padding:30px">
 				카페이름 : 
 				<input type="text" class="sel">
 			</div>
-		
+
 			<div class="map3">
 			
 			</div>

@@ -1,5 +1,8 @@
 package com.cookie.basic.store;
 
+import com.cookie.basic.menu.MenuFilesVO;
+import com.cookie.basic.menu.MenuVO;
+
 public class StoreVO {
    
    
@@ -13,7 +16,8 @@ public class StoreVO {
    private int memNum;
    
    private StoreFilesVO storeFilesVO;
-   
+   private MenuVO menuVO;
+   private MenuFilesVO menuFilesVO;
 
    
    
@@ -21,7 +25,19 @@ public class StoreVO {
    
       
 
-   public String getMemId() {
+   public MenuFilesVO getMenuFilesVO() {
+	return menuFilesVO;
+}
+public void setMenuFilesVO(MenuFilesVO menuFilesVO) {
+	this.menuFilesVO = menuFilesVO;
+}
+public MenuVO getMenuVO() {
+	return menuVO;
+}
+public void setMenuVO(MenuVO menuVO) {
+	this.menuVO = menuVO;
+}
+public String getMemId() {
       return memId;
    }
    public void setMemId(String memId) {

@@ -271,10 +271,15 @@ public class StoreController {
 		return mv;
 	}
 	
+	
 	@GetMapping("storeGoods")
-	public void storeGoods() throws Exception{
-		
-		
+	public ModelAndView storeGoods(StoreVO storeVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		storeVO = storeService.storeGoods(storeVO);
+		List<StoreVO> ar = storeService.storeGoods2(storeVO);
+		mv.addObject("storeVO",storeVO);
+		mv.addObject("list",ar);
+		return mv;
 	}
 	
 	

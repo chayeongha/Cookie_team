@@ -205,5 +205,13 @@ public class StoreService {
 		return storeMapper.storeList(storeVO);
 	}
 	
+	public StoreVO storeGoods(StoreVO storeVO) throws Exception{
+		return storeMapper.storeGoods(storeVO);
+	}
+	
+	public List<StoreVO> storeGoods2(StoreVO storeVO) throws Exception{
+		return storeMapper.storeGoods2(storeVO);
+	}
+	
 
 }

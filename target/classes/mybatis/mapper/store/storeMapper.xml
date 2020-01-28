@@ -67,14 +67,63 @@
         on S.ssNum = F.ssNum        
         where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE concat('%',#{sName},'%')
         and sName LIKE concat('%',#{sTel},'%')
+        order by sOn desc
      </select>
      
      <select id="storeList2" parameterType="StoreVO" resultMap="storeResult">
      	select * from store S left outer join storeFiles F 
         on S.ssNum = F.ssNum        
         where roadFullAddr LIKE concat('%',#{memId}, '%')
+        order by sOn desc
      </select>
      
+     <resultMap type="StoreVO" id="storeGoodsResult">
+  		<id column="ssNum" property="ssNum"/>
+  		<result column="sName" property="sName"/>
+  		<result column="sTel" property="sTel"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
+  		<result column="sNotice" property="sNotice"/>
+  		<result column="sOn" property="sOn"/>
+  		<result column="memNum" property="memNum"/>
+  		<result column="memId" property="memId"/>
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  		<association property="menuVO" javaType="MenuVO">
+  			<id column="mmNum" property="mmNum"/>
+  			<result column="mmName" property="mmName"/>
+  			<result column="mmPrice" property="mmPrice"/>
+  			<result column="mmCount" property="mmCount"/>
+  			<result column="cmNum" property="cmNum"/>
+  			<result column="mmTemp" property="mmTemp"/>
+  			<result column="ssNum" property="ssNum"/>
+  		</association>
+  		<association property="menuFilesVO" javaType="MenuFilesVO">
+  			<id column="mfNum" property="mfNum"/>
+  			<result column="mfName" property="mfName"/>	
+  			<result column="moName" property="moName"/>	
+  		</association>
+  	</resultMap>
+     
+     <select id="storeGoods" parameterType="StoreVO" resultMap="storeGoodsResult">
+    	select * from store S
+		join menu M
+   		using(ssNum)
+    	join storeFiles F
+    	using(ssNum)     
+        where ssNum=#{ssNum}
+     </select>
+     
+     <select id="storeGoods2" parameterType="StoreVO" resultMap="storeGoodsResult">
+    	select * from store S
+		join menu M
+   		using(ssNum)
+    	join storeFiles F
+    	using(ssNum)     
+        where ssNum=#{ssNum}
+     </select>
      
   </mapper>
 

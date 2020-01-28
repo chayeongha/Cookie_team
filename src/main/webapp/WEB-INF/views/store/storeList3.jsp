@@ -16,15 +16,41 @@
 			<c:if test="${not empty ar}">
 				
 				<c:forEach items="${ar}" var="vo">
-					<div class="sList">
-					<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}">
-					<div style="float:right">주문하기</div>
-					</div>
+					<c:if test="${vo.sOn eq 1}">
+						<div class="sList">
+						<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}">
+						<div style="float:right">
+							<div class="volist">
+								<br><br><br><br>
+								<div>${vo.sName}</div>
+								<div>${vo.sTel}</div>
+								<a href="./storeGoods?ssNum=${vo.ssNum}">주문하기</a>
+							</div>
+						</div>
+						</div>
+					</c:if>
+					<c:if test="${vo.sOn eq 0}">
+						<div class="sList" style="opacity: 0.5">
+						<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}">
+						<div style="float:right">
+							<div class="volist">
+								<br><br><br><br>
+								<div>${vo.sName}</div>
+								<div>${vo.sTel}</div>
+								<div>영업시간이 아닙니다.</div>
+							</div>
+						</div>
+						</div>
+					</c:if>
 				</c:forEach>
 					
 			</c:if>
-			
+			<script type="text/javascript">
+				$(".sList").click(function(){
+					
+					});
+			</script>
 		</div>
-		
+				
 	</div>
 </body>

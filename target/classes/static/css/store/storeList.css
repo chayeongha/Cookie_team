@@ -88,7 +88,7 @@
 	border:none;
 	background: transparent;
 	border-bottom: 1px solid white;
-	margin-bottom: 10px; 
+
 }
 
 .btnselect{
@@ -104,14 +104,39 @@
 }
 
 .sList{
-	width:550px;
-	padding:20px;
-	float:left;
+	width:500px;
+	padding:30px;
+	margin-left:30px;
 	background: #ffede3;
+	display: inline-block;
+	margin-bottom: 20px;
 	
 }
+
+.sList:hover{
+	background: white;
+}
+
 .sList > img{
 	width: 230px;
 	height: 230px;
 }
 
+.volist{
+	font-family: CookieRun-Regular;
+	font-size:20px;
+	width: 190px;
+	text-align: right;
+}
+
+
+.volist > a{
+	text-decoration:none;
+	font-size:27px;
+	color:#f23600;
+}
+
+.volist > a:hover {
+	font-size: 29px;
+	text-decoration:none;
+}
