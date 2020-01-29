@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,9 @@
 <link href="/css/reset.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<div class="storeHeader">
@@ -44,22 +48,48 @@
 		</div>
 	</div>
 	<a href="./storeUpdate?ssNum=${store.ssNum}">
-	<div class="Update_storeInfo">
+		<div class="Update_storeInfo">
 			<i class="fa fa-history" style="font-size: 24px; color: black;"></i>
 			Update
-		</div></a>
-		
-		<a href="../menu/menuList?ssNum=${store.ssNum}">메뉴리스트</a>
+		</div>
+	</a>
 
+	<a href="../menu/menuList?ssNum=${store.ssNum}">메뉴리스트</a>
+
+	
+	<input type="hidden" value="${close.cwait}">
+	
+	
+	<c:if test="${close.cwait eq null}">
+	<input type="button" id="ByeInsert" value="폐업등록">
+	</c:if>
+	<c:if test="${close.cwait eq 0}">승인대기중</c:if>
+	<c:if test="${close.cwait eq 1}">
+	<a href="./deleteStore?ssNum=${store.ssNum}"><input type="button" id="ByeDelete" value="폐업"></a>
+	</c:if>
+	
 
 
 
 	<script type="text/javascript">
 		$("#goOn").click(function() {
+
 			$("#infoGo").submit();
+
 		});
 	</script>
 
+	<script type="text/javascript">
+		$("#ByeInsert").click(function() {
+			if (confirm("정말로 폐업을 신청하시겠습니까?")) {
+				alert("신청페이지로 넘어갑니다.")
+				location.href = "./storeClose";
+			} else {
+				alert("취소");
+				location.replcate = "./";
+			}
+		});
+	</script>
 
 </body>
 </html>

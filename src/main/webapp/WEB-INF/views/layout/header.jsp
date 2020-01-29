@@ -37,7 +37,15 @@
 			<c:if test="${null eq sessionScope.member.kind }">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></div>
 			</c:if>
+			
+			<c:if test="${sessionScope.member.grade ne 9999}">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberMypage">Mypage</a></div>
+			</c:if>
+			<c:if test="${sessionScope.member.grade eq 9999}">
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/admin/adminMain">adminPage</a></div>
+			</c:if>
+			
+			
 		</c:if>
 		<c:if test="${empty sessionScope.member}">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/selectJoin">Join</a></div>

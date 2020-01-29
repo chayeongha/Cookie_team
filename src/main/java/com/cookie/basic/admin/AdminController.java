@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.store.StoreCloseVO;
 import com.cookie.basic.util.Pager;
 
 @Controller
@@ -55,6 +56,27 @@ public class AdminController {
 		return mv;
 		
 	}
+	
+	//업데이트
+	@GetMapping("storeAdminUpdate")
+	public ModelAndView storeAdminUpdate(StoreCloseVO storeCloseVO)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		int result = adminService.storeAdminUpdate(storeCloseVO);
+		
+		String msg = "승인 실패!";
+		String path = "./";
+		if (result > 0) {
+			msg = "승인 성공!";
+			path = "./adminMain";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		mv.setViewName("common/result");
+		return mv;
+		
+	}
+	
 	
 	
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.store.StoreCloseVO;
 import com.cookie.basic.util.Pager;
 
 @Repository
@@ -20,5 +21,8 @@ public interface AdminMapper {
 	
 	//관리자가 개인회원탈퇴
 	public int pmemberDelete(MemberVO memberVO)throws Exception;
+	
+	//폐점 업데이트
+	public int storeAdminUpdate(StoreCloseVO storeCloseVO)throws Exception;
 	
 }

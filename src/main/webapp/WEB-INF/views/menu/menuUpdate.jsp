@@ -104,7 +104,7 @@
     <div class="form-group">
         <br>
         <br>
-        <div style="margin-top: 250px; margin-left: 250px; font-family: CookieRun-Regular; font-size: 24px;">Menu Photo</div>
+        <div style="margin-top: 850px; margin-left: 250px; font-family: CookieRun-Regular; font-size: 24px;">Menu Photo</div>
 		  <img id="blah" src="../menu/${vo.menuFiles.mfName}" alt="your image" class="imgF" style="width: 300px; height: 300px; margin-left: 250px; margin-top: 50px; clear: both; margin-right: 300px;"/>
 		    <br>
 		<input type="file"class="form-control" id="files" name="files" value="">

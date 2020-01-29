@@ -33,5 +33,16 @@
 	<delete id="pmemberDelete" parameterType="MemberVO">
 			delete from members where memNum=#{memNum}
 	</delete>
+	
+<!--폐업업뎃-->
+<update id="storeAdminUpdate" parameterType="StoreCloseVO">
+	update storeClose set cwait=1 where ssNum=#{ssNum}
+</update>
+
+
+
+	
+	
 
 </mapper>
+
