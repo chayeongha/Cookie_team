@@ -68,14 +68,110 @@
      <select id="storeList" parameterType="StoreVO" resultMap="storeResult">
      	select * from store S left outer join storeFiles F 
         on S.ssNum = F.ssNum        
-        where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE concat('%',#{sName},'%');
+        where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE concat('%',#{sName},'%')
+        and sName LIKE concat('%',#{sTel},'%')
+        order by sOn desc
      </select>
      
      <select id="storeList2" parameterType="StoreVO" resultMap="storeResult">
      	select * from store S left outer join storeFiles F 
         on S.ssNum = F.ssNum        
-        where roadFullAddr LIKE concat('%',#{memId}, '%');
+        where roadFullAddr LIKE concat('%',#{memId}, '%')
+        order by sOn desc
      </select>
+
+        <resultMap type="StoreVO" id="storeGoodsResult">
+  		<id column="ssNum" property="ssNum"/>
+  		<result column="sName" property="sName"/>
+  		<result column="sTel" property="sTel"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
+  		<result column="sNotice" property="sNotice"/>
+  		<result column="sOn" property="sOn"/>
+  		<result column="memNum" property="memNum"/>
+  		<result column="memId" property="memId"/>
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  		<collection property="menuVO" javaType="List" ofType="menuVO">
+  			<id column="mmNum" property="mmNum"/>
+  			<result column="mmName" property="mmName"/>
+  			<result column="mmPrice" property="mmPrice"/>
+  			<result column="mmCount" property="mmCount"/>
+  			<result column="cmNum" property="cmNum"/>
+  			<result column="mmTemp" property="mmTemp"/>
+  			<result column="ssNum" property="ssNum"/>
+  		</collection>
+  		<collection property="menuFilesVO" javaType="List" ofType="menuVO">
+  			<id column="mfNum" property="mfNum"/>
+  			<result column="mfName" property="mfName"/>	
+  			<result column="moName" property="moName"/>	
+  		</collection>
+  	</resultMap>
+     
+     <select id="storeGoods" parameterType="StoreVO" resultMap="storeGoodsResult">
+    	select * from store S
+		join menu M
+   		using(ssNum)
+    	join storeFiles F
+    	using(ssNum)     
+        where ssNum=#{ssNum}
+     </select>
+     
+     <select id="storeGoods2" parameterType="StoreVO" resultMap="storeGoodsResult2">
+    	select * from store S
+		join menu M
+   		using(ssNum)
+    	join storeFiles F
+    	using(ssNum)
+        left outer join mopt MP
+        using(mmNum)
+        left outer join menuFiles MF
+        using(mmNum)
+        where ssNum=#{ssNum}
+     </select>
+     
+     <resultMap type="StoreVO" id="storeGoodsResult2">
+  		<id column="ssNum" property="ssNum"/>
+  		<result column="sName" property="sName"/>
+  		<result column="sTel" property="sTel"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
+  		<result column="sNotice" property="sNotice"/>
+  		<result column="sOn" property="sOn"/>
+  		<result column="memNum" property="memNum"/>
+  		<result column="memId" property="memId"/>
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  		<collection property="menuVO" javaType="List" ofType="menuVO">
+  			<id column="mmNum" property="mmNum"/>
+  			<result column="mmName" property="mmName"/>
+  			<result column="mmPrice" property="mmPrice"/>
+  			<result column="mmCount" property="mmCount"/>
+  			<result column="cmNum" property="cmNum"/>
+  			<result column="mmTemp" property="mmTemp"/>
+  			<result column="ssNum" property="ssNum"/>
+  			
+  			<collection property="menuFiles" javaType="MenuFilesVO" >
+			<id column="mfNum" property="mfNum"/>
+			<result column="mfName" property="mfName"/>
+			<result column="moNum" property="moNum"/>
+			</collection>
+  			
+  			<collection property="menuOptions" javaType="List" ofType="MoptVO">
+  				<id column="optNum" property="optNum"/>
+  				<result column="optName" property="optName"/>
+	  			<result column="optPrice" property="optPrice"/>
+	  			<result column="optCount" property="optCount"/>
+  			</collection>
+  			
+  					
+  		</collection>
+ 
+  	</resultMap>
      
      
   </mapper>

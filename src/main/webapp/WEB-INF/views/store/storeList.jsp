@@ -61,6 +61,12 @@
 		</div>
 		
 		<div class="wrap">
+
+			<div class="selectBox" style="padding:30px">
+				카페이름 : 
+				<input type="text" class="sel">
+			</div>
+
 			<div class="map3">
 			
 			</div>
@@ -111,7 +117,7 @@
 		$("body").on("click",".bb",function(){
 			var v = $("#v").val();
 			var v2 = $(this).val();
-
+			var s ="";
 			$(".bb").removeClass('a');
 			$(this).addClass('a');
 			
@@ -120,7 +126,8 @@
 				type:'get',
 				data:{
 					"v":v,
-					"v2":v2
+					"v2":v2,
+					"s":s
 				},
 				success:function(data){
 					$(".map3").html(data);
@@ -129,6 +136,29 @@
 			});
 
 		});
+
+		$("body").on("keyup",".sel",function(){
+				var s = $(this).val();
+				var v = $("#s1").val();
+				var v2 = $("#s2").val();
+				
+				$.ajax({
+					url:"./storeList3",
+					type:'get',
+					data:{
+						"v":v,
+						"v2":v2,
+						"s":s
+					},
+					success:function(data){
+						$(".map3").html(data);
+					
+					}
+
+
+				});
+
+			});
 		
 		</script>
 		
