@@ -251,7 +251,9 @@
   <!-- 아래내용 -->
   	<div class="body2">
   	<div>
-		<div class="memberTitle">멤버</div>
+		<div class="memberTitle">멤버
+			<div class="memberListContainer"></div>
+		</div>
   		
   		
   		
@@ -289,6 +291,8 @@ $(document).ready(function() {
 });
 	
 </script>
+
+
 
 
 </body>

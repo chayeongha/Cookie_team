@@ -17,13 +17,13 @@
 		<div id="listcontent">
 		
 				<div class="container title">
-					<a href="${pageContext.request.contextPath}/member/memberIndex">멤버인덱스로..</a>
-					<h1>${gname}회원관리</h1>
+					<div class="memberManage">${gname}회원관리</div>
 				</div>
 				
 				<div class="container MemberMenu">
 					
 					<!-- 회원별 선택  -->
+					<a href="${pageContext.request.contextPath}/member/memberIndex">멤버인덱스로..</a>
 					<ul id="nav">
 						<li><a href="./adminMemberList?grade=1">개인회원</a></li>
 						<li><a href="./adminMemberList?grade=8888">사업자회원</a></li>

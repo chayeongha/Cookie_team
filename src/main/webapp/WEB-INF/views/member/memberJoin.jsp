@@ -221,7 +221,7 @@ function inputPhoneNumber(obj) {
 		//닉네임중복검사
 		$(".nickCheck").click(function(){
 			var nickname= $('#nickname').val();
-			window.open("./memberNickCheck?nickname="+nickname, "","width=500,height=230,top=200, left=600");
+			window.open("./memberNickCheck?nickname="+nickname, "","width=570,height=230,top=200, left=600");
 		});
 		
 	</script>

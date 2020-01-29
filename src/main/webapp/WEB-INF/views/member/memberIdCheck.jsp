@@ -8,9 +8,12 @@
 <meta charset="UTF-8">
 <title>ID 중복확인</title>
 <c:import url="../template/boot.jsp" />
+<link href="/css/member/idCheck.css" rel="stylesheet"/>
+<link href="/css/reset.css" rel="stylesheet" />
 </head>
 <body>
-	<h1>아이디중복확인</h1>
+	
+	<div class="checkId"><img alt="쿠키이미지" src="../images/header/mm.png" style="width: 45px; height: 45px; margin-left: 20px;">　아이디중복확인</div>
 	
 	<form action="./memberIdCheck">	
 		<c:if test="${not empty param.memId}">
@@ -19,11 +22,11 @@
 		
 		<div class="container">
 			<br>
-			<label for="memId">ID : </label> 
-			<input type="text" id="memId" name="memId" value="${param.memId}">
-			<button type="submit" class="btn btn-default">확인</button>
+			<label for="memId" class="memId">　ID : </label> 
+			<input type="text" id="memId" name="memId" value="${param.memId}" class="idInput">
+			<button type="submit" class="btnsubmin">확인</button>
 			<c:if test="${not empty param.memId and empty member }">
-				<input type="button" value="사용하기" id="useMemId" class="btn btn-default" >
+				<input type="button" value="사용하기" id="useMemId">
 			</c:if>			
 		</div>
 	</form>

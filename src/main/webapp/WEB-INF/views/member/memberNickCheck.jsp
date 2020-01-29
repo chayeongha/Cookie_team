@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <title>닉네임 중복확인</title>
 <c:import url="../template/boot.jsp" />
+<link href="/css/member/nickCheck.css" rel="stylesheet"/>
+<link href="/css/reset.css" rel="stylesheet" />
 </head>
 <body>
-	<h1>닉네임중복확인</h1>
+	<div class="checknickName"><img alt="쿠키이미지" src="../images/header/mm.png" style="width: 45px; height: 45px; margin-left: 20px;">　닉네임 중복확인</div>
 	
 	<form action="./memberNickCheck">	
 		<c:if test="${not empty param.nickname}">
@@ -19,11 +21,11 @@
 		
 		<div class="container">
 			<br>
-			<label for="nickname">NICKNAME : </label> 
+			<label for="nickname" class="nickname">NICKNAME : </label> 
 			<input type="text" id="nickname" name="nickname" value="${param.nickname}">
-			<button type="submit" class="btn btn-default">확인</button>
+			<button type="submit" class="btnsubmit">확인</button>
 			<c:if test="${not empty param.nickname and empty member }">
-				<input type="button" value="사용하기" id="useNickname" class="btn btn-default" >
+				<input type="button" value="사용하기" id="useNickname" >
 			</c:if>			
 		</div>
 	</form>

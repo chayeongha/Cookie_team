@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -87,7 +87,7 @@
 
 			<div>
 				<div class="store_label">지점이름:</div>
-				<input type="text" id="sName" name="sName" placeholder="　지점이름을 입력해주세요" class="stName store_input"> 
+				<input type="text" id="sName" name="sName" placeholder="　지점이름을 입력해주세요" class="store_input"> 
 					<input type="button" id="OK" value="중복확인">
 			</div>
 
