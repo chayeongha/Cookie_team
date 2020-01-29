@@ -55,14 +55,20 @@
     		</div>
     
      		<div class="box">
-      			<label for="name">닉네임</label>
+      			<label for="nickname">닉네임</label>
       			<input type="text" class="" id="nickname" value="${member.nickname}" readonly="readonly">
     		</div>
     
     		<div class="box">
-      			<label for="name">phone</label>
+      			<label for="phone">phone</label>
       			<input type="text" class="" id="phone" value="${member.phone}" readonly="readonly">
     		</div>
+    		
+    		<div class="box">
+      			<label for="email">email</label>
+      			<input type="text" class="" id="email" value="${member.email}" readonly="readonly">
+    		</div>
+    		
     		<div class="box">
       			<label for="name" class="e2">월 사용금액</label>
       			<input type="text" class="" id="phone" value="" readonly="readonly">

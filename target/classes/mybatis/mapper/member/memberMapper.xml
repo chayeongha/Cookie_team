@@ -5,7 +5,7 @@
   
   	<!--회원가입  -->
   	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
-  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{grade},#{kind})
+  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{email},#{grade},#{kind})
   	</insert>
 
   	<!--로그인 resultmap  -->
@@ -16,6 +16,7 @@
   			<result column="name" property="name"/>
   			<result column="nickname" property="nickname"/>
   			<result column="phone" property="phone"/>
+  			<result column="email" property="email"/>
   			<result column="grade" property="grade"/>
   			<result column="kind" property="kind"/>
   		<association property="memberFilesVO" javaType="memberFilesVO">
@@ -59,7 +60,7 @@
 	
 	<!-- 카카오 회원가입-->
   	<insert id="kakaoJoin" parameterType="memberVO">
-  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',1,2)
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',null,1,2)
   	</insert>
 
   	<!-- 카카오 -->
@@ -69,7 +70,7 @@
   
   	<!-- 네이버 회원가입-->
   	<insert id="naverJoin" parameterType="memberVO">
-  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',1,1)
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',null,1,1)
   	</insert>
   
   	<!-- 네이버 -->

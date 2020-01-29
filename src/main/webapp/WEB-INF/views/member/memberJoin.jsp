@@ -34,75 +34,81 @@
 		 </c:if>
 		  
 		  <form:form class="form-horizontal" id="frm" action="./memberJoin" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
-		    
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="memId">아이디</label>
-		      <div class="col-sm-10">
-		        <form:input path="memId" placeholder="한글이나 특수문자를 제외하고 입력하세요" class="form-control idCheck" id="memId" readonly="true"/>
-		      	<form:errors path="memId" cssStyle="color:red;" />
-		      </div>
-		    </div>
-		    
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="pw">비밀번호</label>
-		      <div class="col-sm-10">          
-		      <form:password path="pw" class="form-control" id="pw" placeholder="6~14자리 내에 영문과 ,숫자 ,특수기호를 다 사용하여 입력하세요 "/>
-				 <form:errors path="pw" cssStyle="color:red;" />
-		      </div>
-		     </div>
-		     
-		      <div class="form-group">
-		      <label class="control-label col-sm-2" for="pw2">비밀번호 확인</label>
-		      <div class="col-sm-10">          
-		        <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check"/>
-				<form:errors path="pwCheck" cssStyle="color:red;" />
-		      </div>
-		     </div>
-		     
-		     <div class="form-group">
-		      <label class="control-label col-sm-2" for="name">이름</label>
-		      <div class="col-sm-10">
-		      	<form:input path="name" class="form-control" id="name" placeholder="Enter name"/>
-				<form:errors path="name" cssStyle="color:red;" />
-		      </div>
-		    </div>
-		     
-		        <div class="form-group">
-		      <label class="control-label col-sm-2" for="nickname">닉네임 </label>
-		      <div class="col-sm-10">
-		        <form:input path="nickname" class="form-control nickCheck" id="nickname" placeholder="Enter nickname" readonly="true"/>
-				<form:errors path="nickname" cssStyle="color:red;" />
-		      </div>
-		    </div>
-		    
-		     <div class="form-group">
-		      	<label class="control-label col-sm-2" for="email">연락처</label>
-		     	 <div class="col-sm-10">          
-		      		<input type="tel" onKeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="Enter phone" class="form-control" name="phone" value="${phone}"/>
-		      	</div>
-		     </div>
-		     
-		     <div class="form-group">
-		      	<div class="col-sm-10"> 
-		     		<input type="hidden" class="form-control" name="kind" value="${kind}">
-		     		<input type="hidden" class="form-control" name="grade" value="${memberVO.grade}"> 
-		     	</div>
-		 	</div>
-		   
-		    <div class="form-group">
-				<label for="files">Profile:</label> 
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="memId">아이디</label>
+			      <div class="col-sm-10">
+				      <form:input path="memId" placeholder="한글이나 특수문자를 제외하고 입력하세요" class="form-control idCheck" id="memId" readonly="true"/>
+				      <form:errors path="memId" cssStyle="color:red;" />
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="pw">비밀번호</label>
+			      <div class="col-sm-10">          
+			      <form:password path="pw" class="form-control" id="pw" placeholder="6~14자리 내에 영문과 ,숫자 ,특수기호를 다 사용하여 입력하세요 "/>
+					 <form:errors path="pw" cssStyle="color:red;" />
+			      </div>
+			     </div>
+			     
+			      <div class="form-group">
+			      <label class="control-label col-sm-2" for="pw2">비밀번호 확인</label>
+			      <div class="col-sm-10">          
+				      <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check"/>
+					  <form:errors path="pwCheck" cssStyle="color:red;" />
+			      </div>
+			     </div>
+			     
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="name">이름</label>
+			      <div class="col-sm-10">
+				      <form:input path="name" class="form-control" id="name" placeholder="Enter name"/>
+					  <form:errors path="name" cssStyle="color:red;" />
+			      </div>
+			    </div>
+			     
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="nickname">닉네임 </label>
+			      <div class="col-sm-10">
+				      <form:input path="nickname" class="form-control nickCheck" id="nickname" placeholder="Enter nickname" readonly="true"/>
+					  <form:errors path="nickname" cssStyle="color:red;" />
+			      </div>
+			    </div>
+			    
+			     <div class="form-group">
+			      	<label class="control-label col-sm-2" for="email">연락처</label>
+			     	 <div class="col-sm-10">          
+			      		<input type="tel" onKeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="Enter phone" class="form-control" name="phone" value="${phone}"/>
+			      	</div>
+			     </div>
+			     
+			     <div class="form-group">
+				      <label class="control-label col-sm-2" for="memId">이메일</label>
+				      <div class="col-sm-10">
+				        <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email"/>
+				      	<form:errors path="email" cssStyle="color:red;" />
+				      </div>
+		   		 </div>
+			     
+			     <div class="form-group">
+			      	<div class="col-sm-10"> 
+			     		<input type="hidden" class="form-control" name="kind" value="${kind}">
+			     		<input type="hidden" class="form-control" name="grade" value="${memberVO.grade}"> 
+			     	</div>
+			 	</div>
+			   
+			    <div class="form-group">
+					<label for="files">Profile:</label> 
 					<input type="file" class="form-control" id="files" name="files">
 					<img id="blah" alt="your image" src="#" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
-			</div>
-			
-		    <div class="form-group">        
-		      <div class="col-sm-offset-2 col-sm-10">
-		        <button type="submit" class="btn_join">JOIN</button>
-		      </div>
-		    </div>
-		
-		 
-		  
+				</div>
+				
+			    <div class="form-group">        
+			      <div class="col-sm-offset-2 col-sm-10">
+			      	<button type="submit" class="btn_join">JOIN</button>
+			      </div>
+			    </div>
+	
 		  </form:form>
 		</div>
    	
@@ -197,6 +203,9 @@ function inputPhoneNumber(obj) {
 			}else if($("#phone").val() == ""){
 				alert("연락처를 입력하세요!");
 				$("#phone").focus();
+			}else if(($("#email").val() == ""){
+				alert("이메일을 입력하세요!");
+				$("#email").focus();	
 			}else {
 				$("#frm").submit();
 			}
