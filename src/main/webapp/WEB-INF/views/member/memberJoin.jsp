@@ -79,7 +79,7 @@
 		     <div class="form-group">
 		      	<div class="col-sm-10"> 
 		     		<input type="hidden" class="form-control" name="kind" value="${kind}">
-		     		<input type="hidden" class="form-control" name="grade" value="8888"> 
+		     		<input type="hidden" class="form-control" name="grade" value="${grade}"> 
 		     	</div>
 		 	</div>
 		   

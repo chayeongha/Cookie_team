@@ -68,16 +68,16 @@ public class MemberController {
 	
 	@PostMapping("memberJoin")							
 	public ModelAndView memberJoin(@Valid MemberVO memberVO,BindingResult bindingResult, MultipartFile files)throws Exception {
-		
 		ModelAndView mv= new ModelAndView();
+		System.out.println(memberVO.getGrade());
 		
 		if(memberService.memberJoinValidate(memberVO, bindingResult)) {
-			mv.setViewName("../");
+			mv.setViewName("member/memberJoin");
 		}else {
 			
+			int result= memberService.memberJoin(memberVO, files);
 			String msg = "회원가입 실패";
 			String path ="./memberIndex";
-			int result= memberService.memberJoin(memberVO, files);
 			
 			if(result >0) {
 			msg="회원가입 성공";

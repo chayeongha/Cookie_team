@@ -34,7 +34,7 @@ public class MemberService {
 	
 	//검증
 	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult)throws Exception{
-		boolean check= false;//ture면 에러
+		boolean check= false;//트루일땐 에러 펄스면 에러x
 		//검증결과
 		if(bindingResult.hasErrors()) {
 			check=true;
@@ -44,7 +44,7 @@ public class MemberService {
 		if(!memberVO.getPw().equals(memberVO.getPwCheck())) {
 			check=true;
 			//form의 path명, 출력하고싶은 properties의키 
-			bindingResult.rejectValue("pwCheck", "memberVO.pwCheck.notEqual");
+			//bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
 		}
 		
 		//id가 중복인지 검증
@@ -52,7 +52,7 @@ public class MemberService {
 		
 		if(memberVO != null) {
 			check= true;
-			bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
+			//bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
 		}
 		return check;
 	}
