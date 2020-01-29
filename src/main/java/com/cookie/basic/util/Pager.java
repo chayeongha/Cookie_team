@@ -6,7 +6,9 @@ public class Pager {
 	
 	//@@@@@@@중요 오류나면 여기 다시보기
 	public Integer getGrade() {
-
+		if(grade == null ||grade == 0) {
+			grade = 1;
+		}
 		return grade;
 	}
 	

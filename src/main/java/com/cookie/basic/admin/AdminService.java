@@ -33,4 +33,9 @@ public class AdminService {
 		 return adminMapper.storeAdminUpdate(storeCloseVO);
 	}
 	
+	//회원넘버로 검색
+	public MemberVO pmemberSearch(MemberVO memberVO) throws Exception{
+		return adminMapper.pmemberSearch(memberVO);
+	}
+
 }

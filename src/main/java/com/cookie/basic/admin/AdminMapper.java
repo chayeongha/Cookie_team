@@ -24,5 +24,8 @@ public interface AdminMapper {
 	
 	//폐점 업데이트
 	public int storeAdminUpdate(StoreCloseVO storeCloseVO)throws Exception;
-	
+
+	//회원넘버로 검색
+	public MemberVO pmemberSearch(MemberVO memberVO) throws Exception;
+
 }

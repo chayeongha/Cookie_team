@@ -39,10 +39,9 @@
 	update storeClose set cwait=1 where ssNum=#{ssNum}
 </update>
 
-
-
-	
-	
-
+<!--회원검색 -->
+	<select id="pmemberSearch" parameterType="MemberVO" resultType="MemberVO">
+		select * from members where memNum = #{memNum}
+	</select>
 </mapper>
 

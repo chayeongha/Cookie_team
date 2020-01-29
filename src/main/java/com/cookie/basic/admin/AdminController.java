@@ -30,7 +30,7 @@ public class AdminController {
 	@GetMapping("adminMemberList")
 	public  ModelAndView adminMemberList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
+		//System.out.println(pager.getGrade());
 		List<MemberVO> ar = adminService.adminMemberList(pager);
 			String gname=null;
 		if(pager.getGrade()==1) {
@@ -50,9 +50,12 @@ public class AdminController {
 	//회원탈퇴
 	@GetMapping("pmemberDelete")
 	public ModelAndView pmemberDelete(MemberVO memberVO)throws Exception{
+		//System.out.println(memberVO.getGrade());
 		ModelAndView mv= new ModelAndView();
+		//memNum으로 찾은후 memberVO에 있는 grade를 가져옴.
+		memberVO = adminService.pmemberSearch(memberVO);
 		adminService.pmemberDelete(memberVO);
-		mv.setViewName("redirect:./adminMemberList");
+		mv.setViewName("redirect:./adminMemberList?grade="+memberVO.getGrade());
 		return mv;
 		
 	}
