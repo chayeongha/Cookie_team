@@ -51,17 +51,11 @@ public class MemberController {
 	//회원가입
 	@GetMapping("memberJoin")
 	public ModelAndView memberJoin(Pager pager)throws Exception {
-	
 		ModelAndView mv = new ModelAndView();
-		//가입종류별로 텍스트출력
-		String jname=null;
-		if(pager.getGrade()==1) {
-			jname="개인";
-		}else if(pager.getGrade()==8888){
-			jname="사업자";
-		}
-		
-		mv.addObject("jname", jname);
+		MemberVO memberVO= new MemberVO();
+		//pager있는 그레이드를 vo안에 셋해줌.
+		memberVO.setGrade(pager.getGrade());
+		mv.addObject("memberVO", memberVO);
 		mv.setViewName("member/memberJoin");
 		return mv;
 	}
@@ -69,7 +63,7 @@ public class MemberController {
 	@PostMapping("memberJoin")							
 	public ModelAndView memberJoin(@Valid MemberVO memberVO,BindingResult bindingResult, MultipartFile files)throws Exception {
 		ModelAndView mv= new ModelAndView();
-		System.out.println(memberVO.getGrade());
+		//System.out.println(memberVO.getGrade());잘나옴~~
 		
 		if(memberService.memberJoinValidate(memberVO, bindingResult)) {
 			mv.setViewName("member/memberJoin");
@@ -88,6 +82,42 @@ public class MemberController {
 			mv.setViewName("common/result");	
 		}
 		return mv;
+	}
+	
+	//프론트아이디 중복체크
+	@GetMapping("memberIdCheck")
+	public Model memberIdCheck(MemberVO memberVO, Model model)throws Exception {
+			memberVO= memberService.memberIdCheck(memberVO);
+			String msg= "중복된 아이디입니다.";
+			if(memberVO == null) {
+				msg="사용가능한 아이디입니다.";
+			}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("member", memberVO);
+			
+			return model;
+	}
+	
+	//프론트닉네임 중복체크
+	@GetMapping("memberNickCheck")
+	public Model memberNickCheck(MemberVO memberVO, Model model)throws Exception {
+			memberVO= memberService.memberNickCheck(memberVO);
+			String msg= "중복된 닉네임입니다.";
+			if(memberVO == null) {
+				msg="사용가능한 닉네임입니다.";
+			}
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("member", memberVO);
+			
+			return model;
+	}
+	
+	//아이디검색
+	@GetMapping("idSearch")
+	public void idSearch()throws Exception{
+		
 	}
 	
 	//로그아웃
@@ -136,6 +166,7 @@ public class MemberController {
 		
 		return mv;
 	}
+	
 	//네이버회원가입
 	@GetMapping("memberNaver")
 	public String memberNaver(String name) throws Exception{

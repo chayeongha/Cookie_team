@@ -37,6 +37,9 @@ public interface MemberMapper {
 	//id 중복 검사
 	public MemberVO memberIdCheck(MemberVO memberVO)throws Exception;
 	
+	//닉네임 중복검사
+	public MemberVO memberNickCheck(MemberVO memberVO)throws Exception;
+	
 	//수정
 	public int memberUpdate(MemberVO memberVO)throws Exception;
 	

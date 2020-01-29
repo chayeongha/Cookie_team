@@ -41,6 +41,11 @@
    			select memId from members where memId=#{memId}
    	</select>
    	
+   	<!--닉네임중복검사  -->
+   	<select id="memberNickCheck" parameterType="MemberVO" resultType="MemberVO">
+   			select nickname from members where nickname=#{nickname}
+   	</select>
+   	
    	<!--회원정보 수정 -->
    	<update id="memberUpdate" parameterType="MemberVO">
    			update members set pw=#{pw}, name=#{name}, nickname=#{nickname},phone=#{phone} 

@@ -32,9 +32,12 @@ public class MemberService {
 	@Autowired 
 	private FileSaver fileSaver;
 	
-	//검증
+	//검증1
 	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult)throws Exception{
-		boolean check= false;//트루일땐 에러 펄스면 에러x
+		//트루일땐 에러 펄스면 에러x
+		boolean check= false;//비번이 일치하는지검증
+		boolean check2= false;//아이디가 중복인지검증
+		boolean check3= false;//닉네임이 중복인지 검증
 		//검증결과
 		if(bindingResult.hasErrors()) {
 			check=true;
@@ -45,17 +48,38 @@ public class MemberService {
 			check=true;
 			//form의 path명, 출력하고싶은 properties의키 
 			bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
-		}
+		}//잘나옴.
 		
+		MemberVO memberVO2 = new MemberVO();
 		//id가 중복인지 검증
-		memberVO = memberMapper.memberIdCheck(memberVO);
+		memberVO2 = memberMapper.memberIdCheck(memberVO);
 		
-		if(memberVO != null) {
-			check= true;
+		if(memberVO2 != null) {
+			check2= true;
 			bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
 		}
+		//닉네임이 중복인지 검증
+		MemberVO memberVO3 = new MemberVO();
+		
+		memberVO3= memberMapper.memberNickCheck(memberVO);
+		if(memberVO3 !=null) {
+			check3=true;
+			bindingResult.rejectValue("nickname", "memberVO.nickname.nickCheck");
+		}
+		
 		return check;
 	}
+	
+	//프론트 아이디중복검사
+	public MemberVO memberIdCheck(MemberVO memberVO)throws Exception {
+		return memberMapper.memberIdCheck(memberVO);
+	}
+	
+	//프론트 닉네임중복검사
+	public MemberVO memberNickCheck(MemberVO memberVO)throws Exception {
+		return memberMapper.memberNickCheck(memberVO);
+	}
+	
 	
 	//회원가입
 	public int memberJoin(MemberVO memberVO, MultipartFile files)throws Exception{
