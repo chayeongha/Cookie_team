@@ -50,7 +50,7 @@
 
 	<div class="storeFooter">
 		<form action="storeMyPage" method="post" id="infoBye">
-			<input type="hidden" name="sNum" id="sNum" value="${store.sNum}">
+			<input type="hidden" name="ssNum" id="ssNum" value="${store.ssNum}">
 			<button class="power_button" id="goOff">
 				<i class="fa fa-power-off" style="font-size: 48px; color: white;"></i>
 			</button>

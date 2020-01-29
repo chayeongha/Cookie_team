@@ -25,7 +25,7 @@
 					<i class="fa fa-power-off" style="font-size: 48px; color: white;"></i>
 				</button>
 				<div class="POS_Ti">POS</div>
-				<input type="text" name="sNum" id="sNum" value="${store.sNum}">
+				<input type="text" name="ssNum" id="ssNum" value="${store.ssNum}">
 			</form>
 		</div>
 	</div>
@@ -43,11 +43,13 @@
 			<div class="myMoney_1">일매출현황</div>
 		</div>
 	</div>
-	<a href="./storeUpdate?sNum=${store.sNum}"><div
-			class="Update_storeInfo">
+	<a href="./storeUpdate?ssNum=${store.ssNum}">
+	<div class="Update_storeInfo">
 			<i class="fa fa-history" style="font-size: 24px; color: black;"></i>
 			Update
 		</div></a>
+		
+		<a href="../menu/menuList?ssNum=${store.ssNum}">메뉴리스트</a>
 
 
 

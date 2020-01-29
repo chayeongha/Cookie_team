@@ -18,7 +18,7 @@
 			<a href="${pageContext.request.contextPath}/member/memberLogout">로그아웃</a>
 			
 			<c:if test="${member.grade eq 9999}">
-			<a href="${pageContext.request.contextPath}/member/memberList">회원리스트</a>
+			<a href="${pageContext.request.contextPath}/admin/adminMemberList?grade=1">회원정보관리</a>
 			</c:if>
 	</div>		
 			

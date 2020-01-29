@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.cookie.basic.member.MemberMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cookie.basic.member.MemberMapper">
   
   	<!--회원가입  -->
   	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
   			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{grade},#{kind})
   	</insert>
-  	
-  
+
   	<!--로그인 resultmap  -->
   	<resultMap type="MemberVO" id="MemberLogin">
   			<id column="memNum" property="memNum"/>
@@ -50,42 +47,29 @@
    			where memNum=#{memNum}
    	</update>
    	
-   	<!--회원 탈퇴  -->
+   	<!--마이페이지에서 회원 스스로 탈퇴  -->
    	<delete id="memberDelete" parameterType="MemberVO">
    			delete from members where nickname=#{nickname}
    	</delete>
+	
+	<!-- 카카오 회원가입-->
+  	<insert id="kakaoJoin" parameterType="memberVO">
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',1,2)
+  	</insert>
 
-   	<!--회원 검색 -->
-   	<sql id="search">
-  			<choose>
-  				<when test="kind =='ki'">
-  						where phone like CONCAT('%',#{search},'%') 
-  				</when>
-  				<otherwise>
-  						where nickname like CONCAT('%',#{search},'%')
-  				</otherwise>
-  			</choose>
-  	</sql>
-   	
-   	<!--개인회원 리스트  -->
-   	<select id ="pmemberList" parameterType="Pager" resultMap="MemberLogin">
-   			select M.*,F.* from members M left join memberFiles F 
-   			on M.memNum=F.memNum
-   			<include refid="search"></include> and grade =1
-			limit #{startRow},#{perPage} 	
-   	</select>
-   	
-	<!--회원리스트 카운트 -->
-   	<select id="listCount"  resultType="Integer">
-   			select count(memNum) from members 
-   			<include refid="search"></include> and grade =1
-   	</select>
-   	
- 
-  	<!-- <select id="memberSearch" parameterType="Pager" resultType="MemberVO">
-  		select count(id) from members
-  	
-  	</select> -->
+  	<!-- 카카오 -->
+  	<select id="memberKakao" parameterType="memberVO" resultType="memberVO">
+  		select * from members where memId=#{memId} and kind=2
+  	</select>
   
+  	<!-- 네이버 회원가입-->
+  	<insert id="naverJoin" parameterType="memberVO">
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',1,1)
+  	</insert>
   
-  </mapper>
+  	<!-- 네이버 -->
+  	<select id="memberNaver" parameterType="memberVO" resultType="memberVO">
+  		select * from members where memId=#{memId} and kind=1
+  	</select>
+	
+</mapper>

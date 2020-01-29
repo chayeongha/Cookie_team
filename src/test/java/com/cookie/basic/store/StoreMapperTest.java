@@ -58,7 +58,7 @@ class StoreMapperTest {
 	@Test
 	public void storeOnTest()throws Exception{
 		StoreVO storeVO = new StoreVO();
-		storeVO.setsNum(1);
+		storeVO.setSsNum(1);
 		int result = storeMapper.onUpdate(storeVO);
 		assertEquals(1, result);
 		

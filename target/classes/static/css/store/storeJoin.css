@@ -13,12 +13,11 @@
 	height: 80px;
 	font-family: CookieRun-Black;
 	font-size: 28px;
-	margin-left: 700px;
+	margin-left: 695px;
 	text-align: center;
 	line-height: 80px;
 	margin-top: 15px;
 	float: left;
-	text-align: center;
 }
 
 .storeInsertForm {
@@ -44,6 +43,7 @@
 	height: 30px;
 	margin-left: 20px;
 	margin-top: 20px;
+	font-family: CookieRun-Regular;
 }
 
 .store_input {
@@ -53,6 +53,7 @@
 	border: none;
 	margin-top: 20px;
 	border-radius: 4px;
+	font-family: CookieRun-Regular;
 }
 
 .store_join_btn {
@@ -63,8 +64,9 @@
 	border-radius: 4px;
 	float: right;
 	background-color: #ff674efa;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 18px;
+	color: white;
 }
 
 .addrbtn {
@@ -75,8 +77,10 @@
 	border: none;
 	margin-top: 10px;
 	border-radius: 4px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 18px;
+	letter-spacing: -2px;
+	color: white;
 }
 
 /**************storeInfo***************/
@@ -84,7 +88,7 @@
 	width: 100%;
 	height: 50px;
 	background-color: white;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 18px;
 	text-align: center;
 	line-height: 50px;
@@ -97,7 +101,8 @@
 
 .storeSection_1 {
 	width: 1250px;
-	height: 900px;
+	height: auto;
+	overflow: hidden;
 	background-color: #f6f6f6;
 	margin: 0 auto;
 }
@@ -123,7 +128,7 @@
 
 .store_name {
 	color: black;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 28px;
 	line-height: 100px;
 	margin-left: 20px;
@@ -141,16 +146,17 @@
 	border: none;
 	margin-top: 10px;
 	border-radius: 4px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 18px;
 	margin-top: 10px;
 	margin-left: 420px;
+	color: white;
 }
 
 /*파일버튼 */
 .filebox label {
 	display: inline-block;
-	padding: .5em .75em;
+	padding: .3em .70em;
 	color: #fff;
 	font-size: inherit;
 	line-height: normal;
@@ -162,6 +168,8 @@
 	-webkit-transition: background-color 0.2s;
 	transition: background-color 0.2s;
 	margin-top: 40px;
+	font-family: CookieRun-Regular;
+	height: 30px;
 }
 
 .filebox label:hover {
@@ -169,7 +177,7 @@
 }
 
 .filebox label:active {
-	background-color: #367c36;
+	background-color: #fbd8b0;
 }
 
 .filebox input[type="file"] {
@@ -183,6 +191,9 @@
 	border: 0;
 }
 
-.file_route {
-	
+input::placeholder {
+	color: white;
+	font-size: 16px;
+	letter-spacing: 2px;
+	font-family: CookieRun-Regular;
 }

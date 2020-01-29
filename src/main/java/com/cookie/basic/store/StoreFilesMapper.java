@@ -12,5 +12,7 @@ public interface StoreFilesMapper {
 	public int storeFilesInsert(StoreFilesVO storeFilesVO) throws Exception;
 
 	public List<StoreFilesVO> storeFilesSelect(StoreFilesVO storeFilesVO) throws Exception;
+	
+	public int storeFilesUpdate(StoreFilesVO storeFilesVO)throws Exception;
 
 }

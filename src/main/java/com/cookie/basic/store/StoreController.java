@@ -1,12 +1,16 @@
 package com.cookie.basic.store;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +29,8 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 
+
+	
 	// 지점 등록 폼
 	@GetMapping("storeInsert")
 	public void storeInsert(HttpSession session) throws Exception {
@@ -43,7 +49,7 @@ public class StoreController {
 		String path = "../";
 		if (result > 0) {
 			message = "등록 성공!";
-			path = "./myInfo";
+			path = "../menu/menuPreset";
 			session.setAttribute("store", storeVO);
 		}
 
@@ -60,11 +66,8 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		
+
 		 storeVO.setMemNum(memberVO.getMemNum());
-		  
-		
-		// System.out.println(storeVO.getId());
 
 		List<StoreVO> ar = storeService.searchInfo(storeVO);
 
@@ -90,7 +93,7 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 
 		storeVO = storeService.info(storeVO);
-
+		session.setAttribute("store", storeVO);
 		mv.addObject("store", storeVO);
 
 		return mv;
@@ -99,15 +102,17 @@ public class StoreController {
 	@PostMapping("myinfoS")
 	public ModelAndView myInfoS(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		storeVO.getsNum();
+		storeVO.getSsNum();
 		int result = storeService.onUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		System.out.println(storeVO.getSsNum());
 
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
 			msg = "영업시작";
-			path = "./storeMyPage?sNum=" + storeVO.getsNum();
+
+			path = "./storeMyPage?ssNum=" + storeVO.getSsNum();
+
 		}
 		mv.addObject("store", storeVO);
 		mv.addObject("msg", msg);
@@ -126,9 +131,9 @@ public class StoreController {
 	@PostMapping("storeMyPage")
 	public ModelAndView storeMyPage(StoreVO storeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		storeVO.getsNum();
+		storeVO.getSsNum();
 		int result = storeService.offUpdate(storeVO);
-		System.out.println(storeVO.getsNum());
+		System.out.println(storeVO.getSsNum());
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
@@ -150,7 +155,7 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 
 		storeVO = storeService.info(storeVO);
-		System.out.println(storeVO.getsName());
+		/* System.out.println(storeVO.getsName()); */
 
 		mv.addObject("store", storeVO);
 		mv.setViewName("store/storeUpdate");
@@ -161,20 +166,22 @@ public class StoreController {
 
 	// 점주 정보 업데이트
 	@PostMapping("storeUpdate")
-	public ModelAndView storeUpdate(StoreVO storeVO, HttpSession session) throws Exception {
+	public ModelAndView storeUpdate(StoreVO storeVO, HttpSession session, MultipartFile files) throws Exception {
 
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		session.setAttribute("member", memberVO);
 		ModelAndView mv = new ModelAndView();
-		int result = storeService.storeUpdate(storeVO);
-
+		int result = storeService.storeUpdate(storeVO,files);
+		
+		
+		
 		String msg = "업데이트 실패";
 		String path = "../";
 		if (result > 0) {
 			msg = "업데이트 성공";
-			path = "../";
+			path = "./myInfo";
 		}
-		mv.addObject("store", storeVO);
+	
 		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/result");
@@ -207,5 +214,42 @@ public class StoreController {
 		
 		return result;
 	}
-
+	
+	@GetMapping("storeList")
+	public void storeList(Model model) throws Exception{
+		Map<String,String[]> ar = storeService.mapSelect();
+	
+		model.addAttribute("ar", ar);
+	}
+	
+	@GetMapping("storeList2")
+	public ModelAndView storeList2(String v) throws Exception{
+		Map<String,String[]> ar = storeService.mapSelect();
+		ModelAndView mv = new ModelAndView();
+		
+		String[] arr = ar.get(v);
+		
+		mv.addObject("arr",arr);
+		mv.addObject("v",v);
+		return mv;
+	}
+	
+	@GetMapping("storeList3")
+	public ModelAndView storeList3(String v, String v2) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		StoreVO storeVO = new StoreVO();
+		List<StoreVO> ar = new ArrayList<StoreVO>();
+		storeVO.setMemId(v);
+		if(v2=="") {
+			ar = storeService.storeList2(storeVO);
+			
+		}else {
+			storeVO.setsName(v2);
+			ar = storeService.storeList(storeVO);
+		}
+		mv.addObject("ar",ar);
+		return mv;
+	}
+	
+	
 }

@@ -1,0 +1,206 @@
+@charset "UTF-8";
+
+.storeHeader {
+	width: 100%;
+	height: 150px;
+	background-color: #ff674efa;
+	overflow: hidden;
+}
+
+.mTitle {
+	font-family: CookieRun-Black;
+	width: 350px;
+	height: 50px;
+	color: white;
+	font-size: 45px;
+	text-align: center;
+	line-height: 50px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 5px;
+}
+
+.MsemiTitle {
+	width: 1000px;
+	height: 80px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	margin: 0 auto;
+	font-family: CookieRun-Regular;
+}
+
+.Tipre {
+	width: 100%;
+	height: 40px;
+	background-color: #ff674efa;
+	color: white;
+	font-size: 24px;
+	font-family: CookieRun-Regular;
+	line-height: 40px;
+}
+
+.Tipre1 {
+	width: 100%;
+	height: 40px;
+	background-color: #ff674efa;
+	float: left;
+	clear: both;
+	color: white;
+	font-size: 24px;
+	font-family: CookieRun-Regular;
+	line-height: 40px;
+}
+
+.Tipre2 {
+	width: 100%;
+	height: 40px;
+	background-color: #ff674efa;
+	float: left;
+	clear: both;
+	color: white;
+	font-size: 24px;
+	font-family: CookieRun-Regular;
+	line-height: 40px;
+}
+
+/*Checkboxes styles*/
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]+label {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 20px;
+	font: 16px/20px 'Open Sans', Arial, sans-serif;
+	color: #000000;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+input[type="checkbox"]+label:last-child {
+	margin-bottom: 0;
+}
+
+input[type="checkbox"]+label:before {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ff674efa;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: .6;
+	-webkit-transition: all .12s, border-color .08s;
+	transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked+label:before {
+	width: 10px;
+	top: -5px;
+	left: 5px;
+	border-radius: 0;
+	opacity: 1;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/*Prebox*/
+.preMain {
+	width: 900px;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.preBox1 {
+	width: 200px;
+	height: 350px;
+	float: left;
+	margin-left: 150px;
+	margin-top: 20px;
+}
+
+.preBox1_1 {
+	width: 200px;
+	height: 400px;
+	float: left;
+	margin-left: 150px;
+}
+
+.preBox2 {
+	width: 200px;
+	height: 400px;
+	float: left;
+	clear: left;
+	margin-left: 150px;
+	margin-top: 60px;
+}
+
+.preBox3 {
+	width: 200px;
+	height: 600px;
+	float: left;
+	margin-left: 150px;
+	margin-top: 30px;
+}
+
+.preBox4 {
+	width: 200px;
+	height: 150px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.preBox5 {
+	width: 200px;
+	height: 150px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.preBox6 {
+	width: 200px;
+	height: 150px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.preBox7 {
+	width: 200px;
+	height: 150px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.submitBtn8 {
+	width: 100px;
+	height: 50px;
+	clear: left;
+	float: right;
+	margin-right: 360px;
+	margin-top: 200px;
+}
+
+.btn_submit {
+	width: 80px;
+	height: 40px;
+	background-color: #ff674efa;
+	border: none;
+	border-radius: 4px;
+	float: right;
+	color: white;
+	font-size: 18px;
+	font-family: CookieRun-Regular;
+}

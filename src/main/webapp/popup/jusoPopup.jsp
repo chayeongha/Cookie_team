@@ -61,8 +61,8 @@ function init(){
 		document.form.submit();
 		
 	}else{
+		close();
 		opener.jusoCallBack("<%=roadFullAddr%>");
-		self.close();
 		}
 }
 </script>

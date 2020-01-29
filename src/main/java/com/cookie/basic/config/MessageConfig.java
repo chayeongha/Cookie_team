@@ -41,7 +41,7 @@ public class MessageConfig implements WebMvcConfigurer {
 		
 		registry.addInterceptor(getLocale()).addPathPatterns("/**");
 		
-		WebMvcConfigurer.super.addInterceptors(registry);
+		//WebMvcConfigurer.super.addInterceptors(registry);
 	}
 	
 	

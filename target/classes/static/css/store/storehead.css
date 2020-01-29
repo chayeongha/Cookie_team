@@ -13,7 +13,7 @@
 .header_Update {
 	width: 150px;
 	height: 40px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 28px;
 	float: right;
 	margin-top: 25px;
@@ -28,13 +28,13 @@
 }
 
 .section_title {
-	width: 250px;
+	width: 400px;
 	height: 40px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	font-size: 28px;
 	float: right;
-	margin-right: 550px;
-	margin-top: 10px;
+	margin-right: 400px;
+	margin-top: 5px;
 }
 
 .storesection {

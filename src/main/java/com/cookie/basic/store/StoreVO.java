@@ -1,9 +1,10 @@
 package com.cookie.basic.store;
 
 public class StoreVO {
+
 	
 	
-	private int sNum; 
+	private int ssNum; 
 	private String sName; 
 	private String sTel; 
 	private String roadFullAddr; 
@@ -14,15 +15,13 @@ public class StoreVO {
 	
 	private StoreFilesVO storeFilesVO;
 	
-	
-	
-	
 
 	
 	
 	
 	
-	
+		
+
 	public String getMemId() {
 		return memId;
 	}
@@ -42,11 +41,12 @@ public class StoreVO {
 		this.storeFilesVO = storeFilesVO;
 	}
 	
-	public int getsNum() {
-		return sNum;
+	
+	public int getSsNum() {
+		return ssNum;
 	}
-	public void setsNum(int sNum) {
-		this.sNum = sNum;
+	public void setSsNum(int ssNum) {
+		this.ssNum = ssNum;
 	}
 	public String getsName() {
 		return sName;
@@ -60,29 +60,13 @@ public class StoreVO {
 	public void setsTel(String sTel) {
 		this.sTel = sTel;
 	}
-	
 
-	public String getRoadFullAddr() {
-		return roadFullAddr;
-	}
-	public void setRoadFullAddr(String roadFullAddr) {
-		this.roadFullAddr = roadFullAddr;
-	}
-	public int getsOn() {
-		return sOn;
-	}
-	public void setsOn(int sOn) {
-		this.sOn = sOn;
-	}
-	public String getsNotice() {
-		return sNotice;
-	}
-	public void setsNotice(String sNotice) {
-		this.sNotice = sNotice;
-	} 
-	
-	
-	
-	
+   
+   
+   
+      
+
+   
+   
 
 }

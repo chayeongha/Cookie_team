@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+.contents{
+	width: 1300px;
+	height: auto;
+	overflow: hidden;
+	padding-bottom: 30px;
+	background-color: aqua;	
+}
+
+
+.SelectBox{
+	width: 1000px;
+	height: 700px;
+	background-color: blue;
+	
+}
+
+
+

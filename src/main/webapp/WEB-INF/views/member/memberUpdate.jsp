@@ -8,14 +8,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보 수정</title>
+<link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
 </head>
 <body>
-
+<div class="body_main">
+	<div class="b"></div>
 <div class="container">
 	
-<h1>Update Page</h1>
+<h1>회원정보 수정</h1>
   <form:form class="form-horizontal" action="./memberUpdate" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
     
     <div class="form-group">
@@ -66,19 +69,34 @@
      </div>
      
      
-     <div class="form-group">
+     <div class="">
       		<label for="name">grade</label>
-      		<input type="text" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly">
+      		<c:if test="${member.grade eq 1}">
+      			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly">
+      		</c:if>
+      		<c:if test="${member.grade eq 2}">
+      			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly">
+      		</c:if>
+      		<c:if test="${member.grade eq 3}">
+      			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly">
+      		</c:if>
+      		<c:if test="${member.grade eq 9999}">
+      			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly">
+      		</c:if>
+      		<c:if test="${member.grade eq 8888}">
+      			<input type="text" value="점장" style="color:#ff0000" readonly="readonly">
+      		</c:if>
+      		<input type="hidden" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly">
     </div>
      
     
-    <div class="form-group">
+    <div class="">
 		<label for="files">Profile:</label> 
 		<div class="form-group">
-			<img alt="이미지없다잉" src="../upload/${member.memberFilesVO.fname}">
+			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;"/>	
 		</div> 
-		<label for="files">프로필이미지 변경:</label> 
 			<input type="file"class="form-control" id="files" name="files">
+
 	</div>
 	
   		<input type="hidden" class="form-control" id="fnum" name="fnum" value="${member.memberFilesVO.fnum}">
@@ -91,9 +109,6 @@
       </div>
     </div>
   	
-  		
-  		
-
   </form:form>
 </div>
    
@@ -106,13 +121,28 @@
 		}
 		
 		});
-		
 
+	//이미지를넣었을 때 미리보여지는것.
+	$(function(){
+		$("#files").on('change',function(){
+			 readURL(this);
+		});
+	});
+	function readURL(input) {
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
 
-
+			reader.onload = function(e){
+				$('#blah').attr('src' , e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
    </script>
    
-   
+   <c:import url="../layout/footer.jsp" />	
+</div>
 
 </body>
 </html>

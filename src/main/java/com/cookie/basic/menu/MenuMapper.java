@@ -12,5 +12,9 @@ public interface MenuMapper {
 	
 	public MenuVO menuSelect(MenuVO menuVO)throws Exception;
 	
-	public List<MenuVO> menuList()throws Exception;
+	public List<MenuVO> menuList(MenuVO menuVO)throws Exception;
+	
+	public int menuUpdate(MenuVO menuVO)throws Exception;
+	
+	public int menuDelete(MenuVO menuVO)throws Exception;
 }

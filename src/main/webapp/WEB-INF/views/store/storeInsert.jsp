@@ -87,19 +87,19 @@
 
 			<div>
 				<div class="store_label">지점이름:</div>
-				<input type="text" id="sName" name="sName" placeholder="	지점이름을 입력해주세요" class="stName store_input"> 
+				<input type="text" id="sName" name="sName" placeholder="　지점이름을 입력해주세요" class="stName store_input"> 
 					<input type="button" id="OK" value="중복확인">
 			</div>
 
 			<div>
 				<div class="store_label">지점전화번호:</div>
-				<input type="text" id="sTel" name="sTel" placeholder="	지점의 전화번호를 입력해주세요" class="store_input">
+				<input type="text" id="sTel" name="sTel" placeholder="　지점의 전화번호를 입력해주세요" class="store_input">
 			</div>
 
 			<div>
 
 				<div class="store_label">지점주소:</div>
-				<input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="	지점의 주소를 입력해주세요" readonly="readonly"
+				<input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="　지점의 주소를 입력해주세요" readonly="readonly"
 					class="store_input"> <input type="button"
 					onClick="goPopup();" value="주소 검색" class="addrbtn" />
 			</div>
@@ -107,12 +107,12 @@
 			<div>
 				<label for="sOn"></label>
 				<!-- 영업여부 -->
-				<input type="hidden" id="sOn" value="0" name="sOn" placeholder="	영업시간은 가입후 자세히" readonly="readonly"
+				<input type="hidden" id="sOn" value="0" name="sOn" placeholder="　영업시간은 가입후 자세히" readonly="readonly"
 					class="store_input">
 			</div>
 
 			<div>
-				<label for="sNotice"></label> <input type="hidden" id="sNotice" name="sNotice" placeholder="	개업시작 공지를 알리세요" class="store_input">
+				<label for="sNotice"></label> <input type="hidden" id="sNotice" name="sNotice" placeholder="개업시작 공지를 알리세요" class="store_input">
 			</div>
 			<div>
 				<!-- <div class="store_label">로고 등록:</div>

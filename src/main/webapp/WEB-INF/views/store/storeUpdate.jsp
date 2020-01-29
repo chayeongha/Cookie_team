@@ -62,8 +62,7 @@
 <body>
 
 
-
-	<input type="hidden" id="sNum" name="sNum" value="${store.sNum}">
+	<%-- <input type="text" id="ssNum" name="ssNum" value="${store.ssNum}"> --%>
 	<div class="storeHeader">
 
 		<div class="store_back">
@@ -80,39 +79,49 @@
 			<div>
 				<div class="store_label">점주 아이디:</div>
 				<!-- id 세션에서 점주 아이디만 받아오기 -->
-				<input type="text" id="id" name="id" value="${member.id}"
+				<input type="text" id="memId" name="memId" value="${member.memId}"
 					class="store_input" readonly="readonly">
 			</div>
 
 			<div>
 				<div class="store_label">지점이름:</div>
-				<input type="text" id="sName" name="sName" class="store_input" value="${store.sName}">
+				<input type="text" id="sName" name="sName" class="store_input"
+					value="${store.sName}">
 			</div>
 
 			<div>
 				<div class="store_label">지점전화번호:</div>
-				<input type="text" id="sTel" name="sTel" class="store_input" value="${store.sTel}">
+				<input type="text" id="sTel" name="sTel" class="store_input"
+					value="${store.sTel}">
 			</div>
 
 			<div>
 
 				<div class="store_label">지점주소:</div>
-				<input type="text" id="roadFullAddr" name="roadFullAddr" class="store_input" value="${store.roadFullAddr}"> <input
+				<input type="text" id="roadFullAddr" name="roadFullAddr"
+					class="store_input" value="${store.roadFullAddr}"> <input
 					type="button" onClick="goPopup();" value="주소 검색" class="addrbtn" />
 			</div>
 
 			<div>
 				<label for="sOn"></label>
 				<!-- 영업여부 -->
-				<input type="hidden" id="sOn" value="0" name="sOn" readonly="readonly" class="store_input">
+				<input type="hidden" id="sOn" value="0" name="sOn"
+					readonly="readonly" class="store_input">
 			</div>
 
 			<div>
-				<label for="sNotice"></label> <input type="hidden" id="sNotice" name="sNotice" class="store_input">
+				<label for="sNotice"></label> <input type="hidden" id="sNotice"
+					name="sNotice" class="store_input">
 			</div>
 			<div>
+
 				<div class="store_label">로고 등록:</div>
 				<input type="file" class="store_input" id="files" name="files">
+				<input type="hidden" name="fNum" value="${store.storeFilesVO.fNum}">
+				<input type="hidden" name="fName"
+					value="${store.storeFilesVO.fName}"> <input type="hidden"
+					name="oName" value="${store.storeFilesVO.oName}">
 
 			</div>
 			<input type="submit" id="update" value="Update"

@@ -29,4 +29,8 @@ public interface StoreMapper {
 	public int checkStore(StoreVO storeVO)throws Exception;
 	
 
+	public List<StoreVO> storeList(StoreVO storeVO) throws Exception;
+	
+	public List<StoreVO> storeList2(StoreVO storeVO) throws Exception;
+
 }
