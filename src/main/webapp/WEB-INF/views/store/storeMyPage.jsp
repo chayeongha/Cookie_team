@@ -10,6 +10,12 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="/css/store/storehead.css" rel="stylesheet" />
 <link href="/css/reset.css" rel="stylesheet" />
+
+<script src="//cdn.kaazing.com/releases/enterprise.javascript.client/4.1.0/WebSocket.js"></script>
+<script src="//cdn.kaazing.com/releases/enterprise.javascript.client/4.1.0/AmqpClient.js"></script>
+<script src="//cdn.kaazing.com/releases/enterprise.javascript.client/4.1.0/JmsClient.js"></script>
+
+
 </head>
 <body>
 

@@ -89,9 +89,15 @@ public class MenuController {
 	@GetMapping("menuList")
 	public ModelAndView menuList(MenuVO menuVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<MenuVO> ar = menuService.menuList(menuVO);
+		
+		List<MenuVO> ar = menuService.categoryList1(menuVO);
+		List<MenuVO> ar2 = menuService.categoryList2(menuVO);
+		List<MenuVO> ar3 = menuService.categoryList3(menuVO);
+		
 		
 		mv.addObject("lists", ar);
+		mv.addObject("ar2", ar2);
+		mv.addObject("ar3", ar3);
 		mv.setViewName("menu/menuList");
 		
 		

@@ -38,12 +38,16 @@
 
 .mmTable {
 	width: 1000px;
-	height: 500px;
+	height: auto;
+	overflow:hidden;
 	margin: 0 auto;
 	margin-top: 50px;
 	border-collapse: collapse;
+	margin-left: 200px;
 	
 }
+
+
 
 .clrt {
 	background-color: #ff674efa;
@@ -64,13 +68,13 @@
 
 tbody>tr {
 	width: 1200px;
-	height: 30px;
+	height: 40px;
 
 }
 
 tr>td {
 	width: 200px;
-	height: 30px;
+	height: 40px;
 	font-size: 18px;
 	font-family: CookieRun-Regular;
 	text-align: center;
@@ -94,7 +98,7 @@ a:hover{
 	background-color:#ff674efa;
 	float: right;
 	margin-top: 50px;
-	margin-right: 150px;
+	margin-right: 100px;
 	border-radius: 4px;
 	text-align: center;
 	line-height: 40px;
@@ -104,5 +108,43 @@ a:hover{
 	
 	
 }
+
+.cfTi{
+	color: black;
+	font-family: CookieRun-Regular;
+	font-size: 38px;
+	width: 170px;
+	height: 50px;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 50px;
+		margin-left: 200px;
+}
+
+
+.BevTi{
+	color: black;
+	font-family: CookieRun-Regular;
+	font-size: 38px;
+	width: 170px;
+	height: 50px;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 50px;
+		margin-left: 200px;
+}
+
+.dsTi{
+	color: black;
+	font-family: CookieRun-Regular;
+	font-size: 38px;
+	width: 170px;
+	height: 50px;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 50px;
+		margin-left: 200px;
+}
+
 
 

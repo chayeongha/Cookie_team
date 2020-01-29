@@ -188,7 +188,6 @@
 		<c:import url="./layout/footer.jsp" />
 	</div><!-- bodymain끝 -->
 	
-	
 	<script type="text/javascript">
 			 $(document).on('click','.barselect a',function(event){
 				 var headerHeight = $('.bar_inner').outerHeight();
