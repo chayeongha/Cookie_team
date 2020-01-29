@@ -44,7 +44,7 @@ public class MemberService {
 		if(!memberVO.getPw().equals(memberVO.getPwCheck())) {
 			check=true;
 			//form의 path명, 출력하고싶은 properties의키 
-			//bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
+			bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
 		}
 		
 		//id가 중복인지 검증
@@ -52,7 +52,7 @@ public class MemberService {
 		
 		if(memberVO != null) {
 			check= true;
-			//bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
+			bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
 		}
 		return check;
 	}

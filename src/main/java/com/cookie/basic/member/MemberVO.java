@@ -14,17 +14,15 @@ public class MemberVO {
 	
 	private Integer memNum;
 	
-	//@NotEmpty(message = "\"아이디\" 항목이 필요합니다.")
 	@NotEmpty
 	private String memId;
 	@Size(min=5, max=14, message = "비밀번호는 최소6글자이상 최대14글자이하입니다.")
 	private String pw;
-	//@NotEmpty
-	@NotEmpty(message = "\"비밀번호 확인\" 항목이 필요합니다.")
+	@NotEmpty
 	private String pwCheck;
-	@NotEmpty(message = "\"이름\" 항목이 필요합니다.")
+	@NotEmpty
 	private String name;
-	@NotEmpty(message = "\"닉네임\" 항목이 필요합니다.")
+	@NotEmpty
 	private String nickname;
 	private String phone;
 	private Integer grade;
