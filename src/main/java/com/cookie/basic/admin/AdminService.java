@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.store.StoreCloseVO;
 import com.cookie.basic.util.Pager;
 
 @Service
@@ -26,4 +27,10 @@ public class AdminService {
 	public int pmemberDelete(MemberVO memberVO)throws Exception{
 		return adminMapper.pmemberDelete(memberVO);
 	}
+	
+	//폐업업뎃
+	public int storeAdminUpdate(StoreCloseVO storeCloseVO)throws Exception{
+		 return adminMapper.storeAdminUpdate(storeCloseVO);
+	}
+	
 }

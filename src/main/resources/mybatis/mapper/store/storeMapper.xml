@@ -64,6 +64,33 @@
 		select count(*) from store where sName=#{sName}  	
   	</select>
   	
+  	<delete id="deleteStore" parameterType="StoreVO">
+  		delete from store where ssNum=#{ssNum}
+  	</delete>
+  	
+  	
+  	<insert id="storeClose" parameterType="StoreVO">
+  		insert into storeClose values(0,#{ssNum},#{sName},#{memId},0)
+  	</insert>
+  	
+  	<select id="storeAdmin" parameterType="StoreCloseVO" resultType="StoreCloseVO">
+  	select * from storeClose
+  	</select>
+  	
+  	<select id="storeAdminSelect" parameterType="StoreCloseVO" resultType="StoreCloseVO">
+  	select * from storeClose where ssNum=#{ssNum}
+  	</select>
+  	
+  	<update id="storeUpdateBye" parameterType="StoreCloseVO">
+  		update storeClose set cwait=2 where ssNum=#{ssNum}
+  	</update>
+  	
+  	<!-- 여기까지 지윤 작성-->
+  	
+  	
+  	
+  	
+  	
      
      <select id="storeList" parameterType="StoreVO" resultMap="storeResult">
      	select * from store S left outer join storeFiles F 

@@ -308,12 +308,52 @@ input[type="checkbox"]:checked+label:before {
 }
 
 /*기존옵션*/
+.optN {
+	width: 100px;
+	height: 25px;
+	font-family: CookieRun-Regular;
+	font-size: 16px;
+	color: black;
+	margin-top: 10px;
+}
 
+.optN2 {
+	width: 150px;
+	height: 30px;
+	font-family: CookieRun-Regular;
+	font-size: 18px;
+	color: white;
+	background-color: #ff674efa;
+	border-style: none;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.optbtn {
+	margin-top: 15px;
+	margin-left: 200px;
+	border-radius: 4px;
+	background-color: #ff674efa;
+	color: white;
+	border-style: none;
+	font-size: 16px;
+	width: 150px;
+	height: 30px;
+	font-family: CookieRun-Regular;
+}
 
 /**photo**/
 .PhotoZone {
 	width: 150px;
-	height: 150px;
+	height: 30px;
 	font-family: CookieRun-Regular;
 	font-size: 23px;
+	margin-top: 150px;
+	margin-right: 300px;
+}
+
+.imgF {
+	float: right;
+	margin-top: 200px;
+	margin-bottom: 40px;
 }

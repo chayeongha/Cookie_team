@@ -12,6 +12,8 @@
 <link href="${pageContext.request.contextPath}/css/admin/admin.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/sb-admin-2.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body id="page-top">
 <div class="body_main">
@@ -254,9 +256,40 @@
   		
   		
   	</div>
+  	<div>
+  		<div class="storeBye">
+  			<div class="storeByeTi">스토어 폐업신청</div>
+  			<div class="storeByeContainer"></div>
+  		</div>
+  		
+  	</div>
   	
   	
   	</div><!-- 2container -->
 </div>
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$.ajax({
+		type:"GET",
+		url:"../store/storeAdmin",
+		error: function() {
+			alert("통신실패")
+		},
+		success : function(data) {
+			$(".storeByeContainer").html(data);
+			/* alert("데이터 전송 성공"+data); */
+		}
+	});
+	
+});
+	
+</script>
+
+
 </body>
 </html>

@@ -46,6 +46,12 @@ public class StoreService {
 		}
 		return result;
 	}
+	
+	public int storeClose(StoreVO storeVO)throws Exception{
+		int result = storeMapper.storeClose(storeVO);
+		return result;
+	}
+	
 
 	public int storeUpdate(StoreVO storeVO, MultipartFile files) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("upload");
@@ -84,7 +90,16 @@ public class StoreService {
 		return result;
 
 	}
-
+	
+	public int deleteStore(StoreVO storeVO)throws Exception{
+		return storeMapper.deleteStore(storeVO);
+	}
+	
+	public int storeUpdateBye(StoreCloseVO storeCloseVO)throws Exception{
+		return storeMapper.storeUpdateBye(storeCloseVO);
+	}
+	
+	
 	public List<StoreVO> searchInfo(StoreVO storeVO) throws Exception {
 		return storeMapper.searchInfo(storeVO);
 	}
@@ -96,7 +111,15 @@ public class StoreService {
 	public List<StoreFilesVO> storeFilesSelect(StoreFilesVO storeFilesVO) throws Exception {
 		return storeFilesMapper.storeFilesSelect(storeFilesVO);
 	}
+	
+	public List<StoreCloseVO> storeAdmin(StoreCloseVO storeCloseVO)throws Exception{
+		return storeMapper.storeAdmin(storeCloseVO);
+	}
 
+	public StoreCloseVO storeAdminSelect(StoreCloseVO storeCloseVO)throws Exception{
+		return storeMapper.storeAdminSelect(storeCloseVO);
+	}
+	
 	public int onUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.onUpdate(storeVO);
 	}

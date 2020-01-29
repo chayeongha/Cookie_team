@@ -80,20 +80,20 @@
       
       <c:forEach items="${vo.menuOptions}" var="opt" varStatus="p">
      <div class="optBoxForm" id="optbox${p.index}">
-      <label for="mmCounte">옵션 이름</label>
-     <input type="text" name="optName2" placeholder="옵션이름" value="${opt.optName}">
-      <label for="mmCounte">금액</label>
-     <input type="text" name="optPrice2" placeholder="금액(원)" value="${opt.optPrice}">
+      <label for="mmCounte" class="optN">옵션 이름</label>
+     <input type="text" name="optName2" class="optN2" placeholder="옵션이름" value="${opt.optName}">
+      <label for="mmCounte" class="optN">금액</label>
+     <input type="text" name="optPrice2" class="optN2" placeholder="금액(원)" value="${opt.optPrice}">
      <input type="hidden" name="optNum2" id="opn${p.index}" value="${opt.optNum}">
      <input type="hidden" name="mmNum2" id="mn${p.index}" value="${vo.mmNum}">
-     
+     <br>
      <input type="button" id="optbtn${p.index}" class="optbtn" value="옵션 삭제" style="cursor: pointer;">
      </div>
   
       </c:forEach>
 	 
       <div class="form-group">
-      
+      <br>
       <input type="button"  class="btn btn-info col-sm-3" id="addOpt" value="옵션 추가">
       <div id="addOpts" class="col-sm-12"></div>
       </div>
@@ -104,11 +104,11 @@
     <div class="form-group">
         <br>
         <br>
-		  <img id="blah" src="../menu/${vo.menuFiles.mfName}" alt="your image"  style="width: 300px; height: 300px; margin-left: 250px; margin-top: 50px; clear: both;"/>
+        <div style="margin-top: 850px; margin-left: 250px; font-family: CookieRun-Regular; font-size: 24px;">Menu Photo</div>
+		  <img id="blah" src="../menu/${vo.menuFiles.mfName}" alt="your image" class="imgF" style="width: 300px; height: 300px; margin-left: 250px; margin-top: 50px; clear: both; margin-right: 300px;"/>
 		    <br>
-		<label for="files" class="PhotoZone">MenuPhoto:</label> 
 		<input type="file"class="form-control" id="files" name="files" value="">
-		<input type="text" class="form-control" id="mfNum" name="mfNum" value="${vo.menuFiles.mfNum}">
+		<input type="hidden" class="form-control" id="mfNum" name="mfNum" value="${vo.menuFiles.mfNum}">
 
 	</div>
 
