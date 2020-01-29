@@ -78,7 +78,7 @@ public class MenuService {
 				menuFilesVO.setMmNum(menuVO.getMmNum());
 				menuFilesVO.setMfName(fileName);
 				menuFilesVO.setMoName(files.getOriginalFilename());
-			result = menuFilesMapper.menuFilesUpdate(menuFilesVO);
+			result = menuFilesMapper.menuFilesUpdate(menuFilesVO);			
 			}
 			}
 			
