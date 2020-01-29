@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,7 @@ import com.cookie.basic.util.FileSaver;
 import com.cookie.basic.util.Pager;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MemberService {
 
 	@Autowired
@@ -32,22 +34,25 @@ public class MemberService {
 	
 	//검증
 	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult)throws Exception{
-		boolean check= false;//ture면 에러
+		boolean check= false;//트루일땐 에러 펄스면 에러x
 		//검증결과
 		if(bindingResult.hasErrors()) {
 			check=true;
 		}
+	
 		//비번이 일치하는지 검증
-		if(!memberVO.getPw().equals(memberVO.getPw2())) {
+		if(!memberVO.getPw().equals(memberVO.getPwCheck())) {
 			check=true;
 			//form의 path명, 출력하고싶은 properties의키 
-			bindingResult.rejectValue("pw2", "memberVO.pw.notEqual");
+			//bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
 		}
+		
 		//id가 중복인지 검증
 		memberVO = memberMapper.memberIdCheck(memberVO);
+		
 		if(memberVO != null) {
 			check= true;
-			bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
+			//bindingResult.rejectValue("memId", "memberVO.memId.idCheck");
 		}
 		return check;
 	}
@@ -63,6 +68,7 @@ public class MemberService {
 		
 		boolean check= false;
 		
+		//로그인할때 프로필사진을 넣었을 때 파일테이블에 행추가o 아닐시에는 행추가x 
 		if(files.getSize()>0) {
 			check=true;			
 		}

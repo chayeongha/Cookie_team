@@ -40,9 +40,9 @@
      </div>	
      
       <div class="form-group">
-      <label class="control-label col-sm-2" for="pw2">Pw Confirm:</label>
+      <label class="control-label col-sm-2" for="pwCheck">Pw Confirm:</label>
       <div class="col-sm-10">          
-        <form:password path="pw2" class="form-control" id="pw2" placeholder="Enter password" />
+        <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check" />
 		
       </div>
      </div>
@@ -93,7 +93,7 @@
     <div class="">
 		<label for="files">Profile:</label> 
 		<div class="form-group">
-			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;"/>	
+			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
 		</div> 
 			<input type="file"class="form-control" id="files" name="files">
 

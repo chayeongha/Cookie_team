@@ -26,7 +26,7 @@
 
 		<div class="container">
 			
-		<h1>${kind} 회원가입</h1>
+		<h1>${jname}회원 가입</h1>
 		  <form:form class="form-horizontal" action="./memberJoin" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
 		    
 		    <div class="form-group">
@@ -40,7 +40,7 @@
 		    <div class="form-group">
 		      <label class="control-label col-sm-2" for="pw">비밀번호</label>
 		      <div class="col-sm-10">          
-		      <form:password path="pw" class="form-control" id="pw" placeholder="Enter password"/>
+		      <form:password path="pw" class="form-control" id="pw" placeholder="6~14자리 내에 영문과 , 숫자 ,특수기호만 가능합니다. "/>
 				 <form:errors path="pw" cssStyle="color:red;" />
 		      </div>
 		     </div>
@@ -48,43 +48,45 @@
 		      <div class="form-group">
 		      <label class="control-label col-sm-2" for="pw2">비밀번호 확인</label>
 		      <div class="col-sm-10">          
-		        <form:password path="pw2" class="form-control" id="pw2" placeholder="Enter password"/>
-				<form:errors path="pw2" />
+		        <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check"/>
+				<form:errors path="pwCheck" cssStyle="color:red;" />
 		      </div>
 		     </div>
 		     
 		     <div class="form-group">
 		      <label class="control-label col-sm-2" for="name">이름</label>
 		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+		      	<form:input path="name" class="form-control" id="name" placeholder="Enter name"/>
+				<form:errors path="name" cssStyle="color:red;" />
 		      </div>
 		    </div>
 		     
 		        <div class="form-group">
 		      <label class="control-label col-sm-2" for="nickname">닉네임 </label>
 		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="nickname" placeholder="Enter nickname" name="nickname">
+		        <form:input path="nickname" class="form-control" id="nickname" placeholder="Enter nickname"/>
+				<form:errors path="nickname" cssStyle="color:red;" />
 		      </div>
 		    </div>
 		    
 		     <div class="form-group">
 		      	<label class="control-label col-sm-2" for="email">연락처</label>
 		     	 <div class="col-sm-10">          
-		        	<input type="text" class="form-control" id="phone" placeholder="Enter phone number" name="phone">
+		        	<input type="tel" class="form-control" name="phone" value="${phone}" placeholder="Enter phone"> 
 		      	</div>
 		     </div>
 		     
 		     <div class="form-group">
 		      	<div class="col-sm-10"> 
-		  			<input type="hidden" class="form-control" name="grade" value="${grade}"> 
-		     		<input type="hidden" class="form-control" name="kind" value="${kind}"> 
+		     		<input type="hidden" class="form-control" name="kind" value="${kind}">
+		     		<input type="hidden" class="form-control" name="grade" value="${grade}"> 
 		     	</div>
 		 	</div>
 		   
 		    <div class="form-group">
 				<label for="files">Profile:</label> 
 					<input type="file" class="form-control" id="files" name="files">
-					<img id="blah" alt="your image" src="#" style="width: 300px; height: 300px;"/>	
+					<img id="blah" alt="your image" src="#" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
 			</div>
 			
 		    <div class="form-group">        
@@ -116,6 +118,7 @@
 			}
 		}
 
+		//
 	</script>
 
 
