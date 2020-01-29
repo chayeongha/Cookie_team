@@ -16,7 +16,7 @@
 <div class="body_main">
 	<div class="b"></div>
 		<div class="container">
-		
+
 		<h1>${member.name}님 환영합니다</h1>
 		<div class="mypageBox">
 			<div class="myImg">
@@ -85,8 +85,12 @@
 				<h1>222</h1>
 			</div>
 		</div>
+	
 	</div>
+</div>	
+
 	<c:import url="../layout/footer.jsp" />	
+
 <script type="text/javascript">
 
 		//정보수정

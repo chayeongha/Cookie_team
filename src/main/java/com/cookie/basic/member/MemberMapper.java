@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.aspectj.weaver.Member;
 import org.springframework.stereotype.Repository;
-
 import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.Pager;
 
@@ -41,13 +40,7 @@ public interface MemberMapper {
 	//수정
 	public int memberUpdate(MemberVO memberVO)throws Exception;
 	
-	//회원 탈퇴
+	//마이페이지에서 회원 탈퇴 
 	public int memberDelete(MemberVO memberVO)throws Exception;
-	
-	//개인회원 리스트
-	public List<MemberVO>pmemberList(Pager pager)throws Exception;
-	
-	//회원리스트 카운트
-	public int listCount(Pager pager)throws Exception;
 	
 }

@@ -203,6 +203,23 @@ public class MenuService {
 		return menuMapper.menuList(menuVO);
 	}
 	
+	//c1
+	public List<MenuVO> categoryList1(MenuVO menuVO)throws Exception{
+		return menuMapper.categoryList1(menuVO);
+	}
+	
+	//c2
+	public List<MenuVO> categoryList2(MenuVO menuVO)throws Exception{
+		return menuMapper.categoryList2(menuVO);
+	}
+	
+	//c3
+	public List<MenuVO> categoryList3(MenuVO menuVO)throws Exception{
+		return menuMapper.categoryList3(menuVO);
+	}
+	
+	
+	
 	//delete Option
 	public int moptDelete(MoptVO moptVO)throws Exception{
 		return moptMapper.moptDelete(moptVO);
