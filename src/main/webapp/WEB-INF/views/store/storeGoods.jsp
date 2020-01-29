@@ -84,14 +84,14 @@
 			
 			<div class="box3">
 				<div class="box3_inner">　# Coffee</div>
-				<c:forEach items="${list}" var="vo" varStatus="i">
-					<c:forEach items="${vo.menuVO}" var="vo2">
+				<c:forEach items="${list}" var="vo" >
+					<c:forEach items="${vo.menuVO}" var="vo2" varStatus="i">
 						<c:if test="${vo2.cmNum eq 1 }">
 							<div class="mselect">
-							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}">
 							<input type="hidden" value="${vo2.menuFiles.mfName}">
-							<c:forEach items="${vo2.menuOptions}" var="vo3">
-								<input type="hidden" value="${vo3.optName}" class="a${i.count}">
+							<c:forEach items="${vo2.menuOptions}" var="vo3" >
+								<input type="hidden" value="${vo3.optName}" class="${vo2.mmNum}">
 							</c:forEach>
 							</div>
 							<div class="mselect">
@@ -100,14 +100,14 @@
 					</c:forEach>
 				</c:forEach>
 				<div class="box3_inner">　# Beverage</div>
-				<c:forEach items="${list}" var="vo" varStatus="i">
-					<c:forEach items="${vo.menuVO}" var="vo2">
+				<c:forEach items="${list}" var="vo">
+					<c:forEach items="${vo.menuVO}" var="vo2" varStatus="i">
 						<c:if test="${vo2.cmNum eq 2 }">
 							<div class="mselect">
-							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}">
 							<input type="hidden" value="${vo2.menuFiles.mfName}">
 							<c:forEach items="${vo2.menuOptions}" var="vo3">
-								<input type="hidden" value="${vo3.optName}" class="b${i.count}">
+								<input type="hidden" value="${vo3.optName}" class="${vo2.mmNum}">
 							</c:forEach>
 							</div>
 							<div class="mselect">
@@ -116,14 +116,14 @@
 					</c:forEach>
 				</c:forEach>
 				<div class="box3_inner">　# Dessert</div>
-				<c:forEach items="${list}" var="vo" varStatus="i">
-					<c:forEach items="${vo.menuVO}" var="vo2">
+				<c:forEach items="${list}" var="vo">
+					<c:forEach items="${vo.menuVO}" var="vo2" varStatus="i">
 						<c:if test="${vo2.cmNum eq 3 }">
 							<div class="mselect">
-							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}">
 							<input type="hidden" value="${vo2.menuFiles.mfName}">
-								<c:forEach items="${vo2.menuOptions}" var="vo3" varStatus="i">
-									<input type="hidden" value="${vo3.optName}" class="c${i.count}">
+								<c:forEach items="${vo2.menuOptions}" var="vo3">
+									<input type="hidden" value="${vo3.optName}" class="${vo2.mmNum}">
 								</c:forEach>
 							</div>
 							<div class="mselect">
@@ -157,23 +157,23 @@
 			  
 			      
 			  	  $(".btnclick").click(function() {
-			  		  
-			  		  	var menu = $(this).val();
+			  		var menu = $(this).val();
+					  
+			  		  	
 
-			  		  	$(".opt").each(function(){
+			  		$("."+$(this).prop('title')).each(function(index, item){
 
-				  		  	alert($(this).val());
-
-				  		  	});
+				  	  	alert($(this).val());
+ 
+				   	});
 			  		  	
 			  			if(${sessionScope.member eq null}){
 			  				alert("로그인을 해주세요");
 			  				location.href="../member/memberLogin";
 			  				
 			  			}else{	
-
 			  				$("#cc").val(menu);
-		  						
+		  					
 		  				}
 
 			  	  });
