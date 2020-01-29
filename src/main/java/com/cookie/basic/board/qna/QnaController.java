@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,18 +19,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cookie.basic.util.Pager;
 
 @Controller
-@RequestMapping("/notice/**")
+@RequestMapping("/qna/**")
 public class QnaController {
 
 	@Autowired
-	private QnaService noticeService;
+	private QnaService qnaService;
 	/////////////////////////////////////////////////////////////
 	
 	//summernote 파일 삭제
 	@ResponseBody
 	@PostMapping("summerFileDelete")
 	public ModelAndView summerFileDelete(String fileName) throws Exception {
-		boolean check = noticeService.summerFileDelete(fileName);
+		boolean check = qnaService.summerFileDelete(fileName);
 		String result = "Delete Fail";
 		
 		if(check) {
@@ -49,7 +50,7 @@ public class QnaController {
 	public ModelAndView summerFile(MultipartFile file) throws Exception {
 		//System.out.println(file.getOriginalFilename());
 		
-		String fileName = noticeService.summerFile(file);
+		String fileName = qnaService.summerFile(file);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
@@ -61,14 +62,14 @@ public class QnaController {
 	/////////////////////////////////////////////////////////////
 	//파일 다운
 	@GetMapping("fileDown")
-	public ModelAndView noticeFileDown(QnaFilesVO noticeFilesVO) throws Exception {
+	public ModelAndView qnaFileDown(QnaFilesVO qnaFilesVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		noticeFilesVO = noticeService.noticeFileSelect(noticeFilesVO);
+		qnaFilesVO = qnaService.qnaFileSelect(qnaFilesVO);
 		
-		if(noticeFilesVO != null) {
-			mv.addObject("noticeFiles", noticeFilesVO);
-			mv.addObject("path", "notice");
+		if(qnaFilesVO != null) {
+			mv.addObject("qnaFiles", qnaFilesVO);
+			mv.addObject("path", "qna");
 			mv.setViewName("fileDown");
 		}else {
 			mv.addObject("msg", "없써!!!!");
@@ -80,11 +81,11 @@ public class QnaController {
 	}
 	/////////////////////////////////////////////////////////////
 	//글 삭제
-	@GetMapping("noticeDelete")
-	public ModelAndView noticeDelete(QnaVO noticeVO) throws Exception {
+	@GetMapping("qnaDelete")
+	public ModelAndView qnaDelete(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		int result = noticeService.noticeDelete(noticeVO);
+		int result = qnaService.qnaDelete(qnaVO);
 		
 		String msg = "Delete Fail";
 		
@@ -93,40 +94,40 @@ public class QnaController {
 		}
 		
 		mv.addObject("msg", msg);
-		mv.addObject("path", "noticeList");
+		mv.addObject("path", "qnaList");
 		mv.setViewName("common/result");
 		
 		return mv;
 	}
 	
 	//글 수정 폼
-	@GetMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(QnaVO noticeVO) throws Exception {
+	@GetMapping("qnaUpdate")
+	public ModelAndView qnaUpdate(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		noticeVO = noticeService.noticeSelect(noticeVO);
+		qnaVO = qnaService.qnaSelect(qnaVO);
 		
-		mv.addObject("update", noticeVO);
-		mv.addObject("boardName", "공지사항");
+		mv.addObject("update", qnaVO);
+		mv.addObject("boardName", "문의사항");
 		mv.setViewName("board/boardUpdate");
 		
 		return mv;
 	}
 	
 	//글 수정
-	@PostMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(@Valid QnaVO noticeVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
+	@PostMapping("qnaUpdate")
+	public ModelAndView qna(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("fnum 들어왔냡");
-		//System.out.println(noticeVO.getNum());
+		//System.out.println(qnaVO.getNum());
 		
 		if(bindingResult.hasErrors()) {//에러가 생겼을 때 다시 form으로 돌아가게끔
-			noticeVO = noticeService.noticeSelect(noticeVO);
-			mv.addObject("update", noticeVO);
-			mv.addObject("boardName", "공지사항");
+			qnaVO = qnaService.qnaSelect(qnaVO);
+			mv.addObject("update", qnaVO);
+			mv.addObject("boardName", "문의사항");
 			mv.setViewName("board/boardUpdate");// '/WEB-INF/views/'와 '.jsp'를 붙여줌
 		}else {
-			int result = noticeService.noticeUpdate(noticeVO, files, fnums);
+			int result = qnaService.qnaUpdate(qnaVO, files, fnums);
 			String msg = "Update Fail";
 			
 			if(result>0) {
@@ -134,28 +135,28 @@ public class QnaController {
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", msg);
-			mv.addObject("path", "./noticeSelect?num="+noticeVO.getNum());
+			mv.addObject("path", "./qnaSelect?num="+qnaVO.getNum());
 		}
 		
 		return mv;
 	}
 	
 	//글 작성 폼
-	@GetMapping("noticeWrite")
-	public String noticeWrite(QnaVO noticeVO) throws Exception {
+	@GetMapping("qnaWrite")
+	public String qnaWrite(QnaVO qnaVO) throws Exception {
 		return "board/boardWrite";
 	}
 	
 	//글 등록
-	@PostMapping("noticeWrite")
-	public ModelAndView noticeWrite(@Valid QnaVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
+	@PostMapping("qnaWrite")
+	public ModelAndView qnaWrite(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/boardWrite");
 		}else {
 			System.out.println(files.length);
-			int result = noticeService.noticeWrite(noticeVO, files);
+			int result = qnaService.qnaWrite(qnaVO, files);
 			String msg = "Write Fail";
 			 
 			if(result>0) {
@@ -163,29 +164,29 @@ public class QnaController {
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", msg);
-			mv.addObject("path", "./noticeList");
+			mv.addObject("path", "./qnaList");
 		}
 		
 		return mv;
 	}
 	
 	//글 하나 조회
-	@GetMapping("noticeSelect")
-	public ModelAndView noticeSelect(QnaVO noticeVO) throws Exception {
+	@GetMapping("qnaSelect")
+	public ModelAndView qnaSelect(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		noticeVO = noticeService.noticeSelect(noticeVO);
-		//System.out.println(noticeVO.getNoticeFilesVO().get(0).getFnum());
+		qnaVO = qnaService.qnaSelect(qnaVO);
+		//System.out.println(qnaVO.getqnaFilesVO().get(0).getFnum());
 		
-//		System.out.println(noticeVO.getNum());
-//		System.out.println(noticeVO.getNext());
-//		System.out.println(noticeVO.getNextT());
-//		System.out.println(noticeVO.getPrev());
-//		System.out.println(noticeVO.getPrevT());
+//		System.out.println(qnaVO.getNum());
+//		System.out.println(qnaVO.getNext());
+//		System.out.println(qnaVO.getNextT());
+//		System.out.println(qnaVO.getPrev());
+//		System.out.println(qnaVO.getPrevT());
 		
-		if(noticeVO != null) {
-			mv.addObject("select", noticeVO);
-			mv.addObject("boardName", "공지사항");
+		if(qnaVO != null) {
+			mv.addObject("select", qnaVO);
+			mv.addObject("boardName", "문의사항");
 			mv.setViewName("board/boardSelect");
 		}
 		
@@ -193,18 +194,14 @@ public class QnaController {
 	}
 	
 	//리스트
-	@GetMapping("noticeList")
-	public ModelAndView noticeList(Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("qnaList")
+	public void qnaList(Model model, Pager pager) throws Exception {
 		
-		List<QnaVO> list = noticeService.noticeList(pager);
+		List<QnaVO> list = qnaService.qnaList(pager);
 		
-		mv.addObject("list", list);
-		mv.addObject("pager", pager);
-		mv.addObject("boardName", "공지사항");
-		mv.setViewName("board/boardList");
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 		
-		return mv;
 	}
 	
 }

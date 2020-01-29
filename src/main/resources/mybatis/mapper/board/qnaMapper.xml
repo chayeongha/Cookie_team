@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.cookie.basic.board.notice.NoticeMapper">
+  <mapper namespace="com.cookie.basic.board.qna.QnaMapper">
   	<sql id="bs">
   		<choose>
   			<when test="kind == 'kt'">
@@ -22,59 +22,58 @@
   	</sql>
   	
   	
-  	<resultMap type="NoticeVO" id="Select">
+  	<resultMap type="QnaVO" id="Select">
   		<id column="num" property="num"/>
   		<result column="title" property="title"/>
   		<result column="writer" property="writer"/>
   		<result column="contents" property="contents"/>
   		<result column="regDate" property="regDate"/>
-  		<result column="prev" property="prev"/>
-  		<result column="prevT" property="prevT"/>
-  		<result column="next" property="next"/>
-  		<result column="nextT" property="nextT"/>
-  		<collection property="noticeFilesVO" javaType="List" ofType="NoticeFilesVO">
+  		<result column="ref" property="ref"/>
+  		<result column="step" property="step"/>
+  		<result column="depth" property="depth"/>
+  		<collection property="qnaFilesVO" javaType="List" ofType="QnaFilesVO">
 	  		<id column="fnum" property="fnum"/>
 	  		<result column="oname" property="oname"/>
 	  		<result column="fname" property="fname"/>
   		</collection>
   	</resultMap>
   	
-  	<delete id="noticeDelete" parameterType="NoticeVO">
-  		delete from notice where num = #{num}
+  	<delete id="qnaDelete" parameterType="QnaVO">
+  		delete from qna where num = #{num}
   	</delete>
   	
-  	<update id="noticeUpdate" parameterType="NoticeVO">
-  		update notice set title = #{title}, writer = #{writer}, contents = #{contents}
+  	<update id="qnaUpdate" parameterType="QnaVO">
+  		update qna set title = #{title}, writer = #{writer}, contents = #{contents}
   		where num = #{num}
   	</update>
   	
-  	<select id="noticeSelect" parameterType="NoticeVO" resultMap="Select">
+  	<select id="qnaSelect" parameterType="QnaVO" resultMap="Select">
   		select N.*, F.fnum, F.fname, F.oname
   		from (select *, lag(num,1) over(order by num) prev,
   				lag(title,1) over(order by num) prevT,
            		lead(num,1) over(order by num) next,
             	lead(title,1) over(order by num) nextT
-		from notice) N left outer join noticeFiles F
+		from qna) N left outer join qnaFiles F
   		on N.num = F.num
   		where N.num = #{num}
   	</select>
   	
-  	<insert id="noticeWrite" parameterType="NoticeVO" useGeneratedKeys="true" keyProperty="num">
-  		insert into notice values(0, #{title}, #{writer}, #{contents}, now())
+  	<insert id="qnaWrite" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+  		insert into qna values(0, #{title}, #{writer}, #{contents}, now())
   		<!-- <selectKey resultType="Integer" keyProperty="num" order="AFTER">
   			select LAST_INSERT_ID()
   		</selectKey> -->
   		<!-- auto increment를 받아오려면 Select Key를 쓰거나, (useGeneratedKeys="true" keyProperty="num")를 써준다 -->
   	</insert>
   	
-  	<select id="noticeList" parameterType="Pager" resultType="NoticeVO">
-  		select * from notice
+  	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
+  		select * from qna
   		<include refid="bs"></include> num > 0
   		order by num desc LIMIT #{startRow}, #{perPage}
   	</select>
 
-  	<select id="noticeCount" resultType="Integer" parameterType="Pager">
-  		select count(num) from notice
+  	<select id="qnaCount" resultType="Integer" parameterType="Pager">
+  		select count(num) from qna
   		<include refid="bs"></include> num > 0
   	</select>
   </mapper>

@@ -21,5 +21,9 @@ public class QnaVO extends BoardVO {
 //	    PRIMARY KEY (num)
 //	);
 	
-	private List<QnaFilesVO> noticeFilesVO;
+	private int ref;
+	private int step;
+	private int depth;
+	
+	private List<QnaFilesVO> qnaFilesVO;
 }

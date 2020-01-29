@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface QnaFilesMapper {
 
-	public List<QnaFilesVO> noticeFilesList(QnaFilesVO noticeFilesVO) throws Exception;
+	public List<QnaFilesVO> qnaFilesList(QnaFilesVO qnaFilesVO) throws Exception;
 	
-	public int noticeFilesDelete(QnaFilesVO noticeFilesVO) throws Exception;
+	public int qnaFilesDelete(QnaFilesVO qnaFilesVO) throws Exception;
 	
-	public QnaFilesVO noticeFilesSelect(QnaFilesVO noticeFilesVO) throws Exception;
+	public QnaFilesVO qnaFilesSelect(QnaFilesVO qnaFilesVO) throws Exception;
 	
-	public int noticeFilesInsert(List<QnaFilesVO> noticeFilesVO) throws Exception;
+	public int qnaFilesInsert(List<QnaFilesVO> qnaFilesVO) throws Exception;
 }

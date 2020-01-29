@@ -18,9 +18,9 @@ import com.cookie.basic.util.Pager;
 public class QnaService {
 
 	@Autowired
-	private QnaMapper noticeMapper;
+	private QnaMapper qnaMapper;
 	@Autowired
-	private QnaFilesMapper noticeFilesMapper;
+	private QnaFilesMapper qnaFilesMapper;
 	@Autowired
 	private FilePathGenerator filePathGenerator;
 	@Autowired
@@ -40,27 +40,27 @@ public class QnaService {
 	}
 	
 	//파일 다운
-	public QnaFilesVO noticeFileSelect(QnaFilesVO noticeFilesVO) throws Exception {
-		return noticeFilesMapper.noticeFilesSelect(noticeFilesVO);
+	public QnaFilesVO qnaFileSelect(QnaFilesVO qnaFilesVO) throws Exception {
+		return qnaFilesMapper.qnaFilesSelect(qnaFilesVO);
 	}
 	///////////////////////////////////////////////////
 	//글 삭제
 	@Transactional
-	public int noticeDelete(QnaVO noticeVO) throws Exception {
+	public int qnaDelete(QnaVO qnaVO) throws Exception {
 		//System.out.println(noticeVO.getNum());
-		int result = noticeMapper.noticeDelete(noticeVO);
+		int result = qnaMapper.qnaDelete(qnaVO);
 		
-		QnaFilesVO noticeFilesVO = new QnaFilesVO();
-		noticeFilesVO.setNum(noticeVO.getNum());
+		QnaFilesVO qnaFilesVO = new QnaFilesVO();
+		qnaFilesVO.setNum(qnaVO.getNum());
 		
-		List<QnaFilesVO> noticeFilesVOs = noticeFilesMapper.noticeFilesList(noticeFilesVO);
+		List<QnaFilesVO> qnaFilesVOs = qnaFilesMapper.qnaFilesList(qnaFilesVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("notice");
+		File file = filePathGenerator.getUseClassPathResource("qna");
 		
 		boolean check = false;
 		
-		for (QnaFilesVO noticeFilesVO2 : noticeFilesVOs) {
-			String fileName = noticeFilesVO2.getFname();
+		for (QnaFilesVO qnaFilesVO2 : qnaFilesVOs) {
+			String fileName = qnaFilesVO2.getFname();
 			check = fileSaver.fileDelete(file, fileName);
 		}
 		
@@ -75,29 +75,29 @@ public class QnaService {
 	
 	//글 수정
 	@Transactional
-	public int noticeUpdate(QnaVO noticeVO, MultipartFile[] files, int[] fnums) throws Exception {
+	public int qnaUpdate(QnaVO qnaVO, MultipartFile[] files, int[] fnums) throws Exception {
 		
 		//notice 테이블 수정
-		int result = noticeMapper.noticeUpdate(noticeVO);
+		int result = qnaMapper.qnaUpdate(qnaVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("notice");
+		File file = filePathGenerator.getUseClassPathResource("qna");
 		
 		//기존 파일 지웠을 때
 		if(fnums != null && fnums.length > 0) {
 			for (int i : fnums) {
 				//System.out.println(i);
 				
-				QnaFilesVO noticeFilesVO = new QnaFilesVO();
-				noticeFilesVO.setFnum(i);
+				QnaFilesVO qnaFilesVO = new QnaFilesVO();
+				qnaFilesVO.setFnum(i);
 				
-				String fileName = noticeFilesMapper.noticeFilesSelect(noticeFilesVO).getFname();
+				String fileName = qnaFilesMapper.qnaFilesSelect(qnaFilesVO).getFname();
 				System.out.println(fileName);
 				
 				//static의 파일 지우기
 				fileSaver.fileDelete(file, fileName);
 				
 				//DB 테이블에서 파일 지우기
-				result = noticeFilesMapper.noticeFilesDelete(noticeFilesVO);
+				result = qnaFilesMapper.qnaFilesDelete(qnaFilesVO);
 				System.out.println(result);
 			}
 		}
@@ -105,26 +105,26 @@ public class QnaService {
 		//기존 파일 그대로
 		System.out.println("그대로당!");
 		
-		List<QnaFilesVO> noticeFilesVOs = new ArrayList<QnaFilesVO>();
+		List<QnaFilesVO> qnaFilesVOs = new ArrayList<QnaFilesVO>();
 		
 		for(int i=0;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
 				String fileName = fileSaver.save(file, files[i]);
 				System.out.println(fileName);
 				
-				QnaFilesVO noticeFilesVO = new QnaFilesVO();
+				QnaFilesVO qnaFilesVO = new QnaFilesVO();
 				//System.out.println(noticeVO.getNum());
-				noticeFilesVO.setNum(noticeVO.getNum());
-				noticeFilesVO.setFname(files[i].getOriginalFilename());
-				noticeFilesVO.setOname(fileName);
+				qnaFilesVO.setNum(qnaVO.getNum());
+				qnaFilesVO.setFname(files[i].getOriginalFilename());
+				qnaFilesVO.setOname(fileName);
 				
-				noticeFilesVOs.add(noticeFilesVO);
+				qnaFilesVOs.add(qnaFilesVO);
 			}
 		}
 		
 		//file 개수가 0보다 클 때만 files에 등록
-		if(noticeFilesVOs.size() > 0) {
-			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
+		if(qnaFilesVOs.size() > 0) {
+			result = qnaFilesMapper.qnaFilesInsert(qnaFilesVOs);
 		}
 		
 		return result;
@@ -132,13 +132,13 @@ public class QnaService {
 	
 	//글 작성 + 파일 추가
 	@Transactional
-	public int noticeWrite(QnaVO noticeVO, MultipartFile[] files) throws Exception {
+	public int qnaWrite(QnaVO qnaVO, MultipartFile[] files) throws Exception {
 		System.out.println("글 작성");
-		int result = noticeMapper.noticeWrite(noticeVO);
+		int result = qnaMapper.qnaWrite(qnaVO);
 		
 		File file = filePathGenerator.getUseClassPathResource("notice");
 		
-		List<QnaFilesVO> noticeFilesVOs = new ArrayList<QnaFilesVO>();
+		List<QnaFilesVO> qnaFilesVOs = new ArrayList<QnaFilesVO>();
 		
 		for(int i=0;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
@@ -146,33 +146,33 @@ public class QnaService {
 				
 				System.out.println(fileName);
 				
-				QnaFilesVO noticeFilesVO = new QnaFilesVO();
+				QnaFilesVO qnaFilesVO = new QnaFilesVO();
 				//System.out.println(noticeVO.getNum());
-				noticeFilesVO.setNum(noticeVO.getNum());
-				noticeFilesVO.setFname(files[i].getOriginalFilename());
-				noticeFilesVO.setOname(fileName);
+				qnaFilesVO.setNum(qnaVO.getNum());
+				qnaFilesVO.setFname(files[i].getOriginalFilename());
+				qnaFilesVO.setOname(fileName);
 				
-				noticeFilesVOs.add(noticeFilesVO);
+				qnaFilesVOs.add(qnaFilesVO);
 			}
 		}
 		//file 개수가 0보다 클 때만 files에 등록
-		if(noticeFilesVOs.size() > 0) {
-			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
+		if(qnaFilesVOs.size() > 0) {
+			result = qnaFilesMapper.qnaFilesInsert(qnaFilesVOs);
 		}
 		
 		return result;
 	}
 	
 	//글 하나 조회
-	public QnaVO noticeSelect(QnaVO noticeVO) throws Exception {
-		return noticeMapper.noticeSelect(noticeVO);
+	public QnaVO qnaSelect(QnaVO qnaVO) throws Exception {
+		return qnaMapper.qnaSelect(qnaVO);
 	}
 	
 	//리스트
-	public List<QnaVO> noticeList(Pager pager) throws Exception {
+	public List<QnaVO> qnaList(Pager pager) throws Exception {
 		pager.makeRow();
-		pager.makePage(noticeMapper.noticeCount(pager));
+		pager.makePage(qnaMapper.qnaCount(pager));
 		
-		return noticeMapper.noticeList(pager);
+		return qnaMapper.qnaList(pager);
 	}
 }

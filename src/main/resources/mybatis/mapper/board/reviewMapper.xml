@@ -30,10 +30,6 @@
   		<result column="regDate" property="regDate"/>
   		<result column="ssNum" property="ssNum"/>
   		<result column="mmNum" property="mmNum"/>
-  		<result column="prev" property="prev"/>
-  		<result column="prevT" property="prevT"/>
-  		<result column="next" property="next"/>
-  		<result column="nextT" property="nextT"/>
   		<collection property="reviewFilesVO" javaType="List" ofType="ReviewFilesVO">
 	  		<id column="fnum" property="fnum"/>
 	  		<result column="oname" property="oname"/>

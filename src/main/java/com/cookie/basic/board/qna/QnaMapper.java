@@ -12,22 +12,22 @@ import com.cookie.basic.util.Pager;
 public interface QnaMapper {
 
 	//글 삭제
-	public int noticeDelete(QnaVO noticeVO) throws Exception;
+	public int qnaDelete(QnaVO qnaVO) throws Exception;
 	
 	//글 수정
-	public int noticeUpdate(QnaVO noticeVO) throws Exception;
+	public int qnaUpdate(QnaVO qnaVO) throws Exception;
 	
 	//글 하나 조회
-	public QnaVO noticeSelect(QnaVO noticeVO) throws Exception;
+	public QnaVO qnaSelect(QnaVO qnaVO) throws Exception;
 	
 	//글 생성
-	public int noticeWrite(QnaVO noticeVO) throws Exception;
+	public int qnaWrite(QnaVO qnaVO) throws Exception;
 	
 	//전체 글 개수
-	public int noticeCount(Pager pager) throws Exception;
+	public int qnaCount(Pager pager) throws Exception;
 	
 	//리스트
-	public List<QnaVO> noticeList(Pager pager) throws Exception;
+	public List<QnaVO> qnaList(Pager pager) throws Exception;
 	
 	
 }
