@@ -34,4 +34,8 @@
 			delete from members where memNum=#{memNum}
 	</delete>
 
+<!--회원검색 -->
+	<select id="pmemberSearch" parameterType="MemberVO" resultType="MemberVO">
+		select * from members where memNum = #{memNum}
+	</select>
 </mapper>

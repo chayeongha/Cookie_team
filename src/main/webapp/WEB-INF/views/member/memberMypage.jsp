@@ -58,7 +58,7 @@
       			<label for="nickname">닉네임</label>
       			<input type="text" class="" id="nickname" value="${member.nickname}" readonly="readonly">
     		</div>
-    
+    			
     		<div class="box">
       			<label for="phone">phone</label>
       			<input type="text" class="" id="phone" value="${member.phone}" readonly="readonly">

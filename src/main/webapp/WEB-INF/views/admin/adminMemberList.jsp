@@ -88,9 +88,11 @@
 														<div class="subMenu" style="display: none;">
 															<ul>
 																<div class="info">
-																	<p>이름: ${member.name }</p>
+																	<p>이름: ${member.memNum}</p>
+																	<p>이름: ${member.name}</p>
 																	<p>닉네임: ${member.nickname}</p>
-																	<p>연락처: ${member.phone }</p>
+																	<p>연락처: ${member.phone}</p>
+																	<p>이메일: ${member.email}</p>
 																	 <a class="btn btn-primary" href="./pmemberDelete?memNum=${member.memNum}">삭제</a>
 																</div>
 															</ul>

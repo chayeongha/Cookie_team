@@ -78,7 +78,7 @@
 			     <div class="form-group">
 			      	<label class="control-label col-sm-2" for="email">연락처</label>
 			     	 <div class="col-sm-10">          
-			      		<input type="tel" onKeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="Enter phone" class="form-control" name="phone" value="${phone}"/>
+			      		<input type="tel" onKeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="Enter phone" class="form-control" name="phone" value="${phone}" id="phone"/>
 			      	</div>
 			     </div>
 			     
@@ -203,7 +203,7 @@ function inputPhoneNumber(obj) {
 			}else if($("#phone").val() == ""){
 				alert("연락처를 입력하세요!");
 				$("#phone").focus();
-			}else if(($("#email").val() == ""){
+			}else if($("#phone").val() == ""){
 				alert("이메일을 입력하세요!");
 				$("#email").focus();	
 			}else {

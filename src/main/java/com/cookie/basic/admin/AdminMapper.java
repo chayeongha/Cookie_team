@@ -21,4 +21,7 @@ public interface AdminMapper {
 	//관리자가 개인회원탈퇴
 	public int pmemberDelete(MemberVO memberVO)throws Exception;
 	
+	//회원넘버로 검색
+	public MemberVO pmemberSearch(MemberVO memberVO) throws Exception;
+	
 }
