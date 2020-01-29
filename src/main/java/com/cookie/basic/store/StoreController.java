@@ -3,6 +3,7 @@ package com.cookie.basic.store;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.menu.MenuVO;
 
 @Controller
 @RequestMapping("/store/**")
@@ -275,11 +277,15 @@ public class StoreController {
 	@GetMapping("storeGoods")
 	public ModelAndView storeGoods(StoreVO storeVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+
 		storeVO = storeService.storeGoods(storeVO);
 		List<StoreVO> ar = storeService.storeGoods2(storeVO);
+		
+				
 		mv.addObject("storeVO",storeVO);
 		mv.addObject("list",ar);
 		return mv;
+
 	}
 	
 	

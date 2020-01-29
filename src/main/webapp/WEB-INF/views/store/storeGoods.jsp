@@ -37,7 +37,7 @@
 				<input type="hidden" value="${storeVO.sName}" id="cname">
 			</div>
 			<div class="box2">
-				<div class="htxt2"><h3>* 매장 위치 *</h3>${storeVO.roadFullAddr}<div id="map" style="width:800px;height:350px;margin:0 auto;margin-bottom: 40px"></div>
+				<div class="htxt2"><h3>* 매장 위치 *</h3>${storeVO.roadFullAddr}<br><br><div id="map" style="width:800px;height:350px;margin:0 auto;margin-bottom: 40px"></div>
 				</div>
 			</div>
 			<script>
@@ -84,14 +84,102 @@
 			
 			<div class="box3">
 				<div class="box3_inner">　# Coffee</div>
-				<c:forEach items="${list}" var="vo">
-					<c:if test="${vo.menuVO.cmNum eq 1}">
-						${vo.menuVO.mmName}
-					</c:if>
+				<c:forEach items="${list}" var="vo" varStatus="i">
+					<c:forEach items="${vo.menuVO}" var="vo2">
+						<c:if test="${vo2.cmNum eq 1 }">
+							<div class="mselect">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal">
+							<input type="hidden" value="${vo2.menuFiles.mfName}">
+							<c:forEach items="${vo2.menuOptions}" var="vo3">
+								<input type="hidden" value="${vo3.optName}" class="a${i.count}">
+							</c:forEach>
+							</div>
+							<div class="mselect">
+							${vo2.mmPrice}원</div>
+						</c:if>
+					</c:forEach>
 				</c:forEach>
 				<div class="box3_inner">　# Beverage</div>
+				<c:forEach items="${list}" var="vo" varStatus="i">
+					<c:forEach items="${vo.menuVO}" var="vo2">
+						<c:if test="${vo2.cmNum eq 2 }">
+							<div class="mselect">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal">
+							<input type="hidden" value="${vo2.menuFiles.mfName}">
+							<c:forEach items="${vo2.menuOptions}" var="vo3">
+								<input type="hidden" value="${vo3.optName}" class="b${i.count}">
+							</c:forEach>
+							</div>
+							<div class="mselect">
+							${vo2.mmPrice}원</div>
+						</c:if>
+					</c:forEach>
+				</c:forEach>
 				<div class="box3_inner">　# Dessert</div>
+				<c:forEach items="${list}" var="vo" varStatus="i">
+					<c:forEach items="${vo.menuVO}" var="vo2">
+						<c:if test="${vo2.cmNum eq 3 }">
+							<div class="mselect">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal">
+							<input type="hidden" value="${vo2.menuFiles.mfName}">
+								<c:forEach items="${vo2.menuOptions}" var="vo3" varStatus="i">
+									<input type="hidden" value="${vo3.optName}" class="c${i.count}">
+								</c:forEach>
+							</div>
+							<div class="mselect">
+							${vo2.mmPrice}원</div>
+							<input type="hidden" value="${vo2.mmPrice}" class="ccprice">							
+						</c:if>
+					</c:forEach>
+				</c:forEach>
 			</div><!-- box3 끗 -->
+			
+			
+			  <div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			        	<h3 style ="border-bottom: 1px solid #ff712d; padding: 20px;">선택 메뉴</h3>
+			        	<input type="text" id="cc" readonly="readonly">
+			        </div>
+			        
+			          <button type="button" class="bclose" data-dismiss="modal">X</button>
+			        
+			      </div>
+			      
+			    </div>
+			  </div>
+			  
+			  
+			  <script type="text/javascript">
+			  
+			      
+			  	  $(".btnclick").click(function() {
+			  		  
+			  		  	var menu = $(this).val();
+
+			  		  	$(".opt").each(function(){
+
+				  		  	alert($(this).val());
+
+				  		  	});
+			  		  	
+			  			if(${sessionScope.member eq null}){
+			  				alert("로그인을 해주세요");
+			  				location.href="../member/memberLogin";
+			  				
+			  			}else{	
+
+			  				$("#cc").val(menu);
+		  						
+		  				}
+
+			  	  });
+  	
+  	  
+  	</script>
 		
 	</div>
 <c:import url="../layout/footer.jsp" />
