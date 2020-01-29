@@ -14,6 +14,7 @@
 			<a href="${pageContext.request.contextPath}/member/selectJoin">회원가입</a>
 			<a href="${pageContext.request.contextPath}/member/memberLogin">로그인</a>
 			<a href="${pageContext.request.contextPath}/member/memberMypage">마이페이지</a>
+			<a href="${pageContext.request.contextPath}/member/idSearch">아이디검색</a>
 			<c:if test="${not empty sessionScope.member}">
 			<a href="${pageContext.request.contextPath}/member/memberLogout">로그아웃</a>
 			</c:if>
