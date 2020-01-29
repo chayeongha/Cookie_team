@@ -1,4 +1,4 @@
-package com.cookie.basic.board.notice;
+package com.cookie.basic.board.review;
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import com.cookie.basic.util.Pager;
 
 @Controller
 @RequestMapping("/notice/**")
-public class NoticeController {
+public class ReviewController {
 
 	@Autowired
-	private NoticeService noticeService;
+	private ReviewService noticeService;
 	/////////////////////////////////////////////////////////////
 	
 	//summernote 파일 삭제
@@ -61,7 +61,7 @@ public class NoticeController {
 	/////////////////////////////////////////////////////////////
 	//파일 다운
 	@GetMapping("fileDown")
-	public ModelAndView noticeFileDown(NoticeFilesVO noticeFilesVO) throws Exception {
+	public ModelAndView noticeFileDown(ReviewFilesVO noticeFilesVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		noticeFilesVO = noticeService.noticeFileSelect(noticeFilesVO);
@@ -81,7 +81,7 @@ public class NoticeController {
 	/////////////////////////////////////////////////////////////
 	//글 삭제
 	@GetMapping("noticeDelete")
-	public ModelAndView noticeDelete(NoticeVO noticeVO) throws Exception {
+	public ModelAndView noticeDelete(ReviewVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		int result = noticeService.noticeDelete(noticeVO);
@@ -101,7 +101,7 @@ public class NoticeController {
 	
 	//글 수정 폼
 	@GetMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(NoticeVO noticeVO) throws Exception {
+	public ModelAndView noticeUpdate(ReviewVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		noticeVO = noticeService.noticeSelect(noticeVO);
@@ -115,7 +115,7 @@ public class NoticeController {
 	
 	//글 수정
 	@PostMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(@Valid NoticeVO noticeVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
+	public ModelAndView noticeUpdate(@Valid ReviewVO noticeVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("fnum 들어왔냡");
 		//System.out.println(noticeVO.getNum());
@@ -142,13 +142,13 @@ public class NoticeController {
 	
 	//글 작성 폼
 	@GetMapping("noticeWrite")
-	public String noticeWrite(NoticeVO noticeVO) throws Exception {
+	public String noticeWrite(ReviewVO noticeVO) throws Exception {
 		return "board/boardWrite";
 	}
 	
 	//글 등록
 	@PostMapping("noticeWrite")
-	public ModelAndView noticeWrite(@Valid NoticeVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
+	public ModelAndView noticeWrite(@Valid ReviewVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
@@ -171,7 +171,7 @@ public class NoticeController {
 	
 	//글 하나 조회
 	@GetMapping("noticeSelect")
-	public ModelAndView noticeSelect(NoticeVO noticeVO) throws Exception {
+	public ModelAndView noticeSelect(ReviewVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		noticeVO = noticeService.noticeSelect(noticeVO);
@@ -197,7 +197,7 @@ public class NoticeController {
 	public ModelAndView noticeList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		List<NoticeVO> list = noticeService.noticeList(pager);
+		List<ReviewVO> list = noticeService.noticeList(pager);
 		
 		mv.addObject("list", list);
 		mv.addObject("pager", pager);

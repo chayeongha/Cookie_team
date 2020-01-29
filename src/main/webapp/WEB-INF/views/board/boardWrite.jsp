@@ -26,7 +26,7 @@
 	</div>
 	
    <div class="container">
-     <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
+     <form:form action="noticeWrite" modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
         <div class="form-group">
          <label for="title" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">제목</label>
          <form:input path="title" placeholder="Enter Title" class="form-control" id="title" />
@@ -38,25 +38,22 @@
          <form:input path="writer" class="form-control" id="writer" value=""/>
        </div>
        
-       <div class="form-group">
+<%--        <div class="form-group">
          <label for="contents"></label>
          <form:textarea path="contents" class="form-control" id="contents" placeholder="Enter Cotents" />
          <form:errors path="contents" />
        </div>
-       
+        --%>
+        
+          <div class="form-group">
+         <label for="contents"></label>
+         <textarea name="contents" class="form-control" id="contents" placeholder="Enter Cotents"></textarea>
+        
+       </div>
        <button class="btngo">등록</button>
        <input type="button" id="btn_add" class="btn_add" value="Add File">
        <div id="files">
-          <div class="form-group tt">
-            <label for="file"></label>
-            <br>
-            <div class="col-sm-11">
-               <input type="file" class="form-control" id="file" name="files">
-            </div>
-            <div class="col-sm-1">
-               <input type="button" class="del" value="X">
-            </div>
-          </div>
+         
        </div>
        
        
@@ -69,7 +66,8 @@
    </div>
    
 <script type="text/javascript">
-   var files = $('#files').html();
+   //var files = $('#files').html();
+   var files = ' <div class="form-group tt">     <label for="file"></label>      <br>       <div class="col-sm-11">          <input type="file" class="form-control" id="file" name="files">       </div>       <div class="col-sm-1">          <input type="button" class="del" value="X">       </div>     </div>';
    $('#files').empty(); //remove vs empty ; 나 포함 전체 지우기 vs 자식만 지우기
    var check = 0;
    var index = 0; //index 번호
@@ -104,15 +102,15 @@
 			$("#frm").submit();
 		}
 	});
-
+	var formData = null;
 	//summer Note
 	$("#contents").summernote(
 			{
 				height : 400,
 				callbacks : {
-					onImageUpload : function(files) {
+					onImageUpload : function(file) {
 						var formData = new FormData();
-						formData.append('file', files[0]);
+						formData.append('file', file[0]);
 
 						$.ajax({
 							type : "POST",
@@ -128,6 +126,8 @@
 								data = '../summernote/'+data;
 								//console.log(data);
 								$('#contents').summernote('insertImage', data);
+								console.log("썸머");
+								formData.delete('file');
 							}
 						});
 					},
