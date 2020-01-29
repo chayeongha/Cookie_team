@@ -1,4 +1,4 @@
-package com.cookie.basic.board.review;
+package com.cookie.basic.board.qna;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,12 +15,12 @@ import com.cookie.basic.util.FileSaver;
 import com.cookie.basic.util.Pager;
 
 @Service
-public class ReviewService {
+public class QnaService {
 
 	@Autowired
-	private ReviewMapper reviewMapper;
+	private QnaMapper noticeMapper;
 	@Autowired
-	private ReviewFilesMapper reviewFilesMapper;
+	private QnaFilesMapper noticeFilesMapper;
 	@Autowired
 	private FilePathGenerator filePathGenerator;
 	@Autowired
@@ -40,27 +40,27 @@ public class ReviewService {
 	}
 	
 	//파일 다운
-	public ReviewFilesVO reviewFileSelect(ReviewFilesVO reviewFilesVO) throws Exception {
-		return reviewFilesMapper.reviewFilesSelect(reviewFilesVO);
+	public QnaFilesVO noticeFileSelect(QnaFilesVO noticeFilesVO) throws Exception {
+		return noticeFilesMapper.noticeFilesSelect(noticeFilesVO);
 	}
 	///////////////////////////////////////////////////
 	//글 삭제
 	@Transactional
-	public int reviewDelete(ReviewVO reviewVO) throws Exception {
+	public int noticeDelete(QnaVO noticeVO) throws Exception {
 		//System.out.println(noticeVO.getNum());
-		int result = reviewMapper.reviewDelete(reviewVO);
+		int result = noticeMapper.noticeDelete(noticeVO);
 		
-		ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
-		reviewFilesVO.setNum(reviewVO.getNum());
+		QnaFilesVO noticeFilesVO = new QnaFilesVO();
+		noticeFilesVO.setNum(noticeVO.getNum());
 		
-		List<ReviewFilesVO> reviewFilesVOs = reviewFilesMapper.reviewFilesList(reviewFilesVO);
+		List<QnaFilesVO> noticeFilesVOs = noticeFilesMapper.noticeFilesList(noticeFilesVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("review");
+		File file = filePathGenerator.getUseClassPathResource("notice");
 		
 		boolean check = false;
 		
-		for (ReviewFilesVO reviewFilesVO2 : reviewFilesVOs) {
-			String fileName = reviewFilesVO2.getFname();
+		for (QnaFilesVO noticeFilesVO2 : noticeFilesVOs) {
+			String fileName = noticeFilesVO2.getFname();
 			check = fileSaver.fileDelete(file, fileName);
 		}
 		
@@ -75,29 +75,29 @@ public class ReviewService {
 	
 	//글 수정
 	@Transactional
-	public int reviewUpdate(ReviewVO reviewVO, MultipartFile[] files, int[] fnums) throws Exception {
+	public int noticeUpdate(QnaVO noticeVO, MultipartFile[] files, int[] fnums) throws Exception {
 		
 		//notice 테이블 수정
-		int result = reviewMapper.reviewUpdate(reviewVO);
+		int result = noticeMapper.noticeUpdate(noticeVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("review");
+		File file = filePathGenerator.getUseClassPathResource("notice");
 		
 		//기존 파일 지웠을 때
 		if(fnums != null && fnums.length > 0) {
 			for (int i : fnums) {
 				//System.out.println(i);
 				
-				ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
-				reviewFilesVO.setFnum(i);
+				QnaFilesVO noticeFilesVO = new QnaFilesVO();
+				noticeFilesVO.setFnum(i);
 				
-				String fileName = reviewFilesMapper.reviewFilesSelect(reviewFilesVO).getFname();
+				String fileName = noticeFilesMapper.noticeFilesSelect(noticeFilesVO).getFname();
 				System.out.println(fileName);
 				
 				//static의 파일 지우기
 				fileSaver.fileDelete(file, fileName);
 				
 				//DB 테이블에서 파일 지우기
-				result = reviewFilesMapper.reviewFilesDelete(reviewFilesVO);
+				result = noticeFilesMapper.noticeFilesDelete(noticeFilesVO);
 				System.out.println(result);
 			}
 		}
@@ -105,26 +105,26 @@ public class ReviewService {
 		//기존 파일 그대로
 		System.out.println("그대로당!");
 		
-		List<ReviewFilesVO> reviewFilesVOs = new ArrayList<ReviewFilesVO>();
+		List<QnaFilesVO> noticeFilesVOs = new ArrayList<QnaFilesVO>();
 		
 		for(int i=0;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
 				String fileName = fileSaver.save(file, files[i]);
 				System.out.println(fileName);
 				
-				ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
+				QnaFilesVO noticeFilesVO = new QnaFilesVO();
 				//System.out.println(noticeVO.getNum());
-				reviewFilesVO.setNum(reviewVO.getNum());
-				reviewFilesVO.setFname(files[i].getOriginalFilename());
-				reviewFilesVO.setOname(fileName);
+				noticeFilesVO.setNum(noticeVO.getNum());
+				noticeFilesVO.setFname(files[i].getOriginalFilename());
+				noticeFilesVO.setOname(fileName);
 				
-				reviewFilesVOs.add(reviewFilesVO);
+				noticeFilesVOs.add(noticeFilesVO);
 			}
 		}
 		
 		//file 개수가 0보다 클 때만 files에 등록
-		if(reviewFilesVOs.size() > 0) {
-			result = reviewFilesMapper.reviewFilesInsert(reviewFilesVOs);
+		if(noticeFilesVOs.size() > 0) {
+			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
 		}
 		
 		return result;
@@ -132,13 +132,13 @@ public class ReviewService {
 	
 	//글 작성 + 파일 추가
 	@Transactional
-	public int reviewWrite(ReviewVO reviewVO, MultipartFile[] files) throws Exception {
+	public int noticeWrite(QnaVO noticeVO, MultipartFile[] files) throws Exception {
 		System.out.println("글 작성");
-		int result = reviewMapper.reviewWrite(reviewVO);
+		int result = noticeMapper.noticeWrite(noticeVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("review");
+		File file = filePathGenerator.getUseClassPathResource("notice");
 		
-		List<ReviewFilesVO> reviewFilesVOs = new ArrayList<ReviewFilesVO>();
+		List<QnaFilesVO> noticeFilesVOs = new ArrayList<QnaFilesVO>();
 		
 		for(int i=0;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
@@ -146,33 +146,33 @@ public class ReviewService {
 				
 				System.out.println(fileName);
 				
-				ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
+				QnaFilesVO noticeFilesVO = new QnaFilesVO();
 				//System.out.println(noticeVO.getNum());
-				reviewFilesVO.setNum(reviewVO.getNum());
-				reviewFilesVO.setFname(files[i].getOriginalFilename());
-				reviewFilesVO.setOname(fileName);
+				noticeFilesVO.setNum(noticeVO.getNum());
+				noticeFilesVO.setFname(files[i].getOriginalFilename());
+				noticeFilesVO.setOname(fileName);
 				
-				reviewFilesVOs.add(reviewFilesVO);
+				noticeFilesVOs.add(noticeFilesVO);
 			}
 		}
 		//file 개수가 0보다 클 때만 files에 등록
-		if(reviewFilesVOs.size() > 0) {
-			result = reviewFilesMapper.reviewFilesInsert(reviewFilesVOs);
+		if(noticeFilesVOs.size() > 0) {
+			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
 		}
 		
 		return result;
 	}
 	
 	//글 하나 조회
-	public ReviewVO reviewSelect(ReviewVO reviewVO) throws Exception {
-		return reviewMapper.reviewSelect(reviewVO);
+	public QnaVO noticeSelect(QnaVO noticeVO) throws Exception {
+		return noticeMapper.noticeSelect(noticeVO);
 	}
 	
 	//리스트
-	public List<ReviewVO> reviewList(Pager pager) throws Exception {
+	public List<QnaVO> noticeList(Pager pager) throws Exception {
 		pager.makeRow();
-		pager.makePage(reviewMapper.reviewCount(pager));
+		pager.makePage(noticeMapper.noticeCount(pager));
 		
-		return reviewMapper.reviewList(pager);
+		return noticeMapper.noticeList(pager);
 	}
 }

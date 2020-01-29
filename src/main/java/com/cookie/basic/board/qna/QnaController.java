@@ -1,4 +1,4 @@
-package com.cookie.basic.board.review;
+package com.cookie.basic.board.qna;
 
 import java.util.List;
 
@@ -18,18 +18,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cookie.basic.util.Pager;
 
 @Controller
-@RequestMapping("/review/**")
-public class ReviewController {
+@RequestMapping("/notice/**")
+public class QnaController {
 
 	@Autowired
-	private ReviewService reviewService;
+	private QnaService noticeService;
 	/////////////////////////////////////////////////////////////
 	
 	//summernote 파일 삭제
 	@ResponseBody
 	@PostMapping("summerFileDelete")
 	public ModelAndView summerFileDelete(String fileName) throws Exception {
-		boolean check = reviewService.summerFileDelete(fileName);
+		boolean check = noticeService.summerFileDelete(fileName);
 		String result = "Delete Fail";
 		
 		if(check) {
@@ -49,7 +49,7 @@ public class ReviewController {
 	public ModelAndView summerFile(MultipartFile file) throws Exception {
 		//System.out.println(file.getOriginalFilename());
 		
-		String fileName = reviewService.summerFile(file);
+		String fileName = noticeService.summerFile(file);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
@@ -61,14 +61,14 @@ public class ReviewController {
 	/////////////////////////////////////////////////////////////
 	//파일 다운
 	@GetMapping("fileDown")
-	public ModelAndView reviewFileDown(ReviewFilesVO reviewFilesVO) throws Exception {
+	public ModelAndView noticeFileDown(QnaFilesVO noticeFilesVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		reviewFilesVO = reviewService.reviewFileSelect(reviewFilesVO);
+		noticeFilesVO = noticeService.noticeFileSelect(noticeFilesVO);
 		
-		if(reviewFilesVO != null) {
-			mv.addObject("reviewFiles", reviewFilesVO);
-			mv.addObject("path", "review");
+		if(noticeFilesVO != null) {
+			mv.addObject("noticeFiles", noticeFilesVO);
+			mv.addObject("path", "notice");
 			mv.setViewName("fileDown");
 		}else {
 			mv.addObject("msg", "없써!!!!");
@@ -80,11 +80,11 @@ public class ReviewController {
 	}
 	/////////////////////////////////////////////////////////////
 	//글 삭제
-	@GetMapping("reviewDelete")
-	public ModelAndView reviewDelete(ReviewVO reviewVO) throws Exception {
+	@GetMapping("noticeDelete")
+	public ModelAndView noticeDelete(QnaVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		int result = reviewService.reviewDelete(reviewVO);
+		int result = noticeService.noticeDelete(noticeVO);
 		
 		String msg = "Delete Fail";
 		
@@ -93,41 +93,40 @@ public class ReviewController {
 		}
 		
 		mv.addObject("msg", msg);
-		mv.addObject("path", "reviewList");
+		mv.addObject("path", "noticeList");
 		mv.setViewName("common/result");
 		
 		return mv;
 	}
 	
 	//글 수정 폼
-	@GetMapping("reviewUpdate")
-	public ModelAndView reviewUpdate(ReviewVO reviewVO) throws Exception {
+	@GetMapping("noticeUpdate")
+	public ModelAndView noticeUpdate(QnaVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		reviewVO = reviewService.reviewSelect(reviewVO);
+		noticeVO = noticeService.noticeSelect(noticeVO);
 		
-		mv.addObject("update", reviewVO);
-		mv.addObject("boardName", "이용후기");
-		mv.setViewName("board/boarddUpdate");
+		mv.addObject("update", noticeVO);
+		mv.addObject("boardName", "공지사항");
+		mv.setViewName("board/boardUpdate");
 		
 		return mv;
 	}
 	
 	//글 수정
 	@PostMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(@Valid ReviewVO reviewVO, BindingResult bindingResult,
-										MultipartFile[] files, int[] fnums) throws Exception{
+	public ModelAndView noticeUpdate(@Valid QnaVO noticeVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("fnum 들어왔냡");
 		//System.out.println(noticeVO.getNum());
 		
 		if(bindingResult.hasErrors()) {//에러가 생겼을 때 다시 form으로 돌아가게끔
-			reviewVO = reviewService.reviewSelect(reviewVO);
-			mv.addObject("update", reviewVO);
-			mv.addObject("boardName", "이용후기");
+			noticeVO = noticeService.noticeSelect(noticeVO);
+			mv.addObject("update", noticeVO);
+			mv.addObject("boardName", "공지사항");
 			mv.setViewName("board/boardUpdate");// '/WEB-INF/views/'와 '.jsp'를 붙여줌
 		}else {
-			int result = reviewService.reviewUpdate(reviewVO, files, fnums);
+			int result = noticeService.noticeUpdate(noticeVO, files, fnums);
 			String msg = "Update Fail";
 			
 			if(result>0) {
@@ -135,29 +134,28 @@ public class ReviewController {
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", msg);
-			mv.addObject("path", "./reviewSelect?num="+reviewVO.getNum());
+			mv.addObject("path", "./noticeSelect?num="+noticeVO.getNum());
 		}
 		
 		return mv;
 	}
 	
 	//글 작성 폼
-	@GetMapping("reviewWrite")
-	public String reviewWrite(ReviewVO reviewVO) throws Exception {
+	@GetMapping("noticeWrite")
+	public String noticeWrite(QnaVO noticeVO) throws Exception {
 		return "board/boardWrite";
 	}
 	
 	//글 등록
-	@PostMapping("reviewWrite")
-	public ModelAndView reviewWrite(@Valid ReviewVO reviewVO, BindingResult bindingResult,
-										MultipartFile[] files) throws Exception {
+	@PostMapping("noticeWrite")
+	public ModelAndView noticeWrite(@Valid QnaVO noticeVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/boardWrite");
 		}else {
 			System.out.println(files.length);
-			int result = reviewService.reviewWrite(reviewVO, files);
+			int result = noticeService.noticeWrite(noticeVO, files);
 			String msg = "Write Fail";
 			 
 			if(result>0) {
@@ -165,18 +163,18 @@ public class ReviewController {
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", msg);
-			mv.addObject("path", "./reviewList");
+			mv.addObject("path", "./noticeList");
 		}
 		
 		return mv;
 	}
 	
 	//글 하나 조회
-	@GetMapping("reviewSelect")
-	public ModelAndView noticeSelect(ReviewVO reviewVO) throws Exception {
+	@GetMapping("noticeSelect")
+	public ModelAndView noticeSelect(QnaVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		reviewVO = reviewService.reviewSelect(reviewVO);
+		noticeVO = noticeService.noticeSelect(noticeVO);
 		//System.out.println(noticeVO.getNoticeFilesVO().get(0).getFnum());
 		
 //		System.out.println(noticeVO.getNum());
@@ -185,9 +183,9 @@ public class ReviewController {
 //		System.out.println(noticeVO.getPrev());
 //		System.out.println(noticeVO.getPrevT());
 		
-		if(reviewVO != null) {
-			mv.addObject("select", reviewVO);
-			mv.addObject("boardName", "이용후기");
+		if(noticeVO != null) {
+			mv.addObject("select", noticeVO);
+			mv.addObject("boardName", "공지사항");
 			mv.setViewName("board/boardSelect");
 		}
 		
@@ -195,15 +193,15 @@ public class ReviewController {
 	}
 	
 	//리스트
-	@GetMapping("reviewList")
-	public ModelAndView reviewList(Pager pager) throws Exception {
+	@GetMapping("noticeList")
+	public ModelAndView noticeList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		List<ReviewVO> list = reviewService.reviewList(pager);
+		List<QnaVO> list = noticeService.noticeList(pager);
 		
 		mv.addObject("list", list);
 		mv.addObject("pager", pager);
-		mv.addObject("boardName", "이용후기");
+		mv.addObject("boardName", "공지사항");
 		mv.setViewName("board/boardList");
 		
 		return mv;
