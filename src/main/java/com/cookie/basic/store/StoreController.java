@@ -285,5 +285,12 @@ public class StoreController {
 
 	}
 	
+	@GetMapping("storeCart")
+	public ModelAndView storeCart() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
 	
 }

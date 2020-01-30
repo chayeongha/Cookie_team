@@ -27,7 +27,7 @@
 		<img src="${pageContext.request.contextPath}/images/menu/cart.png">
 		<h3 style="display: inline-block;">장바구니</h3>
 		<div class="orderBox"></div>
-		<button></button>
+		<button class="order2">주 문 하 기</button>
 	</div>
 	<div class="innerBox">
 			<div class="box1">
@@ -88,14 +88,16 @@
 					<c:forEach items="${vo.menuVO}" var="vo2" varStatus="i">
 						<c:if test="${vo2.cmNum eq 1 }">
 							<div class="mselect">
-							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}">
-							<input type="hidden" value="${vo2.menuFiles.mfName}">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}" name="optM${vo2.mmNum}">
+							<input type="hidden" value="${vo2.menuFiles.mfName}" class="art${vo2.mmNum}">
 							<c:forEach items="${vo2.menuOptions}" var="vo3" >
 								<input type="hidden" value="${vo3.optName}" class="${vo2.mmNum}">
+								<input type="hidden" value="${vo3.optPrice}" class="optM${vo2.mmNum}">
 							</c:forEach>
 							</div>
 							<div class="mselect">
 							${vo2.mmPrice}원</div>
+							<input type="hidden" value="${vo2.mmPrice}" class="m${vo2.mmNum}">	
 						</c:if>
 					</c:forEach>
 				</c:forEach>
@@ -104,14 +106,16 @@
 					<c:forEach items="${vo.menuVO}" var="vo2" varStatus="i">
 						<c:if test="${vo2.cmNum eq 2 }">
 							<div class="mselect">
-							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}">
-							<input type="hidden" value="${vo2.menuFiles.mfName}">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}" name="optM${vo2.mmNum}">
+							<input type="hidden" value="${vo2.menuFiles.mfName}" class="art${vo2.mmNum}">
 							<c:forEach items="${vo2.menuOptions}" var="vo3">
 								<input type="hidden" value="${vo3.optName}" class="${vo2.mmNum}">
+								<input type="hidden" value="${vo3.optPrice}" class="optM${vo2.mmNum}">
 							</c:forEach>
 							</div>
 							<div class="mselect">
 							${vo2.mmPrice}원</div>
+							<input type="hidden" value="${vo2.mmPrice}" class="m${vo2.mmNum}">	
 						</c:if>
 					</c:forEach>
 				</c:forEach>
@@ -120,15 +124,16 @@
 					<c:forEach items="${vo.menuVO}" var="vo2" varStatus="i">
 						<c:if test="${vo2.cmNum eq 3 }">
 							<div class="mselect">
-							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}">
-							<input type="hidden" value="${vo2.menuFiles.mfName}">
+							<input type="button" value="${vo2.mmName}" class="btnclick" data-toggle="modal" data-target="#myModal" title="${vo2.mmNum}" name="optM${vo2.mmNum}">
+							<input type="hidden" value="${vo2.menuFiles.mfName}" class="art${vo2.mmNum}">
 								<c:forEach items="${vo2.menuOptions}" var="vo3">
 									<input type="hidden" value="${vo3.optName}" class="${vo2.mmNum}">
+									<input type="hidden" value="${vo3.optPrice}" class="optM${vo2.mmNum}">
 								</c:forEach>
 							</div>
 							<div class="mselect">
 							${vo2.mmPrice}원</div>
-							<input type="hidden" value="${vo2.mmPrice}" class="ccprice">							
+							<input type="hidden" value="${vo2.mmPrice}" class="m${vo2.mmNum}">							
 						</c:if>
 					</c:forEach>
 				</c:forEach>
@@ -141,11 +146,20 @@
 			      <!-- Modal content-->
 			      <div class="modal-content">
 			        <div class="modal-header">
+			        
 			        	<h3 style ="border-bottom: 1px solid #ff712d; padding: 20px;">선택 메뉴</h3>
 			        	<input type="text" id="cc" readonly="readonly">
+			        	<img src="" class="artt" onerror="this.src='../images/header/mm.png'">
+			        	<div class="opt">
+			        	
+			        	</div>
+			        	<div class="money">
+			        	</div>
+			        	<button class="orderGO">담기</button>
+			        
 			        </div>
 			        
-			          <button type="button" class="bclose" data-dismiss="modal">X</button>
+			          <button type="button" class="bclose" data-dismiss="modal">취소 X</button>
 			        
 			      </div>
 			      
@@ -154,30 +168,139 @@
 			  
 			  
 			  <script type="text/javascript">
-			  
-			      
+			  var menu ="";
+			  var j =0;
+			  var optTitle =new Array();
+			      //음료 선택 모달창
 			  	  $(".btnclick").click(function() {
-			  		var menu = $(this).val();
-					  
-			  		  	
-
+			  		menu = $(this).val();
+			  		var n = $(this).prop('title');
+			  		
+			  		
+			  		//파일이름
+					var art = "${pageContext.request.contextPath}/menu/"+$(".art"+n).val();
+					var money = $(".m"+n).val();
+					var optMoney = new Array();
+					optTitle =new Array();
+					var opt =new Array();
+			  		j =0;
+			  		
+					//옵션
 			  		$("."+$(this).prop('title')).each(function(index, item){
+						opt[index] = $(this).val();
+						j = index+1;
+					  });
 
-				  	  	alert($(this).val());
- 
-				   	});
-			  		  	
+					//옵션가격
+					$("."+$(this).prop('name')).each(function(index,item){	
+						optMoney[index] = $(this).val();
+						optTitle[index] = "title"+index
+					});
+
+					
 			  			if(${sessionScope.member eq null}){
 			  				alert("로그인을 해주세요");
 			  				location.href="../member/memberLogin";
 			  				
-			  			}else{	
+			  			}else{
+				  			$(".artt").attr('src',art);
 			  				$("#cc").val(menu);
-		  					
+			  				$(".opt").empty();
+			  				$(".money").empty();
+			  				$(".money").append("<div class='moneyBox'><input type='text' readonly='readonly' class='moneyTotal' value='"+money+"'>　원</div>");
+			  				if(j>0){
+				  				$(".opt").append("<div class='optTitle'>옵션 추가</div>");
+
+				  				}
+						   	for(var i=0; i<j;i++){
+							   
+							   	$(".opt").append("<input type='text' class='opttt "+optTitle[i]+"' readonly ='readonly' value ='"+opt[i]+"'>"
+									   	+"<input type='button' value='-' class='m' title='"+optTitle[i]+"'name='"+optMoney[i]+"'>"
+									   	+"<input type='text' class='optCount' id='"+optTitle[i]+"' readonly ='readonly' value='0'>"
+									   	+"<input type='button' value='+' class='p' title='"+optTitle[i]+"'name='"+optMoney[i]+"'>");
+							}
 		  				}
 
 			  	  });
-  	
+
+			  	  //옵션 +
+			  	  $("body").on("click",".p",function(){
+				  	  var num = Number($(this).prop('name'));
+				  	  var money = Number($(".moneyTotal").val());
+				  	  
+				  	  var pid = $(this).prop('title');
+				  	  var op = $("#"+pid).val();
+				  	  if(op<10){
+					  	op++;
+					  	$("#"+pid).val(op);  
+				  	    money = money + num;
+					  }else{
+						  alert("더이상 추가할 수 없습니다");
+						 
+						}
+				  	  $(".moneyTotal").val(money);
+				   });
+
+				//옵션 -
+			  	$("body").on("click",".m",function(){
+				  	  var num = Number($(this).prop('name'));
+				  	  var money = Number($(".moneyTotal").val());
+				  	  	  	  
+				  	  var pid = $(this).prop('title');
+				  	  op = $("#"+pid).val();
+				  	  if(op>0){
+					  	op--;
+					  	$("#"+pid).val(op);  
+				  	    money = money - num;
+					  }else{
+						  alert("추가된 옵션이 없습니다.");
+						 
+						}
+				  	  $(".moneyTotal").val(money);
+				   });
+				   
+
+				//장바구니 담기
+			  	$("body").on("click",".orderGO",function(){
+
+				  	var moneyTotal = $(".moneyTotal").val();
+				  	var optName = new Array();
+				  	var optCountt =new Array();
+				  	var optList = new Array();
+				  	//옵션이 포함된 음료
+				  	if(j>0){
+					  	for(var k in optTitle){
+						  	optCountt[k] = $("#"+optTitle[k]).val();
+			  				if(optCountt[k]>0){
+								optList[k] = $("."+optTitle[k]).val();
+
+								
+					  		}
+						  }
+					}
+				  
+			  		$.ajax({
+  						url:"./storeCart",
+  						type:'GET',
+  						data:{
+  							"moneyTotal":moneyTotal,
+  							"menu":menu,
+  							"optCountt":optCountt,
+  							"optList":optList
+  						},
+  						success : function(data) {
+  				            $(".orderBox").html(data);
+  				      
+  				            
+  				         },
+  						error:function(){
+  							alert("실패");
+  						}
+  						
+  						
+  					});
+			  		
+			    });
   	  
   	</script>
 		
