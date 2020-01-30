@@ -18,9 +18,9 @@
   		<typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="MemberFilesVO" />
   		<typeAlias type="com.cookie.basic.menu.MenuVO" alias="MenuVO"/>
   		<typeAlias type="com.cookie.basic.menu.MenuFilesVO" alias="MenuFilesVO"/>
-
+		
   		<typeAlias type="com.cookie.basic.store.StoreCloseVO" alias="StoreCloseVO"/>
-
+		<typeAlias type="com.cookie.basic.cart.CartVO" alias="CartVO"/>
 
   		<typeAlias type="com.cookie.basic.menu.MoptVO" alias="MoptVO"/>
 

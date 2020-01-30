@@ -89,6 +89,15 @@
   	
   	
   	
+  	<!--cartMapper-->
+  	<insert id="storecart" parameterType="CartVO">
+  		insert into cart values(0,#{mmName},#{ssNum},#{nickname},now(),#{cartCount},#{optName},#{optCount},#{cartPrice},#{totalPrice},#{ooNum})
+  	</insert>
+  	
+  	<delete id="storecartDelete" parameterType="CartVO">
+  			delete from cart where cartNum=#{cartNum}
+  	</delete>
+  	
   	
   	
      

@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class CartVO {
 
-	private String cartNum;
-	private int mmNum;
+	private int cartNum;
+	private String mmName;
 	private int ssNum;
 	private String nickname;
 	private Date cartDate;
@@ -16,20 +16,22 @@ public class CartVO {
 	private int totalPrice;
 	private int ooNum;
 
-	public String getCartNum() {
+	
+
+	public int getCartNum() {
 		return cartNum;
 	}
 
-	public void setCartNum(String cartNum) {
+	public void setCartNum(int cartNum) {
 		this.cartNum = cartNum;
 	}
 
-	public int getMmNum() {
-		return mmNum;
+	public String getMmName() {
+		return mmName;
 	}
 
-	public void setMmNum(int mmNum) {
-		this.mmNum = mmNum;
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
 	}
 
 	public int getSsNum() {
