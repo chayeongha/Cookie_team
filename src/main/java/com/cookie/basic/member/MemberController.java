@@ -88,12 +88,17 @@ public class MemberController {
 	//프론트아이디 중복체크
 	@GetMapping("idCheck")
 	public Model idCheck(MemberVO memberVO, Model model)throws Exception {
+			if(memberVO.getNickname()!="") {
+				memberVO= memberService.nickCheck(memberVO);
+			}
 			memberVO= memberService.idCheck(memberVO);
+			int result =0;
 			String msg= "중복된 아이디입니다.";
 			if(memberVO == null) {
 				msg="사용가능한 아이디입니다.";
+				result =1;
 			}
-			
+			model.addAttribute("result", result);
 			model.addAttribute("msg", msg);
 			model.addAttribute("member", memberVO);
 			
@@ -103,12 +108,16 @@ public class MemberController {
 	//프론트닉네임 중복체크
 	@GetMapping("nickCheck")
 	public Model nickCheck(MemberVO memberVO, Model model)throws Exception {
-			memberVO= memberService.nickCheck(memberVO);
+			if(memberVO.getNickname()!="") {
+				memberVO= memberService.nickCheck(memberVO);
+			}
+			int result =0;
 			String msg= "중복된 닉네임입니다.";
 			if(memberVO == null) {
 				msg="사용가능한 닉네임입니다.";
+				result =1;
 			}
-			
+			model.addAttribute("result", result);
 			model.addAttribute("msg", msg);
 			model.addAttribute("member", memberVO);
 			
@@ -118,12 +127,17 @@ public class MemberController {
 	//프론트이메일 중복체크
 	@GetMapping("emailCheck")
 	public Model emailCheck(MemberVO memberVO, Model model)throws Exception{
-		memberVO= memberService.emailCheck(memberVO);
+		//""이아닐때 서비스에서 이메일체크를 실행한다.
+		if(memberVO.getEmail()!="") {
+			memberVO= memberService.emailCheck(memberVO);
+		}
+		int result = 0;
 		String msg= "중복된 이메일입니다.";
 		if(memberVO == null) {
 			msg="사용가능한 이메일입니다.";
+			result = 1;
 		}
-		
+		model.addAttribute("result", result);
 		model.addAttribute("msg", msg);
 		model.addAttribute("member",memberVO);
 	
@@ -144,9 +158,15 @@ public class MemberController {
 		return msg;
 	}
 	
-	//아이디검색
+	//아이디 비밀번호 검색
 	@GetMapping("idSearch")
 	public void idSearch()throws Exception{
+		
+	}
+	
+	//아이디검색 모달창
+	@GetMapping("userIdSearch")
+	public void userIdSearch()throws Exception{
 		
 	}
 	

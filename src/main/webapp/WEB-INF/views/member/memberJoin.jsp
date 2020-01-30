@@ -87,7 +87,7 @@
 			     <div class="form-group">
 				      <label class="control-label col-sm-2" for="memId">이메일</label>
 				      <div class="col-sm-10">
-				        <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email"/>
+				        <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email" readonly="true"/>
 				      	<form:errors path="email" cssStyle="color:red;" />
 				      </div>
 		   		 </div>
@@ -133,19 +133,6 @@
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
-
-		//영숫자 특수문자  정규식
-		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
-
-		$("#pw").blur(
-			function(){
-				if($('#pw').val() != "" && passwordRule.test($('#pw').val()) != true	){
-						alert("6~14자리 내에 영문과 숫자 특수문자로만 사용해주세요.");
-						$('#pw').val("");
-						$('#pw').focus();
-						return;
-				}	
-		});
 
 		//모든란에 입력을 했는지 확인
 		$(".btn_join").click(function(){
@@ -194,6 +181,19 @@
 			window.open("./emailCheck?email="+email, "","width=570,height=230,top=200, left=600");
 		});
 
+		//비밀번호  정규식
+		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
+
+		$("#pw").blur(
+			function(){
+				if($('#pw').val() != "" && passwordRule.test($('#pw').val()) != true	){
+						alert("6~14자리 내에 영문과 숫자 특수문자로만 사용해주세요.");
+						$('#pw').val("");
+						$('#pw').focus();
+						return;
+				}	
+		});
+
 		//연락처 정규식
 		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
 
@@ -221,7 +221,6 @@
 				});
 		});
 
-		
 		//폰넘버입력시 자동으로 하이푼입력되는것.
 		function inputPhoneNumber(obj) {
 
