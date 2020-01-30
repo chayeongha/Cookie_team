@@ -1,35 +1,38 @@
 package com.cookie.basic.cart;
 
 import java.util.Date;
+import java.util.List;
 
 public class CartVO {
 
-	private String cartNum;
-	private int mmNum;
+	private int cartNum;
+	private String mmName;
 	private int ssNum;
 	private String nickname;
 	private Date cartDate;
 	private int cartCount;
 	private String optName;
-	private int optCount;
+	private Integer optCount;
 	private int cartPrice;
 	private int totalPrice;
 	private int ooNum;
 
-	public String getCartNum() {
+	
+
+	public int getCartNum() {
 		return cartNum;
 	}
 
-	public void setCartNum(String cartNum) {
+	public void setCartNum(int cartNum) {
 		this.cartNum = cartNum;
 	}
 
-	public int getMmNum() {
-		return mmNum;
+	public String getMmName() {
+		return mmName;
 	}
 
-	public void setMmNum(int mmNum) {
-		this.mmNum = mmNum;
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
 	}
 
 	public int getSsNum() {
@@ -72,11 +75,11 @@ public class CartVO {
 		this.optName = optName;
 	}
 
-	public int getOptCount() {
+	public Integer getOptCount() {
 		return optCount;
 	}
 
-	public void setOptCount(int optCount) {
+	public void setOptCount(Integer optCount) {
 		this.optCount = optCount;
 	}
 

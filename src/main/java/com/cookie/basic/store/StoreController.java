@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.menu.MenuVO;
 
@@ -348,8 +349,22 @@ public class StoreController {
 	
 
 	@GetMapping("storeCart")
-	public ModelAndView storeCart(String menu, String moneyTotal, String[] optCountt, String [] optList) throws Exception{
+	public ModelAndView storeCart(String menu, String moneyTotal, String[] optCountt, String[] optList,String ssNum, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		if(optList.length>0) {
+			for(String i: optCountt) {
+				for(String j:optList) {
+					CartVO cartVO = new CartVO();
+					cartVO.setSsNum(Integer.parseInt(ssNum));
+					cartVO.setNickname((String)session.getAttribute("members"));
+					cartVO.setMmName(menu);
+					cartVO.setCartPrice(Integer.parseInt(moneyTotal));
+					cartVO.setOptCount(Integer.parseInt(i));
+					cartVO.setOptName(j);
+					cartVO.setTotalPrice(0);
+				}
+			}
+		}
 		
 		return mv;
 	}

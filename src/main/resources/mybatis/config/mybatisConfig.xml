@@ -5,27 +5,27 @@
 
   <configuration>
 
-  	<typeAliases>
-  		<typeAlias type="java.lang.Integer" alias="Integer"/>
-		<typeAlias type="java.lang.String" alias="String"/>
-		<typeAlias type="java.lang.Double" alias="Double"/>
-  		<typeAlias type="java.util.Map" alias="Map"/>
-  		<typeAlias type="java.util.List" alias="List"/>
-  		<typeAlias type="java.util.ArrayList" alias="ArrayList"/>
-  		<typeAlias type="com.cookie.basic.board.notice.NoticeVO" alias="NoticeVO"/>
-  		<typeAlias type="com.cookie.basic.util.Pager" alias="Pager" />
-  		<typeAlias type="com.cookie.basic.member.MemberVO" alias="MemberVO" />
-  		<typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="MemberFilesVO" />
-  		<typeAlias type="com.cookie.basic.menu.MenuVO" alias="MenuVO"/>
-  		<typeAlias type="com.cookie.basic.menu.MenuFilesVO" alias="MenuFilesVO"/>
+     <typeAliases>
+        <typeAlias type="java.lang.Integer" alias="Integer"/>
+      <typeAlias type="java.lang.String" alias="String"/>
+      <typeAlias type="java.lang.Double" alias="Double"/>
+        <typeAlias type="java.util.Map" alias="Map"/>
+        <typeAlias type="java.util.List" alias="List"/>
+        <typeAlias type="java.util.ArrayList" alias="ArrayList"/>
+        <typeAlias type="com.cookie.basic.board.notice.NoticeVO" alias="NoticeVO"/>
+        <typeAlias type="com.cookie.basic.util.Pager" alias="Pager" />
+        <typeAlias type="com.cookie.basic.member.MemberVO" alias="MemberVO" />
+        <typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="MemberFilesVO" />
+        <typeAlias type="com.cookie.basic.menu.MenuVO" alias="MenuVO"/>
+        <typeAlias type="com.cookie.basic.menu.MenuFilesVO" alias="MenuFilesVO"/>
+      
+        <typeAlias type="com.cookie.basic.store.StoreCloseVO" alias="StoreCloseVO"/>
+      <typeAlias type="com.cookie.basic.cart.CartVO" alias="CartVO"/>
 
-  		<typeAlias type="com.cookie.basic.store.StoreCloseVO" alias="StoreCloseVO"/>
+        <typeAlias type="com.cookie.basic.menu.MoptVO" alias="MoptVO"/>
 
-
-  		<typeAlias type="com.cookie.basic.menu.MoptVO" alias="MoptVO"/>
-
-  		<typeAlias type="com.cookie.basic.store.StoreVO" alias="StoreVO"/>
-  		<typeAlias type="com.cookie.basic.store.StoreFilesVO" alias="StoreFilesVO"/>
-  	</typeAliases>
+        <typeAlias type="com.cookie.basic.store.StoreVO" alias="StoreVO"/>
+        <typeAlias type="com.cookie.basic.store.StoreFilesVO" alias="StoreFilesVO"/>
+     </typeAliases>
 
   </configuration>

@@ -156,7 +156,7 @@
 			        	<div class="money">
 			        	</div>
 			        	<button class="orderGO">담기</button>
-			        
+			        	<input type="hidden" value="${storeVO.ssNum}" class="ssNum">
 			        </div>
 			        
 			          <button type="button" class="bclose" data-dismiss="modal">취소 X</button>
@@ -262,7 +262,8 @@
 
 				//장바구니 담기
 			  	$("body").on("click",".orderGO",function(){
-
+					var ssNum = $(".ssNum").val();
+					
 				  	var moneyTotal = $(".moneyTotal").val();
 				  	var optName = new Array();
 				  	var optCountt =new Array();
@@ -271,25 +272,24 @@
 				  	if(j>0){
 					  	for(var k in optTitle){
 						  	optCountt[k] = $("#"+optTitle[k]).val();
-			  				if(optCountt[k]>0){
-								optList[k] = $("."+optTitle[k]).val();
-
-								
-					  		}
+							optList[k] = $("."+optTitle[k]).val();
 						  }
 					}
-				  
+
+				  	jQuery.ajaxSettings.traditional = true;
 			  		$.ajax({
   						url:"./storeCart",
   						type:'GET',
+  						
   						data:{
   							"moneyTotal":moneyTotal,
   							"menu":menu,
+  							"ssNum":ssNum,
   							"optCountt":optCountt,
   							"optList":optList
   						},
   						success : function() {
-  				            $(".orderBox").html("a");
+  				            $(".orderBox").html();
   				      
   				            
   				         },
