@@ -3,7 +3,7 @@
 .order{
 	position:fixed;
 	width: 300px;
-	height: 500px;
+	
 	border:1px solid #ff712d;
 	right:50px;
 	bottom:50px;
@@ -23,7 +23,29 @@
 	background:#ffdece;
 	margin: 0 auto;
 	width: 270px;
-	height: 320px;
+	min-height: 150px;
+	border-radius: 5px;
+}
+
+.order2{
+	border:none;
+	width:270px;
+	text-align: center;
+	background:#ff712d;
+	margin: 0 auto;
+	height: 40px;
+	color:white;
+	font-family: CookieRun-Regular;
+	font-size:20px;
+	letter-spacing: -2px;
+	margin-top:20px;
+	margin-bottom: 20px;
+	margin-left: 15px;
+	border-radius: 5px;
+}
+
+.order2:hover{
+	background: #ff5422;
 }
 
 .innerBox{
@@ -123,5 +145,91 @@ h3{
 	font-family: CookieRun-Regular;
 	font-size: 30px;
 	color:#ff712d;
+	
+}
+
+.artt{
+	width:300px;
+	height: 300px;
+	margin-left:140px;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+
+.opttt{
+	width:280px;
+	font-family: CookieRun-Regular;
+	font-size: 25px;
+	color:#ff712d;
+	text-align: center;
+	display: inline-block;
+	border:none;
+	
+}
+
+.optTitle{
+	width:568px;
+	text-align: center;
+	font-family: CookieRun-Regular;
+	font-size: 28px;
+	color:#ff712d;
+	margin-top: 20px;
+	border-top: 1px solid #ff712d;
+	padding: 20px;
+}
+
+.optCount{
+	width: 200px;
+	font-family: CookieRun-Regular;
+	display: inline-block;
+	font-size: 25px;
+	color:#ff712d;
+	text-align: center;
+	border:none;
+	background: transparent;
+}
+
+.p, .m{
+	border:none;
+	background: transparent;
+	display: inblock;
+	font-family: CookieRun-Regular;
+	font-size: 30px;
+	color:#ff712d;
+}
+
+.moneyBox{
+	border-top: 1px solid #ff712d;
+	width: 568px;
+	text-align: center;
+	margin-top: 20px;
+	padding: 20px;
+	font-family: CookieRun-Regular;
+	font-size: 30px;
+	color:#ff712d;
+	
+}
+
+.moneyTotal{
+	border:none;
+	background: transparent;
+	text-align: right;
+}
+
+.orderGO{
+	border:none;
+	background:#ff712d;
+	font-family: CookieRun-Regular;
+	font-size: 30px;
+	color:white;
+	float:right;
+	margin-right: 30px;
+	width:150px;
+	height: 60px;
+	border-radius: 5px;
+}
+
+.orderGO:hover {
+	background: #ff6613;
 	
 }
