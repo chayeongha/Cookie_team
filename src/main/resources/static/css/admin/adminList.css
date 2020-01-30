@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+#listcontentWrap{
+	
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	/* background-color: aqua; */
+}

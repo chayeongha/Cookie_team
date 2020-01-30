@@ -17,6 +17,7 @@ public class AdminService {
 	
 	//관리자 회원리스트
 	public List<MemberVO>adminMemberList(Pager pager)throws Exception{
+		pager.setPerPage(3);
 		pager.makeRow();
 		pager.makePage(adminMapper.adminMemberCount(pager));
 		

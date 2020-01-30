@@ -18,6 +18,12 @@
 	font-family: CookieRun-Black;
 	color: #f23600;
 	margin-left: 20px;
+	width: 900px;
+	height: auto;
+	background-color: white;
+	flex: 1 1 auto;
+	padding: 1.25rem;
+	border: 1px solid #e3e6f0;
 }
 
 .storeBye {
@@ -33,6 +39,7 @@
 	border: 1px solid #e3e6f0;
 	overflow: hidden;
 	/* display: flex; */
+	margin-top: 15px;
 }
 
 .storeByeContainer {
