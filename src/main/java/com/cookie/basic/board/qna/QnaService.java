@@ -51,7 +51,7 @@ public class QnaService {
 		int result = qnaMapper.qnaDelete(qnaVO);
 		
 		QnaFilesVO qnaFilesVO = new QnaFilesVO();
-		qnaFilesVO.setNum(qnaVO.getNum());
+		//qnaFilesVO.setNum(qnaVO.getNum());
 		
 		List<QnaFilesVO> qnaFilesVOs = qnaFilesMapper.qnaFilesList(qnaFilesVO);
 		
@@ -114,7 +114,7 @@ public class QnaService {
 				
 				QnaFilesVO qnaFilesVO = new QnaFilesVO();
 				//System.out.println(noticeVO.getNum());
-				qnaFilesVO.setNum(qnaVO.getNum());
+			//	qnaFilesVO.setNum(qnaVO.getNum());
 				qnaFilesVO.setFname(files[i].getOriginalFilename());
 				qnaFilesVO.setOname(fileName);
 				
@@ -140,25 +140,25 @@ public class QnaService {
 		
 		List<QnaFilesVO> qnaFilesVOs = new ArrayList<QnaFilesVO>();
 		
-		for(int i=0;i<files.length;i++) {
-			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
-				String fileName = fileSaver.save(file, files[i]);
-				
-				System.out.println(fileName);
-				
-				QnaFilesVO qnaFilesVO = new QnaFilesVO();
-				//System.out.println(noticeVO.getNum());
-				qnaFilesVO.setNum(qnaVO.getNum());
-				qnaFilesVO.setFname(files[i].getOriginalFilename());
-				qnaFilesVO.setOname(fileName);
-				
-				qnaFilesVOs.add(qnaFilesVO);
-			}
-		}
-		//file 개수가 0보다 클 때만 files에 등록
-		if(qnaFilesVOs.size() > 0) {
-			result = qnaFilesMapper.qnaFilesInsert(qnaFilesVOs);
-		}
+//		for(int i=0;i<files.length;i++) {
+//			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
+//				String fileName = fileSaver.save(file, files[i]);
+//				
+//				System.out.println(fileName);
+//				
+//				QnaFilesVO qnaFilesVO = new QnaFilesVO();
+//				//System.out.println(noticeVO.getNum());
+//				qnaFilesVO.setNum(qnaVO.getNum());
+//				qnaFilesVO.setFname(files[i].getOriginalFilename());
+//				qnaFilesVO.setOname(fileName);
+//				
+//				qnaFilesVOs.add(qnaFilesVO);
+//			}
+//		}
+//		//file 개수가 0보다 클 때만 files에 등록
+//		if(qnaFilesVOs.size() > 0) {
+//			result = qnaFilesMapper.qnaFilesInsert(qnaFilesVOs);
+//		}
 		
 		return result;
 	}

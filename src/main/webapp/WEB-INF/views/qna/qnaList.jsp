@@ -43,14 +43,14 @@
 				<tr>
 					<td class="td_num">1</td>
 					<td class="td_view">
-						<span class="state complete">답변완료</span>
+						<span class="state">미완료</span>
 						<a href="#none" id="showCloseDetail" class="view_txt">룰루</a>
 					</td>
 					<td class="td_writer">랄라</td>
 					<td class="td_date">1111</td>
 				</tr>
 				<tr class="trQna" style="display: table-row;">
-					<td colspan="4" class="qna_expand" style="display: table-cell;">
+					<td colspan="4" class="qna_wrap" style="display: table-cell;">
 						<div class="question">
 							<span class="iconQ">질문</span>
 							룰루
@@ -65,6 +65,29 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="btn_wrap">
+			<button type="button" id="write" class="btn_write">문의하기</button>
+		</div>
+		
+		<ul class="pagination">
+				<c:if test="${pager.curBlock gt 1}">
+					<li class="previous"><span id="${pager.startNum-1}" class="index"></span></li>
+				</c:if>
+				
+				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+					<c:if test="${pager.curPage == i}">
+						<li class="list"><span id="${i}" class="index" style="color: #f23600; text-decoration: underline;">${i}</span></li>
+					</c:if>
+					<c:if test="${pager.curPage != i}">
+						<li class="list"><span id="${i}" class="index">${i}</span></li>
+					</c:if>
+				</c:forEach>
+				
+				<c:if test="${pager.curBlock lt pager.totalBlock}">
+					<li class="next"><span id="${pager.lastNum+1}" class="index">></span></li>
+				</c:if>
+			</ul>
 	</div>
 		<c:import url="../layout/footer.jsp" />
 </div>	

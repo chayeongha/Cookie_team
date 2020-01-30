@@ -62,7 +62,7 @@
 			
 			<ul class="pagination">
 				<c:if test="${pager.curBlock gt 1}">
-					<li class="previous"><span id="${pager.startNum-1}" class="index"><</span></li>
+					<li class="previous"><span id="${pager.startNum-1}" class="index"></span></li>
 				</c:if>
 				
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">

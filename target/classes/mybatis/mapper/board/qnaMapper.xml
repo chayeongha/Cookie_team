@@ -4,39 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.cookie.basic.board.qna.QnaMapper">
-  	<sql id="bs">
-  		<choose>
-  			<when test="kind == 'kt'">
-  				where title like CONCAT('%',#{search},'%') and
-  			</when>
-  			<when test="kind == 'kc'">
-  				where contents like CONCAT('%',#{search},'%') and
-  			</when>
-  			<when test="kind == 'kw'">
-  				where writer like CONCAT('%',#{search},'%') and
-  			</when>
-  			<otherwise>
-  				where
-  			</otherwise>
-  		</choose>
-  	</sql>
-  	
-  	
-  	<resultMap type="QnaVO" id="Select">
-  		<id column="num" property="num"/>
-  		<result column="title" property="title"/>
-  		<result column="writer" property="writer"/>
-  		<result column="contents" property="contents"/>
-  		<result column="regDate" property="regDate"/>
-  		<result column="ref" property="ref"/>
-  		<result column="step" property="step"/>
-  		<result column="depth" property="depth"/>
-  		<collection property="qnaFilesVO" javaType="List" ofType="QnaFilesVO">
-	  		<id column="fnum" property="fnum"/>
-	  		<result column="oname" property="oname"/>
-	  		<result column="fname" property="fname"/>
-  		</collection>
-  	</resultMap>
   	
   	<delete id="qnaDelete" parameterType="QnaVO">
   		delete from qna where num = #{num}
@@ -47,7 +14,7 @@
   		where num = #{num}
   	</update>
   	
-  	<select id="qnaSelect" parameterType="QnaVO" resultMap="Select">
+  	<select id="qnaSelect" parameterType="QnaVO">
   		select N.*, F.fnum, F.fname, F.oname
   		from (select *, lag(num,1) over(order by num) prev,
   				lag(title,1) over(order by num) prevT,
@@ -59,21 +26,19 @@
   	</select>
   	
   	<insert id="qnaWrite" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
-  		insert into qna values(0, #{title}, #{writer}, #{contents}, now())
-  		<!-- <selectKey resultType="Integer" keyProperty="num" order="AFTER">
-  			select LAST_INSERT_ID()
-  		</selectKey> -->
+  		insert into qna
+  			values(#{num}, #{writer}, #{contents}, now(), #{num}, 0, 0, #{secret})
+
   		<!-- auto increment를 받아오려면 Select Key를 쓰거나, (useGeneratedKeys="true" keyProperty="num")를 써준다 -->
   	</insert>
   	
   	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
   		select * from qna
-  		<include refid="bs"></include> num > 0
-  		order by num desc LIMIT #{startRow}, #{perPage}
+  		where num > 0
+  		order by ref desc, step asc LIMIT #{startRow}, #{perPage}
   	</select>
 
-  	<select id="qnaCount" resultType="Integer" parameterType="Pager">
-  		select count(num) from qna
-  		<include refid="bs"></include> num > 0
+  	<select id="qnaCount" resultType="Integer">
+  		select count(ref) from qna where num > 0
   	</select>
   </mapper>
