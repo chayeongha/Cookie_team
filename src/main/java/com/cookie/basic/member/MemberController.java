@@ -89,9 +89,8 @@ public class MemberController {
 	@GetMapping("idCheck")
 	public Model idCheck(MemberVO memberVO, Model model)throws Exception {
 			if(memberVO.getNickname()!="") {
-				memberVO= memberService.nickCheck(memberVO);
+				memberVO= memberService.idCheck(memberVO);
 			}
-			memberVO= memberService.idCheck(memberVO);
 			int result =0;
 			String msg= "중복된 아이디입니다.";
 			if(memberVO == null) {
