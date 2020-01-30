@@ -13,23 +13,25 @@
 			<h1>Member index</h1>
 			<a href="${pageContext.request.contextPath}/member/selectJoin">회원가입</a>
 			<a href="${pageContext.request.contextPath}/member/memberLogin">로그인</a>
+			<a href="${pageContext.request.contextPath}/member/idSearch">아이디검색</a>
+				
 			
 			<c:if test="${sessionScope.members.memId ne admin}">
-			<a href="${pageContext.request.contextPath}/member/memberMypage">마이페이지</a>
+				<a href="${pageContext.request.contextPath}/member/memberMypage">마이페이지</a>
+	
+				<c:if test="${not empty sessionScope.member}">
+					이건머지??
+				</c:if>
+				
+				<c:if test="${sessionScope.members.memId eq admin}">
+					<a href="${pageContext.request.contextPath}/admin/adminMain">관리자 페이지</a>
+				</c:if>
 
-			<a href="${pageContext.request.contextPath}/member/idSearch">아이디검색</a>
-			<c:if test="${not empty sessionScope.member}">
-
+				<a href="${pageContext.request.contextPath}/member/memberLogout">로그아웃</a>
 			</c:if>
 			
-			<c:if test="${sessionScope.members.memId eq admin}">
-			<a href="${pageContext.request.contextPath}/admin/adminMain">관리자 페이지</a>
-			</c:if>
-
-			<a href="${pageContext.request.contextPath}/member/memberLogout">로그아웃</a>
-			</c:if>
 			<c:if test="${member.grade eq 9999}">
-			<a href="${pageContext.request.contextPath}/admin/adminMemberList?grade=1">회원정보관리</a>
+				<a href="${pageContext.request.contextPath}/admin/adminMemberList?grade=1">회원정보관리</a>
 			</c:if>
 	</div>		
 			

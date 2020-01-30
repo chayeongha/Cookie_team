@@ -24,6 +24,7 @@ public class MemberVO {
 	private String name;
 	@NotEmpty
 	private String nickname;
+	@NotEmpty
 	private String phone;
 	@NotEmpty
 	private String email;

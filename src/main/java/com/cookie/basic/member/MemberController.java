@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -85,9 +86,9 @@ public class MemberController {
 	}
 	
 	//프론트아이디 중복체크
-	@GetMapping("memberIdCheck")
-	public Model memberIdCheck(MemberVO memberVO, Model model)throws Exception {
-			memberVO= memberService.memberIdCheck(memberVO);
+	@GetMapping("idCheck")
+	public Model idCheck(MemberVO memberVO, Model model)throws Exception {
+			memberVO= memberService.idCheck(memberVO);
 			String msg= "중복된 아이디입니다.";
 			if(memberVO == null) {
 				msg="사용가능한 아이디입니다.";
@@ -100,9 +101,9 @@ public class MemberController {
 	}
 	
 	//프론트닉네임 중복체크
-	@GetMapping("memberNickCheck")
-	public Model memberNickCheck(MemberVO memberVO, Model model)throws Exception {
-			memberVO= memberService.memberNickCheck(memberVO);
+	@GetMapping("nickCheck")
+	public Model nickCheck(MemberVO memberVO, Model model)throws Exception {
+			memberVO= memberService.nickCheck(memberVO);
 			String msg= "중복된 닉네임입니다.";
 			if(memberVO == null) {
 				msg="사용가능한 닉네임입니다.";
@@ -112,6 +113,35 @@ public class MemberController {
 			model.addAttribute("member", memberVO);
 			
 			return model;
+	}
+	
+	//프론트이메일 중복체크
+	@GetMapping("emailCheck")
+	public Model emailCheck(MemberVO memberVO, Model model)throws Exception{
+		memberVO= memberService.emailCheck(memberVO);
+		String msg= "중복된 이메일입니다.";
+		if(memberVO == null) {
+			msg="사용가능한 이메일입니다.";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("member",memberVO);
+	
+		return model;
+	}
+	
+	//프론트 연락처중복체체크
+	@ResponseBody//★@ResponseBody을 이용하면 자바 객체를 HTTP 응답 body로 전송할 수 있다.
+	@GetMapping("phoneCheck")
+	public String phoneCheck(MemberVO memberVO)throws Exception{
+		memberVO= memberService.phoneCheck(memberVO);
+		
+		String msg= "이미 사용하고 있는 번호입니다.";
+		if(memberVO == null) {
+			msg="사용가능한 번호입니다.";
+		}
+		
+		return msg;
 	}
 	
 	//아이디검색

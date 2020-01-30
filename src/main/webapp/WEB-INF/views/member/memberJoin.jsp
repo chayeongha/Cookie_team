@@ -77,8 +77,10 @@
 			    
 			     <div class="form-group">
 			      	<label class="control-label col-sm-2" for="email">연락처</label>
-			     	 <div class="col-sm-10">          
-			      		<input type="tel" onKeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="Enter phone" class="form-control" name="phone" value="${phone}" id="phone"/>
+			     	 <div class="col-sm-10">         
+			      		<form:input path="phone" class="form-control phoneCheck" id="phone" placeholder="Enter phone" onKeyup="inputPhoneNumber(this);" maxlength="13" />
+					  	<form:errors path="phone" cssStyle="color:red;" />
+					  	<div class="pconfirm" style="color: red"></div>
 			      	</div>
 			     </div>
 			     
@@ -108,49 +110,11 @@
 			      	<button type="submit" class="btn_join">JOIN</button>
 			      </div>
 			    </div>
-	
+			
 		  </form:form>
 		</div>
    	
    	<c:import url="../layout/footer.jsp" />
-
-	
-	<script>
-function inputPhoneNumber(obj) {
-
-
-
-    var number = obj.value.replace(/[^0-9]/g, "");
-    var phone = "";
-
-
-
-    if(number.length < 4) {
-        return number;
-    } else if(number.length < 7) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3);
-    } else if(number.length < 11) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 3);
-        phone += "-";
-        phone += number.substr(6);
-    } else {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 4);
-        phone += "-";
-        phone += number.substr(7);
-    }
-    obj.value = phone;
-}
-</script>
-	
-
-
-
 
 	<script type="text/javascript">
 		//이미지를넣었을 때 미리보여지는것.
@@ -215,14 +179,76 @@ function inputPhoneNumber(obj) {
 		//아이디중복검사
 		$(".idCheck").click(function(){
 			var memId= $('#memId').val();
-			window.open("./memberIdCheck?memId="+memId, "","width=500,height=230,top=200, left=600");
+			window.open("./idCheck?memId="+memId, "","width=570,height=230,top=200, left=600");
 		});
-
+		
 		//닉네임중복검사
 		$(".nickCheck").click(function(){
 			var nickname= $('#nickname').val();
-			window.open("./memberNickCheck?nickname="+nickname, "","width=570,height=230,top=200, left=600");
+			window.open("./nickCheck?nickname="+nickname, "","width=570,height=230,top=200, left=600");
 		});
+
+		//이메일중복검사
+		$(".emailCheck").click(function(){
+			var email= $('#email').val();
+			window.open("./emailCheck?email="+email, "","width=570,height=230,top=200, left=600");
+		});
+
+		//연락처 정규식
+		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
+
+		$(".phoneCheck").blur(function(){
+			if($('#phone').val() != "" && phoneRule.test($('#phone').val()) != true){
+				alert("휴대폰 번호 형식에 맞게 입력해주세요");
+				$('#phone').val("");
+				$('#phone').focus();
+				return;
+			}	
+			//연락처 중복검사 	
+				$.ajax({
+				type : "GET",
+				url : "phoneCheck",
+				data : {
+					phone : $('#phone').val()
+				},
+				success: function(data){
+					data = data.trim();
+					if(data !="사용가능한 번호입니다."){
+						$('#phone').val(data);
+						$('#phone').focus();
+					}				
+				}			
+				});
+		});
+
+		
+		//폰넘버입력시 자동으로 하이푼입력되는것.
+		function inputPhoneNumber(obj) {
+
+		    var number = obj.value.replace(/[^0-9]/g, "");
+		    var phone = "";
+		
+		    if(number.length < 4) {
+		        return number;
+		    } else if(number.length < 7) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3);
+		    } else if(number.length < 11) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 3);
+		        phone += "-";
+		        phone += number.substr(6);
+		    } else {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 4);
+		        phone += "-";
+		        phone += number.substr(7);
+		    }
+		    obj.value = phone;
+		}
 		
 	</script>
 

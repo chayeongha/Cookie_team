@@ -15,7 +15,7 @@
 	
 	<div class="checkId"><img alt="쿠키이미지" src="../images/header/mm.png" style="width: 45px; height: 45px; margin-left: 20px;">　아이디중복확인</div>
 	
-	<form action="./memberIdCheck">	
+	<form action="./idCheck">	
 		<c:if test="${not empty param.memId}">
 			<div class="memIdTest">${param.memId}는 ${msg}</div>
 		</c:if>
@@ -23,7 +23,7 @@
 		<div class="container">
 			<br>
 			<label for="memId" class="memId">　ID : </label> 
-			<input type="text" id="memId" name="memId" value="${param.memId}" class="idInput">
+			<input type="text" id="memId" name="memId" value="${param.memId}" class="idInput" placeholder="한글이나 특수문자를 제외하고 입력하세요">
 			<button type="submit" class="btnsubmin">확인</button>
 			<c:if test="${not empty param.memId and empty member }">
 				<input type="button" value="사용하기" id="useMemId">

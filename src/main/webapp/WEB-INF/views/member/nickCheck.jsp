@@ -14,7 +14,7 @@
 <body>
 	<div class="checknickName"><img alt="쿠키이미지" src="../images/header/mm.png" style="width: 45px; height: 45px; margin-left: 20px;">　닉네임 중복확인</div>
 	
-	<form action="./memberNickCheck">	
+	<form action="./nickCheck">	
 		<c:if test="${not empty param.nickname}">
 			<div class="nicknameTest">${param.nickname}는 ${msg}</div>
 		</c:if>

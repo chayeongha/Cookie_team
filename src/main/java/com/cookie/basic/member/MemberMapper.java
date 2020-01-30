@@ -35,10 +35,16 @@ public interface MemberMapper {
 	public MemberVO memberLogin(MemberVO memberVO)throws Exception;
 	
 	//id 중복 검사
-	public MemberVO memberIdCheck(MemberVO memberVO)throws Exception;
+	public MemberVO idCheck(MemberVO memberVO)throws Exception;
 	
 	//닉네임 중복검사
-	public MemberVO memberNickCheck(MemberVO memberVO)throws Exception;
+	public MemberVO nickCheck(MemberVO memberVO)throws Exception;
+	
+	//이메일 중복검사
+	public MemberVO emailCheck(MemberVO memberVO)throws Exception;
+	
+	//연락처 중복검사
+	public MemberVO phoneCheck(MemberVO memberVO)throws Exception;
 	
 	//수정
 	public int memberUpdate(MemberVO memberVO)throws Exception;
