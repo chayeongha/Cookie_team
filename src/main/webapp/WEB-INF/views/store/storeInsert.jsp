@@ -82,7 +82,7 @@
 				<div class="store_label">점주 아이디:</div>
 				<!-- id 세션에서 점주 아이디만 받아오기 -->
 				<input type="text" id="memId" name="memId" 
-					class="store_input" value="${member.memId}">		
+					class="store_input" value="${member.memId}" readonly="readonly">		
 			</div>
 
 			<div>
