@@ -287,45 +287,40 @@
 
 		<!-- 아래내용 -->
 		<div class="body2">
-			
-				<div class="memberTitle">
-					멤버
-					<div class="memberListContainer">
-						<div id="listcontentWrap">
-
-							<div id="listcontent">
-
-								<div class="container MemberMenu">
-									<div class="container" id="memberList"></div>
 
 
-
-
-								</div>
+			<div class="memberTitle">
+					<div class="PNAME">개인회원 <br></div>
+				<div class="memberListContainer">
+					<div id="listcontentWrap">
+						<div id="listcontent">
+							<div class="container MemberMenu">
+								<div class="container" id="memberList"></div>
 							</div>
-
 						</div>
 					</div>
-
-
-
 				</div>
-			
-					<div class="storeBye">
-						<div class="storeByeTi">스토어 폐업신청</div>
-						<div class="storeByeContainer"></div>
-					</div>
+			</div>
+			<div class="bMemberTitle">
+					<div class="BNAME">비즈니스 회원 <br></div>
+				<div id="bmemberList">
+				</div>
+			</div>
+			<div class="storeBye">
+				<div class="storeByeTi">스토어 폐업신청</div>
+				<div class="storeByeContainer"></div>
+			</div>
 
-				
 
 
-		
+
+
 			<!-- 2container -->
 		</div>
 
 
 
-
+	
 		<script type="text/javascript">
 			getMemberList(1);
 
@@ -337,9 +332,11 @@
 				},
 				success : function(data) {
 					$(".storeByeContainer").html(data);
-					/* 	 alert("데이터 전송 성공"+data);  */
+					/*  alert("데이터 전송 성공"+data);   */
 				}
 			});
+
+			/***************************일반회원***************************/
 
 			function getMemberList(curPage) {
 				$.ajax({
@@ -348,6 +345,7 @@
 					async : false,
 					data : {
 						curPage : curPage,
+						grade : "1"
 
 					},
 					error : function() {
@@ -355,9 +353,65 @@
 					},
 					success : function(data) {
 						$("#memberList").html(data);
-						/* alert("데이터 전송 성공"+data);  */
+						 /* alert("데이터 전송 성공"+data);  */ 
 
-						//클릭시 슬라이드업 다운
+					}
+				});
+			}
+
+			$("#memberList").on("click", ".listnum", function() {
+				var curPage = $(this).attr("id");
+				getMemberList(curPage);
+				//두번째 페이지 이후 -클릭시 슬라이드업 다운
+				$(".subjectList a").on("click", function() {
+
+					$(".subMenu").slideUp();
+					$(".subjectList .main").removeClass("activeA");
+
+					if (!$(this).next().is(":visible")) {
+						$(this).next().slideDown();
+						$(this).parent().addClass("activeA");
+					}
+
+				}); 
+
+			});
+
+			$("#memberList").on("click", ".listimg", function() {
+				var curPage = $(this).attr("id");
+				getMemberList(curPage);
+			})
+
+			
+			
+			
+			/**********************************비즈니스(점주))****************************/
+			getBMemberList(1);
+			function getBMemberList(curPage) {
+				$.ajax({
+					type : "GET",
+					url : "../admin/adminMemberList",
+					async : false,
+					data : {
+						curPage : curPage,
+						grade : "8888"
+
+					},
+					error : function() {
+						alert("통신실패")
+					},
+					success : function(data) {
+						$("#bmemberList").html(data);
+						/*  alert("데이터 전송 성공"+data);   */
+
+						}
+				});
+			}
+
+			$("#bmemberList").on("click", ".listnum", function() {
+				var curPage = $(this).attr("id");
+				getBMemberList(curPage);
+			//두번째 페이지 이후-클릭시 슬라이드업 다운
 						$(".subjectList a").on("click", function() {
 
 							$(".subMenu").slideUp();
@@ -368,22 +422,33 @@
 								$(this).parent().addClass("activeA");
 							}
 
-						});
-
-					}
-				});
-			}
-
-			$("#memberList").on("click", ".listnum", function() {
-				var curPage = $(this).attr("id");
-				getMemberList(curPage);
+						}); 
 
 			});
 
-			$("memberList").on("click", ".listimg", function() {
+			$("#bmemberList").on("click", ".listimg", function() {
 				var curPage = $(this).attr("id");
-				getMemberList(curPage);
+				getBMemberList(curPage);
 			})
+			
+			
+			
+			
+			/*첫번째 페이지에서 둘다 슬라이드 다운 주기*/
+			$(".subjectList a").on("click", function() {
+
+					$(".subMenu").slideUp();
+					$(".subjectList .main").removeClass("activeA");
+
+					if (!$(this).next().is(":visible")) {
+						$(this).next().slideDown();
+						$(this).parent().addClass("activeA");
+					}
+
+				}); 
+			
+			
+			
 		</script>
 </body>
 </html>

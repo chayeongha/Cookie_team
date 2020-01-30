@@ -8,11 +8,11 @@
 				<c:if test="${memberSize ne 0}"> 	
 				
 		
-						<table border="2">
+						<table border="2" class="memberListTable">
 						
 							<tbody class="center">
-								<tr >
-									<td colspan="5">
+								
+									
 										<div class="subjectList">
 											<ul class="navMenu2">
 												<!--리스트불러오기  -->
@@ -28,7 +28,7 @@
 																	<p>연락처: ${member.phone}</p>
 																	<p>이메일: ${member.email}</p>
 																	<p>회원 등급: ${member.grade}</p>
-																	 <a class="btn btn-primary" href="./pmemberDelete?memNum=${member.memNum}">삭제</a>
+																	 <a class="deleteBTN" href="./pmemberDelete?memNum=${member.memNum}">삭제</a>
 																</div>
 															</ul>
 														</div>
@@ -36,8 +36,8 @@
 												</c:forEach>
 											</ul>
 										</div>
-									</td>
-								</tr>
+								
+								
 							</tbody>
 						
 						</table>
@@ -48,10 +48,8 @@
 							<c:forEach begin="${pager.startNum}"  end="${pager.lastNum}" var="i">
 								<li><span id="${i}" class="list listnum" style="cursor:pointer">${i}</span></li>
 							</c:forEach>
-							<c:if test="${pager.curBlock < pager.totalBlock}">
-								<li><span id="${pager.lastNum+1}" style="cursor:pointer" class="list">▷</span></li>
-							</c:if>
-								<li><span id="${pager.lastNum}" style="cursor:pointer" class="list">▷</span></li>
+							<li><span id="${pager.lastNum}" style="cursor:pointer" class="list listimg">▷</span></li>
+							
 						</ul>
 			 		</div>
 
