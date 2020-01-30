@@ -286,7 +286,7 @@ public class StoreController {
 	}
 	
 	@GetMapping("storeCart")
-	public ModelAndView storeCart() throws Exception{
+	public ModelAndView storeCart(String menu, String moneyTotal, String[] optCountt, String [] optList) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		return mv;

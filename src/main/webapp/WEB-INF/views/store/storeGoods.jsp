@@ -288,8 +288,8 @@
   							"optCountt":optCountt,
   							"optList":optList
   						},
-  						success : function(data) {
-  				            $(".orderBox").html(data);
+  						success : function() {
+  				            $(".orderBox").html("a");
   				      
   				            
   				         },
