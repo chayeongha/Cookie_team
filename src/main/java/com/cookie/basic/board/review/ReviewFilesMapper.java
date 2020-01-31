@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ReviewFilesMapper {
 
-	public List<ReviewFilesVO> noticeFilesList(ReviewFilesVO noticeFilesVO) throws Exception;
+	public List<ReviewFilesVO> reviewFilesList(ReviewFilesVO reviewFilesVO) throws Exception;
 	
-	public int noticeFilesDelete(ReviewFilesVO noticeFilesVO) throws Exception;
+	public int reviewFilesDelete(ReviewFilesVO reviewFilesVO) throws Exception;
 	
-	public ReviewFilesVO noticeFilesSelect(ReviewFilesVO noticeFilesVO) throws Exception;
+	public ReviewFilesVO reviewFilesSelect(ReviewFilesVO reviewFilesVO) throws Exception;
 	
-	public int noticeFilesInsert(List<ReviewFilesVO> noticeFilesVO) throws Exception;
+	public int reviewFilesInsert(List<ReviewFilesVO> reviewFilesVO) throws Exception;
 }

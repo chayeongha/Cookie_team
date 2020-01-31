@@ -1,4 +1,4 @@
-package com.cookie.basic.board.review;
+package com.cookie.basic.board.qna;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,18 +19,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cookie.basic.util.Pager;
 
 @Controller
-@RequestMapping("/review/**")
-public class ReviewController {
+@RequestMapping("/qna/**")
+public class QnaController {
 
 	@Autowired
-	private ReviewService reviewService;
+	private QnaService qnaService;
 	/////////////////////////////////////////////////////////////
 	
 	//summernote 파일 삭제
 	@ResponseBody
 	@PostMapping("summerFileDelete")
 	public ModelAndView summerFileDelete(String fileName) throws Exception {
-		boolean check = reviewService.summerFileDelete(fileName);
+		boolean check = qnaService.summerFileDelete(fileName);
 		String result = "Delete Fail";
 		
 		if(check) {
@@ -49,7 +50,7 @@ public class ReviewController {
 	public ModelAndView summerFile(MultipartFile file) throws Exception {
 		//System.out.println(file.getOriginalFilename());
 		
-		String fileName = reviewService.summerFile(file);
+		String fileName = qnaService.summerFile(file);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
@@ -61,14 +62,14 @@ public class ReviewController {
 	/////////////////////////////////////////////////////////////
 	//파일 다운
 	@GetMapping("fileDown")
-	public ModelAndView reviewFileDown(ReviewFilesVO reviewFilesVO) throws Exception {
+	public ModelAndView qnaFileDown(QnaFilesVO qnaFilesVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		reviewFilesVO = reviewService.reviewFileSelect(reviewFilesVO);
+		qnaFilesVO = qnaService.qnaFileSelect(qnaFilesVO);
 		
-		if(reviewFilesVO != null) {
-			mv.addObject("reviewFiles", reviewFilesVO);
-			mv.addObject("path", "review");
+		if(qnaFilesVO != null) {
+			mv.addObject("qnaFiles", qnaFilesVO);
+			mv.addObject("path", "qna");
 			mv.setViewName("fileDown");
 		}else {
 			mv.addObject("msg", "없써!!!!");
@@ -80,11 +81,11 @@ public class ReviewController {
 	}
 	/////////////////////////////////////////////////////////////
 	//글 삭제
-	@GetMapping("reviewDelete")
-	public ModelAndView reviewDelete(ReviewVO reviewVO) throws Exception {
+	@GetMapping("qnaDelete")
+	public ModelAndView qnaDelete(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		int result = reviewService.reviewDelete(reviewVO);
+		int result = qnaService.qnaDelete(qnaVO);
 		
 		String msg = "Delete Fail";
 		
@@ -93,41 +94,40 @@ public class ReviewController {
 		}
 		
 		mv.addObject("msg", msg);
-		mv.addObject("path", "reviewList");
+		mv.addObject("path", "qnaList");
 		mv.setViewName("common/result");
 		
 		return mv;
 	}
 	
 	//글 수정 폼
-	@GetMapping("reviewUpdate")
-	public ModelAndView reviewUpdate(ReviewVO reviewVO) throws Exception {
+	@GetMapping("qnaUpdate")
+	public ModelAndView qnaUpdate(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		reviewVO = reviewService.reviewSelect(reviewVO);
+		qnaVO = qnaService.qnaSelect(qnaVO);
 		
-		mv.addObject("update", reviewVO);
-		mv.addObject("boardName", "이용후기");
-		mv.setViewName("board/boarddUpdate");
+		mv.addObject("update", qnaVO);
+		mv.addObject("boardName", "문의사항");
+		mv.setViewName("board/boardUpdate");
 		
 		return mv;
 	}
 	
 	//글 수정
-	@PostMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(@Valid ReviewVO reviewVO, BindingResult bindingResult,
-										MultipartFile[] files, int[] fnums) throws Exception{
+	@PostMapping("qnaUpdate")
+	public ModelAndView qna(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("fnum 들어왔냡");
-		//System.out.println(noticeVO.getNum());
+		//System.out.println(qnaVO.getNum());
 		
 		if(bindingResult.hasErrors()) {//에러가 생겼을 때 다시 form으로 돌아가게끔
-			reviewVO = reviewService.reviewSelect(reviewVO);
-			mv.addObject("update", reviewVO);
-			mv.addObject("boardName", "이용후기");
+			qnaVO = qnaService.qnaSelect(qnaVO);
+			mv.addObject("update", qnaVO);
+			mv.addObject("boardName", "문의사항");
 			mv.setViewName("board/boardUpdate");// '/WEB-INF/views/'와 '.jsp'를 붙여줌
 		}else {
-			int result = reviewService.reviewUpdate(reviewVO, files, fnums);
+			int result = qnaService.qnaUpdate(qnaVO, files, fnums);
 			String msg = "Update Fail";
 			
 			if(result>0) {
@@ -135,29 +135,28 @@ public class ReviewController {
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", msg);
-			mv.addObject("path", "./reviewSelect?num="+reviewVO.getNum());
+			mv.addObject("path", "./qnaSelect?num="+qnaVO.getNum());
 		}
 		
 		return mv;
 	}
 	
 	//글 작성 폼
-	@GetMapping("reviewWrite")
-	public String reviewWrite(ReviewVO reviewVO) throws Exception {
+	@GetMapping("qnaWrite")
+	public String qnaWrite(QnaVO qnaVO) throws Exception {
 		return "board/boardWrite";
 	}
 	
 	//글 등록
-	@PostMapping("reviewWrite")
-	public ModelAndView reviewWrite(@Valid ReviewVO reviewVO, BindingResult bindingResult,
-										MultipartFile[] files) throws Exception {
+	@PostMapping("qnaWrite")
+	public ModelAndView qnaWrite(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/boardWrite");
 		}else {
 			System.out.println(files.length);
-			int result = reviewService.reviewWrite(reviewVO, files);
+			int result = qnaService.qnaWrite(qnaVO, files);
 			String msg = "Write Fail";
 			 
 			if(result>0) {
@@ -165,29 +164,29 @@ public class ReviewController {
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", msg);
-			mv.addObject("path", "./reviewList");
+			mv.addObject("path", "./qnaList");
 		}
 		
 		return mv;
 	}
 	
 	//글 하나 조회
-	@GetMapping("reviewSelect")
-	public ModelAndView noticeSelect(ReviewVO reviewVO) throws Exception {
+	@GetMapping("qnaSelect")
+	public ModelAndView qnaSelect(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		reviewVO = reviewService.reviewSelect(reviewVO);
-		//System.out.println(noticeVO.getNoticeFilesVO().get(0).getFnum());
+		qnaVO = qnaService.qnaSelect(qnaVO);
+		//System.out.println(qnaVO.getqnaFilesVO().get(0).getFnum());
 		
-//		System.out.println(noticeVO.getNum());
-//		System.out.println(noticeVO.getNext());
-//		System.out.println(noticeVO.getNextT());
-//		System.out.println(noticeVO.getPrev());
-//		System.out.println(noticeVO.getPrevT());
+//		System.out.println(qnaVO.getNum());
+//		System.out.println(qnaVO.getNext());
+//		System.out.println(qnaVO.getNextT());
+//		System.out.println(qnaVO.getPrev());
+//		System.out.println(qnaVO.getPrevT());
 		
-		if(reviewVO != null) {
-			mv.addObject("select", reviewVO);
-			mv.addObject("boardName", "이용후기");
+		if(qnaVO != null) {
+			mv.addObject("select", qnaVO);
+			mv.addObject("boardName", "문의사항");
 			mv.setViewName("board/boardSelect");
 		}
 		
@@ -195,18 +194,14 @@ public class ReviewController {
 	}
 	
 	//리스트
-	@GetMapping("reviewList")
-	public ModelAndView reviewList(Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("qnaList")
+	public void qnaList(Model model, Pager pager) throws Exception {
 		
-		List<ReviewVO> list = reviewService.reviewList(pager);
+		List<QnaVO> list = qnaService.qnaList(pager);
 		
-		mv.addObject("list", list);
-		mv.addObject("pager", pager);
-		mv.addObject("boardName", "이용후기");
-		mv.setViewName("board/boardList");
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 		
-		return mv;
 	}
 	
 }

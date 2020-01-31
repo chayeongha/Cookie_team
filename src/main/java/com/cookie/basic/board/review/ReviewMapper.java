@@ -12,22 +12,22 @@ import com.cookie.basic.util.Pager;
 public interface ReviewMapper {
 
 	//글 삭제
-	public int noticeDelete(ReviewVO noticeVO) throws Exception;
+	public int reviewDelete(ReviewVO reviewVO) throws Exception;
 	
 	//글 수정
-	public int noticeUpdate(ReviewVO noticeVO) throws Exception;
+	public int reviewUpdate(ReviewVO reviewVO) throws Exception;
 	
 	//글 하나 조회
-	public ReviewVO noticeSelect(ReviewVO noticeVO) throws Exception;
+	public ReviewVO reviewSelect(ReviewVO reviewVO) throws Exception;
 	
 	//글 생성
-	public int noticeWrite(ReviewVO noticeVO) throws Exception;
+	public int reviewWrite(ReviewVO reviewVO) throws Exception;
 	
 	//전체 글 개수
-	public int noticeCount(Pager pager) throws Exception;
+	public int reviewCount(Pager pager) throws Exception;
 	
 	//리스트
-	public List<ReviewVO> noticeList(Pager pager) throws Exception;
+	public List<ReviewVO> reviewList(Pager pager) throws Exception;
 	
 	
 }

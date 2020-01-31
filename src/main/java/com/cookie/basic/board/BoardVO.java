@@ -26,10 +26,5 @@ public class BoardVO {
 	@NotEmpty(message = "내용을 작성해주세요.")
 	private String contents;
 	private Date regDate;
-	
-	private int prev;
-	private String prevT;
-	private int next;
-	private String nextT;
-	
+		
 }

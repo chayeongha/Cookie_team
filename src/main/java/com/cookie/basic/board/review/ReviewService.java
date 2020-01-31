@@ -18,9 +18,9 @@ import com.cookie.basic.util.Pager;
 public class ReviewService {
 
 	@Autowired
-	private ReviewMapper noticeMapper;
+	private ReviewMapper reviewMapper;
 	@Autowired
-	private ReviewFilesMapper noticeFilesMapper;
+	private ReviewFilesMapper reviewFilesMapper;
 	@Autowired
 	private FilePathGenerator filePathGenerator;
 	@Autowired
@@ -40,27 +40,27 @@ public class ReviewService {
 	}
 	
 	//파일 다운
-	public ReviewFilesVO noticeFileSelect(ReviewFilesVO noticeFilesVO) throws Exception {
-		return noticeFilesMapper.noticeFilesSelect(noticeFilesVO);
+	public ReviewFilesVO reviewFileSelect(ReviewFilesVO reviewFilesVO) throws Exception {
+		return reviewFilesMapper.reviewFilesSelect(reviewFilesVO);
 	}
 	///////////////////////////////////////////////////
 	//글 삭제
 	@Transactional
-	public int noticeDelete(ReviewVO noticeVO) throws Exception {
+	public int reviewDelete(ReviewVO reviewVO) throws Exception {
 		//System.out.println(noticeVO.getNum());
-		int result = noticeMapper.noticeDelete(noticeVO);
+		int result = reviewMapper.reviewDelete(reviewVO);
 		
-		ReviewFilesVO noticeFilesVO = new ReviewFilesVO();
-		noticeFilesVO.setNum(noticeVO.getNum());
+		ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
+		reviewFilesVO.setNum(reviewVO.getNum());
 		
-		List<ReviewFilesVO> noticeFilesVOs = noticeFilesMapper.noticeFilesList(noticeFilesVO);
+		List<ReviewFilesVO> reviewFilesVOs = reviewFilesMapper.reviewFilesList(reviewFilesVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("notice");
+		File file = filePathGenerator.getUseClassPathResource("review");
 		
 		boolean check = false;
 		
-		for (ReviewFilesVO noticeFilesVO2 : noticeFilesVOs) {
-			String fileName = noticeFilesVO2.getFname();
+		for (ReviewFilesVO reviewFilesVO2 : reviewFilesVOs) {
+			String fileName = reviewFilesVO2.getFname();
 			check = fileSaver.fileDelete(file, fileName);
 		}
 		
@@ -75,29 +75,29 @@ public class ReviewService {
 	
 	//글 수정
 	@Transactional
-	public int noticeUpdate(ReviewVO noticeVO, MultipartFile[] files, int[] fnums) throws Exception {
+	public int reviewUpdate(ReviewVO reviewVO, MultipartFile[] files, int[] fnums) throws Exception {
 		
 		//notice 테이블 수정
-		int result = noticeMapper.noticeUpdate(noticeVO);
+		int result = reviewMapper.reviewUpdate(reviewVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("notice");
+		File file = filePathGenerator.getUseClassPathResource("review");
 		
 		//기존 파일 지웠을 때
 		if(fnums != null && fnums.length > 0) {
 			for (int i : fnums) {
 				//System.out.println(i);
 				
-				ReviewFilesVO noticeFilesVO = new ReviewFilesVO();
-				noticeFilesVO.setFnum(i);
+				ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
+				reviewFilesVO.setFnum(i);
 				
-				String fileName = noticeFilesMapper.noticeFilesSelect(noticeFilesVO).getFname();
+				String fileName = reviewFilesMapper.reviewFilesSelect(reviewFilesVO).getFname();
 				System.out.println(fileName);
 				
 				//static의 파일 지우기
 				fileSaver.fileDelete(file, fileName);
 				
 				//DB 테이블에서 파일 지우기
-				result = noticeFilesMapper.noticeFilesDelete(noticeFilesVO);
+				result = reviewFilesMapper.reviewFilesDelete(reviewFilesVO);
 				System.out.println(result);
 			}
 		}
@@ -105,26 +105,26 @@ public class ReviewService {
 		//기존 파일 그대로
 		System.out.println("그대로당!");
 		
-		List<ReviewFilesVO> noticeFilesVOs = new ArrayList<ReviewFilesVO>();
+		List<ReviewFilesVO> reviewFilesVOs = new ArrayList<ReviewFilesVO>();
 		
 		for(int i=0;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
 				String fileName = fileSaver.save(file, files[i]);
 				System.out.println(fileName);
 				
-				ReviewFilesVO noticeFilesVO = new ReviewFilesVO();
+				ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
 				//System.out.println(noticeVO.getNum());
-				noticeFilesVO.setNum(noticeVO.getNum());
-				noticeFilesVO.setFname(files[i].getOriginalFilename());
-				noticeFilesVO.setOname(fileName);
+				reviewFilesVO.setNum(reviewVO.getNum());
+				reviewFilesVO.setFname(files[i].getOriginalFilename());
+				reviewFilesVO.setOname(fileName);
 				
-				noticeFilesVOs.add(noticeFilesVO);
+				reviewFilesVOs.add(reviewFilesVO);
 			}
 		}
 		
 		//file 개수가 0보다 클 때만 files에 등록
-		if(noticeFilesVOs.size() > 0) {
-			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
+		if(reviewFilesVOs.size() > 0) {
+			result = reviewFilesMapper.reviewFilesInsert(reviewFilesVOs);
 		}
 		
 		return result;
@@ -132,13 +132,13 @@ public class ReviewService {
 	
 	//글 작성 + 파일 추가
 	@Transactional
-	public int noticeWrite(ReviewVO noticeVO, MultipartFile[] files) throws Exception {
+	public int reviewWrite(ReviewVO reviewVO, MultipartFile[] files) throws Exception {
 		System.out.println("글 작성");
-		int result = noticeMapper.noticeWrite(noticeVO);
+		int result = reviewMapper.reviewWrite(reviewVO);
 		
-		File file = filePathGenerator.getUseClassPathResource("notice");
+		File file = filePathGenerator.getUseClassPathResource("review");
 		
-		List<ReviewFilesVO> noticeFilesVOs = new ArrayList<ReviewFilesVO>();
+		List<ReviewFilesVO> reviewFilesVOs = new ArrayList<ReviewFilesVO>();
 		
 		for(int i=0;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
@@ -146,33 +146,33 @@ public class ReviewService {
 				
 				System.out.println(fileName);
 				
-				ReviewFilesVO noticeFilesVO = new ReviewFilesVO();
+				ReviewFilesVO reviewFilesVO = new ReviewFilesVO();
 				//System.out.println(noticeVO.getNum());
-				noticeFilesVO.setNum(noticeVO.getNum());
-				noticeFilesVO.setFname(files[i].getOriginalFilename());
-				noticeFilesVO.setOname(fileName);
+				reviewFilesVO.setNum(reviewVO.getNum());
+				reviewFilesVO.setFname(files[i].getOriginalFilename());
+				reviewFilesVO.setOname(fileName);
 				
-				noticeFilesVOs.add(noticeFilesVO);
+				reviewFilesVOs.add(reviewFilesVO);
 			}
 		}
 		//file 개수가 0보다 클 때만 files에 등록
-		if(noticeFilesVOs.size() > 0) {
-			result = noticeFilesMapper.noticeFilesInsert(noticeFilesVOs);
+		if(reviewFilesVOs.size() > 0) {
+			result = reviewFilesMapper.reviewFilesInsert(reviewFilesVOs);
 		}
 		
 		return result;
 	}
 	
 	//글 하나 조회
-	public ReviewVO noticeSelect(ReviewVO noticeVO) throws Exception {
-		return noticeMapper.noticeSelect(noticeVO);
+	public ReviewVO reviewSelect(ReviewVO reviewVO) throws Exception {
+		return reviewMapper.reviewSelect(reviewVO);
 	}
 	
 	//리스트
-	public List<ReviewVO> noticeList(Pager pager) throws Exception {
+	public List<ReviewVO> reviewList(Pager pager) throws Exception {
 		pager.makeRow();
-		pager.makePage(noticeMapper.noticeCount(pager));
+		pager.makePage(reviewMapper.reviewCount(pager));
 		
-		return noticeMapper.noticeList(pager);
+		return reviewMapper.reviewList(pager);
 	}
 }
