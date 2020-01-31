@@ -11,7 +11,7 @@
 				$("#addOpts").append(addOptss);
 				count2++;
 			}else {
-				alert("옵션 추가는 최대 10개까지 가능합니다.");
+				alert("옵션 추가는 한번에 최대 10개까지 가능합니다.");
 			}
 		});
 		
