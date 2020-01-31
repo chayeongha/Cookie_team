@@ -11,6 +11,12 @@ import com.cookie.basic.util.Pager;
 @Repository
 public interface NoticeMapper {
 
+	//글 삭제
+	public int noticeDelete(NoticeVO noticeVO) throws Exception;
+	
+	//글 수정
+	public int noticeUpdate(NoticeVO noticeVO) throws Exception;
+	
 	//글 하나 조회
 	public NoticeVO noticeSelect(NoticeVO noticeVO) throws Exception;
 	

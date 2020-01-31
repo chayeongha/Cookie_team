@@ -67,16 +67,7 @@ div.btn_notice_wrap {
     position: relative;
     margin-top: 20px;
 }
-p.btn_notice_list {
-	border-radius: 3px;
-    height: 45px;
-    width: 84px;
-    background: #666666;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-p.btn_notice_list a {
+div.btn_notice_wrap a {
 	display: block;
     font-size: 14px;
     color: #fff;
@@ -86,6 +77,36 @@ p.btn_notice_list a {
     line-height: 45px;
     width: 100%;
 }
+p.btn_notice_update {
+	border-radius: 3px;
+    height: 45px;
+    width: 84px;
+    background: #666666;
+    position: absolute;
+    top: 0;
+}
+p.btn_notice_delete {
+	border-radius: 3px;
+    height: 45px;
+    width: 84px;
+    background: #666666;
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+p.btn_notice_list {
+	border-radius: 3px;
+    height: 45px;
+    width: 84px;
+    background: #666666;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.btn_notice_wrap p:hover {
+	background-color: #f23600;
+}
+
 table {
 	border-collapse: collapse;
     border-spacing: 0;
