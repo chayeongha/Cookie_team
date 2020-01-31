@@ -20,7 +20,6 @@ class OredersTest {
 		ordersVO.setPhone("010-1111-1111");
 		ordersVO.setSsNum(1);
 		ordersVO.setTakeOut(1);
-		ordersVO.setListNum(1);
 		
 		int result = ordersMapper.ordersInsert(ordersVO);
 	}

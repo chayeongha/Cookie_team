@@ -152,6 +152,7 @@ public class QnaController {
 	public ModelAndView qnaWrite(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/boardWrite");
 		}else {

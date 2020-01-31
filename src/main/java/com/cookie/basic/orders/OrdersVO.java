@@ -11,7 +11,6 @@ public class OrdersVO {
 	
 	private int ooNum;
 	private Date ooDate;
-	private int listNum;
 	private int ooTotal;
 	private String nickname;
 	private String phone;

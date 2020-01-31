@@ -17,7 +17,10 @@ class QnaTest {
 	@Autowired
 	private QnaMapper qnaMapper;
 	
-	@Test
+	@Autowired
+	private QnaService qnaSevice;
+	
+	//@Test
 	void qnaWriteTest() throws Exception {
 		QnaVO qnaVO = new QnaVO();
 		qnaVO.setWriter("a");
@@ -29,6 +32,12 @@ class QnaTest {
 		int result = qnaMapper.qnaWrite(qnaVO);
 	
 		assertEquals(1, result);
+	}
+	
+	@Test
+	void qnaWriteTest2() throws Exception{
+		
+		
 	}
 
 }
