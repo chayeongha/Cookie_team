@@ -1,10 +1,28 @@
 package com.cookie.basic.member;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.jstl.core.Config;
 import javax.validation.Valid;
+import javax.websocket.Session;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.AuthCache;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -157,35 +175,6 @@ public class MemberController {
 		return msg;
 	}
 	
-	//아이디 비밀번호 검색
-	@GetMapping("idSearch")
-	public void idSearch()throws Exception{
-		
-	}
-	
-	//아이디검색 모달창
-	@GetMapping("userIdSearch")
-	public void userIdSearch()throws Exception{
-		
-	}
-	
-	//로그아웃
-	@GetMapping("memberLogout")
-	public ModelAndView memberLogout(HttpSession session)throws Exception{
-		
-		ModelAndView mv = new ModelAndView();
-		session.invalidate();
-		
-		String msg= "로그아웃";
-		String path="../";
-		
-		mv.addObject("msg", msg);
-		mv.addObject("path", path);
-		mv.setViewName("common/result");
-		
-		return mv;
-	}
-	
 	//로그인
 	@GetMapping("memberLogin")
 	public void memberLogin()throws Exception {
@@ -208,6 +197,22 @@ public class MemberController {
 			session.setAttribute("member", memberVO);
 
 		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	//로그아웃
+	@GetMapping("memberLogout")
+	public ModelAndView memberLogout(HttpSession session)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		session.invalidate();
+		
+		String msg= "로그아웃";
+		String path="../";
 		
 		mv.addObject("msg", msg);
 		mv.addObject("path", path);
@@ -320,6 +325,111 @@ public class MemberController {
 		
 		return mv;
 		}
+	
+	//idSearch jsp
+	@GetMapping("searchIdPw")
+	public void searchIdPw()throws Exception{
 		
+	}
+	
+	//아이디찾기: 입력한 이름과 휴대폰번호가 같은지
+	@PostMapping("idSearch")
+	public ModelAndView idSearch(MemberVO memberVO)throws Exception{
+		ModelAndView mv= new ModelAndView();
+		
+		memberVO=memberService.idSearch(memberVO);
+		
+		String msg="입력하신정보가 회원정보와 일치하지않습니다.";
+		//int resultId =0;
+		if(memberVO == null) {
+			msg="입력하신 정보가 회원정보와 일치합니다:)";
+			//resultId =1;
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "./searchIdPw");
+		
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	//인증번호보내기
+	@ResponseBody 
+	@RequestMapping("sendSms")
+	 public int sendSms(String receiver ,HttpSession session) { 
+		
+		// 6자리 인증 코드 생성 
+		int rand = (int) (Math.random() * 899999) + 100000; 
+		// 인증 코드를 세션에저장
+		session.setAttribute("rand", rand);
+		
+		// 문자 보내기 
+		String hostname = "api.bluehouselab.com"; 
+		String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
+		
+		CredentialsProvider credsProvider = new BasicCredentialsProvider(); 
+		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM), 
+
+		// 청기와랩에 등록한 Application Id 와 API key 를 입력합니다. 
+		new UsernamePasswordCredentials("ckdudgk123", "d7d1195443be11eabc5c0cc47a1fcfae")); 
+
+		AuthCache authCache = new BasicAuthCache(); 
+		authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme()); 
+		
+		HttpClientContext context = HttpClientContext.create(); context.setCredentialsProvider(credsProvider); 
+		context.setAuthCache(authCache); 
+
+		DefaultHttpClient client = new DefaultHttpClient(); 
+
+		try { HttpPost httpPost = new HttpPost(url); httpPost.setHeader("Content-type", "application/json; charset=utf-8");
+
+		 //문자에 대한 정보 
+		String json = "{\"sender\":\"01022923481\",\"receivers\":[\"" + receiver + "\"],\"content\":\"쿠키입니다."+"인증번호 6자리를 입력해주세요 [인증번호 :"+rand+"]\"}"; 
+
+		StringEntity se = new StringEntity(json, "UTF-8");
+		 httpPost.setEntity(se); 
+
+		HttpResponse httpResponse = client.execute(httpPost, context);
+
+		 InputStream inputStream = httpResponse.getEntity().getContent(); 
+
+		if (inputStream != null) { 
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+			String line = ""; 
+			while ((line = bufferedReader.readLine()) != null) 
+			
+			inputStream.close(); 
+				
+			return rand;
+		}else {
+			return rand;
+		}		
+		} catch (Exception e) { 
+				System.err.println("Error: " + e.getLocalizedMessage()); 
+		} finally {
+				client.getConnectionManager().shutdown();
+		}
+		return rand; 
+	} 
+	
+	//입력한번호가 저장된 코드가 맞는지 확인
+	@ResponseBody 
+	@RequestMapping("smsCheck") 
+	public String smsCheck(String code, HttpSession session) { 
+		//세션에있는 보안문자를 불러옴.
+		String saveCode =session.getAttribute("rand").toString();
+		//System.out.println(saveCode);아주잘나옴~
+		
+		//세션에있는 보안문자와 내가입력한 보안문자가 같은지 확인
+		if(code.equals(saveCode)){
+			return "ok"; 
+		}else {
+			return "no"; 
+		}
+				
+	}	
+	
+	
 }
 	

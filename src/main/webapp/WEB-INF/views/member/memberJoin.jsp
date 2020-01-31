@@ -194,6 +194,18 @@
 				}	
 		});
 
+		//이름 정규식
+		 //var nameRule =^[가-힣]*$;
+		
+// 		 $("#name").blur(function(){
+// // 				if($('#name').val() != "" && nameRule.test($('#name').val()) != true	){
+// 						alert("한글로만 사용해주세요");
+// 						$('#name').val("");
+// 						$('#name').focus();
+// 						return;
+// // 				}	
+// 		 });	 
+
 		//연락처 정규식
 		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
 

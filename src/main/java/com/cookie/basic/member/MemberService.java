@@ -87,7 +87,6 @@ public class MemberService {
 			check5=true;
 			bindingResult.rejectValue("phone", "memberVO.phone.phoneCheck");
 		}
-		
 		return check;
 	}
 	
@@ -205,4 +204,8 @@ public class MemberService {
 		return memberMapper.memberDelete(memberVO);
 	}
 	
+	//아이디찾기: 입력한 이름과 휴대폰번호가 같은지
+	public MemberVO idSearch(MemberVO memberVO)throws Exception{
+		return memberMapper.idSearch(memberVO);
+	}
 }

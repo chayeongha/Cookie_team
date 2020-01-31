@@ -52,4 +52,7 @@ public interface MemberMapper {
 	//마이페이지에서 회원 탈퇴 
 	public int memberDelete(MemberVO memberVO)throws Exception;
 	
+	//아이디찾기: 입력한 이름과 휴대폰번호가 같은지
+	public MemberVO idSearch(MemberVO memberVO)throws Exception;
+	
 }

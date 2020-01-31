@@ -69,23 +69,28 @@
    	</delete>
 	
 	<!-- 카카오 회원가입-->
-  	<insert id="kakaoJoin" parameterType="memberVO">
+  	<insert id="kakaoJoin" parameterType="MemberVO">
   		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',null,1,2)
   	</insert>
 
   	<!-- 카카오 -->
-  	<select id="memberKakao" parameterType="memberVO" resultType="memberVO">
+  	<select id="memberKakao" parameterType="MemberVO" resultType="MemberVO">
   		select * from members where memId=#{memId} and kind=2
   	</select>
   
   	<!-- 네이버 회원가입-->
-  	<insert id="naverJoin" parameterType="memberVO">
+  	<insert id="naverJoin" parameterType="MemberVO">
   		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',null,1,1)
   	</insert>
   
   	<!-- 네이버 -->
-  	<select id="memberNaver" parameterType="memberVO" resultType="memberVO">
+  	<select id="memberNaver" parameterType="MemberVO" resultType="MemberVO">
   		select * from members where memId=#{memId} and kind=1
   	</select>
+	
+	<!--아이디찾기: 입력한 이름과 휴대폰번호가 같은지 -->
+	<select id="idSearch" parameterType="MemberVO" resultType="MemberVO">
+		select * from members where name=#{name} and phone=#{phone}		
+	</select>	
 	
 </mapper>
