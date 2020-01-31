@@ -174,12 +174,12 @@
 			      //음료 선택 모달창
 			  	  $(".btnclick").click(function() {
 			  		menu = $(this).val();
-			  		var n = $(this).prop('title');
+			  		var n = $(this).prop('title'); //메뉴 이름
 			  		
 			  		
 			  		//파일이름
-					var art = "${pageContext.request.contextPath}/menu/"+$(".art"+n).val();
-					var money = $(".m"+n).val();
+					var art = "${pageContext.request.contextPath}/menu/"+$(".art"+n).val(); //메뉴파일+메뉴이름
+					var money = $(".m"+n).val(); //메뉴 가격+메뉴이름
 					var optMoney = new Array();
 					optTitle =new Array();
 					var opt =new Array();
@@ -187,7 +187,7 @@
 			  		
 					//옵션
 			  		$("."+$(this).prop('title')).each(function(index, item){
-						opt[index] = $(this).val();
+						opt[index] = $(this).val(); 
 						j = index+1;
 					  });
 
@@ -203,10 +203,10 @@
 			  				location.href="../member/memberLogin";
 			  				
 			  			}else{
-				  			$(".artt").attr('src',art);
-			  				$("#cc").val(menu);
-			  				$(".opt").empty();
-			  				$(".money").empty();
+				  			$(".artt").attr('src',art); //메뉴파일
+			  				$("#cc").val(menu);			//메뉴
+			  				$(".opt").empty();			//옵션 비워두는거
+			  				$(".money").empty();		//돈 비워두는거 
 			  				$(".money").append("<div class='moneyBox'><input type='text' readonly='readonly' class='moneyTotal' value='"+money+"'>　원</div>");
 			  				if(j>0){
 				  				$(".opt").append("<div class='optTitle'>옵션 추가</div>");
@@ -258,49 +258,62 @@
 						}
 				  	  $(".moneyTotal").val(money);
 				   });
+
+
+
+				$("body").on("click",".orderGO",function(){
+
+					var 
+
+				});
+
+
+
+
+
 				   
 
 				//장바구니 담기
-			  	$("body").on("click",".orderGO",function(){
+// 			  	$("body").on("click",".orderGO",function(){
 
-				  	var moneyTotal = $(".moneyTotal").val();
-				  	var optName = new Array();
-				  	var optCountt =new Array();
-				  	var optList = new Array();
-				  	//옵션이 포함된 음료
-				  	if(j>0){
-					  	for(var k in optTitle){
-						  	optCountt[k] = $("#"+optTitle[k]).val();
-			  				if(optCountt[k]>0){
-								optList[k] = $("."+optTitle[k]).val();
+// 				  	var moneyTotal = $(".moneyTotal").val();
+// 				  	var optName = new Array();
+// 				  	var optCountt =new Array();
+// 				  	var optList = new Array();
+// 				  	//옵션이 포함된 음료
+// 				  	if(j>0){
+// 					  	for(var k in optTitle){
+// 						  	optCountt[k] = $("#"+optTitle[k]).val();
+// 			  				if(optCountt[k]>0){
+// 								optList[k] = $("."+optTitle[k]).val();
 
 								
-					  		}
-						  }
-					}
+// 					  		}
+// 						  }
+// 					}
 				  
-			  		$.ajax({
-  						url:"./storeCart",
-  						type:'GET',
-  						data:{
-  							"moneyTotal":moneyTotal,
-  							"menu":menu,
-  							"optCountt":optCountt,
-  							"optList":optList
-  						},
-  						success : function() {
-  				            $(".orderBox").html("a");
+// 			  		$.ajax({
+//   						url:"./storeCart",
+//   						type:'GET',
+//   						data:{
+//   							"moneyTotal":moneyTotal,
+//   							"menu":menu,
+//   							"optCountt":optCountt,
+//   							"optList":optList
+//   						},
+//   						success : function() {
+//   				            $(".orderBox").html("a");
   				      
   				            
-  				         },
-  						error:function(){
-  							alert("실패");
-  						}
+//   				         },
+//   						error:function(){
+//   							alert("실패");
+//   						}
   						
   						
-  					});
+//   					});
 			  		
-			    });
+// 			    });
   	  
   	</script>
 		

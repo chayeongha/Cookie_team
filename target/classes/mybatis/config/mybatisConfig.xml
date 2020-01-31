@@ -21,6 +21,8 @@
 		
   		<typeAlias type="com.cookie.basic.store.StoreCloseVO" alias="StoreCloseVO"/>
 		<typeAlias type="com.cookie.basic.cart.CartVO" alias="CartVO"/>
+		<typeAlias type="com.cookie.basic.cart.CartOptionVO" alias="CartOptionVO"/>
+		<typeAlias type="com.cookie.basic.cart.OrderListVO" alias="OrderListVO"/>
 
   		<typeAlias type="com.cookie.basic.menu.MoptVO" alias="MoptVO"/>
 

@@ -5,12 +5,8 @@ public class CartVO {
 	private int cartNum;
 	private int mmNum;
 	private int mmCount;
-	private int optNum;
-	private int optCount;
-	private int listNum;
-	
-	
-	
+	private int cartStatus;
+	private String nickname;
 	public int getCartNum() {
 		return cartNum;
 	}
@@ -29,27 +25,18 @@ public class CartVO {
 	public void setMmCount(int mmCount) {
 		this.mmCount = mmCount;
 	}
-	public int getOptNum() {
-		return optNum;
+	public int getCartStatus() {
+		return cartStatus;
 	}
-	public void setOptNum(int optNum) {
-		this.optNum = optNum;
+	public void setCartStatus(int cartStatus) {
+		this.cartStatus = cartStatus;
 	}
-	public int getOptCount() {
-		return optCount;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setOptCount(int optCount) {
-		this.optCount = optCount;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	public int getListNum() {
-		return listNum;
-	}
-	public void setListNum(int listNum) {
-		this.listNum = listNum;
-	}
-	
-	
-	
 	
 	
 
