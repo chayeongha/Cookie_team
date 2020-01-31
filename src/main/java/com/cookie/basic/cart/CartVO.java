@@ -1,109 +1,56 @@
 package com.cookie.basic.cart;
 
-import java.util.Date;
-
 public class CartVO {
-
-	private int cartNum;
-	private String mmName;
-	private int ssNum;
-	private String nickname;
-	private Date cartDate;
-	private int cartCount;
-	private String optName;
-	private int optCount;
-	private int cartPrice;
-	private int totalPrice;
-	private int ooNum;
-
 	
-
+	private int cartNum;
+	private int mmNum;
+	private int mmCount;
+	private int optNum;
+	private int optCount;
+	private int listNum;
+	
+	
+	
 	public int getCartNum() {
 		return cartNum;
 	}
-
 	public void setCartNum(int cartNum) {
 		this.cartNum = cartNum;
 	}
-
-	public String getMmName() {
-		return mmName;
+	public int getMmNum() {
+		return mmNum;
 	}
-
-	public void setMmName(String mmName) {
-		this.mmName = mmName;
+	public void setMmNum(int mmNum) {
+		this.mmNum = mmNum;
 	}
-
-	public int getSsNum() {
-		return ssNum;
+	public int getMmCount() {
+		return mmCount;
 	}
-
-	public void setSsNum(int ssNum) {
-		this.ssNum = ssNum;
+	public void setMmCount(int mmCount) {
+		this.mmCount = mmCount;
 	}
-
-	public String getNickname() {
-		return nickname;
+	public int getOptNum() {
+		return optNum;
 	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setOptNum(int optNum) {
+		this.optNum = optNum;
 	}
-
-	public Date getCartDate() {
-		return cartDate;
-	}
-
-	public void setCartDate(Date cartDate) {
-		this.cartDate = cartDate;
-	}
-
-	public int getCartCount() {
-		return cartCount;
-	}
-
-	public void setCartCount(int cartCount) {
-		this.cartCount = cartCount;
-	}
-
-	public String getOptName() {
-		return optName;
-	}
-
-	public void setOptName(String optName) {
-		this.optName = optName;
-	}
-
 	public int getOptCount() {
 		return optCount;
 	}
-
 	public void setOptCount(int optCount) {
 		this.optCount = optCount;
 	}
-
-	public int getCartPrice() {
-		return cartPrice;
+	public int getListNum() {
+		return listNum;
 	}
-
-	public void setCartPrice(int cartPrice) {
-		this.cartPrice = cartPrice;
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
 	}
-
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-	public int getOoNum() {
-		return ooNum;
-	}
-
-	public void setOoNum(int ooNum) {
-		this.ooNum = ooNum;
-	}
+	
+	
+	
+	
+	
 
 }
