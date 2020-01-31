@@ -10,4 +10,14 @@ public class CartService {
 	private CartMapper cartMapper;
 	
 	
+	public int cartInsert(CartVO cartVO)throws Exception{
+		return cartMapper.cartInsert(cartVO);
+	}
+	
+	
+	public int cartOptionInsert(CartOptionVO cartOptionVO)throws Exception{
+		return cartMapper.cartOptionInsert(cartOptionVO);
+	}
+	
+	
 }

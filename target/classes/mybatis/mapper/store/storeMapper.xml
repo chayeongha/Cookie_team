@@ -150,18 +150,10 @@
         where ssNum=#{ssNum}
      </select>
      
-     <select id="storeGoods2" parameterType="StoreVO" resultMap="storeGoodsResult2">
-    	select * from store S
-		join menu M
-   		using(ssNum)
-    	join storeFiles F
-    	using(ssNum)
-        left outer join mopt MP
-        using(mmNum)
-        left outer join menuFiles MF
-        using(mmNum)
-        where ssNum=#{ssNum}
+     <select id="storeDetail" parameterType="StoreVO" resultMap="storeGoodsResult2">
+    select * from store S left outer join menu M on S.ssNum=M.ssNum left outer join menuFiles F on M.mmNum=F.mmNum left outer join mopt O on F.mmNum=O.mmNum where S.ssNum=#{ssNum};     
      </select>
+        
      
      <resultMap type="StoreVO" id="storeGoodsResult2">
   		<id column="ssNum" property="ssNum"/>

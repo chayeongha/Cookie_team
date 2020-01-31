@@ -7,5 +7,10 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface CartMapper {
 	
+	//카트 넣기
+	public int cartInsert(CartVO cartVO)throws Exception;
+	
+	//카트 옵션 넣기
+	public int cartOptionInsert(CartOptionVO cartOptionVO)throws Exception;
 	
 }

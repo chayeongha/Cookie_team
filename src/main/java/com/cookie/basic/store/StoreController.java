@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.menu.MenuService;
 import com.cookie.basic.menu.MenuVO;
 
 @Controller
@@ -30,6 +31,9 @@ public class StoreController {
 
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	private MenuService menuService;
+	
 
 	// 지점 등록 폼
 	@GetMapping("storeInsert")
@@ -332,19 +336,26 @@ public class StoreController {
 	}
 	
 	
+
+	
+	
 	@GetMapping("storeGoods")
-	public ModelAndView storeGoods(StoreVO storeVO) throws Exception{
+	public ModelAndView storeGoods(StoreVO storeVO,MenuVO menuVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-
-		storeVO = storeService.storeGoods(storeVO);
-		List<StoreVO> ar = storeService.storeGoods2(storeVO);
 		
-				
-		mv.addObject("storeVO",storeVO);
-		mv.addObject("list",ar);
+		storeVO = storeService.storeGoods(storeVO);
+		menuVO.setSsNum(storeVO.getSsNum()); 
+		List<MenuVO> menuVOs= menuService.menuList(menuVO);
+		
+		mv.addObject("storeVO", storeVO);
+		mv.addObject("list",menuVOs);
+		
 		return mv;
-
+			
 	}
+	
+	
+	
 	
 
 	@GetMapping("storeCart")
