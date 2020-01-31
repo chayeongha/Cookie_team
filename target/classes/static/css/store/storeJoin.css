@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+/******** StoreInsert ************************/
+.storeHeader {
+	width: 100%;
+	height: 100px;
+	background-color: #ff674efa;
+	overflow: hidden;
+}
+
+.storeJoinTi {
+	width: 380px;
+	height: 80px;
+	font-family: CookieRun-Black;
+	font-size: 28px;
+	margin-left: 695px;
+	text-align: center;
+	line-height: 80px;
+	margin-top: 15px;
+	float: left;
+}
+
+.storeInsertForm {
+	width: 500px;
+	height: 650px;
+	margin: 0 auto;
+	margin-top: 50px;
+	font-family: CookieRun-Black;
+	font-size: 24px;
+}
+
+.store_back {
+	width: 60px;
+	height: 60px;
+	float: left;
+	text-align: center;
+	line-height: 60px;
+	margin-top: 30px;
+}
+
+.store_label {
+	width: 200px;
+	height: 30px;
+	margin-left: 20px;
+	margin-top: 20px;
+	font-family: CookieRun-Regular;
+}
+
+.store_input {
+	width: 500px;
+	height: 40px;
+	background-color: #ff674efa;
+	border: none;
+	margin-top: 20px;
+	border-radius: 4px;
+	
+}
+
+.store_join_btn {
+	width: 80px;
+	height: 40px;
+	border: none;
+	margin-top: 20px;
+	border-radius: 4px;
+	float: right;
+	background-color: #ff674efa;
+	font-family: CookieRun-Regular;
+	font-size: 18px;
+	color: white;
+}
+
+.addrbtn {
+	width: 80px;
+	height: 40px;
+	background-color: #ff674efa;
+	float: right;
+	border: none;
+	margin-top: 10px;
+	border-radius: 4px;
+	font-family: CookieRun-Regular;
+	font-size: 18px;
+	letter-spacing: -2px;
+	color: white;
+}
+
+/**************storeInfo***************/
+.class_select_store {
+	width: 100%;
+	height: 50px;
+	background-color: white;
+	font-family: CookieRun-Regular;
+	font-size: 18px;
+	text-align: center;
+	line-height: 50px;
+}
+
+.storeSection {
+	width: 100%;
+	height: 1000px;
+}
+
+.storeSection_1 {
+	width: 1250px;
+	height: auto;
+	overflow: hidden;
+	background-color: #f6f6f6;
+	margin: 0 auto;
+}
+
+.store_list_box {
+	width: 300px;
+	height: 400px;
+	float: left;
+	background-color: white;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.store_list_photo {
+	width: 300px;
+	height: 300px;
+}
+
+.store_list_text {
+	width: 300px;
+	height: 100px;
+}
+
+.store_name {
+	color: black;
+	font-family: CookieRun-Regular;
+	font-size: 28px;
+	line-height: 100px;
+	margin-left: 20px;
+}
+
+.photo_store {
+	border: none;
+}
+
+/*중복확인*/
+#OK {
+	width: 80px;
+	height: 40px;
+	background-color: #ff674efa;
+	border: none;
+	margin-top: 10px;
+	border-radius: 4px;
+	font-family: CookieRun-Regular;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-left: 420px;
+	color: white;
+}
+
+/*파일버튼 */
+.filebox label {
+	display: inline-block;
+	padding: .3em .70em;
+	color: #fff;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #ff674efa;
+	cursor: pointer;
+	border: 1px solid #ff674efa;
+	border-radius: .25em;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+	margin-top: 40px;
+	font-family: CookieRun-Regular;
+	height: 30px;
+}
+
+.filebox label:hover {
+	background-color: #ff674efa;
+}
+
+.filebox label:active {
+	background-color: #fbd8b0;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+input::placeholder {
+	color: white;
+	font-size: 20px;
+	letter-spacing: 2px;
+	font-family: CookieRun-Regular;
+}

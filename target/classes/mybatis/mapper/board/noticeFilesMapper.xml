@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cookie.basic.board.notice.NoticeFilesMapper">
+	<select id="noticeFilesSelect" parameterType="Integer" resultType="NoticeFilesVO">
+		select * from noticeFiles where fnum = #{fnum}
+	</select>
+	
+	<insert id="noticeFilesInsert" parameterType="List">
+		insert into noticeFiles
+		values <foreach collection="list" item="item" separator=",">
+			(0, #{item.num}, #{item.fname}, #{item.oname})
+		</foreach>
+	</insert>
+	
+	<delete id="noticeFilesDelete" parameterType="NoticeFilesVO">
+		delete from noticeFiles where fnum=#{fnum}
+	</delete> 
+	
+	<select id="noticeFilesList" parameterType="Integer" resultType="NoticeFilesVO">
+		select * from noticeFiles where num=#{num}
+	</select>
+</mapper>

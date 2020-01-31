@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cookie.basic.store.StoreFilesMapper">
+  	<insert id="storeFilesInsert" parameterType = "StoreFilesVO">
+			insert into storeFiles values (null,#{fName},#{oName},#{ssNum});
+	</insert>
+	
+	<select id="storeFilesSelect" parameterType="StoreFilesVO" resultType="StoreFilesVO">
+			select * from storeFiles where ssNum=#{ssNum}
+	</select>
+	
+	<update id="storeFilesUpdate" parameterType="StoreFilesVO">
+			update storeFiles set fNum=#{fNum}, fName=#{fName}, oName=#{oName} where ssNum=#{ssNum}
+	</update>
+	
+	
+ </mapper>

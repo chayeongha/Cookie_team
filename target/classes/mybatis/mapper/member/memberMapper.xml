@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cookie.basic.member.MemberMapper">
+  
+  	<!--회원가입  -->
+  	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
+  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{email},#{grade},#{kind})
+  	</insert>
+
+  	<!--로그인 resultmap  -->
+  	<resultMap type="MemberVO" id="MemberLogin">
+  			<id column="memNum" property="memNum"/>
+  			<result column="memId" property="memId"/>
+  			<result column="pw" property="pw"/>
+  			<result column="name" property="name"/>
+  			<result column="nickname" property="nickname"/>
+  			<result column="phone" property="phone"/>
+  			<result column="email" property="email"/>
+  			<result column="grade" property="grade"/>
+  			<result column="kind" property="kind"/>
+  		<association property="memberFilesVO" javaType="memberFilesVO">
+  			<id column="fnum" property="fnum"/>
+  			<result column="fname" property="fname"/>
+  			<result column="oname" property="oname"/>
+  		</association>
+  	</resultMap>
+  	
+  	<!--로그인  -->
+  	<select id= "memberLogin" parameterType="MemberVO" resultMap="MemberLogin">
+  			select M.*,F.* from members M left join memberFiles F
+			on M.memNum=F.memNum
+ 			where M.memId=#{memId} and M.pw=#{pw}
+			union
+			select M.*,F.* from members M right join memberFiles F
+			on M.memNum=F.memNum
+			where M.memId=#{memId} and M.pw=#{pw}		
+   	</select>
+   	
+   	<!--아이디중복검사 -->
+   	<select id="memberIdCheck" parameterType="MemberVO" resultType="MemberVO">
+   			select memId from members where memId=#{memId}
+   	</select>
+   	
+   	<!--닉네임중복검사  -->
+   	<select id="memberNickCheck" parameterType="MemberVO" resultType="MemberVO">
+   			select nickname from members where nickname=#{nickname}
+   	</select>
+   	
+   	<!--회원정보 수정 -->
+   	<update id="memberUpdate" parameterType="MemberVO">
+   			update members set pw=#{pw}, name=#{name}, nickname=#{nickname},phone=#{phone} 
+   			where memNum=#{memNum}
+   	</update>
+   	
+   	<!--마이페이지에서 회원 스스로 탈퇴  -->
+   	<delete id="memberDelete" parameterType="MemberVO">
+   			delete from members where nickname=#{nickname}
+   	</delete>
+	
+	<!-- 카카오 회원가입-->
+  	<insert id="kakaoJoin" parameterType="memberVO">
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',null,1,2)
+  	</insert>
+
+  	<!-- 카카오 -->
+  	<select id="memberKakao" parameterType="memberVO" resultType="memberVO">
+  		select * from members where memId=#{memId} and kind=2
+  	</select>
+  
+  	<!-- 네이버 회원가입-->
+  	<insert id="naverJoin" parameterType="memberVO">
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',null,1,1)
+  	</insert>
+  
+  	<!-- 네이버 -->
+  	<select id="memberNaver" parameterType="memberVO" resultType="memberVO">
+  		select * from members where memId=#{memId} and kind=1
+  	</select>
+	
+</mapper>
