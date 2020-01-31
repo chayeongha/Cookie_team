@@ -35,11 +35,11 @@
 				
 				<!--아이디검색일때  -->
 				<div id="searchI">
-					<form action="idSearch" method="post">
+					
 						<div class="form-group">
 							<label class="font-weight-bold text-white" for="inputName_1">이름</label>
 							<div>
-								<input type="text" class="form-control" id="inputName_1" name="name" placeholder="ex)차영하">
+								<input type="text" class="form-control nameCheck" id="inputName_1" name="name" placeholder="ex)차영하">
 							</div>
 						</div>
 						<div class="form-group">
@@ -49,11 +49,12 @@
 							</div>
 						</div>
 						<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block">확인</button>
+<!-- 								<button type="button" class="btn btn-primary btn-block idsearch">확인</button> -->
+								<input type="button" value="확인" id="idConfirm" class="btn btn-primary btn-block idsearch" >
 <!-- 							<button id="searchBtn" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">확인</button> -->
 						<%-- <a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a> --%>
 						</div>
-					</form>	
+					
 				</div>
 				
 				<!--비밀번호검색일때  -->
@@ -157,6 +158,18 @@
 			}
 		}
 
+		//이름 정규식
+// 		var nameRule =/^[\u3131-\u318E\uAC00-\uD7A3]*$/; //아마 이렇게 써야되는 이유는 utf-8과의 인코딩문제라고함.
+
+// 		 $(".nameCheck").blur(function(){
+// 				 if($('#inputName_1').val() != "" && nameRule.test($('inputName_1').val()) != true){
+// 					alert("한글로만 사용해주세요");
+// 					$('inputName_1').val("");
+// 					$('inputName_1').focus();
+// 					return;
+// 				}	
+// 		 });	 
+
 		//연락처 정규식
 		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
 
@@ -168,39 +181,63 @@
 				return;
 			}	
 		});
-		
+
+		//아이디찾기에서 이름과 폰번호과 같은지 검증
+		$("#idConfirm").click(function(){
+	
+			$.ajax({
+				url:"idSearch",
+				type: "POST",
+				data: {
+					name : $('#inputName_1').val(),
+					phone :$('#inputPhone_1').val()	
+				},
+				success : function(data){
+							console.log(data);
+							if(data !="입력하신 정보가 회원정보와 일치합니다."){
+									alert("회원정보가 일치합니다.");
+							}else{
+									alert("회원정보가 일치하지않습니다.");
+							}
+				}
+				
+			});	
+
+		});
+
+		//문자보내기
 		function sendSms() {
-			 $.ajax({ 
-			url: "sendSms", 
-			data: { receiver: $("#phone").val() }, 
-			type: "POST", 
-			success: function(data) { 
-				if (data != null) { 
-				alert("인증번호 전송"); 
-				}else {
-				alert("인증번호 전송 실패"); 
+			$.ajax({ 
+				url: "sendSms", 
+				type: "POST", 
+				data: { 
+					receiver: $("#phone").val()
+				}, 
+				success: function(data) { 
+					if (data != null) { 
+					alert("인증번호 전송"); 
+					}else {
+					alert("인증번호 전송 실패"); 
+					} 
 				} 
-			} 
 			}); 
 		} 
+
+		//인증문자검증
 		function phoneCheck() { 
 			$.ajax({ 
-			url: "smsCheck", 
-			type: "POST", 
-			data: { code: $("#sms").val() }, 
-			success: function(result) {
-				 if (result == "ok") { 
-					alert("번호 인증 성공"); 
-				} else {
-			 		alert("번호 인증 실패");
-				} 
-			}
+				url: "smsCheck", 
+				type: "POST", 
+				data: { code: $("#sms").val() }, 
+				success: function(result) {
+					 if (result == "ok") { 
+						alert("번호 인증 성공"); 
+					} else {
+				 		alert("번호 인증 실패");
+					} 
+				}
 			}); 
 		}
-
-
-
-
 		
 // 		$(document).ready(function() {
 // 			/////////모///달///기///능///////////

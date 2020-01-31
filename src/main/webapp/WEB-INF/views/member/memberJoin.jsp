@@ -62,7 +62,7 @@
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="name">이름</label>
 			      <div class="col-sm-10">
-				      <form:input path="name" class="form-control" id="name" placeholder="Enter name"/>
+				      <form:input path="name" class="form-control nameCheck" id="name" placeholder="Enter name"/>
 					  <form:errors path="name" cssStyle="color:red;" />
 			      </div>
 			    </div>
@@ -182,7 +182,7 @@
 		});
 
 		//비밀번호  정규식
-		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
+		var passwordRule=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
 
 		$("#pw").blur(
 			function(){
@@ -195,16 +195,16 @@
 		});
 
 		//이름 정규식
-		 //var nameRule =^[가-힣]*$;
-		
-// 		 $("#name").blur(function(){
-// // 				if($('#name').val() != "" && nameRule.test($('#name').val()) != true	){
-// 						alert("한글로만 사용해주세요");
-// 						$('#name').val("");
-// 						$('#name').focus();
-// 						return;
-// // 				}	
-// 		 });	 
+		var nameRule =/^[\u3131-\u318E\uAC00-\uD7A3]*$/; //아마 이렇게 써야되는 이유는 utf-8과의 인코딩문제라고함.
+
+		 $(".nameCheck").blur(function(){
+				 if($('#name').val() != "" && nameRule.test($('#name').val()) != true){
+					alert("한글로만 사용해주세요");
+					$('#name').val("");
+					$('#name').focus();
+					return;
+				}	
+		 });	 
 
 		//연락처 정규식
 		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
@@ -224,6 +224,7 @@
 					phone : $('#phone').val()
 				},
 				success: function(data){
+					console.log(data);
 					data = data.trim();
 					if(data !="사용가능한 번호입니다."){
 						$('#phone').val(data);
