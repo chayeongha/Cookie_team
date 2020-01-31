@@ -17,9 +17,9 @@
 											<ul class="navMenu2">
 												<!--리스트불러오기  -->
 												<c:forEach items="${memberList}" var="member" varStatus="st">
-													<li class="mainMenu">
-														아이디:<a>${member.memId}</a>
-														<div class="subMenu" style="display: none;">
+													<li class="mainMenu${st.index}">
+														아이디:<a title="${param.grade}">${member.memId}</a>
+														<div class="subMenu${param.grade}" style="display: none;">
 															<ul>
 																<div class="info">
 																	<p>회원번호: ${member.memNum}</p>

@@ -303,7 +303,7 @@
 			</div>
 			<div class="bMemberTitle">
 					<div class="BNAME">비즈니스 회원 <br></div>
-				<div id="bmemberList">
+				<div class="bmemberList">
 				</div>
 			</div>
 			<div class="storeBye">
@@ -319,10 +319,12 @@
 		</div>
 
 
-
+		<script type="text/javascript">
+			$(".")
+		</script>
 	
 		<script type="text/javascript">
-			getMemberList(1);
+			getMemberList(1); 
 
 			$.ajax({
 				type : "GET",
@@ -364,13 +366,13 @@
 				getMemberList(curPage);
 				//두번째 페이지 이후 -클릭시 슬라이드업 다운
 				$(".subjectList a").on("click", function() {
-
+					var g = $(this).attr("title")
 					$(".subMenu").slideUp();
-					$(".subjectList .main").removeClass("activeA");
+					$(".subjectList .mainMenu").removeClass();
 
 					if (!$(this).next().is(":visible")) {
 						$(this).next().slideDown();
-						$(this).parent().addClass("activeA");
+						$(this).parent().addClass();
 					}
 
 				}); 
@@ -386,11 +388,11 @@
 			
 			
 			/**********************************비즈니스(점주))****************************/
-			getBMemberList(1);
+			getBMemberList(1); 
 			function getBMemberList(curPage) {
 				$.ajax({
 					type : "GET",
-					url : "../admin/adminMemberList",
+					url : "../admin/adminMemberList?grade=8888",
 					async : false,
 					data : {
 						curPage : curPage,
@@ -401,51 +403,51 @@
 						alert("통신실패")
 					},
 					success : function(data) {
-						$("#bmemberList").html(data);
+						$(".bmemberList").html(data);
 						/*  alert("데이터 전송 성공"+data);   */
 
 						}
 				});
 			}
 
-			$("#bmemberList").on("click", ".listnum", function() {
+			$(".bmemberList").on("click", ".listnum", function() {
 				var curPage = $(this).attr("id");
 				getBMemberList(curPage);
 			//두번째 페이지 이후-클릭시 슬라이드업 다운
-						$(".subjectList a").on("click", function() {
-
+			 			$(".subjectList a").on("click", function() {
+							var g = $(this).attr("title")
 							$(".subMenu").slideUp();
-							$(".subjectList .main").removeClass("activeA");
+							$(".subjectList .mainMenu").removeClass();
 
 							if (!$(this).next().is(":visible")) {
 								$(this).next().slideDown();
-								$(this).parent().addClass("activeA");
+								$(this).parent().addClass();
 							}
 
-						}); 
+						});  
 
 			});
 
-			$("#bmemberList").on("click", ".listimg", function() {
+			$(".bmemberList").on("click", ".listimg", function() {
 				var curPage = $(this).attr("id");
 				getBMemberList(curPage);
 			})
 			
-			
-			
-			
-			/*첫번째 페이지에서 둘다 슬라이드 다운 주기*/
-			$(".subjectList a").on("click", function() {
-
-					$(".subMenu").slideUp();
-					$(".subjectList .main").removeClass("activeA");
-
+				/*첫번째 페이지에서 둘다 슬라이드 다운 주기*/
+		 	$(".subjectList a").on("click", function() {
+					var g = $(this).attr("title")
+					$(".subMenu"+g).slideUp();
+					$(".subjectList .mainMenu").removeClass();
+						
 					if (!$(this).next().is(":visible")) {
 						$(this).next().slideDown();
-						$(this).parent().addClass("activeA");
+						$(this).parent().addClass();
 					}
 
 				}); 
+			
+			
+		
 			
 			
 			

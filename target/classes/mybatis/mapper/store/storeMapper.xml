@@ -85,10 +85,14 @@
   		update storeClose set cwait=2 where ssNum=#{ssNum}
   	</update>
   	
+  	
+  	
+ 
   	<!-- 여기까지 지윤 작성-->
   	
   	
   	
+  
   	
   	
      
