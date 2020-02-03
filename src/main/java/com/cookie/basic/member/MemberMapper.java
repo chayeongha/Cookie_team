@@ -55,4 +55,7 @@ public interface MemberMapper {
 	//아이디찾기: 입력한 이름과 휴대폰번호가 같은지
 	public MemberVO idSearch(MemberVO memberVO)throws Exception;
 	
+	//아이디찾기: 문자인증완료후 아이디 나오는거 
+	public MemberVO findId(MemberVO memberVO)throws Exception;
+	
 }

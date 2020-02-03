@@ -208,4 +208,9 @@ public class MemberService {
 	public MemberVO idSearch(MemberVO memberVO)throws Exception{
 		return memberMapper.idSearch(memberVO);
 	}
+	
+	//아이디찾기: 문자인증완료후 아이디 나오는거 
+	public MemberVO findId(MemberVO memberVO)throws Exception{
+		return memberMapper.findId(memberVO);
+	}
 }

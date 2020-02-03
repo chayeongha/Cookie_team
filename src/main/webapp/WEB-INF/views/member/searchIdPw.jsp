@@ -35,7 +35,6 @@
 				
 				<!--아이디검색일때  -->
 				<div id="searchI">
-					
 						<div class="form-group">
 							<label class="font-weight-bold text-white" for="inputName_1">이름</label>
 							<div>
@@ -45,18 +44,22 @@
 						<div class="form-group">
 							<label class="font-weight-bold text-white" for="inputPhone_1">휴대폰번호</label>
 							<div>
-								<input type="text" class="form-control pCheck" id="inputPhone_1" name="phone" placeholder="ex) 010-7777-9999" onKeyup="inputPhoneNumber(this);" maxlength="13" >
+								<input type="text" class="form-control phoneNum" id="inputPhone_1" name="phone" placeholder="ex) 010-7777-9999" onKeyup="inputPhoneNumber(this);" maxlength="13" >
 							</div>
 						</div>
 						<div class="form-group">
 <!-- 								<button type="button" class="btn btn-primary btn-block idsearch">확인</button> -->
-								<input type="button" value="확인" id="idConfirm" class="btn btn-primary btn-block idsearch" >
-<!-- 							<button id="searchBtn" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">확인</button> -->
-						<%-- <a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a> --%>
+							<!-- <input type="button" value="확인" id="idConfirm" class="btn btn-primary btn-block idsearch"style="display: inline;"> -->
+							<button id="idConfirm" type="button" class="btn btn-primary btn-block" style="display: inline;">확인</button>
+							
+							<button id="searchBtn" type="button" class="btn btn-warning btn-block"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
+							onclick="sendSms();"
+							
+<!-- 							<button id="searchBtn" type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal" style="display: none;">인증번호 받기</button> -->
 						</div>
-					
-				</div>
 				
+				</div>
+
 				<!--비밀번호검색일때  -->
 				<div id="searchP" style="display: none;">
 					<div class="form-group">
@@ -87,20 +90,16 @@
 	  
 		  <div class="modal-dialog">
 		
-		    <!-- Modal content-->
 		    <div class="modal-content">
 		      
 			      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal">x</button>
-				        <h4 class="modal-title">안녕하세요.</h4>
+				        <h4 class="modal-title">인증페이지</h4>
 			      </div>
 		     
 		     <div class="modal-body">
-		       
-			        <p>안녕히가세요.</p>
-			        <input type="text" name="phone" id="phone" placeholder="010-xxxx-xxxx" /> 
-			        <button onclick="sendSms();">전송</button> <br /> <br /> 
-			       
+		  			Modal content
+		       		num: 527935
 			        <input type="text" name="sms" id="sms" placeholder="인증 번호 입력" /> 
 			        <button onclick="phoneCheck();">인증</button>
 			     
@@ -116,7 +115,7 @@
 		
 		  </div>
 	</div>
-
+	<!--모달창 끝  -->
 
 	<script type="text/javascript">
 		//폰넘버입력시 자동으로 하이푼입력되는것.
@@ -184,7 +183,7 @@
 
 		//아이디찾기에서 이름과 폰번호과 같은지 검증
 		$("#idConfirm").click(function(){
-	
+			//alert("test");잘나오는구먼
 			$.ajax({
 				url:"idSearch",
 				type: "POST",
@@ -193,13 +192,18 @@
 					phone :$('#inputPhone_1').val()	
 				},
 				success : function(data){
-							console.log(data);
-							//alert(data);
-// 							if(data !="입력하신정보가 회원정보와 일치하지않습니다."){
-// 									alert("회원정보가 일치합니다.");
-// 							}else{
-// 									alert("회원정보가 일치하지않습니다.");
-// 							}
+ 							alert(data);
+							if(data!= "입력하신 정보가 회원정보와 일치합니다."){
+								$('#inputName_1').val("");
+								$('#inputPhone_1').val("");
+								
+							}
+							else if(data == "입력하신 정보가 회원정보와 일치합니다." ){
+								$('#inputName_1').prop('readonly', true);
+								$('#inputPhone_1').prop('readonly', true);
+								$('#searchBtn').css('display' , 'inline');
+								$('#idConfirm').css('display' , 'none');
+							}
 				}
 				
 			});	
@@ -212,7 +216,7 @@
 				url: "sendSms", 
 				type: "POST", 
 				data: { 
-					receiver: $("#phone").val()
+					receiver: $(".phoneNum").val()
 				}, 
 				success: function(data) { 
 					if (data != null) { 
@@ -223,7 +227,7 @@
 				} 
 			}); 
 		} 
-
+	
 		//인증문자검증
 		function phoneCheck() { 
 			$.ajax({ 
@@ -232,7 +236,9 @@
 				data: { code: $("#sms").val() }, 
 				success: function(result) {
 					 if (result == "ok") { 
-						alert("번호 인증 성공"); 
+						alert("번호 인증 성공");
+						//모달창 닫기
+			 			$('#myModal').modal("hide");
 					} else {
 				 		alert("번호 인증 실패");
 					} 

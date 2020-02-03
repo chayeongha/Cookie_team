@@ -93,4 +93,9 @@
 		select * from members where name=#{name} and phone=#{phone}		
 	</select>	
 	
-</mapper>
+	<!--아이디찾기: 문자인증완료후 아이디 나오는거 -->
+	<select id="findId" parameterType="MemberVO" resultType="MemberVO">
+		select memId from members where phone =#{phone}
+	</select>
+	
+	</mapper>

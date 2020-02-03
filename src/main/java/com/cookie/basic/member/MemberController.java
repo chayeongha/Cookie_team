@@ -29,6 +29,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -106,7 +107,7 @@ public class MemberController {
 	//프론트아이디 중복체크
 	@GetMapping("idCheck")
 	public Model idCheck(MemberVO memberVO, Model model)throws Exception {
-			if(memberVO.getNickname()!="") {
+			if(memberVO.getMemId()!="") {
 				memberVO= memberService.idCheck(memberVO);
 			}
 			int result =0;
@@ -118,7 +119,7 @@ public class MemberController {
 			model.addAttribute("result", result);
 			model.addAttribute("msg", msg);
 			model.addAttribute("member", memberVO);
-			
+			System.out.println(result);
 			return model;
 	}
 	
@@ -333,8 +334,9 @@ public class MemberController {
 	}
 	
 	//아이디찾기: 입력한 이름과 휴대폰번호가 같은지
+	@ResponseBody
 	@PostMapping("idSearch")
-	public String idSearch(MemberVO memberVO, String name, String phone)throws Exception{
+	public String idSearch(MemberVO memberVO, String name, String phone , Model model)throws Exception{
 		MemberVO memberVO2= new MemberVO(); 
 		//System.out.println(name);잘나옴.
 		//System.out.println(phone);잘나옴.
@@ -343,14 +345,24 @@ public class MemberController {
 		MemberVO memberVO3= new MemberVO();
 		memberVO3=memberService.idSearch(memberVO2);
 		
+		MemberVO memberVO4 = new MemberVO();
+		memberVO4.setPhone(phone);
+		//서비스에서 아이디찾는걸 불러온걸 해결해야함
+//		memberService.findId(memberVO4);
+//		
+//		model.addAttribute("memId", );
+		
+		//int result =0;
 		String msg="입력하신정보가 회원정보와 일치하지않습니다.";
-		//int resultId =0;
 		if(memberVO3 != null) {
 			msg="입력하신 정보가 회원정보와 일치합니다.";
-			//resultId =1;
+			//result= 1;
 		}
-		System.out.println(msg);//아주잘나옴~
 		
+		//model.addAttribute("result", result);
+		//System.out.println(msg);//아주잘나옴~
+		//System.out.println(memberVO2.getPhone());
+		//model.addAttribute("phoneNum", memberVO2.getPhone());
 		return msg;
 	}
 	
@@ -361,8 +373,12 @@ public class MemberController {
 		
 		// 6자리 인증 코드 생성 
 		int rand = (int) (Math.random() * 899999) + 100000; 
+		
 		// 인증 코드를 세션에저장
 		session.setAttribute("rand", rand);
+		
+		//보내는 번호의 하이푼(특수문자)을 제거
+		receiver = receiver.replaceAll("-", "");
 		
 		// 문자 보내기 
 		String hostname = "api.bluehouselab.com"; 
