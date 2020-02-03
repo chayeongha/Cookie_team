@@ -64,7 +64,6 @@
 					
 			</div>
 			<script type='text/javascript'>
-
 			$(".sns-login-kakao-logo").click(function() {
 			    $("#kakao-login-btn").click();
 			 });
@@ -72,7 +71,6 @@
 			  //<![CDATA[
 			    // 사용할 앱의 JavaScript 키를 설정해 주세요.
 			    Kakao.init('df2f1bd915d5ed98ee4e1782f47aff61');
-
 			    Kakao.Auth.createLoginButton({
 				      container: '#kakao-login-btn',
 				      success: function(authObj) {
@@ -111,7 +109,6 @@
 				      }
 				    });
 				  //]]>	
-
 			</script>
 	  </div>
 	  
@@ -122,7 +119,6 @@
 	<script type="text/javascript">
 		$("#join_go").click(function(){
 			location.href="selectJoin";
-
 			});
 	</script>
 

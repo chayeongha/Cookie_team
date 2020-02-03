@@ -228,7 +228,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberNaver")
-	public String memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
+	public void memberNaver(HttpSession session, String email, String nickname,String name) throws Exception{
 		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemId(email);
@@ -248,12 +248,13 @@ public class MemberController {
 		}else {
 			session.setAttribute("member", memberVO);
 		}
-		return "../";
+		
 	}
 	
 	//카카오회원가입
+	@ResponseBody
 	@PostMapping("memberKakao")
-	public String memberKakao(HttpSession session,String nickname,String email) throws Exception{
+	public void memberKakao(HttpSession session,String nickname,String email) throws Exception{
 		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemId(email);
@@ -269,13 +270,13 @@ public class MemberController {
 			session.setAttribute("member", memberVO2);
 			System.out.println(result);
 		}else {
-		session.setAttribute("member", memberVO);
+			session.setAttribute("member", memberVO);
 		}
-		return "redirect:../";
+		
 	}
 	
 	//멤버마이페이지
-	@ GetMapping("memberMypage")
+	@GetMapping("memberMypage")
 	public void memberMypage() throws Exception{
 		
 	}
@@ -432,4 +433,3 @@ public class MemberController {
 	
 	
 }
-	
