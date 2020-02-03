@@ -21,21 +21,13 @@
 	</properties>
 
 	<dependencies>
+	<!-- javaSDK -->
+	<dependency>
+    <groupId>net.nurigo</groupId>
+    <artifactId>javaSDK</artifactId>
+    <version>2.2</version>
+</dependency>
 
-		<!-- javaSDK -->
-		<dependency>
-		    <groupId>net.nurigo</groupId>
-		    <artifactId>javaSDK</artifactId>
-		    <version>2.2</version>
-		</dependency>
-
-		<!--휴대폰SMS api 라이브러리  -->
-		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-		 <dependency>
-			<groupId>org.apache.httpcomponents</groupId> 
-			<artifactId>httpclient</artifactId> 
-		 </dependency>
-	
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
