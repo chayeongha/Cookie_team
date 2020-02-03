@@ -30,4 +30,7 @@
 	<select id="cartSelect" parameterType="CartVO" resultMap="cartResult">
 		select * from cart C left outer join cartOption O on C.cartNum = O.cartNum
 	</select>
+	
+	
+	
 </mapper>

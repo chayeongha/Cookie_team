@@ -2,6 +2,8 @@ package com.cookie.basic.cart;
 
 import java.util.List;
 
+import com.cookie.basic.menu.MenuVO;
+
 public class CartVO {
 	
 	private int cartNum;
@@ -10,11 +12,18 @@ public class CartVO {
 	private int cartStatus;
 	private String nickname;
 	private List<CartOptionVO> cartOptionVOs;
+	private List<MenuVO> menuVOs;
 	
 	
 	
 	
 	
+	public List<MenuVO> getMenuVOs() {
+		return menuVOs;
+	}
+	public void setMenuVOs(List<MenuVO> menuVOs) {
+		this.menuVOs = menuVOs;
+	}
 	public List<CartOptionVO> getCartOptionVOs() {
 		return cartOptionVOs;
 	}

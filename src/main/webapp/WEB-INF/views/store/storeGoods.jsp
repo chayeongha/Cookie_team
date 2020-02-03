@@ -169,19 +169,19 @@
 			<div class="confirmLayer">
 				<div class="confirm_wrap">
 					<div class="header">
-						<h3>장바구니 담기</h3>
+						<h3>옵션선택</h3>
 						<div class="close">
 							<img alt="닫기" src="../images/header/mm.png">
 						</div>
 					</div>
 					<div class="content">
-						<p>장바구니에 상품이 정상적으로 담겼습니다.</p>
+						
 					</div>
 					<div class="footer">
 						<div class="priceBOX">
 						</div>
 						<div class="cartBtn">
-						<a href="cartList" class="btn_cartList">장바구니 이동</a>
+						<a href="storeDetail" class="btn_cartList">장바구니 이동</a>
 						<button class="btn_remove">쇼핑 계속하기</button>
 						</div>
 					</div>
@@ -194,26 +194,28 @@
 <script type="text/javascript">
 
 $(".btnSelect").click(function(){
-	var ssNum = $(this).attr("id");
+	var mmNum = $(this).attr("id");
 
-	/* alert(ssNum); */
+	 //alert(mmNum); 
 	
+	
+
+		
+		
 	$.ajax({
-			url : "./storeDetail",
-			type : "POST",
-			data : {
-				ssNum : "ssNum"
-			},
-			success : function(data){
-				alert("오예");	
-			},
-			error : function(){
-				alert("아아아아아아악");
-				}
-
-		});
-
-		modal();
+		type:"Get",
+		datatype:"text",
+		url : "./storeResult",
+		data: {"mmNum" : mmNum},
+		error : function() {
+			alert("통신실패")
+		},
+		success : function(data) {
+			$(".content").html(data);
+			modal();
+			/*  alert("데이터 전송 성공"+data);   */
+		}
+	});
 
 	});
 
@@ -229,7 +231,22 @@ $(".btnSelect").click(function(){
 			$('.confirmLayer').css("display", "none");
 		});
 
+		$(document).click(function(event) {
+			$('.confirmLayer').css("display", "none");
+		});
+
 	}
+
+
+
+
+	
+
+
+
+
+
+	
 </script>
 </body>
 </html>

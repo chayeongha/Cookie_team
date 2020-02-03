@@ -2,200 +2,170 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
-  <mapper namespace="com.cookie.basic.store.StoreMapper">
 
-  	<insert id="storeInsert" parameterType="StoreVO" useGeneratedKeys="true" keyProperty="ssNum">
-  			insert into store values(0,#{sName},#{sTel},#{roadFullAddr},#{sNotice},0,#{memNum},#{memId})
-  	</insert>
-  	
-  	<update id="storeUpdate" parameterType="StoreVO">
-  		update store set sName=#{sName}, sTel=#{sTel}, roadFullAddr=#{roadFullAddr} where ssNum=#{ssNum}
-  	</update>
-  	
-  	<select id="sNumSearch" parameterType="StoreVO" resultMap="storeResult">
-  		select * from store S left outer join storeFiles F 
-  		on S.ssNum = F.ssNum  
-  		where sName=#{sName}
-  	</select>
-  	  	
-  	  	
-  	<select id="info" parameterType="StoreVO" resultMap="storeResult">
-  		select * from store S left outer join storeFiles F 
-  		on S.ssNum = F.ssNum  		
-  		where S.ssNum = #{ssNum}
-  	</select>
-  	
-  	
-  	<resultMap type="StoreVO" id="storeResult">
-  		<id column="ssNum" property="ssNum"/>
-  		<result column="sName" property="sName"/>
-  		<result column="sTel" property="sTel"/>
-  		<result column="roadFullAddr" property="roadFullAddr"/>
-  		<result column="sNotice" property="sNotice"/>
-  		<result column="sOn" property="sOn"/>
-  		<result column="memNum" property="memNum"/>
-  		<result column="memId" property="memId"/>
-  		<association property="storeFilesVO" javaType="StoreFilesVO">
-  			<id column="fNum" property="fNum"/>
-  			<result column="fName" property="fName"/>
-  			<result column="oName" property="oName"/>  		
-  		</association>
-  	</resultMap>
-  	
- 
-  	<select id="searchInfo" parameterType="StoreVO" resultMap="storeResult">
-  		select * from store S left outer join storeFiles F 
-  		on S.ssNum = F.ssNum  		
-  		where S.memNum=#{memNum}
-  	</select>
-  	
-  	<update id="onUpdate" parameterType="StoreVO">
-  		update store set sOn=1 where ssNum=#{ssNum}  	
-  	</update>
-  	
-  	<update id="offUpdate" parameterType="StoreVO">
-  		update store set sOn=0 where ssNum=#{ssNum}
-  	</update>
-  	
-  	
-  	<select id="checkStore" parameterType="StoreVO" resultType="Integer">
-		select count(*) from store where sName=#{sName}  	
-  	</select>
-  	
-  	<delete id="deleteStore" parameterType="StoreVO">
-  		delete from store where ssNum=#{ssNum}
-  	</delete>
-  	
-  	
-  	<insert id="storeClose" parameterType="StoreVO">
-  		insert into storeClose values(0,#{ssNum},#{sName},#{memId},0)
-  	</insert>
-  	
-  	<select id="storeAdmin" parameterType="StoreCloseVO" resultType="StoreCloseVO">
-  	select * from storeClose
-  	</select>
-  	
-  	<select id="storeAdminSelect" parameterType="StoreCloseVO" resultType="StoreCloseVO">
-  	select * from storeClose where ssNum=#{ssNum}
-  	</select>
-  	
-  	<update id="storeUpdateBye" parameterType="StoreCloseVO">
-  		update storeClose set cwait=2 where ssNum=#{ssNum}
-  	</update>
-  	
-  	
-  	
- 
-  	<!-- 여기까지 지윤 작성-->
-  	
-  	
-  	
-  
-  	
-  	
-     
-     <select id="storeList" parameterType="StoreVO" resultMap="storeResult">
-     	select * from store S left outer join storeFiles F 
-        on S.ssNum = F.ssNum        
-        where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE concat('%',#{sName},'%')
-        and sName LIKE concat('%',#{sTel},'%')
-        order by sOn desc
-     </select>
-     
-     <select id="storeList2" parameterType="StoreVO" resultMap="storeResult">
-     	select * from store S left outer join storeFiles F 
-        on S.ssNum = F.ssNum        
-        where roadFullAddr LIKE concat('%',#{memId}, '%')
-        order by sOn desc
-     </select>
 
-        <resultMap type="StoreVO" id="storeGoodsResult">
-  		<id column="ssNum" property="ssNum"/>
-  		<result column="sName" property="sName"/>
-  		<result column="sTel" property="sTel"/>
-  		<result column="roadFullAddr" property="roadFullAddr"/>
-  		<result column="sNotice" property="sNotice"/>
-  		<result column="sOn" property="sOn"/>
-  		<result column="memNum" property="memNum"/>
-  		<result column="memId" property="memId"/>
-  		<association property="storeFilesVO" javaType="StoreFilesVO">
-  			<id column="fNum" property="fNum"/>
-  			<result column="fName" property="fName"/>
-  			<result column="oName" property="oName"/>  		
-  		</association>
-  		<collection property="menuVO" javaType="List" ofType="menuVO">
-  			<id column="mmNum" property="mmNum"/>
-  			<result column="mmName" property="mmName"/>
-  			<result column="mmPrice" property="mmPrice"/>
-  			<result column="mmCount" property="mmCount"/>
-  			<result column="cmNum" property="cmNum"/>
-  			<result column="mmTemp" property="mmTemp"/>
-  			<result column="ssNum" property="ssNum"/>
-  		</collection>
-  		<collection property="menuFilesVO" javaType="List" ofType="menuVO">
-  			<id column="mfNum" property="mfNum"/>
-  			<result column="mfName" property="mfName"/>	
-  			<result column="moName" property="moName"/>	
-  		</collection>
-  	</resultMap>
-     
-     <select id="storeGoods" parameterType="StoreVO" resultMap="storeGoodsResult">
-    	select * from store S
+<mapper namespace="com.cookie.basic.store.StoreMapper">
+
+	<insert id="storeInsert" parameterType="StoreVO"
+		useGeneratedKeys="true" keyProperty="ssNum">
+		insert into store
+		values(0,#{sName},#{sTel},#{roadFullAddr},#{sNotice},0,#{memNum},#{memId})
+	</insert>
+
+	<update id="storeUpdate" parameterType="StoreVO">
+		update store set sName=#{sName}, sTel=#{sTel}, roadFullAddr=#{roadFullAddr}
+		where ssNum=#{ssNum}
+	</update>
+
+	<select id="sNumSearch" parameterType="StoreVO"
+		resultMap="storeResult">
+		select * from store S left outer join storeFiles F
+		on S.ssNum = F.ssNum
+		where sName=#{sName}
+	</select>
+
+
+	<select id="info" parameterType="StoreVO"
+		resultMap="storeResult">
+		select * from store S left outer join storeFiles F
+		on S.ssNum = F.ssNum
+		where S.ssNum = #{ssNum}
+	</select>
+
+
+	<resultMap type="StoreVO" id="storeResult">
+		<id column="ssNum" property="ssNum" />
+		<result column="sName" property="sName" />
+		<result column="sTel" property="sTel" />
+		<result column="roadFullAddr" property="roadFullAddr" />
+		<result column="sNotice" property="sNotice" />
+		<result column="sOn" property="sOn" />
+		<result column="memNum" property="memNum" />
+		<result column="memId" property="memId" />
+		<association property="storeFilesVO"
+			javaType="StoreFilesVO">
+			<id column="fNum" property="fNum" />
+			<result column="fName" property="fName" />
+			<result column="oName" property="oName" />
+		</association>
+	</resultMap>
+
+
+	<select id="searchInfo" parameterType="StoreVO"
+		resultMap="storeResult">
+		select * from store S left outer join storeFiles F
+		on S.ssNum = F.ssNum
+		where S.memNum=#{memNum}
+	</select>
+
+	<update id="onUpdate" parameterType="StoreVO">
+		update store set sOn=1 where ssNum=#{ssNum}
+	</update>
+
+	<update id="offUpdate" parameterType="StoreVO">
+		update store set sOn=0 where ssNum=#{ssNum}
+	</update>
+
+
+	<select id="checkStore" parameterType="StoreVO"
+		resultType="Integer">
+		select count(*) from store where sName=#{sName}
+	</select>
+
+	<delete id="deleteStore" parameterType="StoreVO">
+		delete from store where ssNum=#{ssNum}
+	</delete>
+
+
+	<insert id="storeClose" parameterType="StoreVO">
+		insert into storeClose values(0,#{ssNum},#{sName},#{memId},0)
+	</insert>
+
+	<select id="storeAdmin" parameterType="StoreCloseVO"
+		resultType="StoreCloseVO">
+		select * from storeClose
+	</select>
+
+	<select id="storeAdminSelect" parameterType="StoreCloseVO"
+		resultType="StoreCloseVO">
+		select * from storeClose where ssNum=#{ssNum}
+	</select>
+
+	<update id="storeUpdateBye" parameterType="StoreCloseVO">
+		update storeClose set cwait=2 where ssNum=#{ssNum}
+	</update>
+
+
+
+
+	<!-- 여기까지 지윤 작성 -->
+
+
+
+
+
+
+
+	<select id="storeList" parameterType="StoreVO"
+		resultMap="storeResult">
+		select * from store S left outer join storeFiles F
+		on S.ssNum = F.ssNum
+		where roadFullAddr LIKE concat('%',#{memId}, '%') and roadFullAddr LIKE
+		concat('%',#{sName},'%')
+		and sName LIKE concat('%',#{sTel},'%')
+		order by sOn desc
+	</select>
+
+	<select id="storeList2" parameterType="StoreVO"
+		resultMap="storeResult">
+		select * from store S left outer join storeFiles F
+		on S.ssNum = F.ssNum
+		where roadFullAddr LIKE concat('%',#{memId}, '%')
+		order by sOn desc
+	</select>
+
+	<resultMap type="StoreVO" id="storeGoodsResult">
+		<id column="ssNum" property="ssNum" />
+		<result column="sName" property="sName" />
+		<result column="sTel" property="sTel" />
+		<result column="roadFullAddr" property="roadFullAddr" />
+		<result column="sNotice" property="sNotice" />
+		<result column="sOn" property="sOn" />
+		<result column="memNum" property="memNum" />
+		<result column="memId" property="memId" />
+		<association property="storeFilesVO"
+			javaType="StoreFilesVO">
+			<id column="fNum" property="fNum" />
+			<result column="fName" property="fName" />
+			<result column="oName" property="oName" />
+		</association>
+		<collection property="menuVO" javaType="List"
+			ofType="menuVO">
+			<id column="mmNum" property="mmNum" />
+			<result column="mmName" property="mmName" />
+			<result column="mmPrice" property="mmPrice" />
+			<result column="mmCount" property="mmCount" />
+			<result column="cmNum" property="cmNum" />
+			<result column="mmTemp" property="mmTemp" />
+			<result column="ssNum" property="ssNum" />
+		</collection>
+		<collection property="menuFilesVO" javaType="List"
+			ofType="menuVO">
+			<id column="mfNum" property="mfNum" />
+			<result column="mfName" property="mfName" />
+			<result column="moName" property="moName" />
+		</collection>
+	</resultMap>
+
+	<select id="storeGoods" parameterType="StoreVO"
+		resultMap="storeGoodsResult">
+		select * from store S
 		join menu M
-   		using(ssNum)
-    	join storeFiles F
-    	using(ssNum)     
-        where ssNum=#{ssNum}
-     </select>
-     
-     <select id="storeDetail" parameterType="StoreVO" resultMap="storeGoodsResult2">
-    select * from store S left outer join menu M on S.ssNum=M.ssNum left outer join menuFiles F on M.mmNum=F.mmNum left outer join mopt O on F.mmNum=O.mmNum where S.ssNum=#{ssNum};     
-     </select>
-        
-     
-     <resultMap type="StoreVO" id="storeGoodsResult2">
-  		<id column="ssNum" property="ssNum"/>
-  		<result column="sName" property="sName"/>
-  		<result column="sTel" property="sTel"/>
-  		<result column="roadFullAddr" property="roadFullAddr"/>
-  		<result column="sNotice" property="sNotice"/>
-  		<result column="sOn" property="sOn"/>
-  		<result column="memNum" property="memNum"/>
-  		<result column="memId" property="memId"/>
-  		<association property="storeFilesVO" javaType="StoreFilesVO">
-  			<id column="fNum" property="fNum"/>
-  			<result column="fName" property="fName"/>
-  			<result column="oName" property="oName"/>  		
-  		</association>
-  		<collection property="menuVO" javaType="List" ofType="menuVO">
-  			<id column="mmNum" property="mmNum"/>
-  			<result column="mmName" property="mmName"/>
-  			<result column="mmPrice" property="mmPrice"/>
-  			<result column="mmCount" property="mmCount"/>
-  			<result column="cmNum" property="cmNum"/>
-  			<result column="mmTemp" property="mmTemp"/>
-  			<result column="ssNum" property="ssNum"/>
-  			
-  			<collection property="menuFiles" javaType="MenuFilesVO" >
-			<id column="mfNum" property="mfNum"/>
-			<result column="mfName" property="mfName"/>
-			<result column="moNum" property="moNum"/>
-			</collection>
-  			
-  			<collection property="menuOptions" javaType="List" ofType="MoptVO">
-  				<id column="optNum" property="optNum"/>
-  				<result column="optName" property="optName"/>
-	  			<result column="optPrice" property="optPrice"/>
-	  			<result column="optCount" property="optCount"/>
-  			</collection>
-  			
-  					
-  		</collection>
- 
-  	</resultMap>
-     
-     
-  </mapper>
+		using(ssNum)
+		join storeFiles F
+		using(ssNum)
+		where ssNum=#{ssNum}
+	</select>
+
+</mapper>
 

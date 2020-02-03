@@ -1,11 +1,30 @@
 package com.cookie.basic.cart;
 
+import java.util.List;
+
+import com.cookie.basic.menu.MoptVO;
+
 public class CartOptionVO {
 
 	private int coNum;
 	private int optNum;
 	private int optCount;
 	private int cartNum;
+	private List<MoptVO> moptVOs;
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<MoptVO> getMoptVOs() {
+		return moptVOs;
+	}
+	public void setMoptVOs(List<MoptVO> moptVOs) {
+		this.moptVOs = moptVOs;
+	}
 	public int getCoNum() {
 		return coNum;
 	}
