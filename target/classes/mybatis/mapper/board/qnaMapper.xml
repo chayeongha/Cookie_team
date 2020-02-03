@@ -30,12 +30,8 @@
   			values(#{num}, #{writer}, #{contents}, now(), 0, 0, 0, #{secret})
   	</insert>
   	
-  	<update id="qnaRef" parameterType="QnaVO">
-  		update qna set ref = #{num} where num = #{num}
-  	</update>
-  	
   	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
-  		select * from qna
+  		select num, REGEXP_REPLACE(writer, <![CDATA['(?<=.{3}).']]>, '*') writer, contents, regDate, ref, step, depth, secret from qna
   		where num > 0
   		order by ref desc, step asc LIMIT #{startRow}, #{perPage}
   	</select>

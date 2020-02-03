@@ -109,6 +109,8 @@
 		strDate = year + "-" + month + "-" + day + " " + hour + ":" + minute;
 		return strDate;
 	}
+
+	$('.td_writer').replace()
 </script>	
 </body>
 </html>				
