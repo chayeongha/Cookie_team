@@ -8,74 +8,74 @@
 <meta charset="UTF-8">
 <title>아이디비밀번호검색</title>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
+<link href="/css/member/searchIdPw.css" rel="stylesheet"/>
 </head>
 <body>
 	
 	<%-- <%@ include file="/WEB-INF/views/modal/userIdSearchModal.jsp" %> --%>
 	
-
+<div class="body_main">
+	<div class="b"></div>	
 	
 	<div class="full">
 		<div class="container">
 			
 			<div class="area_inputs wow fadeIn">
 				<div class="sub_title font-weight-bold text-white">
-					<h1>아이디/비밀번호 찾기</h1>
-					<p>인증된 이메일만 정보 찾기가 가능합니다 :)</p>
+					<h1 class="mainTxT">아이디/비밀번호 찾기</h1>
+					<p> 인증된 이메일만 정보 찾기가 가능합니다.</p>
 				</div>
-				<div style="margin-bottom: 10px;"
-					class="custom-control custom-radio custom-control-inline">
-					<input type="radio" class="custom-control-input" id="search_1" name="search_total" onclick="search_check(1)" checked="checked">
-					<label class="custom-control-label font-weight-bold text-white"	for="search_1">아이디 찾기</label>
+				<div class="searchBigBox">
+					<div class="searchBox ">
+						<input type="radio" class="searchBox" id="search_1" name="search_total" onclick="search_check(1)" checked="checked">
+						<label class=""	for="search_1">아이디 찾기</label>
+					</div>
+					<div class="searchBox ">
+						<input type="radio" class="searchBox" id="search_2" name="search_total" onclick="search_check(2)"> 
+						<label class="" for="search_2">비밀번호 찾기</label>
+					</div>
 				</div>
-				<div class="custom-control custom-radio custom-control-inline">
-					<input type="radio" class="custom-control-input" id="search_2" name="search_total" onclick="search_check(2)"> 
-					<label class="custom-control-label font-weight-bold text-white" for="search_2">비밀번호 찾기</label>
-				</div>
-				
 				<!--아이디검색일때  -->
 				<div id="searchI">
 					
-						<div class="form-group">
-							<label class="font-weight-bold text-white" for="inputName_1">이름</label>
-							<div>
-								<input type="text" class="form-control nameCheck" id="inputName_1" name="name" placeholder="ex)차영하">
-							</div>
+						<div class="idpw">
+							<label class="" for="inputName_1">NAME</label>
+							<input type="text" class="nameCheck" id="inputName_1" name="name" placeholder="ex)차영하">
 						</div>
-						<div class="form-group">
-							<label class="font-weight-bold text-white" for="inputPhone_1">휴대폰번호</label>
-							<div>
-								<input type="text" class="form-control pCheck" id="inputPhone_1" name="phone" placeholder="ex) 010-7777-9999" onKeyup="inputPhoneNumber(this);" maxlength="13" >
-							</div>
+						<div class="idpw">
+							<label class="" for="inputPhone_1">PHONE</label>
+							<input type="text" class="pCheck" id="inputPhone_1" name="phone" placeholder="ex) 010-7777-9999" onKeyup="inputPhoneNumber(this);" maxlength="13" >
 						</div>
-						<div class="form-group">
+						
 <!-- 								<button type="button" class="btn btn-primary btn-block idsearch">확인</button> -->
-								<input type="button" value="확인" id="idConfirm" class="btn btn-primary btn-block idsearch" >
+						<input type="button" value="찾기" id="idConfirm" class="bbtn" >
 <!-- 							<button id="searchBtn" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">확인</button> -->
 						<%-- <a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a> --%>
-						</div>
+						
 					
 				</div>
 				
 				<!--비밀번호검색일때  -->
 				<div id="searchP" style="display: none;">
-					<div class="form-group">
-						<label class="font-weight-bold text-white" for="inputId">아이디</label>
-						<div>
-							<input type="text" class="form-control" id="inputId" name="inputId_2" placeholder="ex) godmisu">
-						</div>
+					<div class="idpw">
+						<label class="" for="inputId">아이디</label>
+						<input type="text" class="" id="inputId" name="inputId_2" placeholder="ex) godmisu">
 					</div>
-					<div class="form-group">
-						<label class="font-weight-bold text-white" for="inputEmail_2">이메일</label>
-						<div>
-							<input type="email" class="form-control" id="inputEmail_2"	name="inputEmail_2" placeholder="ex) E-mail@gmail.com">
-						</div>
+					<div class="idpw">
+						<label class="" for="inputEmail_2">E-Mail</label>
+						<input type="email" class="" id="inputEmail_2"	name="inputEmail_2" placeholder="ex) E-mail@gmail.com">
 					</div>
-					<div class="form-group">
-						<button id="searchBtn2" type="button" class="btn btn-primary btn-block">확인</button>
-					<a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a>
+					
+					<button id="searchBtn2" type="button" class="bbtn">찾기</button>
+					
+				
 				</div>
+				
+				<div class="loginGoBox">
+					<a class="loginGO" href="./memberLogin">로그인 화면으로 돌아가기</a>
 				</div>
+			
 			</div>
 			
 		</div>
@@ -260,7 +260,7 @@
 				
 	
 	</script>
-
-
+	<c:import url="../layout/footer.jsp" />
+</div>
 </body>
 </html>

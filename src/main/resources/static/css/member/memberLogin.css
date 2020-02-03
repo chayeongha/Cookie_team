@@ -90,3 +90,14 @@
 .container{	
 	height: 800px;
 }
+
+.idpw > a{
+	text-align: center;
+	margin-top: 20px;
+	letter-spacing:-2px;
+	font-size:15px;
+	color:#f23600;
+}
+.idpw >a:hover {
+	text-decoration: none;
+}

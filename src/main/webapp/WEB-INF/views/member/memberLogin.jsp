@@ -34,6 +34,9 @@
 	    <div class="checkbox">
 	      <label><input type="checkbox" name="remember"> Remember me</label>
 	    </div>
+	    <div class="idpw">	    
+		    <a href="./searchIdPw">아이디 / 비밀번호 찾기</a>
+		</div>
 	    <button type="submit" class="btn_Login">로그인</button>
 	    <button type="button" class="btn_Login" id="join_go">회원가입</button>
 	  </form>
