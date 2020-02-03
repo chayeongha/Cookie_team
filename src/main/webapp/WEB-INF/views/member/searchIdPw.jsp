@@ -194,11 +194,12 @@
 				},
 				success : function(data){
 							console.log(data);
-							if(data !="입력하신 정보가 회원정보와 일치합니다."){
-									alert("회원정보가 일치합니다.");
-							}else{
-									alert("회원정보가 일치하지않습니다.");
-							}
+							//alert(data);
+// 							if(data !="입력하신정보가 회원정보와 일치하지않습니다."){
+// 									alert("회원정보가 일치합니다.");
+// 							}else{
+// 									alert("회원정보가 일치하지않습니다.");
+// 							}
 				}
 				
 			});	

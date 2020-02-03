@@ -338,7 +338,6 @@ public class MemberController {
 		MemberVO memberVO2= new MemberVO(); 
 		//System.out.println(name);잘나옴.
 		//System.out.println(phone);잘나옴.
-		//memberVO2,memberVO3는 걍의미없음 테스트하다가 여기까지옴,,
 		memberVO2.setName(name);
 		memberVO2.setPhone(phone);
 		MemberVO memberVO3= new MemberVO();
@@ -350,7 +349,7 @@ public class MemberController {
 			msg="입력하신 정보가 회원정보와 일치합니다.";
 			//resultId =1;
 		}
-		//System.out.println(msg);아주잘나옴~
+		System.out.println(msg);//아주잘나옴~
 		
 		return msg;
 	}
