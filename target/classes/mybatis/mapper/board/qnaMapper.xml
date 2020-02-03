@@ -27,10 +27,12 @@
   	
   	<insert id="qnaWrite" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
   		insert into qna
-  			values(#{num}, #{writer}, #{contents}, now(), #{num}, 0, 0, #{secret})
-
-  		<!-- auto increment를 받아오려면 Select Key를 쓰거나, (useGeneratedKeys="true" keyProperty="num")를 써준다 -->
+  			values(#{num}, #{writer}, #{contents}, now(), 0, 0, 0, #{secret})
   	</insert>
+  	
+  	<update id="qnaRef" parameterType="QnaVO">
+  		update qna set ref = #{num} where num = #{num}
+  	</update>
   	
   	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
   		select * from qna

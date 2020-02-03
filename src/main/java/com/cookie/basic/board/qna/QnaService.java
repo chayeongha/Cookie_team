@@ -19,31 +19,8 @@ public class QnaService {
 
 	@Autowired
 	private QnaMapper qnaMapper;
-	@Autowired
-	private QnaFilesMapper qnaFilesMapper;
-	@Autowired
-	private FilePathGenerator filePathGenerator;
-	@Autowired
-	private FileSaver fileSaver;
-	///////////////////////////////////////////////////
-	//썸머파일삭제
-	public boolean summerFileDelete(String files) throws Exception {
-		File file = filePathGenerator.getUseClassPathResource("summernote");
-		
-		return fileSaver.fileDelete(file, files);
-	}
-	//썸머파일추가
-	public String summerFile(MultipartFile files) throws Exception {
-		File file = filePathGenerator.getUseClassPathResource("summernote");
-		System.out.println("summer note");
-		return fileSaver.save(file, files);
-	}
 	
-	//파일 다운
-	public QnaFilesVO qnaFileSelect(QnaFilesVO qnaFilesVO) throws Exception {
-		return qnaFilesMapper.qnaFilesSelect(qnaFilesVO);
-	}
-	///////////////////////////////////////////////////
+	
 	//글 삭제
 	@Transactional
 	public int qnaDelete(QnaVO qnaVO) throws Exception {
@@ -130,41 +107,18 @@ public class QnaService {
 		return result;
 	}
 	
-	//글 작성 + 파일 추가
+	//글 작성
 	@Transactional
-	public int qnaWrite(QnaVO qnaVO, MultipartFile[] files) throws Exception {
-		System.out.println("글 작성");
+	public int qnaWrite(QnaVO qnaVO) throws Exception {
 		int result = qnaMapper.qnaWrite(qnaVO);
-		
-		File file = filePathGenerator.getUseClassPathResource("notice");
-		
-		List<QnaFilesVO> qnaFilesVOs = new ArrayList<QnaFilesVO>();
-		
-//		for(int i=0;i<files.length;i++) {
-//			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
-//				String fileName = fileSaver.save(file, files[i]);
-//				
-//				System.out.println(fileName);
-//				
-//				QnaFilesVO qnaFilesVO = new QnaFilesVO();
-//				//System.out.println(noticeVO.getNum());
-//				qnaFilesVO.setNum(qnaVO.getNum());
-//				qnaFilesVO.setFname(files[i].getOriginalFilename());
-//				qnaFilesVO.setOname(fileName);
-//				
-//				qnaFilesVOs.add(qnaFilesVO);
-//			}
-//		}
-//		//file 개수가 0보다 클 때만 files에 등록
-//		if(qnaFilesVOs.size() > 0) {
-//			result = qnaFilesMapper.qnaFilesInsert(qnaFilesVOs);
-//		}
+		result = qnaMapper.qnaRef(qnaVO);
 		
 		return result;
 	}
 	
 	//글 하나 조회
 	public QnaVO qnaSelect(QnaVO qnaVO) throws Exception {
+		
 		return qnaMapper.qnaSelect(qnaVO);
 	}
 	

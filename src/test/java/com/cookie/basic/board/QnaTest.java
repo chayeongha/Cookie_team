@@ -16,28 +16,22 @@ class QnaTest {
 
 	@Autowired
 	private QnaMapper qnaMapper;
-	
 	@Autowired
-	private QnaService qnaSevice;
-	
-	//@Test
-	void qnaWriteTest() throws Exception {
-		QnaVO qnaVO = new QnaVO();
-		qnaVO.setWriter("a");
-		qnaVO.setContents("a");
-		qnaVO.setSecret(3);
-		
-		System.out.println(qnaVO.getNum());
-		
-		int result = qnaMapper.qnaWrite(qnaVO);
-	
-		assertEquals(1, result);
-	}
+	private QnaService qnaService;
 	
 	@Test
-	void qnaWriteTest2() throws Exception{
+	void qnaWriteTest() throws Exception {
+		int result = 0;
 		
+		for(int i=51;i<97;i++) {
+			QnaVO qnaVO = new QnaVO();
+			qnaVO.setWriter("abcdefg"+i);
+			qnaVO.setContents("a"+i);
+			qnaVO.setSecret(0);
+			result = qnaService.qnaWrite(qnaVO);
+		}
 		
+		//assertEquals(1, result);
 	}
 
 }

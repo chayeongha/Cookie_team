@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,29 +41,33 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="td_num">1</td>
-					<td class="td_view">
-						<span class="state">미완료</span>
-						<a href="#none" id="showCloseDetail" class="view_txt">룰루</a>
-					</td>
-					<td class="td_writer">랄라</td>
-					<td class="td_date">1111</td>
-				</tr>
-				<tr class="trQna" style="display: table-row;">
-					<td colspan="4" class="qna_wrap" style="display: table-cell;">
-						<div class="question">
-							<span class="iconQ">질문</span>
-							룰루
-							<br>
-						</div>
-						<div class="answer">
-							<span class="iconA">답변</span>
-							룰룰
-							<br>
-						</div>
-					</td>
-				</tr>
+				<c:forEach items="${list}" var="list">
+					<tr>
+						<td class="td_num">${list.num}</td>
+						<td class="td_view">
+							<span class="state">미완료</span>   
+							<a href="#none" id="showCloseDetail" class="view_txt">${list.contents}</a>
+						</td>
+						<td class="td_writer">${list.writer}</td>
+						<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+					</tr>
+					<tr class="trQna" style="display: table-row;">
+						<td colspan="4" class="qna_wrap" style="display: table-cell;">
+							<div class="question">
+								<span class="iconQ">질문</span>
+								${list.contents}
+								<br>
+							</div>
+							<c:if test="${list.step > 0}">
+								<div class="answer">
+									<span class="iconA">답변</span>
+									${list.contents}
+									<br>
+								</div>
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		
@@ -90,6 +95,20 @@
 			</ul>
 	</div>
 		<c:import url="../layout/footer.jsp" />
-</div>	
+</div>
+<script type="text/javascript">
+	//날짜 변환 함수
+	function changeDate(date){
+		date = new Date(parseInt(date));
+		year = date.getFullYear();
+		month = date.getMonth();
+		day = date.getDate();
+		hour = date.getHours();
+		minute = date.getMinutes();
+		//second = date.getSeconds();
+		strDate = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+		return strDate;
+	}
+</script>	
 </body>
 </html>				
