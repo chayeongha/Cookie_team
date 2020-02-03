@@ -27,16 +27,16 @@ public class NoticeService {
 	private FileSaver fileSaver;
 	///////////////////////////////////////////////////
 	//썸머파일삭제
-	public boolean summerFileDelete(String files) throws Exception {
+	public boolean summerFileDelete(String fileData) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		
-		return fileSaver.fileDelete(file, files);
+		return fileSaver.fileDelete(file, fileData);
 	}
 	//썸머파일추가
-	public String summerFile(MultipartFile files) throws Exception {
+	public String summerFile(MultipartFile fileData) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		System.out.println("summer note");
-		return fileSaver.save(file, files);
+		return fileSaver.save(file, fileData);
 	}
 	
 	//파일 다운
@@ -107,7 +107,7 @@ public class NoticeService {
 		
 		List<NoticeFilesVO> noticeFilesVOs = new ArrayList<NoticeFilesVO>();
 		
-		for(int i=0;i<files.length;i++) {
+		for(int i=1;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
 				String fileName = fileSaver.save(file, files[i]);
 				System.out.println(fileName);
@@ -140,7 +140,7 @@ public class NoticeService {
 		
 		List<NoticeFilesVO> noticeFilesVOs = new ArrayList<NoticeFilesVO>();
 		
-		for(int i=0;i<files.length;i++) {
+		for(int i=1;i<files.length;i++) {
 			if(files[i].getOriginalFilename() != null && !files[i].getOriginalFilename().equals("")) {
 				String fileName = fileSaver.save(file, files[i]);
 				
