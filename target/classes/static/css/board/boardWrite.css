@@ -69,3 +69,17 @@
 	background: transparent;
 }
 
+.listgo{
+	float: right;
+	height: 50px;
+	font-size:23px;
+	font-family: CookieRun-Regular;
+	color:#f23600;
+}
+
+.listgo:hover{
+	text-decoration: none;
+	color:#f23600;
+	font-size:25px;
+	
+}

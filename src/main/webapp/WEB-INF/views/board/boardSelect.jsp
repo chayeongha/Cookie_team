@@ -94,6 +94,7 @@
 			</table>
 		</div>
 	</div>
+	<c:import url="../layout/footer.jsp" />
 </div>
 </body>
 </html>

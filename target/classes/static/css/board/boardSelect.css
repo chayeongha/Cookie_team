@@ -4,6 +4,7 @@
 
 .container {
 	width: 100%;
+	min-height: 542px;
 }
 .content_wrap {
     margin: 0 auto;
@@ -15,8 +16,8 @@ section.notice_view_wrap {
     margin-bottom: 60px;
 }
 section.notice_view_wrap header {
-	border-top: 1px solid #333333;
-    border-bottom: 1px solid #333333;
+	border-top: 1px solid #ff712d;
+    border-bottom: 1px solid #ff712d;
     padding: 20px 140px 20px 20px;
 }
 section.notice_view_wrap header h3 {
@@ -26,7 +27,7 @@ section.notice_view_wrap header h3 {
 }
 article.notice_view_info {
 	padding: 30px 10px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #ffd6bf;
 }
 
 .subTitle_wrap {
@@ -69,13 +70,16 @@ div.btn_notice_wrap {
 }
 div.btn_notice_wrap a {
 	display: block;
-    font-size: 14px;
-    color: #fff;
-    font-weight: bold;
+    font-size: 23px;
+    color: white;
+
     text-align: center;
     height: 45px;
     line-height: 45px;
     width: 100%;
+    background: #ff712d;
+    border-radius: 3px;
+    font-family: CookieRun-Regular;
 }
 p.btn_notice_update {
 	border-radius: 3px;
