@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cookie.basic.menu.MenuFilesMapper">	
+	<insert id="menuFilesInsert" parameterType="menuFilesVO" useGeneratedKeys="true" keyProperty="mfNum">
+		insert into menuFiles values (null, #{mfName}, #{moName}, #{mmNum})
+	</insert>
+	
+	<update id="menuFilesUpdate" parameterType="menuFilesVO" useGeneratedKeys="true" keyProperty="mfNum">
+		update menuFiles set mfNum=#{mfNum} ,mfName = #{mfName}, moName=#{moName} where mmNum=#{mmNum}
+	</update>
+	
+
+</mapper>

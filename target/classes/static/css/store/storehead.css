@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/* store css */
+
+/************************ Header  ***************************************************/
+.storeHeader {
+	width: 100%;
+	height: 100px;
+	background-color: #ff674efa;
+	overflow: hidden;
+}
+
+.header_Update {
+	width: 150px;
+	height: 40px;
+	font-family: CookieRun-Regular;
+	font-size: 28px;
+	float: right;
+	margin-top: 25px;
+}
+
+/************************* Section ************************************/
+.storesection_1 {
+	width: 100%;
+	height: 52px;
+	background-color: white;
+	border-bottom: 5px solid #ff674efa;
+}
+
+.section_title {
+	width: 400px;
+	height: 40px;
+	font-family: CookieRun-Regular;
+	font-size: 28px;
+	float: right;
+	margin-right: 400px;
+	margin-top: 5px;
+}
+
+.storesection {
+	width: 100%;
+	height: 737px;
+	background-color: white;
+	
+}
+
+.storesidebar {
+	width: 300px;
+	height: 680px;
+	background-color: white;
+	float: left;
+}
+
+.storeNextSide{
+	width: 1603px;
+	height: 680px;
+	background-color: silver;
+	float: left;
+}
+
+
+
+.section_ok {
+	width: 120px;
+	height: 50px;
+	float: right;
+	font-family: CookieRun-Black;
+	font-size: 24px;
+	color: #868686;
+	text-align: center;
+	line-height: 45px;
+	margin-left: 20px;
+	background-color: white;
+	border-style: none;
+}
+
+.storesection_1>button:hover {
+	border-bottom: 5px solid #ff674efa;
+}
+
+.side1 {
+	width: 100%;
+	height: 170px;
+	font-family: CookieRun-Black;
+	font-size: 28px;
+	color: #ff674efa;
+	text-align: center;
+	line-height: 170px;
+	background-color: white;
+	border-style: none;
+}
+
+.storesidebar>button:hover {
+	background-color: #ffd6c8;
+}
+
+
+
+
+
+
+/**********************  Footer ********************************/
+.storeFooter {
+	width: 100%;
+	height: 100px;
+	background-color: #ff674efa;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+.power_button {
+	background-color: transparent;
+	border-style: none;
+	margin-top: 35px;
+	float: right;
+	margin-right: 40px;
+}
