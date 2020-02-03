@@ -62,7 +62,7 @@
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="name">이름</label>
 			      <div class="col-sm-10">
-				      <form:input path="name" class="form-control" id="name" placeholder="Enter name"/>
+				      <form:input path="name" class="form-control nameCheck" id="name" placeholder="Enter name"/>
 					  <form:errors path="name" cssStyle="color:red;" />
 			      </div>
 			    </div>
@@ -77,15 +77,17 @@
 			    
 			     <div class="form-group">
 			      	<label class="control-label col-sm-2" for="email">연락처</label>
-			     	 <div class="col-sm-10">          
-			      		<input type="tel" onKeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="Enter phone" class="form-control" name="phone" value="${phone}" id="phone"/>
+			     	 <div class="col-sm-10">         
+			      		<form:input path="phone" class="form-control phoneCheck" id="phone" placeholder="Enter phone" onKeyup="inputPhoneNumber(this);" maxlength="13" />
+					  	<form:errors path="phone" cssStyle="color:red;" />
+					  	<div class="pconfirm" style="color: red"></div>
 			      	</div>
 			     </div>
 			     
 			     <div class="form-group">
 				      <label class="control-label col-sm-2" for="memId">이메일</label>
 				      <div class="col-sm-10">
-				        <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email"/>
+				        <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email" readonly="true"/>
 				      	<form:errors path="email" cssStyle="color:red;" />
 				      </div>
 		   		 </div>
@@ -108,49 +110,11 @@
 			      	<button type="submit" class="btn_join">JOIN</button>
 			      </div>
 			    </div>
-	
+			
 		  </form:form>
 		</div>
    	
    	<c:import url="../layout/footer.jsp" />
-
-	
-	<script>
-function inputPhoneNumber(obj) {
-
-
-
-    var number = obj.value.replace(/[^0-9]/g, "");
-    var phone = "";
-
-
-
-    if(number.length < 4) {
-        return number;
-    } else if(number.length < 7) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3);
-    } else if(number.length < 11) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 3);
-        phone += "-";
-        phone += number.substr(6);
-    } else {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 4);
-        phone += "-";
-        phone += number.substr(7);
-    }
-    obj.value = phone;
-}
-</script>
-	
-
-
-
 
 	<script type="text/javascript">
 		//이미지를넣었을 때 미리보여지는것.
@@ -169,19 +133,6 @@ function inputPhoneNumber(obj) {
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
-
-		//영숫자 특수문자  정규식
-		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
-
-		$("#pw").blur(
-			function(){
-				if($('#pw').val() != "" && passwordRule.test($('#pw').val()) != true	){
-						alert("6~14자리 내에 영문과 숫자 특수문자로만 사용해주세요.");
-						$('#pw').val("");
-						$('#pw').focus();
-						return;
-				}	
-		});
 
 		//모든란에 입력을 했는지 확인
 		$(".btn_join").click(function(){
@@ -215,14 +166,101 @@ function inputPhoneNumber(obj) {
 		//아이디중복검사
 		$(".idCheck").click(function(){
 			var memId= $('#memId').val();
-			window.open("./memberIdCheck?memId="+memId, "","width=500,height=230,top=200, left=600");
+			window.open("./idCheck?memId="+memId, "","width=570,height=230,top=200, left=600");
 		});
-
+		
 		//닉네임중복검사
 		$(".nickCheck").click(function(){
 			var nickname= $('#nickname').val();
-			window.open("./memberNickCheck?nickname="+nickname, "","width=570,height=230,top=200, left=600");
+			window.open("./nickCheck?nickname="+nickname, "","width=570,height=230,top=200, left=600");
 		});
+
+		//이메일중복검사
+		$(".emailCheck").click(function(){
+			var email= $('#email').val();
+			window.open("./emailCheck?email="+email, "","width=570,height=230,top=200, left=600");
+		});
+
+		//비밀번호  정규식
+		var passwordRule=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
+
+		$("#pw").blur(
+			function(){
+				if($('#pw').val() != "" && passwordRule.test($('#pw').val()) != true	){
+						alert("6~14자리 내에 영문과 숫자 특수문자로만 사용해주세요.");
+						$('#pw').val("");
+						$('#pw').focus();
+						return;
+				}	
+		});
+
+		//이름 정규식
+		var nameRule =/^[\u3131-\u318E\uAC00-\uD7A3]*$/; //아마 이렇게 써야되는 이유는 utf-8과의 인코딩문제라고함.
+
+		 $(".nameCheck").blur(function(){
+				 if($('#name').val() != "" && nameRule.test($('#name').val()) != true){
+					alert("한글로만 사용해주세요");
+					$('#name').val("");
+					$('#name').focus();
+					return;
+				}	
+		 });	 
+
+		//연락처 정규식
+		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
+
+		$(".phoneCheck").blur(function(){
+			if($('#phone').val() != "" && phoneRule.test($('#phone').val()) != true){
+				alert("휴대폰 번호 형식에 맞게 입력해주세요");
+				$('#phone').val("");
+				$('#phone').focus();
+				return;
+			}	
+			//연락처 중복검사 	
+				$.ajax({
+				type : "GET",
+				url : "phoneCheck",
+				data : {
+					phone : $('#phone').val()
+				},
+				success: function(data){
+					console.log(data);
+					data = data.trim();
+					if(data !="사용가능한 번호입니다."){
+						$('#phone').val(data);
+						$('#phone').focus();
+					}				
+				}			
+				});
+		});
+
+		//폰넘버입력시 자동으로 하이푼입력되는것.
+		function inputPhoneNumber(obj) {
+
+		    var number = obj.value.replace(/[^0-9]/g, "");
+		    var phone = "";
+		
+		    if(number.length < 4) {
+		        return number;
+		    } else if(number.length < 7) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3);
+		    } else if(number.length < 11) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 3);
+		        phone += "-";
+		        phone += number.substr(6);
+		    } else {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 4);
+		        phone += "-";
+		        phone += number.substr(7);
+		    }
+		    obj.value = phone;
+		}
 		
 	</script>
 

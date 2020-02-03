@@ -15,7 +15,7 @@
 	
 	<div class="checkId"><img alt="쿠키이미지" src="../images/header/mm.png" style="width: 45px; height: 45px; margin-left: 20px;">　아이디중복확인</div>
 	
-	<form action="./memberIdCheck">	
+	<form action="./idCheck">	
 		<c:if test="${not empty param.memId}">
 			<div class="memIdTest">${param.memId}는 ${msg}</div>
 		</c:if>
@@ -23,11 +23,11 @@
 		<div class="container">
 			<br>
 			<label for="memId" class="memId">　ID : </label> 
-			<input type="text" id="memId" name="memId" value="${param.memId}" class="idInput">
+			<input type="text" id="memId" name="memId" value="${param.memId}" class="idInput" placeholder="한글이나 특수문자를 제외하고 입력하세요">
 			<button type="submit" class="btnsubmin">확인</button>
-			<c:if test="${not empty param.memId and empty member }">
-				<input type="button" value="사용하기" id="useMemId">
-			</c:if>			
+			<input type="hidden" value="${result}" id="result">
+			<input type="button" value="사용하기" id="useMemId" style="display: none;">
+					
 		</div>
 	</form>
 	
@@ -52,6 +52,11 @@
 				return;
 			}
 		});
+
+		//사용하기버튼활성화 조건 컨트롤러에서 result값을넣어줌으로써 0보다크면 보이게
+		if($("#result").val() > 0){
+			$("#useMemId").css('display','inline');
+		}
 
 	</script>
 </body>
