@@ -6,14 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디비밀번호검색</title>
+<title>아이디/비밀번호 찾기</title>
 <c:import url="../template/boot.jsp" />
 </head>
 <body>
-	
-	<%-- <%@ include file="/WEB-INF/views/modal/userIdSearchModal.jsp" %> --%>
-	
-
 	
 	<div class="full">
 		<div class="container">
@@ -51,14 +47,10 @@
 						<div class="form-group">
 							<button id="idConfirm" type="button" class="btn btn-primary btn-block" style="display: inline;">확인</button>
 							<button id="searchBtn" type="button" class="btn btn-warning btn-block"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
-							onclick="sendSms();"
+							문자인증 작동하려면 집어넣기 onclick="sendSms();"
 						</div>
 				</div>
 			
-				<div class="findedId" style="display: none">
-					test
-				</div>
-
 				<!--비밀번호검색일때  -->
 				<div id="searchP" style="display: none;">
 					<div class="form-group">
@@ -83,8 +75,7 @@
 		</div>
 	</div>
 	
-	<!-- Modal -->
-	<!--fade는 투명 효과  -->
+	<!-- Modal --><!--fade는 투명 효과  -->
 	<div id="myModal" class="modal fade" role="dialog"> 
 	  
 		  <div class="modal-dialog">
@@ -96,23 +87,27 @@
 				        <h4 class="modal-title">인증페이지</h4>
 			      </div>
 		     
-		     <div class="modal-body">
-		  			<div>
- 						<span>타이머</span>
- 						<span id="timer"></span>
-					</div>
-					<br>
-		  			<b>인증번호 입력</b> 
-			        <input type="text" name="sms" id="sms" placeholder="인증 번호 입력" /> 
-			        <button onclick="phoneCheck();">인증</button>
-			     
-		      </div>
+			     <div class="modal-body">
+						<div class="attc" style="display: inline">
+				  			<div>
+		 						<p>타이머</p>
+		 						<div id="ViewTimer"></div>
+							</div>
+							
+							<br>
+				  			<b>인증번호 입력</b> 
+					        <input type="text" name="sms" id="sms" placeholder="인증 번호 입력" /> 
+					        <button onclick="phoneCheck();">인증</button>
+					     </div> 
+
+				        <div class="findedId" style="display: none; color: blue;">
+							나와라 아이디야
+						</div>
+			      </div>
 		      
-		      <div class="modal-footer">
-		        	
-		        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		     
-		      </div>
+			      <div class="modal-footer">
+			        	<button type="button" class="btn btn-default close" data-dismiss="modal" >Close</button>
+			      </div>
 		   
 		    </div>
 		
@@ -123,6 +118,7 @@
 	<a class="btn btn-warning" href="${pageContext.request.contextPath}/">쿠키로</a>
 
 <script type="text/javascript">
+
 		//폰넘버입력시 자동으로 하이푼입력되는것.
 		function inputPhoneNumber(obj) {
 	
@@ -151,7 +147,7 @@
 		    obj.value = phone;
 		}
 			
-		//검색종류 선택시 디스플레이가 none이되는 스크립트
+		//찾기종류 선택시 디스플레이가 none이되는 스크립트
 		function search_check(num) {
 			if (num == '1') {
 				document.getElementById("searchP").style.display = "none";
@@ -162,6 +158,7 @@
 			}
 		}
 
+		//다완료했을때 주석풀기.
 		//이름 정규식
 // 		var nameRule =/^[\u3131-\u318E\uAC00-\uD7A3]*$/; //아마 이렇게 써야되는 이유는 utf-8과의 인코딩문제라고함.
 
@@ -196,25 +193,20 @@
 					phone :$('#inputPhone_1').val()	
 				},
 				success : function(data){
-							if(data != ""){
-								alert("입력하신 정보가 일치합니다.");
-								$('#inputName_1').prop('readonly', true);
-								$('#inputPhone_1').prop('readonly', true);
-								$('#searchBtn').css('display' , 'inline');	
-								$('#idConfirm').css('display' , 'none');
-								$(".findedId").html("회원님의 ID는 "+data+"입니다.");
-								//location.href="searchIdPw?userId="+data;
-
-							}else{
-								alert("입력하신 정보가 일치하지 않습니다.");
-								$('#inputName_1').val("");
-								$('#inputPhone_1').val("");
-							}
-							
+					if(data != ""){
+						alert("입력하신 정보가 일치합니다.");
+						$('#inputName_1').prop('readonly', true);
+						$('#inputPhone_1').prop('readonly', true);
+						$('#searchBtn').css('display' , 'inline');	
+						$('#idConfirm').css('display' , 'none');
+						$(".findedId").html("회원님의 ID는 \""+data+"\"입니다.");
+					}else{
+						alert("입력하신 정보가 일치하지 않습니다.");
+						$('#inputName_1').val("");
+						$('#inputPhone_1').val("");
+					}			
 				}
-				
 			});	
-
 		});
 
 		//인증번호 보내기..
@@ -227,7 +219,7 @@
 				}, 
 				success: function(data) { 
 					if (data != null) { 
-					alert("인증번호 전송"); 
+					alert("인증번호 전송");
 					}else {
 					alert("인증번호 전송 실패"); 
 					} 
@@ -235,7 +227,7 @@
 			}); 
 		} 
 	
-		//입력한 인증번호가 맞는지..
+		//입력한 인증번호가 맞는지 검증..
 		function phoneCheck() { 
 			$.ajax({ 
 				url: "smsCheck", 
@@ -244,11 +236,15 @@
 				success: function(result) {
 					 if (result == "ok") { 
 						alert("번호 인증 성공");
-						//모달창 닫기
-			 			$('#myModal').modal("hide");
+						//모달창 닫기 참고
+			 			//$('#myModal').modal("hide");
 			 			$('.findedId').css('display' , 'inline');
-			 			$('#searchI').css('display' , 'none');
-			 			$('.custom-radio').css('display' , 'none');
+			 			$('.attc').css('display' , 'none');
+			 			//모달창 닫기했을때 지정된주소로~
+						$('.close').click(function(){
+							location.href="searchIdPw";
+						});
+			 			
 					} else {
 				 		alert("인증 실패; 다시입력하세요.");
 				 		
@@ -259,6 +255,7 @@
 
 		
 		
+
 </script>
 
 
