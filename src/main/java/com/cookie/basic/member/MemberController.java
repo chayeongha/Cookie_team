@@ -90,7 +90,7 @@ public class MemberController {
 			
 			int result= memberService.memberJoin(memberVO, files);
 			String msg = "회원가입 실패";
-			String path ="./memberIndex";
+			String path ="./memberLogin";
 			
 			if(result >0) {
 			msg="회원가입 성공";

@@ -4,43 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+
+<title>Cookie Order Main</title>
 <link href="/css/reset.css" rel="stylesheet"/>
 <link href="/css/header.css" rel="stylesheet"/>
 <link href="/css/body.css" rel="stylesheet"/>
 <link href="/css/footer.css" rel="stylesheet"/>
 <link href="/css/main/main_body.css" rel="stylesheet"/>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=df2f1bd915d5ed98ee4e1782f47aff61"></script>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=df2f1bd915d5ed98ee4e1782f47aff61&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-        function getLocation(position) {
-            var latitud = position.coords.latitude;
-            var longitude = position.coords.longitude;
-        	
-            var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
-            var mapOption = {
-                  center : new daum.maps.LatLng(latitud, longitude),    // 지도의 중심좌표
-                  level : 2    // 지도의 확대레벨
-            };
-            
-            // 지도를 생성
-            var map = new daum.maps.Map(mapContainer, mapOption);
-            // 마커가 표시될 위치
-            var markerPosition = new daum.maps.LatLng(latitud, longitude);
-            // 마커를 생성
-            var marker = new daum.maps.Marker({ position:markerPosition });
-            marker.setMap(map);
-        }
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getLocation, function(error) {
-                consol.log(error.message);    
-            });
-        } else {
-            consol.log("Geolocation을 지원하지 않는 브라우저 입니다.");
-        }
-    });
+
 </script>
 </head>
 <body>
@@ -185,6 +159,10 @@
 			</div>
 		</div>
 		<br>
+		<c:forEach items="${ar}" var="vo" >
+			<input type="hidden" value="${vo.sName}" class="cName">
+			<input type="hidden" value="${vo.roadFullAddr}" class="cAddr">
+		</c:forEach>
 		<c:import url="./layout/footer.jsp" />
 	</div><!-- bodymain끝 -->
 	
@@ -198,6 +176,118 @@
 				  });
 			 
 			
+	</script>
+	
+	
+	<script type="text/javascript">
+		var v = [];
+		var b = [];
+						
+		
+	document.addEventListener("DOMContentLoaded", function() {
+		var cName = new Array();
+		$(".cName").each(function(index){
+			cName.push($(this).val());	
+		});
+		var cAddr = new Array();
+		$(".cAddr").each(function(index){
+			cAddr.push($(this).val());	
+			
+		});
+
+		console.log(1);
+		
+
+		
+		
+    function getLocation(position) {
+		console.log(2);
+		
+        var latitud = position.coords.latitude;
+        var longitude = position.coords.longitude;
+    	
+        var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
+        var mapOption = {
+              center : new daum.maps.LatLng(latitud, longitude),    // 지도의 중심좌표
+              level : 2    // 지도의 확대레벨
+        };
+
+        var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+
+
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		//위도 경도 구하기
+		for(var j=0; j<cAddr.length; j++){
+		
+				console.log(3);
+			geocoder.addressSearch(cAddr[j], function(result, status) {	
+				 if (status === kakao.maps.services.Status.OK) {
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						v.push(result[0].y);
+						b.push(result[0].x);
+				}
+				//마커 찝을 위치
+					var positions = new Array();
+					for(var i=0; i<cName.length;i++){
+						
+						positions[i] =
+						    	{
+						    		
+						        	title: cName[i], 
+						        	latlng: new kakao.maps.LatLng(v[i], b[i])
+						    	}		
+					}
+
+					for (var i = 0; i < positions.length; i ++) {
+			            
+			            // 마커 이미지의 이미지 크기 입니다
+			            var imageSize = new kakao.maps.Size(24, 35); 
+			            
+			            // 마커 이미지를 생성합니다    
+			            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			            
+			            // 마커를 생성합니다
+			            var marker = new kakao.maps.Marker({
+			                map: map, // 마커를 표시할 지도
+			                position: positions[i].latlng, // 마커를 표시할 위치
+			                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			                image : markerImage // 마커 이미지 
+			            });
+			        }     
+
+				
+			});
+		}
+		
+		   
+		//console.log(v);
+		//console.log(b);
+		//console.log(positions);
+        
+        
+        
+		        // 지도를 생성
+		        var map = new daum.maps.Map(mapContainer, mapOption);
+		        // 마커가 표시될 위치
+		        var markerPosition = new daum.maps.LatLng(latitud, longitude);
+		        // 마커를 생성
+		        var marker = new daum.maps.Marker({ position:markerPosition });
+		        marker.setMap(map);
+		    }
+		    if(navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(getLocation, function(error) {
+		            consol.log(error.message);    
+		        });
+		    } else {
+		        consol.log("Geolocation을 지원하지 않는 브라우저 입니다.");
+		    }
+		});
+			
+
+		
 	</script>
 
 </body>

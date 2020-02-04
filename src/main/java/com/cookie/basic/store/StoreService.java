@@ -244,5 +244,9 @@ public class StoreService {
 		return storeMapper.storeGoods2(storeVO);
 	}
 	
+	public List<StoreVO> storeMap() throws Exception{
+		return storeMapper.storeMap();
+	}
+	
 
 }
