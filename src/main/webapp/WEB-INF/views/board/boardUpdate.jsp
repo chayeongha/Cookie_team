@@ -87,10 +87,10 @@
 			</div>
 		</div>
 
-		<input type="button" class="btn btn-primary" id="write" value="Submit">
+		
      </form:form>
      
-     <a href="./noticeList" class="btn btn-warning">목록</a>
+     <a class="listgo" href="./noticeList">목록으로..</a>
    </div>
    
 <script type="text/javascript">
