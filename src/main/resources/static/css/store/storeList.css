@@ -12,13 +12,18 @@
 .map1{
 	border:none;
 	width:150px;
-	height: 60px;
 	font-family: CookieRun-Regular;
 	background:transparent;
 	font-size:30px;
 	margin-left: 20px;
 	color:#f23600;
 	border-bottom: 1px solid white;
+
+}
+
+.map1 > p {
+	height: 60px;
+	margin-bottom: 10px;
 }
 
 .map1:hover{

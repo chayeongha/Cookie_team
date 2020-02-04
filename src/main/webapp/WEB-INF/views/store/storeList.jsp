@@ -29,7 +29,7 @@
 		<div class="wrap">
 			<div class="e">
 				<p>
-				<input type="button" value="서울" class="map1" id="">
+				<input type="button" value="서울" class="map1">
 				<input type="button" value="부산" class="map1">
 				<input type="button" value="대구" class="map1">
 				<input type="button" value="인천" class="map1">

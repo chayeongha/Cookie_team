@@ -36,13 +36,14 @@ a:hover{
 	text-decoration: none;
 }
 
-p{
+.cate > p{
 	height: 45px;
 	margin-bottom: 0px;
 }
 
 .cate_1 > a, .cate_2 > a{
 	color:#f23600;
+
 }
 
 /* header2 */
