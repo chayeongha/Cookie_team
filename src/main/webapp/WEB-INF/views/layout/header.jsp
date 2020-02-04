@@ -58,8 +58,8 @@
 			<div class="M_imgg"></div>
 		</div><!-- 이미지 -->
 		<br><br>
-		<div class="cate_1">Cookie</div>
-		<div class="cate_2">Order</div>
+		<div class="cate_1"><a href="${pageContext.request.contextPath}/">Cookie</a></div>
+		<div class="cate_2"><a href="${pageContext.request.contextPath}/">Order</a></div>
 		<div class="cate">
 			<p><a href="${pageContext.request.contextPath}/store/storeList">제휴매장</a></p>
 			<p><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></p>
