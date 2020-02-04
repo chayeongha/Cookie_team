@@ -136,8 +136,8 @@ public class MemberService {
 		}else {
 			MemberFilesVO memberFilesVO3 = new MemberFilesVO();
 			memberFilesVO3.setMemNum(memberVO.getMemNum());
-			memberFilesVO3.setFname("41c81b3d-e328-43ea-9ba7-f4664975d80e_sponzi.jpg");
-			memberFilesVO3.setOname("41c81b3d-e328-43ea-9ba7-f4664975d80e_sponzi.jpg");
+			memberFilesVO3.setFname("mm.png");
+			memberFilesVO3.setOname("mm.png");
 			result =memberFilesMapper.memberFilesInsert(memberFilesVO3);
 		}
 		return result;
