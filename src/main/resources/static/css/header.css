@@ -46,6 +46,10 @@ a:hover{
 
 }
 
+.cate_1 > a:hover, .cate_2 > a:hover{
+	text-decoration: none;
+}
+
 /* header2 */
 .header2{
 	background: #ffede3;
