@@ -261,12 +261,7 @@
 
 
 
-				$("body").on("click",".orderGO",function(){
-
-					var 
-
-				});
-
+				
 
 
 

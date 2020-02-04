@@ -195,13 +195,13 @@
 			
 		});
 
-		console.log(1);
+		
 		
 
 		
 		
     function getLocation(position) {
-		console.log(2);
+		
 		
         var latitud = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -221,8 +221,7 @@
 		// 주소-좌표 변환 객체를 생성합니다
 		//위도 경도 구하기
 		for(var j=0; j<cAddr.length; j++){
-		
-				console.log(3);
+
 			geocoder.addressSearch(cAddr[j], function(result, status) {	
 				 if (status === kakao.maps.services.Status.OK) {
 				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
