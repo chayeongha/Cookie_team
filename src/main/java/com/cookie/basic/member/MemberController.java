@@ -283,7 +283,7 @@ public class MemberController {
 	
 	//멤버업데이트
 	@GetMapping("memberUpdate")
-	public void memberUpdate(HttpSession session)throws Exception{	
+	public void memberUpdate(HttpSession session )throws Exception{	
 		
 	}
 	

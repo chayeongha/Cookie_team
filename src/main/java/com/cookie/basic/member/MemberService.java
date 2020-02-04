@@ -133,6 +133,12 @@ public class MemberService {
 			memberFilesVO2.setOname(files.getOriginalFilename());
 			
 			result =memberFilesMapper.memberFilesInsert(memberFilesVO2);
+		}else {
+			MemberFilesVO memberFilesVO3 = new MemberFilesVO();
+			memberFilesVO3.setMemNum(memberVO.getMemNum());
+			memberFilesVO3.setFname("41c81b3d-e328-43ea-9ba7-f4664975d80e_sponzi.jpg");
+			memberFilesVO3.setOname("41c81b3d-e328-43ea-9ba7-f4664975d80e_sponzi.jpg");
+			result =memberFilesMapper.memberFilesInsert(memberFilesVO3);
 		}
 		return result;
 	}
@@ -181,12 +187,13 @@ public class MemberService {
 		//이미지를 안넣고 회원가입을 했을때 
 		//나중에 이미지를 넣으면 fnum없어서 null 오류가 뜨기때문에 
 		//fnum이 없을 때 파일을 인서트하는 조건을 줌.
-		if(memberVO.getFnum() ==null) {
-			memberFilesVO.setMemNum(memberVO.getMemNum());
-			memberFilesVO.setFname(fileName);
-			memberFilesVO.setOname(files.getOriginalFilename());
-			
-			result=memberFilesMapper.memberFilesInsert(memberFilesVO);
+		if(files.getSize() == 0) {
+			System.out.println("a");
+//			memberFilesVO.setMemNum(memberVO.getMemNum());
+//			memberFilesVO.setFname(fileName);
+//			memberFilesVO.setOname(files.getOriginalFilename());
+//			
+//			result=memberFilesMapper.memberFilesInsert(memberFilesVO);
 		}else {
 		//fnum이 있을때 파일을 업데이트하는 조건을 줌.
 		memberFilesVO.setMemNum(memberVO.getMemNum());
