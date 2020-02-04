@@ -48,6 +48,13 @@
 							<button id="idConfirm" type="button" class="btn btn-primary btn-block" style="display: inline;">확인</button>
 							<button id="searchBtn" type="button" class="btn btn-warning btn-block"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
 							문자인증 작동하려면 집어넣기 onclick="sendSms();"
+						
+							<!--타이머테스트  -->
+							<div class="timer" style="display: inline">
+		 						<div id="ViewTimer"></div>
+								<button class="btn btn-warning exTime">시간연장</button>
+							</div>
+							
 						</div>
 				</div>
 			
@@ -88,20 +95,20 @@
 			      </div>
 		     
 			     <div class="modal-body">
+						
 						<div class="attc" style="display: inline">
-				  			<div>
-		 						<p>타이머</p>
-		 						<div id="ViewTimer"></div>
-							</div>
+<!-- 				  			<div class="timer" style="display: none"> -->
+<!-- 		 						<div id="ViewTimer"></div> -->
+<!-- 							</div> -->
 							
 							<br>
 				  			<b>인증번호 입력</b> 
 					        <input type="text" name="sms" id="sms" placeholder="인증 번호 입력" /> 
 					        <button onclick="phoneCheck();">인증</button>
 					     </div> 
-
+						<!--인증번호 입력시 나오는 아이디값  -->
 				        <div class="findedId" style="display: none; color: blue;">
-							나와라 아이디야
+							찾은아이디
 						</div>
 			      </div>
 		      
@@ -115,7 +122,7 @@
 	</div>
 	<!--모달창 끝  -->
 
-	<a class="btn btn-warning" href="${pageContext.request.contextPath}/">쿠키로</a>
+	<a class="btn btn-danger" href="${pageContext.request.contextPath}/">쿠키로</a>
 
 <script type="text/javascript">
 
@@ -182,7 +189,27 @@
 				return;
 			}	
 		});
+		
+		//타이머
+		var SetTime = 5;	// 최초 설정 시간(기본 : 초)
 
+		// 1초씩 카운트
+		function msg_time() {	
+			m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";// 남은 시간 계산
+			
+			var msg = "인증번호가 유효한 시간은 <font color='red'>" + m + "</font> 입니다.";
+			
+			document.all.ViewTimer.innerHTML = msg;// div 영역에 보여줌 
+					
+			SetTime--;// 1초씩 감소
+			
+			if (SetTime < 0) {			// 시간이 종료 되었으면..	
+				clearInterval(tid);		// 타이머 해제
+				alert("유효시간이 초과하였습니다. 다시시도해주세요.");	
+			}
+		}
+		//window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
+		
 		//아이디찾기에서 이름과 폰번호과 같은지 검증
 		$("#idConfirm").click(function(){
 			$.ajax({
@@ -199,12 +226,17 @@
 						$('#inputPhone_1').prop('readonly', true);
 						$('#searchBtn').css('display' , 'inline');	
 						$('#idConfirm').css('display' , 'none');
-						$(".findedId").html("회원님의 ID는 \""+data+"\"입니다.");
+						$(".findedId").html("회원님의 ID는 \""+data+"\"입니다.");	
+						//타이머테스트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~테스트하고지우자~~~~
+						//$('.timer').css('display' ,'inline');
+						SetTime=10;
+						setInterval('msg_time()',1000);
+						
 					}else{
 						alert("입력하신 정보가 일치하지 않습니다.");
 						$('#inputName_1').val("");
 						$('#inputPhone_1').val("");
-					}			
+					}		
 				}
 			});	
 		});
@@ -219,10 +251,12 @@
 				}, 
 				success: function(data) { 
 					if (data != null) { 
-					alert("인증번호 전송");
+					//alert("인증번호 전송");
+					SetTime=120;
+					$('.timer').css('display' ,'inline');
 					}else {
 					alert("인증번호 전송 실패"); 
-					} 
+					}
 				} 
 			}); 
 		} 
@@ -240,22 +274,29 @@
 			 			//$('#myModal').modal("hide");
 			 			$('.findedId').css('display' , 'inline');
 			 			$('.attc').css('display' , 'none');
+
 			 			//모달창 닫기했을때 지정된주소로~
 						$('.close').click(function(){
 							location.href="searchIdPw";
 						});
-			 			
-					} else {
-				 		alert("인증 실패; 다시입력하세요.");
-				 		
-					} 
+					 }else{
+				 		alert("인증 실패; 다시입력하세요.");	
+					 } 
 				}
 			}); 
 		}
-
+		var count =0;
+		//인증시간연장
+		$('.exTime').click(function(){
+			if(count<1){
+			SetTime=10;
+			count++;
+			}else{
+				alert("시간연장은 한번만 가능합니다.")
+			}
+			
+		});
 		
-		
-
 </script>
 
 
