@@ -45,8 +45,11 @@
 					<tr>
 						<td class="td_num">${list.num}</td>
 						<td class="td_view">
-							<span class="state">미완료</span>   
-							<a href="#none" id="showCloseDetail" class="view_txt">${list.contents}</a>
+							<span class="state">미완료</span>
+							<c:if test="${list.secret == 1}">비밀글입니다.</c:if>
+							<c:if test="${list.secret == 0}">
+								<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
+							</c:if>
 						</td>
 						<td class="td_writer">${list.writer}</td>
 						<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
@@ -57,6 +60,9 @@
 								<span class="iconQ">질문</span>
 								${list.contents}
 								<br>
+								<div class="reply_wrap">
+									<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
+								</div>
 							</div>
 							<c:if test="${list.step > 0}">
 								<div class="answer">
@@ -72,7 +78,7 @@
 		</table>
 		
 		<div class="btn_wrap">
-			<button type="button" id="write" class="btn_write">문의하기</button>
+			<a href="./qnaWrite" id="write" class="btn_write">문의하기</a>
 		</div>
 		
 		<ul class="pagination">
@@ -109,8 +115,6 @@
 		strDate = year + "-" + month + "-" + day + " " + hour + ":" + minute;
 		return strDate;
 	}
-
-	$('.td_writer').replace()
 </script>	
 </body>
 </html>				

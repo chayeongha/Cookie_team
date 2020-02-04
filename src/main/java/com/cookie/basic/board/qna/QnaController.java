@@ -122,18 +122,10 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		
 		qnaVO = qnaService.qnaSelect(qnaVO);
-		//System.out.println(qnaVO.getqnaFilesVO().get(0).getFnum());
-		
-//		System.out.println(qnaVO.getNum());
-//		System.out.println(qnaVO.getNext());
-//		System.out.println(qnaVO.getNextT());
-//		System.out.println(qnaVO.getPrev());
-//		System.out.println(qnaVO.getPrevT());
 		
 		if(qnaVO != null) {
 			mv.addObject("select", qnaVO);
-			mv.addObject("boardName", "문의사항");
-			mv.setViewName("board/boardSelect");
+			mv.setViewName("qna/qnaList");
 		}
 		
 		return mv;
