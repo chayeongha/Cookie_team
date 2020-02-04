@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cookie Join</title>
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />
 <link href="/css/member/member.css" rel="stylesheet"/>
