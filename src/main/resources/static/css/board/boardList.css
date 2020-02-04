@@ -137,7 +137,7 @@ table.notice_tb td a:hover {
 	cursor: pointer;
 }
 
-.btn{
+#btnW{
 	float: right;
 	margin-top: 50px;
 	border: none;
@@ -148,10 +148,11 @@ table.notice_tb td a:hover {
 	font-weight: 200;
 }
 
-.btn:hover {
+#btnW:hover {
 	background: transparent;
 	color:#ff5422;
 	font-weight: 300;
+	text-decoration: none;
 }
 .notice_tb > thead >tr{
 	border-bottom: 2px solid #f23600;

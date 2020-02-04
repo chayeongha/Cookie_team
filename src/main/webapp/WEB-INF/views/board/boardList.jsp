@@ -86,7 +86,7 @@
 				});
 			</script> -->
 			
-			<a href="noticeWrite" class="btn btn-primary" id="btnW">글쓰기</a>
+			<a href="noticeWrite" id="btnW">글쓰기</a>
 		</div>
 	</div>
 		<c:import url="../layout/footer.jsp" />

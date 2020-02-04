@@ -130,30 +130,31 @@ table.content_tb {
     margin-bottom: 75px;
 }
 table.content_tb th {
+	font-family: CookieRun-Regular;
 	padding: 15px 0 15px 20px;
-    font-size: 14px;
-    color: #222222;
-    background: #f4f4f2;
+    font-size: 18px;
+    color: #ff712d;
+    background: #ffede3;
     text-align: left;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #ffd6bf;
 }
 table.content_tb th.fth {
-	border-top: 1px solid #333333;
+	border-top: 1px solid #ffd6bf;
 }
 table.content_tb td {
 	padding: 15px 0 15px 20px;
     font-size: 14px;
     color: #666666;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #ffd6bf;
 }
 table.content_tb td.ftd {
-	border-top: 1px solid #333333;
+	border-top: 1px solid #ffd6bf;
 }
 table.content_tb th.lth {
-	border-bottom: 1px solid #333333;
+	border-bottom: 1px solid #ffd6bf;
 }
 table.content_tb td.ltd {
-	border-bottom: 1px solid #333333;
+	border-bottom: 1px solid #ffd6bf;
 }
 
 
