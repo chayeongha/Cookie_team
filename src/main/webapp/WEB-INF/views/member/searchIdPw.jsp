@@ -230,8 +230,7 @@
 						//타이머테스트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~테스트하고지우자~~~~
 						//$('.timer').css('display' ,'inline');
 						SetTime=10;
-						setInterval('msg_time()',1000);
-						
+						tid=setInterval('msg_time()',1000);
 					}else{
 						alert("입력하신 정보가 일치하지 않습니다.");
 						$('#inputName_1').val("");
