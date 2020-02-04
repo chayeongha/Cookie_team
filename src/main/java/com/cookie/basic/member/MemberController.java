@@ -342,28 +342,33 @@ public class MemberController {
 		//System.out.println(phone);잘나옴.
 		memberVO2.setName(name);
 		memberVO2.setPhone(phone);
+		
+		//이름과 휴대폰번호가 같은지
 		MemberVO memberVO3= new MemberVO();
 		memberVO3=memberService.idSearch(memberVO2);
 		
+		//찾은 아이디 출력
 		MemberVO memberVO4 = new MemberVO();
 		memberVO4.setPhone(phone);
-		//서비스에서 아이디찾는걸 불러온걸 해결해야함
-//		memberService.findId(memberVO4);
-//		
-//		model.addAttribute("memId", );
+		memberVO4.setName(name);
+	
+		String userId=memberService.findId(memberVO4);
 		
-		//int result =0;
+		int result =0;
 		String msg="입력하신정보가 회원정보와 일치하지않습니다.";
 		if(memberVO3 != null) {
 			msg="입력하신 정보가 회원정보와 일치합니다.";
-			//result= 1;
+			result= 1;
 		}
 		
-		//model.addAttribute("result", result);
 		//System.out.println(msg);//아주잘나옴~
-		//System.out.println(memberVO2.getPhone());
-		//model.addAttribute("phoneNum", memberVO2.getPhone());
-		return msg;
+		//System.out.println(result);
+		//System.out.println(userId);
+		model.addAttribute("result", result);
+		model.addAttribute("msg", msg);
+		model.addAttribute("userId", userId);
+		
+		return userId;
 	}
 	
 	//인증번호보내기

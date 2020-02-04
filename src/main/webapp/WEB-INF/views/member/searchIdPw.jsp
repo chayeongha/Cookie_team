@@ -23,18 +23,19 @@
 					<h1>아이디/비밀번호 찾기</h1>
 					<p>인증된 이메일만 정보 찾기가 가능합니다 :)</p>
 				</div>
-				<div style="margin-bottom: 10px;"
-					class="custom-control custom-radio custom-control-inline">
+				<br>
+				
+				<div style="margin-bottom: 10px; display: inline;" class="custom-control custom-radio custom-control-inline" >
 					<input type="radio" class="custom-control-input" id="search_1" name="search_total" onclick="search_check(1)" checked="checked">
 					<label class="custom-control-label font-weight-bold text-white"	for="search_1">아이디 찾기</label>
 				</div>
-				<div class="custom-control custom-radio custom-control-inline">
+				<div class="custom-control custom-radio custom-control-inline" style="display: inline;">
 					<input type="radio" class="custom-control-input" id="search_2" name="search_total" onclick="search_check(2)"> 
 					<label class="custom-control-label font-weight-bold text-white" for="search_2">비밀번호 찾기</label>
 				</div>
 				
-				<!--아이디검색일때  -->
-				<div id="searchI">
+				<!--아이디검색일때  -->	
+				<div id="searchI" style="display: inline">
 						<div class="form-group">
 							<label class="font-weight-bold text-white" for="inputName_1">이름</label>
 							<div>
@@ -48,16 +49,14 @@
 							</div>
 						</div>
 						<div class="form-group">
-<!-- 								<button type="button" class="btn btn-primary btn-block idsearch">확인</button> -->
-							<!-- <input type="button" value="확인" id="idConfirm" class="btn btn-primary btn-block idsearch"style="display: inline;"> -->
 							<button id="idConfirm" type="button" class="btn btn-primary btn-block" style="display: inline;">확인</button>
-							
 							<button id="searchBtn" type="button" class="btn btn-warning btn-block"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
 							onclick="sendSms();"
-							
-<!-- 							<button id="searchBtn" type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal" style="display: none;">인증번호 받기</button> -->
 						</div>
-				
+				</div>
+			
+				<div class="findedId" style="display: none">
+					test
 				</div>
 
 				<!--비밀번호검색일때  -->
@@ -98,8 +97,12 @@
 			      </div>
 		     
 		     <div class="modal-body">
-		  			Modal content
-		       		num: 527935
+		  			<div>
+ 						<span>타이머</span>
+ 						<span id="timer"></span>
+					</div>
+					<br>
+		  			<b>인증번호 입력</b> 
 			        <input type="text" name="sms" id="sms" placeholder="인증 번호 입력" /> 
 			        <button onclick="phoneCheck();">인증</button>
 			     
@@ -117,7 +120,9 @@
 	</div>
 	<!--모달창 끝  -->
 
-	<script type="text/javascript">
+	<a class="btn btn-warning" href="${pageContext.request.contextPath}/">쿠키로</a>
+
+<script type="text/javascript">
 		//폰넘버입력시 자동으로 하이푼입력되는것.
 		function inputPhoneNumber(obj) {
 	
@@ -183,7 +188,6 @@
 
 		//아이디찾기에서 이름과 폰번호과 같은지 검증
 		$("#idConfirm").click(function(){
-			//alert("test");잘나오는구먼
 			$.ajax({
 				url:"idSearch",
 				type: "POST",
@@ -192,25 +196,28 @@
 					phone :$('#inputPhone_1').val()	
 				},
 				success : function(data){
- 							alert(data);
-							if(data!= "입력하신 정보가 회원정보와 일치합니다."){
-								$('#inputName_1').val("");
-								$('#inputPhone_1').val("");
-								
-							}
-							else if(data == "입력하신 정보가 회원정보와 일치합니다." ){
+							if(data != ""){
+								alert("입력하신 정보가 일치합니다.");
 								$('#inputName_1').prop('readonly', true);
 								$('#inputPhone_1').prop('readonly', true);
-								$('#searchBtn').css('display' , 'inline');
+								$('#searchBtn').css('display' , 'inline');	
 								$('#idConfirm').css('display' , 'none');
+								$(".findedId").html("회원님의 ID는 "+data+"입니다.");
+								//location.href="searchIdPw?userId="+data;
+
+							}else{
+								alert("입력하신 정보가 일치하지 않습니다.");
+								$('#inputName_1').val("");
+								$('#inputPhone_1').val("");
 							}
+							
 				}
 				
 			});	
 
 		});
 
-		//문자보내기
+		//인증번호 보내기..
 		function sendSms() {
 			$.ajax({ 
 				url: "sendSms", 
@@ -228,7 +235,7 @@
 			}); 
 		} 
 	
-		//인증문자검증
+		//입력한 인증번호가 맞는지..
 		function phoneCheck() { 
 			$.ajax({ 
 				url: "smsCheck", 
@@ -239,33 +246,20 @@
 						alert("번호 인증 성공");
 						//모달창 닫기
 			 			$('#myModal').modal("hide");
+			 			$('.findedId').css('display' , 'inline');
+			 			$('#searchI').css('display' , 'none');
+			 			$('.custom-radio').css('display' , 'none');
 					} else {
-				 		alert("번호 인증 실패");
+				 		alert("인증 실패; 다시입력하세요.");
+				 		
 					} 
 				}
 			}); 
 		}
+
 		
-// 		$(document).ready(function() {
-// 			/////////모///달///기///능///////////
-// 			// 1. 모달창 히든 불러오기
-// 			$('#searchBtn').click(function() {
-// 				$('#background_modal').show();
-// 			});
-// 			// 2. 모달창 닫기 버튼
-// 			$('.close').on('click', function() {
-// 				$('#background_modal').hide();
-// 			});
-// 			// 3. 모달창 위도우 클릭 시 닫기
-// 			$(window).on('click', function() {
-// 				if (event.target == $('#background_modal').get(0)) {
-// 		            $('#background_modal').hide();
-// 		         }
-// 			});
-// 		});
-				
-	
-	</script>
+		
+</script>
 
 
 </body>
