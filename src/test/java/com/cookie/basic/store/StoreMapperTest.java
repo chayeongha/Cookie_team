@@ -55,7 +55,7 @@ class StoreMapperTest {
 //		assertEquals(1, ar.size());
 //	}
 	
-	@Test
+	//@Test
 	public void storeOnTest()throws Exception{
 		StoreVO storeVO = new StoreVO();
 		storeVO.setSsNum(1);
@@ -64,6 +64,15 @@ class StoreMapperTest {
 		
 	}
 	
+	@Test
+	public void storeNotice()throws Exception{
+		StoreVO storeVO = new StoreVO();
+		storeVO.setSsNum(2);
+		storeVO.setsNotice("안녕");
+		int result =storeMapper.storeNotice(storeVO);
+		assertEquals(1, result);
+		
+	}
 	
 	
 	

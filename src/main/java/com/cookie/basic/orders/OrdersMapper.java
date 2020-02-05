@@ -10,6 +10,7 @@ import com.cookie.basic.cart.OrderListVO;
 @Repository
 @Mapper
 public interface OrdersMapper {
+
 	public int ordersInsert(OrdersVO ordersVO)throws Exception;
 	public int ordersUpdate(OrdersVO ordersVO)throws Exception;
 	public OrdersVO ordersList(OrdersVO ordersVO)throws Exception;
@@ -18,4 +19,5 @@ public interface OrdersMapper {
 	public int orderListInsert(OrderListVO orderListVO)throws Exception;
 	public List<OrderListVO> orderListList(OrdersVO ordersVO)throws Exception;
 	public List<OrderListVO> orderListSS(OrdersVO ordersVO)throws Exception;
+
 }

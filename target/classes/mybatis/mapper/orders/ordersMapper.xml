@@ -17,7 +17,7 @@
   </select>
   
   
-  
+
   <!-- 오더리스트 매퍼 -->
 	<resultMap type="OrderListVO" id="OrderListJoin">
 		<id column="olNum" property="olNum" />
@@ -52,6 +52,7 @@
 			</collection>
 		</collection>
 	</resultMap>
+
 	
 	
 	<!--ordersVO 안에 nickname을 넣어서 전달  -->
@@ -67,7 +68,12 @@
 	</select>
   
   <!-- 점주가 ssNum으로 조회 -->
-  <select id="orderListSS" resultMap="OrderListJoin" parameterType="OrdersVO">
+
+  
+  
+  
+   <select id="orderListSS" resultMap="OrderListJoin" parameterType="OrdersVO">
+
 	select OL.*, OD.*, CA.*,ME.*, MO.*
         from orderList OL
         left outer join orders OD on OL.ooNum = OD.ooNum
@@ -77,7 +83,12 @@
         where OD.ssNum = #{ssNum};
 	</select>
   
+
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
  	insert into orderList values(null ,#{ooNum}, #{cartNum})
  </insert>
+
+  
+  
+
 </mapper>

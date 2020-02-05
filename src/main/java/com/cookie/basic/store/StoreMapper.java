@@ -39,6 +39,9 @@ public interface StoreMapper {
 	//스토어 폐업전 업데이트
 	public int storeUpdateBye(StoreCloseVO storeCloseVO)throws Exception;
 	
+	//스토어 공지사항
+	public int storeNotice(StoreVO storeVO)throws Exception;
+	
 
 	public List<StoreVO> storeList(StoreVO storeVO) throws Exception;
 	

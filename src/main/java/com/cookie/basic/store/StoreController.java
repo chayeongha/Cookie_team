@@ -1,18 +1,14 @@
 package com.cookie.basic.store;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.cart.CartService;
 import com.cookie.basic.cart.CartVO;
+
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.menu.MenuService;
 import com.cookie.basic.menu.MenuVO;
+import com.cookie.basic.orders.OrdersService;
 
 @Controller
 @RequestMapping("/store/**")
@@ -34,10 +32,14 @@ public class StoreController {
 
 	@Autowired
 	private StoreService storeService;
+
 	@Autowired
 	private MenuService menuService;
 	@Autowired
 	private CartService CartService;
+
+	@Autowired
+	private OrdersService ordersService;
 
 	// 지점 등록 폼
 	@GetMapping("storeInsert")
@@ -274,6 +276,34 @@ public class StoreController {
 		return result;
 	}
 
+	// 스토어 공지사항
+	@GetMapping("storeNotice")
+	public void storeNotice() throws Exception {
+
+	}
+
+	@PostMapping("storeNotice")
+	public ModelAndView storeNotice(StoreVO storeVO, HttpSession session, MultipartFile files) throws Exception {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		session.setAttribute("member", memberVO);
+		ModelAndView mv = new ModelAndView();
+
+		int result = storeService.storeNotice(storeVO);
+		System.out.println(result);
+		String msg = "업데이트 실패";
+		String path = "../";
+		if (result > 0) {
+			msg = "업데이트 성공";
+			path = "./storeMyPage";
+		}
+
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		mv.setViewName("common/result");
+
+		return mv;
+	}
+
 	@GetMapping("storeList")
 	public void storeList(Model model) throws Exception {
 		Map<String, String[]> ar = storeService.mapSelect();
@@ -329,6 +359,8 @@ public class StoreController {
 		return mv;
 	}
 
+	// 스토어 굿즈(메뉴판 만드는곳)
+
 	@GetMapping("storeGoods")
 	public ModelAndView storeGoods(StoreVO storeVO, String mmNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -337,8 +369,7 @@ public class StoreController {
 		storeVO = storeService.storeGoods(storeVO);
 		menuVO.setSsNum(storeVO.getSsNum());
 		List<MenuVO> menuVOs = menuService.menuList(menuVO);
-		
-		
+
 		mv.addObject("storeVO", storeVO);
 		mv.addObject("list", menuVOs);
 
@@ -349,6 +380,7 @@ public class StoreController {
 	@ResponseBody
 	@GetMapping("storeResult")
 	public ModelAndView storeResult(String mmNum) throws Exception {
+
 		ModelAndView mv = new ModelAndView();
 
 		MenuVO menuVO = new MenuVO();
@@ -360,10 +392,10 @@ public class StoreController {
 		return mv;
 
 	}
-	
+
 	@GetMapping("storeDetail")
-	public void storeDetail(CartVO cartVO)throws Exception{
-		
+	public void storeDetail(CartVO cartVO) throws Exception {
+
 	}
 
 }

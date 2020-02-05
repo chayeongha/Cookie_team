@@ -17,69 +17,54 @@ public class OrdersController {
 
 	@Autowired
 	private OrdersService ordersService;
-	
-	//orders
-	//ordersUpdate
+
+	// orders
+	// ordersUpdate
 	@PostMapping("ordersUpdate")
-	public ModelAndView ordersUpdate(String ooNum, String ssNum)throws Exception{
+	public ModelAndView ordersUpdate(String ooNum, String ssNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println(ooNum);
 		System.out.println(ssNum);
 		OrdersVO ordersVO = new OrdersVO();
 		ordersVO.setOoNum(Integer.parseInt(ooNum));
 		ordersVO.setSsNum(Integer.parseInt(ssNum));
-		
+
 		int result = ordersService.ordersUpdate(ordersVO);
-		String message="Update fail";
-		String path="./orderListSS?ssNum="+ordersVO.getSsNum();
-		if(result>0) {
-			message="Update Success";
+		String message = "Update fail";
+		String path = "./orderListSS?ssNum=" + ordersVO.getSsNum();
+		if (result > 0) {
+			message = "Update Success";
 		}
 		mv.setViewName("common/result2");
 		mv.addObject("msg", message);
 		mv.addObject("path", path);
 		return mv;
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//orderList
-	//orderList List 고객이 확인할떄
+
+	// orderList
+
+	// orderList List 고객이 확인할떄
 	@GetMapping("orderListList")
-	public ModelAndView orderListList(OrdersVO ordersVO) throws Exception{
+	public ModelAndView orderListList(OrdersVO ordersVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<OrderListVO> ar = ordersService.orderListList(ordersVO);
-		
-		
+
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListList");
-		
+
 		return mv;
 	}
-	
-	//orderList List 점주가 확인할떄  ssNum으로 확인
-		@GetMapping("orderListSS")
-		public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
-			
-			
-			mv.addObject("lists", ar);
-			mv.setViewName("orders/orderListSS");
-			
-			return mv;
-		}
-		
-	
-		
-	
+
+	// orderList List 점주가 확인할떄 ssNum으로 확인
+	@GetMapping("orderListSS")
+	public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
+		mv.addObject("lists", ar);
+		mv.setViewName("orders/orderListSS");
+
+		return mv;
+	}
+
 }

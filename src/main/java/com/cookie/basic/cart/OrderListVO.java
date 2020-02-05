@@ -8,27 +8,14 @@ public class OrderListVO {
 	private int olNum;
 	private int ooNum; 
 	private int cartNum;
+	private OrdersVO ordersVO;
+	private CartVO cartVO;
 	
 	public int getOlNum() {
 		return olNum;
 	}
 	public void setOlNum(int olNum) {
 		this.olNum = olNum;
-	}
-	private OrdersVO ordersVO;
-	public OrdersVO getOrdersVO() {
-		return ordersVO;
-	}
-	public void setOrdersVO(OrdersVO ordersVO) {
-		this.ordersVO = ordersVO;
-	}
-	private CartVO cartVO;
-	
-	public CartVO getCartVO() {
-		return cartVO;
-	}
-	public void setCartVO(CartVO cartVO) {
-		this.cartVO = cartVO;
 	}
 	public int getOoNum() {
 		return ooNum;
@@ -41,8 +28,21 @@ public class OrderListVO {
 	}
 	public void setCartNum(int cartNum) {
 		this.cartNum = cartNum;
-	} 
+	}
+	public OrdersVO getOrdersVO() {
+		return ordersVO;
+	}
+	public void setOrdersVO(OrdersVO ordersVO) {
+		this.ordersVO = ordersVO;
+	}
+	public CartVO getCartVO() {
+		return cartVO;
+	}
+	public void setCartVO(CartVO cartVO) {
+		this.cartVO = cartVO;
+	}
 	
 	
+
 	
 }

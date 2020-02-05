@@ -16,12 +16,25 @@ public class CartVO {
 	private List<MenuVO> menuVOs;
 	private String lot;
 
+
 	
 	public String getLot() {
 		return lot;
 	}
 	public void setLot(String lot) {
 		this.lot = lot;
+		}
+
+	
+	
+	
+	
+	public List<CartOptionVO> getCartOptionVOs() {
+		return cartOptionVOs;
+	}
+	public void setCartOptionVOs(List<CartOptionVO> cartOptionVOs) {
+		this.cartOptionVOs = cartOptionVOs;
+
 	}
 	public List<MenuVO> getMenuVOs() {
 		return menuVOs;
@@ -29,12 +42,7 @@ public class CartVO {
 	public void setMenuVOs(List<MenuVO> menuVOs) {
 		this.menuVOs = menuVOs;
 	}
-	public List<CartOptionVO> getCartOptionVOs() {
-		return cartOptionVOs;
-	}
-	public void setCartOptionVOs(List<CartOptionVO> cartOptionVOs) {
-		this.cartOptionVOs = cartOptionVOs;
-	}
+
 	public int getCartNum() {
 		return cartNum;
 	}

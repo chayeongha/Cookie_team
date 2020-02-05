@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link href="/css/reset.css" rel="stylesheet" />
 <link href="/css/menu/menuSelect.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -34,8 +35,8 @@
 
 		</div>
 	
-		<input type="hidden" id="hssnum" value="${vo.ssNum }"> <input
-			type="hidden" id="hmmnum" value="${vo.mmNum }">
+		<input type="hidden" id="hssnum" value="${vo.ssNum}"> 
+		<input type="hidden" id="hmmnum" value="${vo.mmNum}">
 
 		<div class="btnBox">
 			<a href="./menuList?ssNum=${vo.ssNum}"> <input type="button" value="List" style="cursor: pointer;" class="listGO"></a> 
