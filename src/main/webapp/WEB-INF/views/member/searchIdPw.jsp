@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<!--아이디검색일때  -->
-				<div id="searchI">
+				<div id="searchI" style="display: inline">
 					
 						<div class="idpw">
 							<label class="" for="inputName_1">NAME</label>
@@ -46,7 +46,7 @@
 						</div>
 						<div class="idpw">
 							<label class="" for="inputPhone_1">PHONE</label>
-							<input type="text" class="pCheck" id="inputPhone_1" name="phone" placeholder="ex) 010-7777-9999" onKeyup="inputPhoneNumber(this);" maxlength="13" >
+							<input type="text" class="phoneNum" id="inputPhone_1" name="phone" placeholder="ex) 010-7777-9999" onKeyup="inputPhoneNumber(this);" maxlength="13" >
 						</div>
 						
 						<div class="form-group">
@@ -60,21 +60,26 @@
 				<div id="searchP" style="display: none;">
 
 					<form action="sendEmail" method="get">
+						<p> 아래 이메일주소를 입력하시면,
+							<br> 입력하신 이메일로 새암호를 보내드립니다<br>
+						</p>
+						<br>
 						<div class="idpw">
 							<label class="" for="inputId">아이디</label>
-							<input type="text" class="" id="inputId" name="inputId" placeholder="ex) godmisu">
+							<input type="text" class="" id="inputId" name="memId" placeholder="ex) godmisu">
 						</div>
 						<div class="idpw">
-							<label class="" for="inputEmail_2">E-Mail</label>
-							<input type="email" class="" id="inputEmail_2"	name="inputEmail" placeholder="ex) E-mail@gmail.com">
+							<label class="" for="inputEmail">E-Mail</label>
+							<input type="email" class="" id="inputEmail"	name="email" placeholder="ex) E-mail@gmail.com">
 						</div>
 						
 						
 						<button id="pwConfirm" type="button" class="bbtn" style="display: inline;">확인</button>
 						<button id="searchBtn2" type="submit" class="bbtn" style="display: inline;">임시번호 보내기</button>
-				
+						
 					</form>
 				</div>
+				
 				<div class="loginGoBox">
 					<a class="loginGO" href="./memberLogin">로그인 화면으로 돌아가기</a>
 				</div>
