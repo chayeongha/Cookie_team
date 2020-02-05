@@ -67,11 +67,7 @@
         where OD.nickname = #{nickname};
 	</select>
   
-  <!-- 점주가 ssNum으로 조회 -->
-
-  
-  
-  
+  <!-- 점주가 ssNum으로 조회 (제조대기 디폴트)-->
    <select id="orderListSS" resultMap="OrderListJoin" parameterType="OrdersVO">
 
 	select OL.*, OD.*, CA.*,ME.*, MO.*
@@ -80,14 +76,53 @@
         left outer join cart CA on OL.cartNum = CA.cartNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.ssNum = #{ssNum};
+        where OD.ssNum = #{ssNum} and OD.ooStatus=0;
 	</select>
-  
+	
+	<!-- 점주 조회(제조 완료) -->
+	 <select id="orderListSSF" resultMap="OrderListJoin" parameterType="OrdersVO">
 
+	select OL.*, OD.*, CA.*,ME.*, MO.*
+        from orderList OL
+        left outer join orders OD on OL.ooNum = OD.ooNum
+        left outer join cart CA on OL.cartNum = CA.cartNum
+        left outer join menu ME on CA.mmNum = ME.mmNum
+        left outer join mopt MO on ME.mmNum = MO.mmNum
+        where OD.ssNum = #{ssNum} and OD.ooStatus=1;
+	</select>
+	
+<!--리스트 생성-->
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
  	insert into orderList values(null ,#{ooNum}, #{cartNum})
  </insert>
 
+
+<resultMap type="OrderListVO" id="OrderListM">
+		<id column="olNum" property="olNum" />
+		<collection property="ordersVO" javaType="OrdersVO">
+			<id column="ooNum" property="ooNum" />
+			<result column="ooDate" property="ooDate" />
+			<result column="ooTotal" property="ooTotal" />
+			<result column="nickname" property="nickname" />
+			<result column="phone" property="phone" />
+			<result column="ssNum" property="ssNum" />
+			<result column="takeOut" property="takeOut" />
+			<result column="ooStatus" property="ooStatus" />
+		</collection>
+		<collection property="cartVO" javaType="CartVO">
+			<id column="cartNum" property="cartNum" />
+			<result column="mmCount" property="mmCount" />
+			<result column="cartStatus" property="cartStatus" />
+		</collection>
+</resultMap>
+
+<!--매장별 총액 조회 결제 된게 1 안된게 0-->
+<select id="orderMoney" parameterType="OrdersVO" resultMap="OrderListM">
+	select OL.*, OD.ooTotal,OD.ssNum,CA.cartStatus from orderList OL
+	left outer join orders OD on OL.ooNum = OD.ooNum
+	left outer join cart CA on OL.cartNum = CA.cartNum
+	where OD.ssNum=#{ssNum} and CA.cartStatus=0;
+</select>
   
   
 

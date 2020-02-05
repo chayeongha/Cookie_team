@@ -56,7 +56,7 @@ public class OrdersController {
 		return mv;
 	}
 
-	// orderList List 점주가 확인할떄 ssNum으로 확인
+	// orderList List 점주가 확인할떄 ssNum으로 확인(제조대기)
 	@GetMapping("orderListSS")
 	public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -64,7 +64,35 @@ public class OrdersController {
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListSS");
 
+
 		return mv;
 	}
+	
+	
+	// orderList List 점주가 확인할떄 ssNum으로 확인(제조대기)
+		@GetMapping("orderListSSF")
+		public ModelAndView orderListSSF(OrdersVO ordersVO) throws Exception {
+			ModelAndView mv = new ModelAndView();
+			List<OrderListVO> ar = ordersService.orderListSSF(ordersVO);
+			mv.addObject("lists", ar);
+			mv.setViewName("orders/orderListSSF");
+
+
+			return mv;
+		}
+	
+		//총액 불러오기
+		@GetMapping("orderMoney")
+		public ModelAndView orderMoney(OrdersVO ordersVO)throws Exception{
+			ModelAndView mv = new ModelAndView();
+			List<OrderListVO> ar = ordersService.orderMoney(ordersVO);
+			System.out.println("값이 나오니 : "+ar);
+			mv.addObject("money", ar);
+			mv.setViewName("orders/orderMoney");
+			System.out.println("나오니?");
+			return mv;
+		}
+
+	
 
 }

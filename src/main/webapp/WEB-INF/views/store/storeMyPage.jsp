@@ -41,16 +41,15 @@
 				</i>
 			</div>
 			<body onload="printClock()">
-				<div
-					style="width: 270px; height: 30px; margin-top: 10px; float: left; font-family: CookieRun-Black; line-height: 30px; color: black; font-size: 36px; text-align: center;"
+				<div style="width: 270px; height: 30px; margin-top: 10px; float: left; font-family: CookieRun-Black; line-height: 30px; color: black; font-size: 36px; text-align: center;"
 					id="clock"></div>
-				<button class="section_ok">완료</button>
-				<button class="section_ok">대기</button>
+				<button class="section_ok" id="finish">완료목록</button>
+				<!-- <button class="section_ok" id="wait">대기</button> -->
 				<div class="section_title">Cafe ManageMent</div>
 		</div>
 		<div class="storesidebar">
-			<button class="side1" id="Order">주문</button>
-			<button class="side1" id="QnaT">질문관리</button>
+			<button class="side1" id="Order">주문대기</button>
+			<button class="side1" id="QnaT">리뷰관리</button>
 			<button class="side1" id="ReviewT">공지사항</button>
 			<button class="side1" id="Money">매출</button>
 		</div>
@@ -125,7 +124,14 @@
 	</script>
 
 	<script type="text/javascript">
+	/*공지사항*/
 		$("#ReviewT").click(function(){
+			var ReviewT = $(".storesidebar > #ReviewT");
+			var order = $(".storesidebar > #Order");
+			ReviewT.css("background-color","#ffd6c8");
+			order.removeAttr("style");
+			/* var order = $(".storesidebar > #Order").css("background-color","white"); */
+			
 		$.ajax({
 				url : "../store/storeNotice",
 				type : 'GET',
@@ -143,7 +149,13 @@
 
 		var ssNum =$("#ssNum").val();
 
+
+		/*주문*/
 		$("#Order").click(function(){
+			var order = $(".storesidebar > #Order").css("background-color","#ffd6c8");
+			/* var ReviewT = $(".storesidebar > #ReviewT").css("background-color","white"); */
+			var ReviewT = $(".storesidebar > #ReviewT");
+			ReviewT.removeAttr("style");
 			
 		$.ajax({
 				url : "../orders/orderListSS",
@@ -161,6 +173,42 @@
 
 			});
 		});
+
+		/*제조 완료일떄*/
+		$("#finish").click(function(){
+
+			$.ajax({
+				url : "../orders/orderListSSF",
+				type : 'GET',
+				data : {
+						"ssNum":ssNum
+					},
+				success : function(data) {
+					$(".storeNextSide").html(data);
+					alert(data);
+				},
+				error : function() {
+					alert("실패");
+				}
+
+			});
+
+
+			
+			});
+		
+		/*제조 대기일때  */
+		
+
+		/*리뷰관리*/
+		
+		
+		
+		
+		
+		/*매출관리*/
+		
+		
 	</script>
 
 
