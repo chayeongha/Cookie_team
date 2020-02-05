@@ -273,6 +273,45 @@ public class StoreController {
 
 		return result;
 	}
+	
+	//스토어 공지사항
+	@GetMapping("storeNotice")
+	public void storeNotice()throws Exception{
+		
+	}
+	
+	@PostMapping("storeNotice")
+	public ModelAndView storeNotice(StoreVO storeVO,HttpSession session,MultipartFile files)throws Exception{
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		session.setAttribute("member", memberVO);
+		ModelAndView mv = new ModelAndView();
+		
+		int result = storeService.storeNotice(storeVO);
+		System.out.println(result);
+		String msg = "업데이트 실패";
+		String path = "../";
+		if (result > 0) {
+			msg = "업데이트 성공";
+			path = "./storeMyPage";
+		}
+
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		mv.setViewName("common/result");
+
+		return mv;
+	}
+	
+	@GetMapping("storeOrder")
+	public void storeOrder()throws Exception{
+		
+	}
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("storeList")
 	public void storeList(Model model) throws Exception {
@@ -331,7 +370,7 @@ public class StoreController {
 		return mv;
 	}
 	
-	
+	//스토어 굿즈(메뉴판 만드는곳)
 	@GetMapping("storeGoods")
 	public ModelAndView storeGoods(StoreVO storeVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -346,7 +385,7 @@ public class StoreController {
 
 	}
 	
-
+	//스토어 카트
 	@GetMapping("storeCart")
 	public ModelAndView storeCart(String menu, String moneyTotal, String[] optCountt, String [] optList) throws Exception{
 		ModelAndView mv = new ModelAndView();

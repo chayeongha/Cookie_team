@@ -85,6 +85,39 @@
   		update storeClose set cwait=2 where ssNum=#{ssNum}
   	</update>
   	
+  	<update id="storeNotice" parameterType="storeVO">
+  		update store set sNotice=#{sNotice} where ssNum = #{ssNum}
+  	</update>
+  	
+  	
+  	
+  	
+  	<resultMap type="OrdersVO" id="orderResult">
+  		<id column="ooNum" property="ooNum"/>
+  		<result column="ooDate" property="ooDate"/>
+  		<result column="ooTotal" property="ooTotal"/>
+  		<result column="nickname" property="nickname"/>
+  		<result column="phone" property="phone"/>
+  		<result column="ssNum" property="ssNum"/>
+  		<result column="takeOut" property="takeOut"/>
+  		<result column="ooStatus" property="ooStatus"/>
+  		<collection property="OrderListVO" javaType="OrderListVO">
+  		
+  		</collection>
+  		
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  	</resultMap>
+  	
+  	
+  	<select id="storeOrder" parameterType="OrderVO" resultMap="orderResult">
+  	select * from orders O left outer join orderList L on O.ooNum = L.ooNum 
+  	left outer join cart C on L.cartNum = C.cartNum 
+  	left outer join cartOption P on C.cartNum = P.cartNum	  	
+  	</select>
   	
   	
  

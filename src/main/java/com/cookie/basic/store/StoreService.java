@@ -28,6 +28,8 @@ public class StoreService {
 	@Autowired
 	private StoreFilesMapper storeFilesMapper;
 
+	
+	//스토어 신청
 	public int storeInsert(StoreVO storeVO, MultipartFile files) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("upload");
 		String fileName = fileSaver.save(file, files);
@@ -47,12 +49,14 @@ public class StoreService {
 		return result;
 	}
 	
+	//스토어 닫기 
 	public int storeClose(StoreVO storeVO)throws Exception{
 		int result = storeMapper.storeClose(storeVO);
 		return result;
 	}
 	
 
+	//스토어 정보 수정
 	public int storeUpdate(StoreVO storeVO, MultipartFile files) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("upload");
 		String fileName = fileSaver.save(file, files);
@@ -91,46 +95,65 @@ public class StoreService {
 
 	}
 	
+	
+	// 폐점
 	public int deleteStore(StoreVO storeVO)throws Exception{
 		return storeMapper.deleteStore(storeVO);
 	}
 	
+	//스토어 폐점 업데이트
 	public int storeUpdateBye(StoreCloseVO storeCloseVO)throws Exception{
 		return storeMapper.storeUpdateBye(storeCloseVO);
 	}
 	
-	
+	//스토어 찾기
 	public List<StoreVO> searchInfo(StoreVO storeVO) throws Exception {
 		return storeMapper.searchInfo(storeVO);
 	}
 
+	//스토어 정보
 	public StoreVO info(StoreVO storeVO) throws Exception {
 		return storeMapper.info(storeVO);
 	}
 
+	//스토어 파일 
 	public List<StoreFilesVO> storeFilesSelect(StoreFilesVO storeFilesVO) throws Exception {
 		return storeFilesMapper.storeFilesSelect(storeFilesVO);
 	}
 	
+	//스토어 점주
 	public List<StoreCloseVO> storeAdmin(StoreCloseVO storeCloseVO)throws Exception{
 		return storeMapper.storeAdmin(storeCloseVO);
 	}
 
+	//스토어 점주 검색
 	public StoreCloseVO storeAdminSelect(StoreCloseVO storeCloseVO)throws Exception{
 		return storeMapper.storeAdminSelect(storeCloseVO);
 	}
 	
+	//스토어 열기
 	public int onUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.onUpdate(storeVO);
 	}
 
+	//스토어 닫기
 	public int offUpdate(StoreVO storeVO) throws Exception {
 		return storeMapper.offUpdate(storeVO);
 	}
 
+	//스토어 확인
 	public int checkStore(StoreVO storeVO) throws Exception {
 		return storeMapper.checkStore(storeVO);
 	}
+	
+	
+	//스토어 공지 업데이트
+	public int storeNotice(StoreVO storeVO)throws Exception{
+		
+		return storeMapper.storeNotice(storeVO);
+	}
+	
+	
 	
 	public Map<String,String[]> mapSelect() throws Exception{
 		

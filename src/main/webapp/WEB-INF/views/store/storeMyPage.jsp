@@ -6,14 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../template/boot.jsp" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="/css/store/storehead.css" rel="stylesheet" />
 <link href="/css/reset.css" rel="stylesheet" />
-
+<!--clock js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//cdn.kaazing.com/releases/enterprise.javascript.client/4.1.0/WebSocket.js"></script>
 <script src="//cdn.kaazing.com/releases/enterprise.javascript.client/4.1.0/AmqpClient.js"></script>
 <script src="//cdn.kaazing.com/releases/enterprise.javascript.client/4.1.0/JmsClient.js"></script>
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
 
 
 </head>
@@ -45,7 +51,7 @@
 		<div class="storesidebar">
 			<button class="side1" id="Order">주문</button>
 			<button class="side1" id="QnaT">질문관리</button>
-			<button class="side1" id="ReviewT">리뷰관리</button>
+			<button class="side1" id="ReviewT">공지사항</button>
 			<button class="side1" id="Money">매출</button>
 		</div>
 		<div class="storeNextSide"></div>
@@ -109,6 +115,7 @@
 			}
 			return zero + num;
 		}
+		
 	</script>
 
 	<script type="text/javascript">
@@ -117,9 +124,45 @@
 		});
 	</script>
 
+	<script type="text/javascript">
+		$("#ReviewT").click(function(){
+		$.ajax({
+				url : "../store/storeNotice",
+				type : 'GET',
+
+				success : function(data) {
+					$(".storeNextSide").html(data);
+						alert(data);
+				},
+				error : function() {
+					alert("실패");
+				}
+
+			});
+		});
+
+
+		$("#Order").click(function(){
+			$.ajax({
+					url : "../store/storeOrder",
+					type : 'GET',
+
+					success : function(data) {
+						$(".storeNextSide").html(data);
+							alert(data);
+					},
+					error : function() {
+						alert("실패");
+					}
+
+				});
+			});
+
+		
+	</script>
+
+
 	
-
-
 
 
 
