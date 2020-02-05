@@ -231,10 +231,10 @@ $(".btnSelect").click(function(){
 			$('.confirmLayer').css("display", "none");
 		});
 
-		$(document).click(function(event) {
+	/* 	 $(document).on("click",function(event) {
 			$('.confirmLayer').css("display", "none");
-		});
-
+		}); 
+ */
 	}
 
 

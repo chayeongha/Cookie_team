@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cookie.basic.menu.MoptVO;
 
-public class CartOptionVO {
+public class CartOptionVO implements Comparable<CartOptionVO>{
 
 	private int coNum;
 	private int optNum;
@@ -13,10 +13,17 @@ public class CartOptionVO {
 	private List<MoptVO> moptVOs;
 	
 	
-	
-	
-	
-	
+	@Override
+	public int compareTo(CartOptionVO o) {
+		// TODO Auto-generated method stub
+		if(this.getOptNum() < o.getOptNum()) {
+			return -1;
+		}else if(this.getOptNum() > o.getOptNum()) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 	
 	
 	public List<MoptVO> getMoptVOs() {

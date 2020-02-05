@@ -13,11 +13,15 @@ public class CartVO {
 	private String nickname;
 	private List<CartOptionVO> cartOptionVOs;
 	private List<MenuVO> menuVOs;
+	private String lot;
+
 	
-	
-	
-	
-	
+	public String getLot() {
+		return lot;
+	}
+	public void setLot(String lot) {
+		this.lot = lot;
+	}
 	public List<MenuVO> getMenuVOs() {
 		return menuVOs;
 	}
@@ -60,7 +64,5 @@ public class CartVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	
-	
 
 }
