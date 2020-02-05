@@ -26,7 +26,7 @@ $("#contents").summernote({
 			  	processData: false,
 			  	success:function(data){
 			  		data=data.trim();
-			  		$("#summernote").summernote('editor.insertImage', data);
+			  		//$("#summernote").summernote('editor.insertImage', data);
 			  	}
 			});
 		},

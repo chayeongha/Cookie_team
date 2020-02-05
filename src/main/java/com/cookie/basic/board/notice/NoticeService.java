@@ -37,6 +37,7 @@ public class NoticeService {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		System.out.println("summer note");
 		return fileSaver.save(file, fileData);
+
 	}
 	
 	//파일 다운
