@@ -79,28 +79,29 @@
 		
 		<div class="btn_wrap">
 			<!-- <a href="./qnaWrite" id="write" class="btn_write">문의하기</a> -->
-			<input type="button" value="자식창 열기" onclick="openChild()">
+			<input type="button" value="문의하기" onclick="openChild()">
+			<br>
 			전달할 값 : <input type="text" id="pInput"> <input type="button" value="전달" onclick="setChildText()">
 		</div>
 		
 		<ul class="pagination">
-				<c:if test="${pager.curBlock gt 1}">
-					<li class="previous"><span id="${pager.startNum-1}" class="index"></span></li>
+			<c:if test="${pager.curBlock gt 1}">
+				<li class="previous"><span id="${pager.startNum-1}" class="index"></span></li>
+			</c:if>
+			
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<c:if test="${pager.curPage == i}">
+					<li class="list"><span id="${i}" class="index" style="color: #f23600; text-decoration: underline;">${i}</span></li>
 				</c:if>
-				
-				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<c:if test="${pager.curPage == i}">
-						<li class="list"><span id="${i}" class="index" style="color: #f23600; text-decoration: underline;">${i}</span></li>
-					</c:if>
-					<c:if test="${pager.curPage != i}">
-						<li class="list"><span id="${i}" class="index">${i}</span></li>
-					</c:if>
-				</c:forEach>
-				
-				<c:if test="${pager.curBlock lt pager.totalBlock}">
-					<li class="next"><span id="${pager.lastNum+1}" class="index">></span></li>
+				<c:if test="${pager.curPage != i}">
+					<li class="list"><span id="${i}" class="index">${i}</span></li>
 				</c:if>
-			</ul>
+			</c:forEach>
+			
+			<c:if test="${pager.curBlock lt pager.totalBlock}">
+				<li class="next"><span id="${pager.lastNum+1}" class="index">></span></li>
+			</c:if>
+		</ul>
 	</div>
 		<c:import url="../layout/footer.jsp" />
 </div>

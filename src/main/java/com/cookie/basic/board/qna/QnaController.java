@@ -2,6 +2,8 @@ package com.cookie.basic.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.util.CaptchaUtil;
 import com.cookie.basic.util.Pager;
+import nl.captcha.Captcha;
 
 @Controller
 @RequestMapping("/qna/**")
@@ -24,6 +28,47 @@ public class QnaController {
 
 	@Autowired
 	private QnaService qnaService;
+	/////////////////////////////////////////////////////////////
+	//페이지 매핑
+	@GetMapping("captcha")
+	public String Captcha() {
+		return "captcha";
+	}
+	
+	//captcha 이미지 가져오는 메서드
+	@GetMapping("captchaImg")
+	@ResponseBody
+	public void captchaImg(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		new CaptchaUtil().getImgCaptcha(req, res);
+	}
+	
+	//전달받은 문자열로 음성 가져오는 메서드
+	@GetMapping("captchaAudio")
+	@ResponseBody
+	public void captchaAudio(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		Captcha captcha = (Captcha)req.getSession().getAttribute(Captcha.NAME);
+		String getAnswer = captcha.getAnswer();
+		new CaptchaUtil().getAudioCaptcha(req, res, getAnswer);
+	}
+	
+	//사용자가 입력한 보안문자 체크하는 메서드
+	@PostMapping("chkAnswer")
+	@ResponseBody
+	public String chkAnswer(HttpServletRequest req, HttpServletResponse res) {
+		String result = "";
+		Captcha captcha = (Captcha)req.getSession().getAttribute(Captcha.NAME);
+		String answer = req.getParameter("answer");
+		
+		if(answer != null && !"".equals(answer)) {
+			if(captcha.isCorrect(answer)) {
+				req.getSession().removeAttribute(Captcha.NAME);
+				result = "200";
+			}else {
+				result = "300";
+			}
+		}
+		return result;
+	}
 	/////////////////////////////////////////////////////////////
 	//글 삭제
 	@GetMapping("qnaDelete")
@@ -94,24 +139,18 @@ public class QnaController {
 	
 	//글 등록
 	@PostMapping("qnaWrite")
-	public ModelAndView qnaWrite(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files) throws Exception {
+	public ModelAndView qnaWrite(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		
-		if(bindingResult.hasErrors()) {
-			mv.setViewName("board/boardWrite");
-		}else {
-			System.out.println(files.length);
-			int result = qnaService.qnaWrite(qnaVO, files);
-			String msg = "Write Fail";
-			 
-			if(result>0) {
-				msg = "Write Success";
-			}
-			mv.setViewName("common/result");
-			mv.addObject("msg", msg);
-			mv.addObject("path", "./qnaList");
+
+		int result = qnaService.qnaWrite(qnaVO);
+		String msg = "Write Fail";
+		 
+		if(result>0) {
+			msg = "Write Success";
 		}
+		mv.setViewName("common/result");
+		mv.addObject("msg", msg);
+		mv.addObject("path", "./qnaList");
 		
 		return mv;
 	}

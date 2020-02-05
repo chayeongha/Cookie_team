@@ -21,7 +21,7 @@
   	
   	<insert id="qnaWrite" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
   		insert into qna
-  			values(#{num}, #{writer}, #{contents}, now(), 0, 0, 0, #{secret})
+  			values(0, #{writer}, #{contents}, now(), 0, 0, 0, #{secret})
   	</insert>
   	
   	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
