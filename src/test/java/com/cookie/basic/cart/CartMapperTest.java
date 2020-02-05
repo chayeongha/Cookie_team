@@ -63,9 +63,9 @@ class CartMapperTest {
 		
 //		cartVO.setSize(cartOptionVOs.size());
 		
-		List<CartOptionVO> list = cartMapper.cartSelect(cartVO);
+//		List<CartOptionVO> list = cartMapper.cartSelect(cartVO);
 		
-		System.out.println(list.size());
+//		System.out.println(list.size());
 	}
 	 
 	@Test
