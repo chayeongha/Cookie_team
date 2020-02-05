@@ -14,6 +14,9 @@
 		insert into cartOption values(0,#{optNum},#{optCount},#{cartNum})
 	</insert>
 	
+	<insert id="cartOptNo" parameterType="CartVO">
+		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{mmNum})
+	</insert>
 	
 
 	<resultMap type="CartVO" id="cartResult">

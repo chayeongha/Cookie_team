@@ -24,4 +24,6 @@ public interface CartMapper {
 	//중복항목 추가
 	public int cartAdd(CartVO cartVO) throws Exception;
 	
+	//옵션없는 카트
+	public int cartOptNo(CartVO cartVO) throws Exception;
 }

@@ -37,34 +37,51 @@ public class CartController {
 	public int cartInsert(String mmNum, String mmCount,String[] optNum, String[] optCount, HttpSession session) throws Exception {
 		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String lot ="";
 		String nickname = memberVO.getNickname();
 		CartVO cartVO = new CartVO();
 		cartVO.setNickname(nickname);
 		cartVO.setMmNum(Integer.parseInt(mmNum));
 		cartVO.setMmCount(Integer.parseInt(mmCount));
-		List<CartOptionVO> cartOptionVOs = new ArrayList<>();
-		String lot ="";
-		for(int i=0; i<optNum.length;i++) {
-			CartOptionVO cartOptionVO = new CartOptionVO();
-			cartOptionVO.setCartNum(cartVO.getCartNum());
-			cartOptionVO.setOptNum(Integer.parseInt(optNum[i]));
-			cartOptionVO.setOptCount(Integer.parseInt(optCount[i]));
-			
-			cartOptionVOs.add(cartOptionVO);
-			lot = lot + optNum[i]+optCount[i];
+		if(optNum==null) {
+			lot = mmNum;
+			cartVO.setLot(lot);
+			if(cartService.cartOne(cartVO)==null) {
+				cartService.cartOptNo(cartVO);
+			}else {
+				cartVO = cartService.cartOne(cartVO);
+				int count = cartVO.getMmCount();
+				System.out.println(cartVO.getLot());
+				cartVO.setMmCount(count+Integer.parseInt(mmCount));
+				cartService.cartAdd(cartVO);
+			}
 		}
 		
-		cartVO.setLot(lot);
+		
 		int result= 0;
-		if(cartService.cartOne(cartVO)==null) {
-			result = cartService.cartInsert(cartVO);
-			cartVO = cartService.cartOne(cartVO);
-			result = cartService.cartInsert2(cartOptionVOs);
-		}else {
-			cartVO = cartService.cartOne(cartVO);
-			int count = cartVO.getMmCount();
-			cartVO.setMmCount(count+Integer.parseInt(mmCount));
-			cartService.cartAdd(cartVO);
+		List<CartOptionVO> cartOptionVOs = new ArrayList<>();
+		if(optNum!=null) {
+			for(int i=0; i<optNum.length;i++) {
+				CartOptionVO cartOptionVO = new CartOptionVO();
+				cartOptionVO.setCartNum(cartVO.getCartNum());
+				cartOptionVO.setOptNum(Integer.parseInt(optNum[i]));
+				cartOptionVO.setOptCount(Integer.parseInt(optCount[i]));
+				
+				cartOptionVOs.add(cartOptionVO);
+				lot = lot + optNum[i]+optCount[i];
+			}
+			cartVO.setLot(lot);
+			
+			if(cartService.cartOne(cartVO)==null) {
+				result = cartService.cartInsert(cartVO);
+				cartVO = cartService.cartOne(cartVO);
+				result = cartService.cartInsert2(cartOptionVOs);
+			}else {
+				cartVO = cartService.cartOne(cartVO);
+				int count = cartVO.getMmCount();
+				cartVO.setMmCount(count+Integer.parseInt(mmCount));
+				cartService.cartAdd(cartVO);
+			}
 		}
 		
 		return result;

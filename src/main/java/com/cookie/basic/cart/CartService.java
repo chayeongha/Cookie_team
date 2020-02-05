@@ -39,5 +39,9 @@ public class CartService {
 		return cartMapper.cartAdd(cartVO);
 	}
 	
+	//옵션없는 카트
+	public int cartOptNo(CartVO cartVO) throws Exception{
+		return cartMapper.cartOptNo(cartVO);
+	}
 	
 }
