@@ -15,7 +15,7 @@
 	
 	<form action="storeNotice" method="post" name="form" id="form" enctype="multipart/form-data">
 	
-			<input type="text" id="ssNum" name="ssNum" value="${store.ssNum}">
+			<input type="hidden" id="ssNum" name="ssNum" value="${store.ssNum}">
 		<div class="NoticeContent">
 		<div class="NoticeH"><p>매장 공지사항</p></div>
 			<div class="NoticeW"><p>매장공지사항을 적어주세요</p></div>

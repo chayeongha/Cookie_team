@@ -141,24 +141,26 @@
 			});
 		});
 
+		var ssNum =$("#ssNum").val();
 
 		$("#Order").click(function(){
-			$.ajax({
-					url : "../store/storeOrder",
-					type : 'GET',
-
-					success : function(data) {
-						$(".storeNextSide").html(data);
-							alert(data);
+			
+		$.ajax({
+				url : "../orders/orderListSS",
+				type : 'GET',
+				data : {
+						"ssNum":ssNum
 					},
-					error : function() {
-						alert("실패");
-					}
+				success : function(data) {
+					$(".storeNextSide").html(data);
+					alert(data);
+				},
+				error : function() {
+					alert("실패");
+				}
 
-				});
 			});
-
-		
+		});
 	</script>
 
 

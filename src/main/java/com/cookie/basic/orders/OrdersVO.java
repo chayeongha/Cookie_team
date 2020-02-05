@@ -4,6 +4,7 @@ package com.cookie.basic.orders;
 
 import java.util.Date;
 
+
 import lombok.Data;
 
 @Data
@@ -17,5 +18,6 @@ public class OrdersVO {
 	private int ssNum;
 	private int takeOut;
 	private int ooStatus;
+	
 
 }

@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.menu.MenuVO;
+import com.cookie.basic.orders.OrdersService;
+import com.cookie.basic.orders.OrdersVO;
 
 @Controller
 @RequestMapping("/store/**")
@@ -30,6 +33,9 @@ public class StoreController {
 
 	@Autowired
 	private StoreService storeService;
+	
+	@Autowired
+	private OrdersService ordersService;
 
 	// 지점 등록 폼
 	@GetMapping("storeInsert")
@@ -185,9 +191,12 @@ public class StoreController {
 
 	// 점주 페이지
 	@GetMapping("storeMyPage")
-	public void storeMyPage(StoreVO storeVO, Model model) throws Exception {
-		model.addAttribute("store", storeVO);
+	public void storeMyPage(StoreVO storeVO,Model model) throws Exception {
+		model.addAttribute("store",storeVO);
 	}
+	
+	
+	
 
 	@PostMapping("storeMyPage")
 	public ModelAndView storeMyPage(StoreVO storeVO) throws Exception {
@@ -209,6 +218,7 @@ public class StoreController {
 		return mv;
 
 	}
+		
 
 	// 점주 업데이트 폼
 	@GetMapping("storeUpdate")
@@ -302,11 +312,7 @@ public class StoreController {
 		return mv;
 	}
 	
-	@GetMapping("storeOrder")
-	public void storeOrder()throws Exception{
-		
-	}
-	
+
 	
 	
 	
