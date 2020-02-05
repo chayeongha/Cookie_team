@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -197,11 +197,11 @@
 		});
 
 		//이름 정규식
-		var nameRule =/^[\u3131-\u318E\uAC00-\uD7A3]*$/; //아마 이렇게 써야되는 이유는 utf-8과의 인코딩문제라고함.
+		var nameRule =/^[가-힣a-zA-Z]+$/;
 
 		 $(".nameCheck").blur(function(){
 				 if($('#name').val() != "" && nameRule.test($('#name').val()) != true){
-					alert("한글로만 사용해주세요");
+					alert("한글이나 영어만 사용가능합니다");
 					$('#name').val("");
 					$('#name').focus();
 					return;

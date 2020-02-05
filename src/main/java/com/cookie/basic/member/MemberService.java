@@ -133,6 +133,12 @@ public class MemberService {
 			memberFilesVO2.setOname(files.getOriginalFilename());
 			
 			result =memberFilesMapper.memberFilesInsert(memberFilesVO2);
+		}else {
+			MemberFilesVO memberFilesVO3 = new MemberFilesVO();
+			memberFilesVO3.setMemNum(memberVO.getMemNum());
+			memberFilesVO3.setFname("mm.png");
+			memberFilesVO3.setOname("mm.png");
+			result =memberFilesMapper.memberFilesInsert(memberFilesVO3);
 		}
 		return result;
 	}
@@ -181,12 +187,13 @@ public class MemberService {
 		//이미지를 안넣고 회원가입을 했을때 
 		//나중에 이미지를 넣으면 fnum없어서 null 오류가 뜨기때문에 
 		//fnum이 없을 때 파일을 인서트하는 조건을 줌.
-		if(memberVO.getFnum() ==null) {
-			memberFilesVO.setMemNum(memberVO.getMemNum());
-			memberFilesVO.setFname(fileName);
-			memberFilesVO.setOname(files.getOriginalFilename());
-			
-			result=memberFilesMapper.memberFilesInsert(memberFilesVO);
+		if(files.getSize() == 0) {
+			System.out.println("a");
+//			memberFilesVO.setMemNum(memberVO.getMemNum());
+//			memberFilesVO.setFname(fileName);
+//			memberFilesVO.setOname(files.getOriginalFilename());
+//			
+//			result=memberFilesMapper.memberFilesInsert(memberFilesVO);
 		}else {
 		//fnum이 있을때 파일을 업데이트하는 조건을 줌.
 		memberFilesVO.setMemNum(memberVO.getMemNum());
@@ -208,4 +215,20 @@ public class MemberService {
 	public MemberVO idSearch(MemberVO memberVO)throws Exception{
 		return memberMapper.idSearch(memberVO);
 	}
+	
+	//아이디찾기: 문자인증완료후 아이디 나오는거 
+	public String findId(MemberVO memberVO)throws Exception{
+		return memberMapper.findId(memberVO);
+	}
+	
+	//패스워드찾기: 입력한 아이디와 이메일이 같은지
+	public MemberVO pwSearch(MemberVO memberVO)throws Exception{
+		return memberMapper.pwSearch(memberVO);
+	}	
+	
+	//패스워드찾기: 임시번호를  아이디와 이메일이 같은 회원의 비밀번호로 업데이트시켜준다.
+	public int pwUpdate(MemberVO memberVO)throws Exception{
+		return memberMapper.pwUpdate(memberVO);
+	}
+	
 }

@@ -54,7 +54,7 @@
 		});
 
 		//사용하기버튼활성화 조건 컨트롤러에서 result값을넣어줌으로써 0보다크면 보이게
-		if($("#result").val() > 0){
+		if($("#result").val() >0){
 			$("#useMemId").css('display','inline');
 		}
 
