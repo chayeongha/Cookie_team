@@ -53,6 +53,7 @@ public class NoticeController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
+		
 		mv.addObject("result", fileName);
 		//System.out.println("fileName:"+fileName);
 		

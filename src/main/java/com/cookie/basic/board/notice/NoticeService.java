@@ -27,16 +27,16 @@ public class NoticeService {
 	private FileSaver fileSaver;
 	///////////////////////////////////////////////////
 	//썸머파일삭제
-	public boolean summerFileDelete(String files) throws Exception {
+	public boolean summerFileDelete(String files2) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		
-		return fileSaver.fileDelete(file, files);
+		return fileSaver.fileDelete(file, files2);
 	}
 	//썸머파일추가
-	public String summerFile(MultipartFile files) throws Exception {
+	public String summerFile(MultipartFile files2) throws Exception {
 		File file = filePathGenerator.getUseClassPathResource("summernote");
 		System.out.println("summer note");
-		return fileSaver.save(file, files);
+		return fileSaver.save(file, files2);
 	}
 	
 	//파일 다운
