@@ -481,6 +481,7 @@ public class MemberController {
 		
 		memberVO2=memberService.pwSearch(memberVO);
 		String msg="입력하신정보가 회원정보와 일치하지않습니다.";
+		
 		if(memberVO2 != null) {
 			msg="입력하신 정보가 회원정보와 일치합니다.";
 		}
