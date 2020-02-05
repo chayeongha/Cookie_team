@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="../template/boot.jsp"></c:import>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -29,7 +30,37 @@
 					</c:forEach>
 				</tr>
 
+				<input type="text" id="hoonum" value="${vo.ordersVO.ooNum}">
+				<input type="text" id="hssnum" value="${vo.ordersVO.ssNum}">
 </c:forEach>
+				<input type="button" value="제조 완료" style="cursor: pointer;" id="upbtn" class="ordersUpdate"> 
+
+
+<script type="text/javascript">
+		//Update 제조완료
+
+		var upbtn = document.getElementById('upbtn');
+		var ooNum = $("#hoonum").val();
+		var ssNum = $("#hssnum").val();
+		upbtn.onclick = function() {
+			console.log(ooNum);
+			console.log(ssNum);
+			
+			$.ajax({
+				type : "POST",
+				url : "./ordersUpdate",
+				data : {
+					ooNum : ooNum,
+					ssNum : ssNum
+				},
+				success : function(data) {
+					alert("제조 완료");
+					window.location.href = "./orderListSS?ssNum=" + ssNum;
+				}
+			});
+
+		}
+	</script>
 
 </body>
 </html>

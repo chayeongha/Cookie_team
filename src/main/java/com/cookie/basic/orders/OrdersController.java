@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,41 @@ public class OrdersController {
 	@Autowired
 	private OrdersService ordersService;
 	
+	//orders
+	//ordersUpdate
+	@PostMapping("ordersUpdate")
+	public ModelAndView ordersUpdate(String ooNum, String ssNum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(ooNum);
+		System.out.println(ssNum);
+		OrdersVO ordersVO = new OrdersVO();
+		ordersVO.setOoNum(Integer.parseInt(ooNum));
+		ordersVO.setSsNum(Integer.parseInt(ssNum));
+		
+		int result = ordersService.ordersUpdate(ordersVO);
+		String message="Update fail";
+		String path="./orderListSS?ssNum="+ordersVO.getSsNum();
+		if(result>0) {
+			message="Update Success";
+		}
+		mv.setViewName("common/result2");
+		mv.addObject("msg", message);
+		mv.addObject("path", path);
+		return mv;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//orderList
 	//orderList List 고객이 확인할떄
 	@GetMapping("orderListList")
 	public ModelAndView orderListList(OrdersVO ordersVO) throws Exception{
@@ -42,5 +78,8 @@ public class OrdersController {
 			
 			return mv;
 		}
+		
+	
+		
 	
 }
