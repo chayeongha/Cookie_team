@@ -88,8 +88,8 @@ public class QnaController {
 	
 	//글 작성 폼
 	@GetMapping("qnaWrite")
-	public String qnaWrite(QnaVO qnaVO) throws Exception {
-		return "board/boardWrite";
+	public void qnaWrite(QnaVO qnaVO) throws Exception {
+		
 	}
 	
 	//글 등록

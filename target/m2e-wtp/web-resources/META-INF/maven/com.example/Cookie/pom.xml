@@ -21,12 +21,19 @@
 	</properties>
 
 	<dependencies>
-	<!-- javaSDK -->
-	<dependency>
-    <groupId>net.nurigo</groupId>
-    <artifactId>javaSDK</artifactId>
-    <version>2.2</version>
-</dependency>
+		<!-- simplecaptcha -->
+		<dependency>
+			<groupId>nl.captcha</groupId>
+			<artifactId>simplecaptcha</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+	
+		<!-- javaSDK -->
+		<dependency>
+		    <groupId>net.nurigo</groupId>
+		    <artifactId>javaSDK</artifactId>
+		    <version>2.2</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>
