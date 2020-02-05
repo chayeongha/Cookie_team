@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.cart.CartService;
+import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.menu.MenuService;
 import com.cookie.basic.menu.MenuVO;
 
 @Controller
@@ -30,6 +34,10 @@ public class StoreController {
 
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	private MenuService menuService;
+	@Autowired
+	private CartService CartService;
 
 	// 지점 등록 폼
 	@GetMapping("storeInsert")
@@ -82,11 +90,9 @@ public class StoreController {
 		return mv;
 	}
 
-	
-	
-	//매장 지우기
+	// 매장 지우기
 	@GetMapping("deleteStore")
-	public ModelAndView deleteStore(StoreVO storeVO,StoreCloseVO storeCloseVO)throws Exception{
+	public ModelAndView deleteStore(StoreVO storeVO, StoreCloseVO storeCloseVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = storeService.storeUpdateBye(storeCloseVO);
 		result = storeService.deleteStore(storeVO);
@@ -100,10 +106,9 @@ public class StoreController {
 		mv.addObject("path", path);
 		mv.setViewName("common/result");
 		return mv;
-		
+
 	}
-	
-	
+
 	// 매장 리스트
 	@GetMapping("myInfo")
 	public ModelAndView searchInfo(StoreVO storeVO, HttpSession session) throws Exception {
@@ -131,8 +136,6 @@ public class StoreController {
 		return mv;
 	}
 
-	
-	
 	@GetMapping("storeAdmin")
 	public ModelAndView storeAdmin(StoreCloseVO storeCloseVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -142,11 +145,9 @@ public class StoreController {
 		return mv;
 	}
 
-	
-	
 	// 매장상세정보//Pos 작동 (ON)
 	@GetMapping("myinfoS")
-	public ModelAndView myInfoS(StoreVO storeVO, HttpSession session,StoreCloseVO storeCloseVO) throws Exception {
+	public ModelAndView myInfoS(StoreVO storeVO, HttpSession session, StoreCloseVO storeCloseVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		storeVO = storeService.info(storeVO);
@@ -163,9 +164,8 @@ public class StoreController {
 		ModelAndView mv = new ModelAndView();
 		storeVO.getSsNum();
 		int result = storeService.onUpdate(storeVO);
-		
+
 		System.out.println(storeVO.getSsNum());
-		
 
 		String msg = "업데이트 실패";
 		String path = "../";
@@ -294,22 +294,21 @@ public class StoreController {
 	}
 
 	@GetMapping("storeList3")
-	public ModelAndView storeList3(String v, String v2,String s) throws Exception{
+	public ModelAndView storeList3(String v, String v2, String s) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		StoreVO storeVO = new StoreVO();
 		List<StoreVO> ar = new ArrayList<StoreVO>();
 
-		if(v==null) {
-			v="";
+		if (v == null) {
+			v = "";
 		}
-		if(v2==null) {
-			v2="";
+		if (v2 == null) {
+			v2 = "";
 		}
-		if(s==null) {
-			s="";
+		if (s == null) {
+			s = "";
 		}
 
-		
 		storeVO.setMemId(v);
 
 		storeVO.setsTel(s);
@@ -323,37 +322,48 @@ public class StoreController {
 			ar = storeService.storeList(storeVO);
 		}
 
-		
-		mv.addObject("v",v);
-		mv.addObject("v2",v2);
-		mv.addObject("ar",ar);
+		mv.addObject("v", v);
+		mv.addObject("v2", v2);
+		mv.addObject("ar", ar);
 
 		return mv;
 	}
-	
-	
+
 	@GetMapping("storeGoods")
-	public ModelAndView storeGoods(StoreVO storeVO) throws Exception{
+	public ModelAndView storeGoods(StoreVO storeVO, String mmNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MenuVO menuVO = new MenuVO();
 
 		storeVO = storeService.storeGoods(storeVO);
-		List<StoreVO> ar = storeService.storeGoods2(storeVO);
+		menuVO.setSsNum(storeVO.getSsNum());
+		List<MenuVO> menuVOs = menuService.menuList(menuVO);
 		
-				
-		mv.addObject("storeVO",storeVO);
-		mv.addObject("list",ar);
+		
+		mv.addObject("storeVO", storeVO);
+		mv.addObject("list", menuVOs);
+
 		return mv;
 
 	}
-	
 
-	@GetMapping("storeCart")
-	public ModelAndView storeCart(String menu, String moneyTotal, String[] optCountt, String [] optList) throws Exception{
+	@ResponseBody
+	@GetMapping("storeResult")
+	public ModelAndView storeResult(String mmNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+
+		MenuVO menuVO = new MenuVO();
+		menuVO.setMmNum(Integer.parseInt(mmNum));
+
+		menuVO = menuService.menuSelect(menuVO);
+		mv.addObject("Detail", menuVO);
+
 		return mv;
+
 	}
 	
-	
+	@GetMapping("storeDetail")
+	public void storeDetail(CartVO cartVO)throws Exception{
+		
+	}
 
 }

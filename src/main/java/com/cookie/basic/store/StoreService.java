@@ -240,8 +240,8 @@ public class StoreService {
 		return storeMapper.storeGoods(storeVO);
 	}
 	
-	public List<StoreVO> storeGoods2(StoreVO storeVO) throws Exception{
-		return storeMapper.storeGoods2(storeVO);
+	public List<StoreVO> storeDetail(StoreVO storeVO) throws Exception{
+		return storeMapper.storeDetail(storeVO);
 	}
 	
 	public List<StoreVO> storeMap() throws Exception{

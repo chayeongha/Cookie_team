@@ -2,13 +2,48 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
-  <mapper namespace="com.cookie.basic.cart.CartMapper">
- 
 
-  
-  
-  
-  
-  </mapper>
+
+<mapper namespace="com.cookie.basic.cart.CartMapper">
+
+	<insert id="cartInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum">
+		insert into cart
+		values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot})
+	</insert>
+	<insert id="cartOptionInsert" parameterType="CartOptionVO">
+		insert into cartOption values(0,#{optNum},#{optCount},#{cartNum})
+	</insert>
+	
+	<insert id="cartOptNo" parameterType="CartVO">
+		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{mmNum})
+	</insert>
+	
+
+	<resultMap type="CartVO" id="cartResult">
+		<id column="cartNum" property="cartNum"/>
+		<result column="mmNum" property="mmNum"/>
+		<result column="mmCount" property="mmCount"/>
+		<result column="cartStatus" property="cartStatus"/>
+		<result column="nickname" property="nickname"/>
+		<result column="lot" property="lot"/>
+		<collection property="CartOptionVO" javaType="List" ofType="CartOptionVO">
+			<id column="coNum" property="coNum"/>
+			<result column="optNum" property="optNum"/>
+			<result column="optCount" property="optCount"/>
+		</collection>
+	</resultMap>
+	
+	<select id="cartSelect" resultType="CartVO" parameterType="CartVO">
+		select * from cartOption where cartNum in (select cartNum from cart where nickname=#{nickname})
+	</select>
+	
+	<select id="cartOne" parameterType="CartVO" resultType="CartVO">
+		select * from cart where lot=#{lot} and nickname=#{nickname} 
+	</select>
+	
+	<update id="cartAdd" parameterType="CartVO">
+		update cart set mmCount=#{mmCount} where cartNum=#{cartNum};
+	</update>
+	
+	
+</mapper>
