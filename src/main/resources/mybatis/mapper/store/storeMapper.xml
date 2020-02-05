@@ -159,14 +159,10 @@
 
 	<select id="storeGoods" parameterType="StoreVO"	resultMap="storeGoodsResult">
 		select * from store S
-		join menu M
-   		using(ssNum)
-    	join storeFiles F
-    	using(ssNum)
-        left outer join mopt MP
-        using(mmNum)
-        left outer join menuFiles MF
-        using(mmNum)
+      join menu M
+         using(ssNum)
+       join storeFiles F
+       using(ssNum)     
         where ssNum=#{ssNum}
      </select>
      
