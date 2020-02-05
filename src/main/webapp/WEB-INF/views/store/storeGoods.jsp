@@ -169,9 +169,9 @@
 			<div class="confirmLayer">
 				<div class="confirm_wrap">
 					<div class="header">
-						<h3>옵션선택</h3>
+						<h3>선택 메뉴</h3>
 						<div class="close">
-							<img alt="닫기" src="../images/header/mm.png">
+							X 
 						</div>
 					</div>
 					<div class="content">

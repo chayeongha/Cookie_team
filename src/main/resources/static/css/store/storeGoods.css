@@ -69,7 +69,6 @@
 }
 
 h3 {
-	font-weight: 600;
 	font-family: CookieRun-Regular;
 	color: #ff712d;
 }
@@ -239,6 +238,7 @@ h3 {
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+	
 }
 /* Modal Content */
 .confirm_wrap {
@@ -247,7 +247,7 @@ h3 {
 	margin: auto;
 	padding: 0;
 	border: 1px solid #888;
-	border-radius: 3px;
+	border-radius: 5px;
 	width: 600px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
@@ -256,6 +256,7 @@ h3 {
 	animation-name: animatetop;
 	animation-duration: 0.4s;
 	overflow: hidden;
+	bottom:120px;
 }
 /* Add Animation */
 @
@@ -284,16 +285,18 @@ to {
 }
 .confirm_wrap .header {
 	padding: 10px;
-	background-color: rgb(218, 40, 28);
+	background-color: #ff712d;
 	border-bottom: 1px solid #e5e5e5;
 }
 
 .confirm_wrap .header h3 {
-	font-size: 14px;
-	margin: 0;
+	font-size: 28px;
+	margin: 0 auto;
 	color: #fff;
 	line-height: 1.5;
 	display: inline-block;
+	text-align: center;
+	margin-left:230px;
 }
 /* The Close Button */
 .confirm_wrap .header .close {
@@ -376,3 +379,32 @@ to {
 	margin-left: 150px;
 }
 /***************************************/
+
+.close{
+	font-size:30px;
+	font-family: CookieRun-Regular;
+	color:white;
+	opacity: 100;
+	line-height: 50px;
+}
+
+.DName{
+	font-size:30px;
+	color:#ff712d;
+	padding: 10px;
+}
+
+.mcount, .ocount{
+	border:none;
+	text-align: center;
+	width: 200px;
+}
+
+.MenuStyle{
+	margin-bottom: 20px;
+}
+
+.quantity{
+	font-size:23px;
+	padding:10px;
+}

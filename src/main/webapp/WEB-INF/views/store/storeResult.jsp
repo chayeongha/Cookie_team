@@ -16,35 +16,35 @@
 	
 	
 	<div class="MenuStyle">
-		<img alt="" src="${pageContext.request.contextPath}/menu/${Detail.menuFiles.mfName}" style="width: 250px; height: 250px;" class="MeImg">
+		<img alt="" src="${pageContext.request.contextPath}/menu/${Detail.menuFiles.mfName}" style="width: 250px; height: 200px;" class="MeImg">
 
 		<!-- 메뉴 -->
 		<div class="DName">
-			이름 : ${Detail.mmName}
-			<div class="menuPrice">${Detail.mmPrice}원</div>
+			${Detail.mmName}
+			<div class="menuPrice" style="display: none">${Detail.mmPrice}원</div>
 		</div>
 		<div class="quantity">
-			메뉴 갯수: <a href="javascript:void(0)" class="aMinus">◁</a>
+			수량 <a href="javascript:void(0)" class="aMinus">-</a>
 			<input type="text" class="mcount" value="1" readonly="readonly" name="mmCount">
-			<a href="javascript:void(0)" class="aPlus">▷</a>
+			<a href="javascript:void(0)" class="aPlus">+</a>
 		</div>
-		<div class="totalMenu">${Detail.mmPrice}</div>
+		<div class="totalMenu" style="display: none;">${Detail.mmPrice}</div>
 
 	</div>
 	<!--옵션  -->
-
+	
 	<c:forEach items="${Detail.menuOptions}" var="de">
-		<div class="ODName">옵션 이름 : ${de.optName} ${de.optPrice}원</div>
+		<div class="ODName">${de.optName} ${de.optPrice}원</div>
 		<input type="hidden" value="${de.optNum}" class="optNum">
 		<div class="quantity">
-			옵션 횟수: <a href="javascript:void(0)" class="optMinus" id="${de.optPrice}">◁</a>
+			<a href="javascript:void(0)" class="optMinus" id="${de.optPrice}">-</a>
 			<input type="text" class="ocount" value="0" readonly="readonly" name="optCount">
-			<a href="javascript:void(0)" class="optPlus" id="${de.optPrice}">▷</a>
+			<a href="javascript:void(0)" class="optPlus" id="${de.optPrice}">+</a>
 			<input type="hidden" class="optPrice" value="0">
 		</div>
 		<%-- <div class="ODPrice"> <input type="text" value="${de.optPrice}" id="${de.optNum}"></div> --%>
 	</c:forEach>
-
+	
 	<div class="totalOpt"></div>
 	<div class="totalPrice">${Detail.mmPrice}</div>
 
@@ -89,14 +89,16 @@
 			//alert(num);
 			var minusNum = num - 1;
 			var price = $(this).attr("id");
-			//alert(price);
-
+			
+			
 			if (minusNum <= 0) {
 				$(this).parent().find('input.ocount').val(0);
+				//$(this).parent().parent().find('input.optNum').removeAttr("name");
 				price = 0;
 			} else {
 				$(this).parent().find('input.ocount').val(minusNum);
-				$(this).parent().find('input.optNum').attr("name", "optNum");
+				$(this).parent().parent().find('input.optNum').attr("name", "optNum");
+				
 				price = price * minusNum;
 			}
 
@@ -116,10 +118,12 @@
 			$(this).parent().find('input.ocount').val(num);
 
 			var price = price * num;
-
+			
 			$(this).parent().find('input.optPrice').val(price);
-			$(this).parent().find('input.optNum').attr("name", "optNum");
-
+			if(num>0){
+				$(this).parent().parent().find('input.optNum').attr("name", "optNum");
+				
+			}
 			totalPrice();
 		});
 
@@ -147,20 +151,37 @@
 	//////장바구니 버튼 클릭했을 때/////////////////
 		$('.inputCart').click(function() {
 			var mmNum = ${Detail.mmNum};
-			alert(mmNum);
 			var mmCount = $('input.mcount').val();
-			alert(mmCount);
 
-			var optNum_i = $('input[name="optNum"]').length;
-			var optNum = new Array(optNum_i);
-
-
+			var optNum = new Array();
+			var optCount = new Array();
+			
 			$('input[name="optNum"]').each(function(index, item){
 				optNum[index] = $(this).val(); 
                
-               });
+             });
+
+			$('input[name="optCount"]').each(function(index, item){
+				optCount[index] = $(this).val(); 
+               
+             });
 			
-			console.log($('input[name="optNum"]').val())
+
+	
+			
+			for(var i=0;i<optNum.length;i++){
+				
+				if(optCount[i]==0){
+					if(i==0){
+						optNum.shift();
+						optCount.shift();
+
+						}else{
+					optNum.splice(i,i);
+					optCount.splice(i,i);
+						}
+				}
+			}
 			
 // 			$.ajax({
 // 				url: "cartSelect",
@@ -203,6 +224,7 @@
 // 						}
 // 					//동일 상품 존재 X - Insert
 // 					}else if(data.result == 2){
+					jQuery.ajaxSettings.traditional = true;
 						$.ajax({
 							url: "../cart/cartInsert",
 							type: "POST",
@@ -210,10 +232,11 @@
 							data: {
 								mmNum: mmNum,
 								mmCount: mmCount,
-								optNum: optNum
+								optNum: optNum,
+								optCount:optCount
 							},
 							success: function() {
-								alert("성공");	
+								alert("장바구니에 추가되었습니다.");	
 							},
 							error: function() {
 								alert("에러");

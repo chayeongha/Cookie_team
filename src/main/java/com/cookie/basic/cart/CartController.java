@@ -1,5 +1,8 @@
 package com.cookie.basic.cart;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +34,37 @@ public class CartController {
 	// 카트에 집어넣기
 	@ResponseBody
 	@PostMapping("cartInsert")
-	public int cartInsert(CartVO cartVO, String[] optNum/*CartOptionVO[] cartOptionVOs*/, HttpSession session) throws Exception {
-		System.out.println("들어와자식아");
+	public int cartInsert(String mmNum, String mmCount,String[] optNum, String[] optCount, HttpSession session) throws Exception {
+		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		//String nickname = memberVO.getNickname();
-		String nickname = "a1";
-		int result = 0;
+		String nickname = memberVO.getNickname();
+		CartVO cartVO = new CartVO();
+		cartVO.setNickname(nickname);
+		cartVO.setMmNum(Integer.parseInt(mmNum));
+		cartVO.setMmCount(Integer.parseInt(mmCount));
+		List<CartOptionVO> cartOptionVOs = new ArrayList<>();
+		String lot ="";
+		for(int i=0; i<optNum.length;i++) {
+			CartOptionVO cartOptionVO = new CartOptionVO();
+			cartOptionVO.setCartNum(cartVO.getCartNum());
+			cartOptionVO.setOptNum(Integer.parseInt(optNum[i]));
+			cartOptionVO.setOptCount(Integer.parseInt(optCount[i]));
+			
+			cartOptionVOs.add(cartOptionVO);
+			lot = lot + optNum[i]+optCount[i];
+		}
 		
-		//System.out.println(cartOptionVOs[0].getOptNum());
-		System.out.println(optNum[0]);
-		
-		if (nickname != null && nickname != "" && cartVO != null) {
-			cartVO.setNickname(nickname);
-			//result = cartService.cartInsert(cartVO, cartOptionVOs);
+		cartVO.setLot(lot);
+		int result= 0;
+		if(cartService.cartOne(cartVO)==null) {
+			result = cartService.cartInsert(cartVO);
+			cartVO = cartService.cartOne(cartVO);
+			result = cartService.cartInsert2(cartOptionVOs);
+		}else {
+			cartVO = cartService.cartOne(cartVO);
+			int count = cartVO.getMmCount();
+			cartVO.setMmCount(count+Integer.parseInt(mmCount));
+			cartService.cartAdd(cartVO);
 		}
 		
 		return result;

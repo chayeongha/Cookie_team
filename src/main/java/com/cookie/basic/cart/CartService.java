@@ -17,20 +17,27 @@ public class CartService {
 	
 	//카트 넣기
 	@Transactional
-	public int cartInsert(CartVO cartVO, CartOptionVO[] cartOptionVOs)throws Exception{
-		
-		int result = cartMapper.cartInsert(cartVO);
-		
-		for (CartOptionVO cartOptionVO : cartOptionVOs) {
-			
+	public int cartInsert(CartVO cartVO)throws Exception{		
+		return cartMapper.cartInsert(cartVO);
+	}
+	@Transactional
+	public int cartInsert2(List<CartOptionVO> cartOptionVOs) throws Exception{
+		int result = 0;
+		for (CartOptionVO cartOptionVO : cartOptionVOs) {		
 			result = cartMapper.cartOptionInsert(cartOptionVO);
 		}		
-		
-		
 		return result;
 	}
 	
+	//카트 중복검사
+	public CartVO cartOne(CartVO cartVO) throws Exception{
+		return cartMapper.cartOne(cartVO);
+	}
 
+	//중복항목 추가
+	public int cartAdd(CartVO cartVO) throws Exception{
+		return cartMapper.cartAdd(cartVO);
+	}
 	
 	
 }

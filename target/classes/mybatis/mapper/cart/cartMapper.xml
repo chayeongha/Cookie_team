@@ -30,10 +30,17 @@
 		</collection>
 	</resultMap>
 	
-	<select id="cartSelect" resultType="CartOptionVO" parameterType="CartVO">
+	<select id="cartSelect" resultType="CartVO" parameterType="CartVO">
 		select * from cartOption where cartNum in (select cartNum from cart where nickname=#{nickname})
 	</select>
 	
+	<select id="cartOne" parameterType="CartVO" resultType="CartVO">
+		select * from cart where lot=#{lot} and nickname=#{nickname} 
+	</select>
+	
+	<update id="cartAdd" parameterType="CartVO">
+		update cart set mmCount=#{mmCount} where cartNum=#{cartNum};
+	</update>
 	
 	
 </mapper>
