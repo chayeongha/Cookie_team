@@ -16,17 +16,18 @@
 	
 	
 	<div class="MenuStyle">
-		<img alt="" src="${pageContext.request.contextPath}/menu/${Detail.menuFiles.mfName}" style="width: 250px; height: 200px;" class="MeImg">
+		<img alt="" src="${pageContext.request.contextPath}/menu/${Detail.menuFiles.mfName}" onerror="this.src='../images/header/mm.png'" style="width: 300px; height: 300px;" class="MeImg">
 
 		<!-- 메뉴 -->
 		<div class="DName">
 			${Detail.mmName}
 			<div class="menuPrice" style="display: none">${Detail.mmPrice}원</div>
 		</div>
+		수량
 		<div class="quantity">
-			수량 <a href="javascript:void(0)" class="aMinus">-</a>
+			 <button class="aMinus">-</button>
 			<input type="text" class="mcount" value="1" readonly="readonly" name="mmCount">
-			<a href="javascript:void(0)" class="aPlus">+</a>
+			<button class="aPlus">+</button>
 		</div>
 		<div class="totalMenu" style="display: none;">${Detail.mmPrice}</div>
 
@@ -34,23 +35,24 @@
 	<!--옵션  -->
 	
 	<c:forEach items="${Detail.menuOptions}" var="de">
-		<div class="ODName">${de.optName} ${de.optPrice}원</div>
+		<div class="ODName">extra. ${de.optName} ${de.optPrice}원</div>
 		<input type="hidden" value="${de.optNum}" class="optNum">
 		<div class="quantity">
-			<a href="javascript:void(0)" class="optMinus" id="${de.optPrice}">-</a>
+			<button class="optMinus" id="${de.optPrice}">-</button>
 			<input type="text" class="ocount" value="0" readonly="readonly" name="optCount">
-			<a href="javascript:void(0)" class="optPlus" id="${de.optPrice}">+</a>
+			<button class="optPlus" id="${de.optPrice}">+</button>
 			<input type="hidden" class="optPrice" value="0">
 		</div>
 		<%-- <div class="ODPrice"> <input type="text" value="${de.optPrice}" id="${de.optNum}"></div> --%>
 	</c:forEach>
 	
 	<div class="totalOpt"></div>
-	<div class="totalPrice">${Detail.mmPrice}</div>
+	
+	<div class="fBox">
+		총<div class="totalPrice">${Detail.mmPrice}</div>　원
+		<button class="inputCart">담기</button>
 
-
-	<button class="inputCart">담기</button>
-
+	</div>
 	<script type="text/javascript">
 		//메뉴 수량 감소
 		$('.aMinus').click(function() {

@@ -94,7 +94,7 @@
 			<div class="box3">
 			
 				<!--커피류-->
-				<div class="box3_inner"># Coffee</div>
+				<div class="box3_inner">　# Coffee</div>
 				
 						<c:forEach items="${list}" var="vo">
 						
@@ -124,7 +124,7 @@
 						
 						
 				<!--음료-->
-				<div class="box3_inner"># Beverage</div>
+				<div class="box3_inner">　# Beverage</div>
 				<!--Hot-->
 					<c:forEach items="${list}" var="vo" varStatus="i">
 						<c:if test="${vo.cmNum eq 2 and vo.mmTemp eq 1}">
@@ -146,7 +146,7 @@
 						</c:forEach><!--음료아이스 for문 끝 -->
 						
 				
-				<div class="box3_inner"># Dessert</div>
+				<div class="box3_inner">　# Dessert</div>
 				<c:forEach items="${list}" var="vo">
 					<c:if test="${vo.cmNum eq 3}">
 							<div class="mselect">
@@ -177,14 +177,7 @@
 					<div class="content">
 						
 					</div>
-					<div class="footer">
-						<div class="priceBOX">
-						</div>
-						<div class="cartBtn">
-						<a href="storeDetail" class="btn_cartList">장바구니 이동</a>
-						<button class="btn_remove">쇼핑 계속하기</button>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 	

@@ -303,7 +303,7 @@ to {
 	float: right;
 	cursor: pointer;
 	margin-top: -4px;
-	margin-right: -3px;
+
 }
 
 .confirm_wrap .header .close img {
@@ -386,12 +386,13 @@ to {
 	color:white;
 	opacity: 100;
 	line-height: 50px;
+	margin-right: 10px;
 }
 
 .DName{
 	font-size:30px;
 	color:#ff712d;
-	padding: 10px;
+	padding: 30px;
 }
 
 .mcount, .ocount{
@@ -407,4 +408,38 @@ to {
 .quantity{
 	font-size:23px;
 	padding:10px;
+}
+
+.quantity > button{
+	color:#f23600;
+	font-size:35px;
+	border:none;
+	background: transparent;
+}
+
+.totalPrice{
+	width:100px;
+	display: inline-block;
+	text-align: right;
+}
+
+.fBox{
+	font-size:25px;
+}
+
+.inputCart{
+	display: block;
+	margin: 0 auto;
+	margin-top:20px;
+	font-size:28px;
+	border:none;
+	background:#ff712d;
+	color:white;
+	width:300px;
+	height: 60px;
+	border-radius: 3px;
+}
+.inputCart:hover {
+	background:#ff5604;
+	
 }
