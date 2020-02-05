@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+.container > h1{
+	font-family: CookieRun-Black; 
+	color:#270c0c; 
+	padding:35px;
+	text-align: center;
+	opacity: 0.95;
+	border: 2px solid #ffd6bf;
+	background: white;
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+.body_main{
+	background-image:url("../../../images/main/main1.jpg");
+	
+}
+
+.frmBox{
+	width: 500px;
+	margin: 0 auto;
+
+}
+
+.form-control{
+	margin:0 auto;
+	height: 40px;
+	margin-top: 10px;
+	width: 50%;
+}
+#memberVO{
+	text-align: center;
+}
+.btn_join{
+	float: right;
+	background: white;
+	border: none;
+	font-family: CookieRun-Black; 
+	color:#270c0c; 
+	background:transparent;
+	font-size:30px;
+	margin-bottom: 20px;
+	height: 50px;
+	margin-top:20px;
+	
+}
+
+.btn_join:hover {
+	font-size:32px;
+
+}
+
+.form-horizontal{
+	opacity: 0.95;
+	border: 2px solid #ffd6bf;
+	background: white;
+	margin-bottom: 30px;
+	border-top: none;
+}
+
+label{
+	font-family: CookieRun-Black;
+	font-size: 28px;
+	color:#270c0c;
+	display: inline-block;
+	
+}
+
+.form-control{
+	margin:0 auto;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom:10px;
+	width: 500px;
+}
+#blah{
+	margin:0 auto;
+	margin-bottom:20px;
+	margin-top: 20px;
+
+}
