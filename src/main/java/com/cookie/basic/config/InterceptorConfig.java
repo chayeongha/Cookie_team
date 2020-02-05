@@ -45,6 +45,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/member/sendSms")//뺴야함.
 		.excludePathPatterns("/member/smsCheck")//뺴야함.
 		.excludePathPatterns("/member/memberLogout")//뺴야함.
+		.excludePathPatterns("/member/pwSearch")//뺴야함.
+		.excludePathPatterns("/member/sendEmail")//뺴야함.
 		.excludePathPatterns("/member/phoneCheck");//뺴야함.
 		//멤버페이지로 들어왔을떄 패턴등록.
 	}

@@ -220,4 +220,15 @@ public class MemberService {
 	public String findId(MemberVO memberVO)throws Exception{
 		return memberMapper.findId(memberVO);
 	}
+	
+	//패스워드찾기: 입력한 아이디와 이메일이 같은지
+	public MemberVO pwSearch(MemberVO memberVO)throws Exception{
+		return memberMapper.pwSearch(memberVO);
+	}	
+	
+	//패스워드찾기: 임시번호를  아이디와 이메일이 같은 회원의 비밀번호로 업데이트시켜준다.
+	public int pwUpdate(MemberVO memberVO)throws Exception{
+		return memberMapper.pwUpdate(memberVO);
+	}
+	
 }

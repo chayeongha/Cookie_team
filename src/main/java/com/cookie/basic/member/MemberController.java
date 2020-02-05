@@ -4,7 +4,12 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.print.DocFlavor.STRING;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.validation.Valid;
@@ -24,8 +29,11 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +41,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -327,7 +336,7 @@ public class MemberController {
 		return mv;
 		}
 	
-	//idSearch jsp
+	//Searchidpw jsp
 	@GetMapping("searchIdPw")
 	public void searchIdPw()throws Exception{
 		
@@ -354,19 +363,19 @@ public class MemberController {
 	
 		String userId=memberService.findId(memberVO4);
 		
-		int result =0;
+		//int result =0;
 		String msg="입력하신정보가 회원정보와 일치하지않습니다.";
 		if(memberVO3 != null) {
 			msg="입력하신 정보가 회원정보와 일치합니다.";
-			result= 1;
+			//result= 1;
 		}
 		
 		//System.out.println(msg);//아주잘나옴~
 		//System.out.println(result);
 		//System.out.println(userId);
-		model.addAttribute("result", result);
-		model.addAttribute("msg", msg);
-		model.addAttribute("userId", userId);
+		//model.addAttribute("result", result);
+		//model.addAttribute("msg", msg);
+		//model.addAttribute("userId", userId);
 		
 		return userId;
 	}
@@ -393,7 +402,7 @@ public class MemberController {
 		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM), 
 
 		// 청기와랩에 등록한 Application Id 와 API key 를 입력합니다. 
-		new UsernamePasswordCredentials("ckdudgk123", "d7d1195443be11eabc5c0cc47a1fcfae")); 
+		new UsernamePasswordCredentials("ckdmsdk", "da7aa03e47ac11eaaf6a0cc47a1fcfae")); 
 
 		AuthCache authCache = new BasicAuthCache(); 
 		authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme()); 
@@ -406,7 +415,7 @@ public class MemberController {
 		try { HttpPost httpPost = new HttpPost(url); httpPost.setHeader("Content-type", "application/json; charset=utf-8");
 
 		 //문자에 대한 정보 
-		String json = "{\"sender\":\"01022923481\",\"receivers\":[\"" + receiver + "\"],\"content\":\"쿠키입니다."+"인증번호 6자리를 입력해주세요 [인증번호 :"+rand+"]\"}"; 
+		String json = "{\"sender\":\"01097883481\",\"receivers\":[\"" + receiver + "\"],\"content\":\"쿠키입니다."+"인증번호 6자리를 입력해주세요 [인증번호 :"+rand+"]\"}"; 
 
 		StringEntity se = new StringEntity(json, "UTF-8");
 		 httpPost.setEntity(se); 
@@ -437,20 +446,108 @@ public class MemberController {
 	//입력한번호가 저장된 코드가 맞는지 확인
 	@ResponseBody 
 	@RequestMapping("smsCheck") 
-	public String smsCheck(String code, HttpSession session) { 
+	public String smsCheck(String code, HttpSession session, Integer SetTime) { 
 		//세션에있는 보안문자를 불러옴.
 		String saveCode =session.getAttribute("rand").toString();
-		//System.out.println(saveCode);아주잘나옴~
 		
-		//세션에있는 보안문자와 내가입력한 보안문자가 같은지 확인
-		if(code.equals(saveCode)){
-			return "ok"; 
+		//유효시간을 파라미터로 받음.
+		//세션에있는 보안문자와 내가 입력한 보안문자가 같은지 확인
+		if(SetTime >0) {
+			if(code.equals(saveCode)){
+				return "ok"; 
+			}else {
+				return "no"; 
+			}
 		}else {
-			return "no"; 
+			//유효시간이 지나면 세션에있는 인증번호를 지우고 리턴을 no로보낸다.
+			session.removeAttribute("rand");
+			return "no";
 		}
-				
 	}	
+	//아이디찾기 끝
 	
+	//비밀번호찾기
+	@Autowired
+	private JavaMailSender mailSender;
 	
+	@ResponseBody
+	@PostMapping("pwSearch")
+	public String pwSearch(MemberVO memberVO,String memId, String email )throws Exception{
+		memberVO.setMemId(memId);
+		memberVO.setEmail(email);
+		
+		MemberVO memberVO2 = new MemberVO();
+		
+		memberVO2=memberService.pwSearch(memberVO);
+		String msg="입력하신정보가 회원정보와 일치하지않습니다.";
+		if(memberVO2 != null) {
+			msg="입력하신 정보가 회원정보와 일치합니다.";
+		}
+		return msg;
+	}
+	
+	//이메일로 임시비밀번호 보내기
+	@RequestMapping(value ="/sendEmail" ,method=RequestMethod.GET)
+	public ModelAndView sendEmail(@RequestParam Map<String, Object> paramMap, ModelMap model, MemberVO memberVO)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		String memId =(String)paramMap.get("memId");
+		String email = (String)paramMap.get("email");
+		
+		//임시비밀번호 생성
+		int pwLen =10; //임시번호 10자리 수 
+		
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 
+		'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
+		'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+		int idx=0;
+		
+		StringBuffer sb = new StringBuffer();
+
+		//System.out.println("charSet.length :::: "+charSet.length);
+
+		for (int i = 0; i < pwLen; i++) {
+
+			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거)
+			//System.out.println("idx :::: "+idx);
+	
+			sb.append(charSet[idx]);
+		}
+		String pw =sb.toString();
+		
+		//난수를 이메일로 보내는 동시에 난수를 일치한 회원의 비밀번호로 업데이트시켜줌.
+		memberVO.setMemId(memId);
+		memberVO.setEmail(email);
+		memberVO.setPw(pw);
+	
+		memberService.pwUpdate(memberVO);
+		
+		//System.out.println(memberVO.getMemId());
+		//System.out.println(memberVO.getEmail());
+		//System.out.println(memberVO.getPw());
+		
+		try {
+            MimeMessage msg = mailSender.createMimeMessage();
+            MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
+             
+            messageHelper.setSubject(memId+"님 비밀번호 찾기 메일입니다.");
+            messageHelper.setText("비밀번호는 "+pw+" 입니다.");
+            messageHelper.setTo(email);
+            msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
+            mailSender.send(msg);
+        }catch(MessagingException e) {
+            System.out.println("MessagingException");
+            e.printStackTrace();
+        }
+		
+		String message ="이메일전송";
+		String path= "./searchIdPw";
+		mv.addObject("message", message);
+		mv.addObject("path", path);
+		mv.setViewName("common/emailSuccess");
+		return mv;
+	}
 }
 	

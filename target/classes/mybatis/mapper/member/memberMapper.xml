@@ -98,4 +98,13 @@
 		select memId from members where phone =#{phone} and name=#{name}
 	</select>
 	
-	</mapper>
+	<!--패스워드찾기: 입력한 아이디와 이메일이 같은지 -->
+	<select id="pwSearch" parameterType="MemberVO" resultType="MemberVO">
+		select * from members where memId=#{memId} and email=#{email}
+	</select>
+	
+	<!--패스워드찾기: 임시번호를  아이디와 이메일이 같은 회원의 비밀번호로 업데이트시켜준다. -->
+	<update id="pwUpdate" parameterType="MemberVO">
+		update members set pw=#{pw} where memId=#{memId} and email=#{email}
+	</update>
+</mapper>

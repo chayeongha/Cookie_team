@@ -46,36 +46,42 @@
 						</div>
 						<div class="form-group">
 							<button id="idConfirm" type="button" class="btn btn-primary btn-block" style="display: inline;">확인</button>
-							<button id="searchBtn" type="button" class="btn btn-warning btn-block"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
-							문자인증 작동하려면 집어넣기 onclick="sendSms();"
-						
+							<button id="searchBtn" onclick="sendSms();" type="button" class="btn btn-warning btn-block"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
+							문자인증 작동하려면 집어넣기 
 							<!--타이머테스트  -->
-							<div class="timer" style="display: inline">
-		 						<div id="ViewTimer"></div>
-								<button class="btn btn-warning exTime">시간연장</button>
-							</div>
+<!-- 							<div class="timer" style="display: inline"> -->
+<!-- 		 						<div id="ViewTimer"></div> -->
+<!-- 								<button class="btn btn-warning exTime">시간연장</button> -->
+<!-- 							</div> -->
 							
 						</div>
 				</div>
 			
 				<!--비밀번호검색일때  -->
 				<div id="searchP" style="display: none;">
-					<div class="form-group">
-						<label class="font-weight-bold text-white" for="inputId">아이디</label>
-						<div>
-							<input type="text" class="form-control" id="inputId" name="inputId_2" placeholder="ex) godmisu">
+					<form action="sendEmail" method="get">
+						<p> 아래 이메일주소를 입력하시면,
+							<br> 입력하신 이메일로 새암호를 보내드립니다<br>
+						</p>
+	              		<br>
+						<div class="form-group">
+							<label class="font-weight-bold text-white" for="inputId">아이디</label>
+							<div>
+								<input type="text" class="form-control" id="inputId" name="memId" placeholder="ex) godmisu">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="font-weight-bold text-white" for="inputEmail_2">이메일</label>
-						<div>
-							<input type="email" class="form-control" id="inputEmail_2"	name="inputEmail_2" placeholder="ex) E-mail@gmail.com">
+						<div class="form-group">
+							<label class="font-weight-bold text-white" for="inputEmail">이메일</label>
+							<div>
+								<input type="email" class="form-control" id="inputEmail" name="email" placeholder="ex) E-mail@gmail.com">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<button id="searchBtn2" type="button" class="btn btn-primary btn-block">확인</button>
-					<a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a>
-				</div>
+						<div class="form-group">
+							<button id="pwConfirm" type="button" class="btn btn-danger btn-block" style="display: inline;">확인</button>
+							<button id="searchBtn2" type="submit" class="btn btn-primary btn-block" style="display: inline;">임시번호 보내기</button>
+						</div>
+					</form>
+					
 				</div>
 			</div>
 			
@@ -97,9 +103,10 @@
 			     <div class="modal-body">
 						
 						<div class="attc" style="display: inline">
-<!-- 				  			<div class="timer" style="display: none"> -->
-<!-- 		 						<div id="ViewTimer"></div> -->
-<!-- 							</div> -->
+				  			<div class="timer" style="display: none">
+		 						<div id="ViewTimer"></div>
+		 						<button class="btn btn-warning exTime">시간연장</button>
+							</div>
 							
 							<br>
 				  			<b>인증번호 입력</b> 
@@ -126,7 +133,43 @@
 
 <script type="text/javascript">
 
-		//폰넘버입력시 자동으로 하이푼입력되는것.
+		//찾기종류 선택시 디스플레이가 none이되는 스크립트
+		function search_check(num) {
+			if (num == '1') {
+				document.getElementById("searchP").style.display = "none";
+				document.getElementById("searchI").style.display = "";	
+			} else {
+				document.getElementById("searchI").style.display = "none";
+				document.getElementById("searchP").style.display = "";
+			}
+		}
+		
+		/*~~~~~~~~~~~~~~~~~~~~~아이디찾기~~~~~~~~~~~~~~~~~~~~~~~~~~  */
+		//이름 정규식(한글과 영어만가능하도록.) 완료시주석해제하기
+// 		var nameRule =/^[가-힣a-zA-Z]+$/;
+
+// 		 $(".nameCheck").blur(function(){
+// 				if($('#inputName_1').val() != "" && nameRule.test($('#inputName_1').val()) != true){
+// 					alert("한글이나 영어만 사용가능합니다");
+// 					$('#inputName_1').val("");
+// 					$('#inputName_1').focus();
+// 					return;
+// 				}	
+// 		 });	 
+
+		//연락처 정규식
+		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
+
+		$(".pCheck").blur(function(){
+			if($('#inputPhone_1').val() != "" && phoneRule.test($('#inputPhone_1').val()) != true){
+				alert("휴대폰 번호 형식에 맞게 입력해주세요");
+				$('#inputPhone_1').val("");
+				$('#inputPhone_1').focus();
+				return;
+			}	
+		});
+
+		//연락처 입력시 자동으로 하이푼입력되는것.
 		function inputPhoneNumber(obj) {
 	
 		    var number = obj.value.replace(/[^0-9]/g, "");
@@ -153,45 +196,9 @@
 		    }
 		    obj.value = phone;
 		}
-			
-		//찾기종류 선택시 디스플레이가 none이되는 스크립트
-		function search_check(num) {
-			if (num == '1') {
-				document.getElementById("searchP").style.display = "none";
-				document.getElementById("searchI").style.display = "";	
-			} else {
-				document.getElementById("searchI").style.display = "none";
-				document.getElementById("searchP").style.display = "";
-			}
-		}
-
-		//다완료했을때 주석풀기.
-		//이름 정규식
-// 		var nameRule =/^[\u3131-\u318E\uAC00-\uD7A3]*$/; //아마 이렇게 써야되는 이유는 utf-8과의 인코딩문제라고함.
-
-// 		 $(".nameCheck").blur(function(){
-// 				 if($('#inputName_1').val() != "" && nameRule.test($('inputName_1').val()) != true){
-// 					alert("한글로만 사용해주세요");
-// 					$('inputName_1').val("");
-// 					$('inputName_1').focus();
-// 					return;
-// 				}	
-// 		 });	 
-
-		//연락처 정규식
-		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
-
-		$(".pCheck").blur(function(){
-			if($('#inputPhone_1').val() != "" && phoneRule.test($('#inputPhone_1').val()) != true){
-				alert("휴대폰 번호 형식에 맞게 입력해주세요");
-				$('#inputPhone_1').val("");
-				$('#inputPhone_1').focus();
-				return;
-			}	
-		});
 		
 		//타이머
-		var SetTime = 5;	// 최초 설정 시간(기본 : 초)
+		var SetTime = 1000;	// 최초 설정 시간(기본 : 초)
 
 		// 1초씩 카운트
 		function msg_time() {	
@@ -204,11 +211,10 @@
 			SetTime--;// 1초씩 감소
 			
 			if (SetTime < 0) {			// 시간이 종료 되었으면..	
-				clearInterval(tid);		// 타이머 해제
-				alert("유효시간이 초과하였습니다. 다시시도해주세요.");	
+				clearInterval(tid);	// 타이머 해제
 			}
 		}
-		//window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
+		//window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };타이머가 시작하는거.
 		
 		//아이디찾기에서 이름과 폰번호과 같은지 검증
 		$("#idConfirm").click(function(){
@@ -227,10 +233,6 @@
 						$('#searchBtn').css('display' , 'inline');	
 						$('#idConfirm').css('display' , 'none');
 						$(".findedId").html("회원님의 ID는 \""+data+"\"입니다.");	
-						//타이머테스트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~테스트하고지우자~~~~
-						//$('.timer').css('display' ,'inline');
-						SetTime=10;
-						tid=setInterval('msg_time()',1000);
 					}else{
 						alert("입력하신 정보가 일치하지 않습니다.");
 						$('#inputName_1').val("");
@@ -251,8 +253,9 @@
 				success: function(data) { 
 					if (data != null) { 
 					//alert("인증번호 전송");
-					SetTime=120;
 					$('.timer').css('display' ,'inline');
+					SetTime=60;//타이머시간을 다시정해준후
+					tid=setInterval('msg_time()',1000);//타이머를 시작
 					}else {
 					alert("인증번호 전송 실패"); 
 					}
@@ -265,37 +268,66 @@
 			$.ajax({ 
 				url: "smsCheck", 
 				type: "POST", 
-				data: { code: $("#sms").val() }, 
+				data: { code: $("#sms").val(),
+						   SetTime : SetTime
+				 }, 
 				success: function(result) {
-					 if (result == "ok") { 
-						alert("번호 인증 성공");
-						//모달창 닫기 참고
-			 			//$('#myModal').modal("hide");
-			 			$('.findedId').css('display' , 'inline');
-			 			$('.attc').css('display' , 'none');
-
-			 			//모달창 닫기했을때 지정된주소로~
-						$('.close').click(function(){
-							location.href="searchIdPw";
-						});
-					 }else{
-				 		alert("인증 실패; 다시입력하세요.");	
-					 } 
-				}
+					if(SetTime >0){
+						 if (result == "ok") { 
+							alert("번호 인증 성공");
+							//모달창 닫기 참고
+				 			//$('#myModal').modal("hide");
+				 			$('.findedId').css('display' , 'inline');
+				 			$('.attc').css('display' , 'none');
+						
+				 			//모달창 닫기했을때 지정된주소로~
+							$('.close').click(function(){
+								location.href="searchIdPw";
+							});
+						 }else{
+					 		alert("인증 실패; 다시입력하세요.");	
+						 } 
+					}else{
+						alert("유효시간이 지났습니다 다시시도하세요")
+						$('#myModal').modal("hide");
+					}
+				}	
 			}); 
 		}
+		
 		var count =0;
+
 		//인증시간연장
 		$('.exTime').click(function(){
 			if(count<1){
-			SetTime=10;
+			SetTime=60;
 			count++;
 			}else{
-				alert("시간연장은 한번만 가능합니다.")
+				alert("유효시간 연장은 한번만 가능합니다.")
 			}
 			
 		});
+
+		/*~~~~~~~~~~~~~~~~~~~~~아이디찾기 끝~~~~~~~~~~~~~~~~~~~~~~~  */
 		
+		/*~~~~~~~~~~~~~~~~~~~~비밀번호 찾기~~~~~~~~~~~~~~~~~~~~~~~~~~  */
+		$("#pwConfirm").click(function(){
+			//alert("test");
+			$.ajax({
+				url : "pwSearch",
+				type : "POST",
+				data : {
+					memId : $('#inputId').val(),
+					email : $('#inputEmail').val()
+				},
+				success: function(data){
+					alert(data);
+				}
+			});
+		});
+		
+	
+		/*~~~~~~~~~~~~~~~~~~~~비밀번호 찾기 끝~~~~~~~~~~~~~~~~~~~~~~~~  */
 </script>
 
 
