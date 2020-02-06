@@ -8,14 +8,14 @@
 
 	<insert id="cartInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum">
 		insert into cart
-		values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal})
+		values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal},#{ssNum})
 	</insert>
 	<insert id="cartOptionInsert" parameterType="CartOptionVO">
 		insert into cartOption values(0,#{optNum},#{optCount},#{cartNum})
 	</insert>
 	
 	<insert id="cartOptNo" parameterType="CartVO">
-		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal})
+		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal},#{ssNum})
 	</insert>
 	
 

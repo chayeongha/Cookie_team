@@ -17,7 +17,6 @@
 	
 	<div class="MenuStyle">
 		<img alt="" src="${pageContext.request.contextPath}/menu/${Detail.menuFiles.mfName}" onerror="this.src='../images/header/mm.png'" style="width: 300px; height: 300px;" class="MeImg">
-
 		<!-- 메뉴 -->
 		<div class="DName">
 			${Detail.mmName}
@@ -112,6 +111,7 @@
 
 			totalPrice();
 		});
+
 		
 		//옵션 수량 증가
 		$('.optPlus').click(function() {
@@ -231,7 +231,7 @@
 // 					//동일 상품 존재 X - Insert
 // 					}else if(data.result == 2){
 					var cartTotal = $(".totalPrice").text();
-					
+					var cn = $(".cafeNum").val();
 					jQuery.ajaxSettings.traditional = true;
 						$.ajax({
 							url: "../cart/cartInsert",
@@ -242,7 +242,8 @@
 								mmCount: mmCount,
 								optNum: optNum,
 								optCount:optCount,
-								cartTotal:cartTotal
+								cartTotal:cartTotal,
+								cn:cn
 							},
 							success: function() {
 								alert("장바구니에 추가되었습니다.");	

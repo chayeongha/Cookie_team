@@ -35,10 +35,11 @@ public class CartController {
 	// 카트에 집어넣기
 	@ResponseBody
 	@PostMapping("cartInsert")
-	public int cartInsert(String mmNum, String mmCount,String[] optNum, String[] optCount, String cartTotal, HttpSession session) throws Exception {
+	public int cartInsert(String mmNum, String mmCount,String[] optNum, String[] optCount, String cartTotal, String cn, HttpSession session) throws Exception {
 		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		int ct = Integer.parseInt(cartTotal);
+		int ssNum = Integer.parseInt(cn);
 		System.out.println(ct);
 		String lot ="";
 		String nickname = memberVO.getNickname();
@@ -47,6 +48,7 @@ public class CartController {
 		cartVO.setMmNum(Integer.parseInt(mmNum));
 		cartVO.setMmCount(Integer.parseInt(mmCount));
 		cartVO.setCartTotal(ct);
+		cartVO.setSsNum(ssNum);
 		if(optNum==null) {
 			lot = mmNum;
 			cartVO.setLot(lot);

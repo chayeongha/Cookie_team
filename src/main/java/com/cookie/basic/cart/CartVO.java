@@ -16,9 +16,16 @@ public class CartVO {
 	private List<MenuVO> menuVOs;
 	private String lot;
 	private int cartTotal;
+	private int ssNum;
 
 
 	
+	public int getSsNum() {
+		return ssNum;
+	}
+	public void setSsNum(int ssNum) {
+		this.ssNum = ssNum;
+	}
 	public int getCartTotal() {
 		return cartTotal;
 	}
