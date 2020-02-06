@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<!--아이디검색일때  -->
-				<div id="searchI" style="display: inline">
+				<div id="searchI" >
 					
 						<div class="idpw">
 							<label class="" for="inputName_1">NAME</label>
