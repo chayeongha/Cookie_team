@@ -176,7 +176,7 @@
 		//닉네임중복검사
 		$(".nickCheck").click(function(){
 			var nickname= $('#nickname').val();
-			window.open("./nickCheck2?nickname="+nickname, "","width=570,height=230,top=200, left=600");
+			window.open("./nickCheck?nickname="+nickname, "","width=570,height=230,top=200, left=600");
 		});
 
 		//이메일중복검사
