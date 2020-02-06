@@ -199,7 +199,8 @@
   	<select id="storeMap" resultType="StoreVO">
   		select sName, roadFullAddr from store
   	</select>
-     
+  	
+  	 
      
   </mapper>
 

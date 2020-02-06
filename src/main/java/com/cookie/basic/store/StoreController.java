@@ -393,9 +393,6 @@ public class StoreController {
 
 	}
 
-	@GetMapping("storeDetail")
-	public void storeDetail(CartVO cartVO) throws Exception {
 
-	}
 
 }

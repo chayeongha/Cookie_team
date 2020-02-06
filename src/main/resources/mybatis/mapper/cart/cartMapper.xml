@@ -8,14 +8,14 @@
 
 	<insert id="cartInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum">
 		insert into cart
-		values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot})
+		values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal})
 	</insert>
 	<insert id="cartOptionInsert" parameterType="CartOptionVO">
 		insert into cartOption values(0,#{optNum},#{optCount},#{cartNum})
 	</insert>
 	
 	<insert id="cartOptNo" parameterType="CartVO">
-		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{mmNum})
+		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal})
 	</insert>
 	
 
@@ -26,10 +26,12 @@
 		<result column="cartStatus" property="cartStatus"/>
 		<result column="nickname" property="nickname"/>
 		<result column="lot" property="lot"/>
-		<collection property="CartOptionVO" javaType="List" ofType="CartOptionVO">
+		<result column="cartTotal" property="cartTotal"/>
+		<collection property="cartOptionVOs" javaType="List" ofType="CartOptionVO">
 			<id column="coNum" property="coNum"/>
 			<result column="optNum" property="optNum"/>
 			<result column="optCount" property="optCount"/>
+			<result column="cartNum" property="cartNum"/>
 		</collection>
 	</resultMap>
 	
@@ -45,5 +47,11 @@
 		update cart set mmCount=#{mmCount} where cartNum=#{cartNum};
 	</update>
 	
+	 <select id="cartList" parameterType="CartVO" resultMap="cartResult">
+		select * from cart C
+		left outer join cartOption CO
+	    on C.cartNum = CO.cartNum
+		where cartStatus=0 and nickname=#{nickname}
+	</select>
 	
 </mapper>

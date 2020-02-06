@@ -44,4 +44,9 @@ public class CartService {
 		return cartMapper.cartOptNo(cartVO);
 	}
 	
+	public List<CartVO> cartList(CartVO cartVO) throws Exception{
+		return cartMapper.cartList(cartVO);
+	}
+	
+	
 }

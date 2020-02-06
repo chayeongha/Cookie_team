@@ -26,4 +26,7 @@ public interface CartMapper {
 	
 	//옵션없는 카트
 	public int cartOptNo(CartVO cartVO) throws Exception;
+	
+	//카트 장바구니
+	public List<CartVO> cartList(CartVO cartVO) throws Exception;
 }
