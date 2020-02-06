@@ -391,23 +391,26 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberUpdate")
-	public ModelAndView memberUpdate(MemberVO memberVO, MultipartFile files, HttpSession session)throws Exception {
+	public ModelAndView memberUpdate(@Valid MemberVO memberVO,BindingResult bindingResult, MultipartFile files, HttpSession session)throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		int result = memberService.memberUpdate(memberVO,files);
-		
-		String msg="실패";
-		
-		if(result>0) {
-			memberVO=memberService.memberLogin(memberVO);
-			session.setAttribute("member", memberVO);
-			msg="성공";
-		}
-		mv.addObject("msg", msg);
-		mv.addObject("path","./memberMypage");
-		mv.setViewName("common/result");
+		if(memberService.memberUpdateValidate(memberVO, bindingResult)) {
+			mv.setViewName("member/memberUpdate");
+		}else {
+			int result = memberService.memberUpdate(memberVO,files);
 			
+			String msg="실패";
+			
+			if(result>0) {
+				memberVO=memberService.memberLogin(memberVO);
+				session.setAttribute("member", memberVO);
+				msg="성공";
+			}
+			mv.addObject("msg", msg);
+			mv.addObject("path","./memberMypage");
+			mv.setViewName("common/result");
+		}
 		return mv;
 	}
 	

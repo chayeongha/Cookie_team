@@ -32,7 +32,7 @@ public class MemberService {
 	@Autowired 
 	private FileSaver fileSaver;
 	
-	//검증
+	//회원가입 검증
 	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		//트루일땐 에러 펄스면 에러x
 		boolean check= false;//비번이 일치하는지검증
@@ -90,27 +90,28 @@ public class MemberService {
 		return check;
 	}
 	
-	//프론트 아이디중복검사
+	
+	//아이디중복검사
 	public MemberVO idCheck(MemberVO memberVO)throws Exception {
 		return memberMapper.idCheck(memberVO);
 	}
 	
-	//프론트 닉네임중복검사
+	//닉네임중복검사
 	public MemberVO nickCheck(MemberVO memberVO)throws Exception {
 		return memberMapper.nickCheck(memberVO);
 	}
 	
-	//프론트 이메일중복검사
+	//이메일중복검사
 	public MemberVO emailCheck(MemberVO memberVO)throws Exception {
 		return memberMapper.emailCheck(memberVO);
 	}
 	
-	//프론트 연락처중복검사
+	//연락처중복검사
 	public MemberVO phoneCheck(MemberVO memberVO)throws Exception{
 		return memberMapper.phoneCheck(memberVO);
 	}
 	
-	//프론트 연락처중복검사
+	//업데이트 연락처중복검사
 	public MemberVO phoneCheck2(MemberVO memberVO)throws Exception{
 		return memberMapper.phoneCheck2(memberVO);
 	}
@@ -176,7 +177,61 @@ public class MemberService {
 		return memberMapper.memberLogin(memberVO);
 	}
 	
-	//수정
+	//업데이트검증
+	public boolean memberUpdateValidate(MemberVO memberVO, BindingResult bindingResult )throws Exception{
+		boolean check= false;
+		boolean check2= false;
+		boolean check3= false;
+		boolean check4= false;
+		//검증결과
+		if(bindingResult.hasErrors()) {
+			check=true;
+		}
+		
+		//비번이 일치하는지 검증
+		if(!memberVO.getPw().equals(memberVO.getPwCheck())) {
+			check=true;
+			
+			bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
+		}
+		
+//		MemberVO nick = new MemberVO();
+//		nick = (MemberVO) session.getAttribute("member");
+//		String getNickname = nick.getNickname().toString();
+//		System.out.println(nickname);
+//		System.out.println();
+				
+		//닉네임이 중복인지 검증
+		MemberVO memberVO2 = new MemberVO();
+		memberVO2= memberMapper.nickCheck(memberVO);
+		
+		if(memberVO2 !=null) {
+			check2=true;
+			bindingResult.rejectValue("nickname", "memberVO.nickname.nickCheck");
+		}
+		
+		//이메일이 중복인지 검증
+		MemberVO memberVO3 = new MemberVO();
+		memberVO3= memberMapper.emailCheck(memberVO);
+		
+		if(memberVO3 != null) {
+			check3=true;
+			bindingResult.rejectValue("email", "memberVO.email.emailCheck");
+		}
+		
+		//연락처가 중복인지 검증
+		MemberVO memberVO4= new MemberVO();
+		memberVO4= memberMapper.phoneCheck(memberVO);
+		
+		if(memberVO4 != null) {
+			check4=true;
+			bindingResult.rejectValue("phone", "memberVO.phone.phoneCheck");
+		}
+		
+		return check;
+	}
+	
+	//업데이트
 	public int memberUpdate(MemberVO memberVO,MultipartFile files)throws Exception{
 		
 		File file = filePathGenerator.getUseClassPathResource("upload");
