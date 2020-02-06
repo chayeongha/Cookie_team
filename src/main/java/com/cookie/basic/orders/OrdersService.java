@@ -38,13 +38,13 @@ public class OrdersService {
 		return ordersMapper.orderListList(ordersVO);
 	}
 
-	// orderListSS 점주가 확인할떄
+	// orderListSS 점주가 확인할떄(대기)
 	public List<OrderListVO> orderListSS(OrdersVO ordersVO) throws Exception {
 
 		return ordersMapper.orderListSS(ordersVO);
 	}
 
-	// orderListSS 점주가 확인할떄
+	// orderListSS 점주가 확인할떄(완료)
 	public List<OrderListVO> orderListSSF(OrdersVO ordersVO) throws Exception {
 
 		return ordersMapper.orderListSSF(ordersVO);

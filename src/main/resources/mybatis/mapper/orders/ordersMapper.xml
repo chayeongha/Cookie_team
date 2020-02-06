@@ -118,7 +118,7 @@
 
 <!--매장별 총액 조회 결제 된게 1 안된게 0-->
 <select id="orderMoney" parameterType="OrdersVO" resultMap="OrderListM">
-	select OL.*, OD.ooTotal,OD.ssNum,CA.cartStatus from orderList OL
+	select OL.*, OD.ooTotal, OD.ooDate,OD.ssNum,CA.cartStatus from orderList OL
 	left outer join orders OD on OL.ooNum = OD.ooNum
 	left outer join cart CA on OL.cartNum = CA.cartNum
 	where OD.ssNum=#{ssNum} and CA.cartStatus=0;

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -19,8 +18,6 @@
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-
-
 
 </head>
 <body>
@@ -67,6 +64,15 @@
 			</button>
 		</form>
 	</div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,91 +130,119 @@
 	</script>
 
 	<script type="text/javascript">
-	/*공지사항*/
-		$("#ReviewT").click(function(){
-			var ReviewT = $(".storesidebar > #ReviewT");
-			var order = $(".storesidebar > #Order");
-			ReviewT.css("background-color","#ffd6c8");
+	var ReviewT = $(".storesidebar > #ReviewT");
+	var order = $(".storesidebar > #Order");
+	var Money =  $(".storesidebar > #Money");
+	var QnaT =  $(".storesidebar > #QnaT");
+
+
+	/*돈*/
+
+	
+		$("#Money").click(function() {
+
+			Money.css("background-color", "#ffd6c8");
 			order.removeAttr("style");
+			ReviewT.removeAttr("style");
+
+			$.ajax({
+				url : "../orders/orderMoney",
+				type : 'GET',
+				data : {
+					"ssNum" : ssNum
+				},
+				success : function(data) {
+					
+					
+					$(".storeNextSide").html(data);
+					//alert(data);
+					
+				},	
+				error : function() {
+					//alert("실패");
+				}
+
+			});
+		});
+
+		/*공지사항*/
+		
+		$("#ReviewT").click(function() {
+
+			ReviewT.css("background-color", "#ffd6c8");
+			order.removeAttr("style");
+			Money.removeAttr("style");
+
 			/* var order = $(".storesidebar > #Order").css("background-color","white"); */
-			
-		$.ajax({
+
+			$.ajax({
 				url : "../store/storeNotice",
 				type : 'GET',
 
 				success : function(data) {
+					
 					$(".storeNextSide").html(data);
-						alert(data);
+					//alert(data);
 				},
 				error : function() {
-					alert("실패");
+					//alert("실패");
 				}
 
 			});
 		});
 
-		var ssNum =$("#ssNum").val();
-
+		var ssNum = $("#ssNum").val();
 
 		/*주문*/
-		$("#Order").click(function(){
-			var order = $(".storesidebar > #Order").css("background-color","#ffd6c8");
-			/* var ReviewT = $(".storesidebar > #ReviewT").css("background-color","white"); */
-			var ReviewT = $(".storesidebar > #ReviewT");
-			ReviewT.removeAttr("style");
-			
-		$.ajax({
-				url : "../orders/orderListSS",
-				type : 'GET',
-				data : {
-						"ssNum":ssNum
-					},
-				success : function(data) {
-					$(".storeNextSide").html(data);
-					alert(data);
-				},
-				error : function() {
-					alert("실패");
-				}
+		
+		$("#Order").click(
+				function() {
+					order = $(".storesidebar > #Order").css(
+							"background-color", "#ffd6c8");
+					
+					ReviewT.removeAttr("style");
+					Money.removeAttr("style");
 
-			});
-		});
+					$.ajax({
+						url : "../orders/orderListSS",
+						type : 'GET',
+						data : {
+							"ssNum" : ssNum
+						},
+						success : function(data) {
+							
+							$(".storeNextSide").html(data);
+							//alert(data);
+						},
+						error : function() {
+							//alert("실패");
+						}
+
+					});
+				});
 
 		/*제조 완료일떄*/
-		$("#finish").click(function(){
+	
+		$("#finish").click(function() {
 
 			$.ajax({
 				url : "../orders/orderListSSF",
 				type : 'GET',
 				data : {
-						"ssNum":ssNum
-					},
+					"ssNum" : ssNum
+				},
 				success : function(data) {
+				
 					$(".storeNextSide").html(data);
-					alert(data);
+					//alert(data);
 				},
 				error : function() {
-					alert("실패");
+					//alert("실패");
 				}
 
 			});
 
-
-			
-			});
-		
-		/*제조 대기일때  */
-		
-
-		/*리뷰관리*/
-		
-		
-		
-		
-		
-		/*매출관리*/
-		
-		
+		});
 	</script>
 
 

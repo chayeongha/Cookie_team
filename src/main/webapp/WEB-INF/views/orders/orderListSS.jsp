@@ -12,12 +12,13 @@
 <body>
 	<input type="hidden" value="${store.ssNum}">
 	<c:forEach items="${lists}" var="vo">
+		<c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}">
 		<div class="orderBox">
 			<div class="orderBox2">
 				<div class="listTr">
 				<!--주문 정보-->
 				<div class="ListT">
-					<div class="ListNum">리스트 번호 : ${vo.olNum}</div>
+					<div class="ListNum">리스트 번호 : ${vo.ooNum}</div>
 					<div class="ListName">닉네임 : ${vo.ordersVO.nickname}</div>
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
 				</div>
@@ -57,6 +58,7 @@
 				</div>
 			</div>
 		</div>
+		</c:if>
 	</c:forEach>
 
 </body>
