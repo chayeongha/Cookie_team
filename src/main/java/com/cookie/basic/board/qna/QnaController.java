@@ -133,7 +133,7 @@ public class QnaController {
 	
 	//글 작성 폼
 	@GetMapping("qnaWrite")
-	public void qnaWrite(QnaVO qnaVO) throws Exception {
+	public void qnaWrite() throws Exception {
 		
 	}
 	

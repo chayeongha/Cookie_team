@@ -86,26 +86,30 @@
 		
 		<ul class="pagination">
 			<c:if test="${pager.curBlock gt 1}">
-				<li class="previous"><span id="${pager.startNum-1}" class="index"></span></li>
+				<li class="previous"><a href="./qnaList?curPage=${pager.startNum-1}"><</a></li>
 			</c:if>
 			
 			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 				<c:if test="${pager.curPage == i}">
-					<li class="list"><span id="${i}" class="index" style="color: #f23600; text-decoration: underline;">${i}</span></li>
+					<li class="list"><a href="./qnaList?curPage=${i}" style="color: #f23600; text-decoration: underline;">${i}</a></li>
+					
 				</c:if>
 				<c:if test="${pager.curPage != i}">
-					<li class="list"><span id="${i}" class="index">${i}</span></li>
+					<li class="list"><a href="./qnaList?curPage=${i}">${i}</a></li>
 				</c:if>
 			</c:forEach>
 			
 			<c:if test="${pager.curBlock lt pager.totalBlock}">
-				<li class="next"><span id="${pager.lastNum+1}" class="index">></span></li>
+				<li class="next"><a href="./qnaList?curPage=${pager.lastNum+1}">></a></li>
 			</c:if>
 		</ul>
 	</div>
 		<c:import url="../layout/footer.jsp" />
 </div>
 <script type="text/javascript">
+
+
+////////////////////////////////////////////////////////////////////
 	var openWin;
 
 	function openChild() {
