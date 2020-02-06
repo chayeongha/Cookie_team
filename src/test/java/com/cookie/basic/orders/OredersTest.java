@@ -19,10 +19,10 @@ class OredersTest {
 	//@Test
 	public void orderInserttest() throws Exception{
 		OrdersVO ordersVO = new OrdersVO();
-		ordersVO.setNickname("name1");
+		ordersVO.setNickname("관리자");
 		ordersVO.setOoTotal(123123);
-		ordersVO.setPhone("010-1111-1111");
-		ordersVO.setSsNum(1);
+		ordersVO.setPhone("010-7173-8910");
+		ordersVO.setSsNum(2);
 		ordersVO.setTakeOut(1);
 		
 		int result = ordersMapper.ordersInsert(ordersVO);
@@ -62,7 +62,7 @@ class OredersTest {
 		
 	}
 	
-	@Test
+	//@Test
 		public void orderListSS()throws Exception{
 			OrderListVO orderListVO = new OrderListVO();
 			OrdersVO ordersVO = new OrdersVO();

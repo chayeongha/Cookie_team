@@ -13,7 +13,7 @@ public class CartOptionVO implements Comparable<CartOptionVO>{
 	private int optNum;
 	private int optCount;
 	private int cartNum;
-	private List<MoptVO> moptVOs;
+	private MoptVO moptVO;
 	
 	
 
@@ -32,12 +32,15 @@ public class CartOptionVO implements Comparable<CartOptionVO>{
 
 	
 	
-	public List<MoptVO> getMoptVOs() {
-		return moptVOs;
+
+	public MoptVO getMoptVO() {
+		return moptVO;
 	}
-	public void setMoptVOs(List<MoptVO> moptVOs) {
-		this.moptVOs = moptVOs;
+
+	public void setMoptVO(MoptVO moptVO) {
+		this.moptVO = moptVO;
 	}
+
 	public int getCoNum() {
 		return coNum;
 	}

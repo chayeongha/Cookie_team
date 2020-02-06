@@ -15,8 +15,8 @@ public interface CartMapper {
 	//카트 옵션 넣기
 	public int cartOptionInsert(CartOptionVO cartOptionVO)throws Exception;
 	
-	//카트 중복 검사 
-	//public CartVO cartSelect(CartVO cartVO)throws Exception;
+	//카트옵션  셀렉트
+	public List<CartOptionVO> coptSelect(CartOptionVO cartOptionVO)throws Exception;
 	
 	//카트 중복 검사 
 	public CartVO cartOne(CartVO cartVO) throws Exception;

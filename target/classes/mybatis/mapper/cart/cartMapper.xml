@@ -26,15 +26,31 @@
 		<result column="cartStatus" property="cartStatus"/>
 		<result column="nickname" property="nickname"/>
 		<result column="lot" property="lot"/>
-		<collection property="CartOptionVO" javaType="List" ofType="CartOptionVO">
+		<collection property="CartOptionVOs" javaType="List" ofType="CartOptionVO">
 			<id column="coNum" property="coNum"/>
 			<result column="optNum" property="optNum"/>
 			<result column="optCount" property="optCount"/>
 		</collection>
 	</resultMap>
 	
-	<select id="cartSelect" resultType="CartVO" parameterType="CartVO">
-		select * from cartOption where cartNum in (select cartNum from cart where nickname=#{nickname})
+	<resultMap type="CartOptionVO" id="copt">
+		<id column="coNum" property="coNum"/>
+		<result column="optCount" property="optCount"/>
+		<result column="cartNum" property="cartNum"/>
+		<collection property="moptVO" javaType="MoptVO">
+			<id column="optNum" property="optNum"/>
+			<result column="optName" property="optName"/>
+			<result column="optPrice" property="optPrice"/>
+		</collection>
+	
+	
+	</resultMap>
+	
+	<select id="coptSelect" resultMap="copt" parameterType="CartOptionVO">
+		select CO.*, MO.*
+		from cartOption CO
+		left outer join mopt MO on CO.optNum = MO.optNum
+		where CO.cartNum = #{cartNum};
 	</select>
 	
 	<select id="cartOne" parameterType="CartVO" resultType="CartVO">
