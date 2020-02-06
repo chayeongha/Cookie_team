@@ -154,10 +154,9 @@ a.btn_reply {
 	margin-right: 20px;
 	width: 84px;
 	height: 45px;
-	background-color: #666666;
 	border-radius: 3px;
 }
-a.btn_write {
+input.btn_write {
 	display: block;
 	float: right;
 	text-decoration: none;
@@ -168,8 +167,9 @@ a.btn_write {
     height: 45px;
     line-height: 45px;
     width: 100%;
+    background-color: #666666;
 }
-a.btn_write:hover {
+input.btn_write:hover {
 	background-color: #F23600;
 }
 

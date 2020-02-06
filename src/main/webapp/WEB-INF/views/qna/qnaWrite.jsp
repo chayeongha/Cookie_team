@@ -13,7 +13,6 @@
 </head>
 <body>
 	<div id="popWrap">
-		<form name="frmMain" method="post">
 			<div id="popHead">
 				<div class="popHeadEnd">
 					<h1>문의내용 작성</h1>
@@ -37,6 +36,7 @@
 										<textarea name="contents" id="popCont" rows="10" cols="80" placeholder="궁금하신 내용을 작성해 주세요"></textarea>
 									</td>
 								</tr>
+							<!-- captcha -->
 								<tr>
 									<th scope="row" class="first alignL">
 										<label for="popCont">보안문자</label>
@@ -66,10 +66,10 @@
 							</tbody>
 						</table>
 					</div>
-				<!-- 비밀글 && captcha -->
+				<!-- 비밀글 -->
 					<div class="chk_wrap">
 						<label for="secret">
-							<input type="checkbox" name="secret" id="secret" value="0" class="chk"> 비밀글로 문의하기
+							<input type="checkbox" checked="checked" name="secret" id="secret" value="0" class="chk"> 비밀글로 문의하기
 						</label>
 					</div>
 				<!-- 공지사항 -->
@@ -91,17 +91,60 @@
 				</div>
 			<!-- 버튼 -->
 				<div class="btn_wrap">
-					<input type="hidden">
-					<a href="#" id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></a>
-					<a href="#" id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></a>
+					<input type="hidden" name="writer" value="${writer}">
+					<button id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></button>
+					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
 			</div>
-		</form>
 	</div>
 <script type="text/javascript">
+	//등록 버튼
+	$('#btnSave').click(function(){
+		
+		if($('input[name="secret"]').is(":checked")){
+			$('input[name="secret"]').val(1);
+		}else {
+			$('input[name="secret"]').val(0);
+		}
 
-$('#check').
+		var writer = $('input[name="writer"]').val();
+		var contents = $('#popCont').val();
+		var secret = $('input[name="secret"]').val();
 
+		if(writer == null || writer == ""){
+			alert("로그인 후 이용하세요");
+			self.close();
+		}else {
+			if(contents != ""){
+				$.ajax({
+					type: "POST",
+					url: "./qnaWrite",
+					data: {
+						writer: writer,
+						contents: contents,
+						secret: secret
+					},
+					success: function(data){
+						if(data > 0){
+							opener.location.reload();
+							self.close();
+						}else{
+							alert("잠시 후에 다시 시도해주세요.");
+						}
+					},
+					error: function(){
+						alert("잠시 후에 다시 시도해주세요.");
+					}
+					
+				});
+			}
+		}
+	});
+	
+	//취소 버튼
+	$('#btnClose').click(function(){
+		window.close();
+	});
 
 // 	getImage(); //이미지 가져오기
 

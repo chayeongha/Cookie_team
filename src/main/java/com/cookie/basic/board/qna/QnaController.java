@@ -133,26 +133,25 @@ public class QnaController {
 	
 	//글 작성 폼
 	@GetMapping("qnaWrite")
-	public void qnaWrite() throws Exception {
+	public void qnaWrite(HttpSession session, Model model) throws Exception {
+		//String writer = (String)session.getAttribute("member");
+		//String writer = "a";
 		
+		//model.addAttribute("writer", writer);
 	}
 	
 	//글 등록
+	@ResponseBody
 	@PostMapping("qnaWrite")
-	public ModelAndView qnaWrite(QnaVO qnaVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public int qnaWrite(QnaVO qnaVO) throws Exception {
 
-		int result = qnaService.qnaWrite(qnaVO);
-		String msg = "Write Fail";
-		 
-		if(result>0) {
-			msg = "Write Success";
-		}
-		mv.setViewName("common/result");
-		mv.addObject("msg", msg);
-		mv.addObject("path", "./qnaList");
+		System.out.println(qnaVO.getWriter());
+		System.out.println(qnaVO.getContents());
+		System.out.println(qnaVO.getSecret());
 		
-		return mv;
+		int result = qnaService.qnaWrite(qnaVO);
+		
+		return result;
 	}
 	
 	//글 하나 조회

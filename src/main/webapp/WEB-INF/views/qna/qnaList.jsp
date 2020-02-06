@@ -79,9 +79,7 @@
 		
 		<div class="btn_wrap">
 			<!-- <a href="./qnaWrite" id="write" class="btn_write">문의하기</a> -->
-			<input type="button" value="문의하기" onclick="openChild()">
-			<br>
-			전달할 값 : <input type="text" id="pInput"> <input type="button" value="전달" onclick="setChildText()">
+			<input type="button" value="문의하기" class="btn_write" onclick="openChild()">
 		</div>
 		
 		<ul class="pagination">
@@ -108,13 +106,12 @@
 </div>
 <script type="text/javascript">
 
-
 ////////////////////////////////////////////////////////////////////
 	var openWin;
 
 	function openChild() {
 		//window.name = "부모창 이름";
-		window.name = "parentForm";
+		//window.name = "parentForm";
 		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
 		openWin = window.open("./qnaWrite", "childForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}

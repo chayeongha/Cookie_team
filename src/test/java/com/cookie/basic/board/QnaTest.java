@@ -23,7 +23,7 @@ class QnaTest {
 	void qnaWriteTest() throws Exception {
 		int result = 0;
 		
-		for(int i=51;i<97;i++) {
+		for(int i=1;i<17;i++) {
 			QnaVO qnaVO = new QnaVO();
 			qnaVO.setWriter("abcdefg"+i);
 			qnaVO.setContents("a"+i);

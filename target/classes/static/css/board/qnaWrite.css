@@ -171,21 +171,21 @@ div.btn_wrap a {
     vertical-align: middle;
     cursor: pointer;
 }
-a.popbtn1 {
+button.popbtn1 {
 	border-color: #ec2e2e;
     border-bottom-color: #cd2828;
     background: #fff;
     background-image: -webkit-linear-gradient(#fff, #efefef);
     color: #ea1717;
 }
-a.popbtn2 {
+button.popbtn2 {
 	border-color: #bdbdbd;
     border-bottom-color: #828282;
     background: #fafafa;
     background-image: -webkit-linear-gradient(#fafafa, #efefef);
     color: #4d4d4d;
 }
-a.popbtn span {
+button.popbtn span {
 	padding: 0 20px;
 	display: inline-block;
 }
