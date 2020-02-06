@@ -110,6 +110,11 @@ public class MemberService {
 		return memberMapper.phoneCheck(memberVO);
 	}
 	
+	//프론트 연락처중복검사
+	public MemberVO phoneCheck2(MemberVO memberVO)throws Exception{
+		return memberMapper.phoneCheck2(memberVO);
+	}
+	
 	//회원가입
 	public int memberJoin(MemberVO memberVO, MultipartFile files)throws Exception{
 		File file = filePathGenerator.getUseClassPathResource("upload");
@@ -145,6 +150,7 @@ public class MemberService {
 	
 	//네이버 회원가입
 	public int naverJoin(MemberVO memberVO) throws Exception{
+		memberVO.setEmail(memberVO.getName()+"님은 Naver로그인 회원입니다.");
 		return memberMapper.naverJoin(memberVO);
 	}
 	
@@ -155,6 +161,7 @@ public class MemberService {
 	
 	//카카오 회원가입
 	public int kakaoJoin(MemberVO memberVO) throws Exception{
+		memberVO.setEmail(memberVO.getName()+"님은 Kakao로그인 회원입니다.");
 		return memberMapper.kakaoJoin(memberVO);
 	}
 		

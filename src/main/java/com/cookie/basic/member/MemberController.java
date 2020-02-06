@@ -113,7 +113,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//프론트아이디 중복체크
+	//아이디 중복체크
 	@GetMapping("idCheck")
 	public Model idCheck(MemberVO memberVO, Model model)throws Exception {
 			if(memberVO.getMemId()!="") {
@@ -132,9 +132,10 @@ public class MemberController {
 			return model;
 	}
 	
-	//프론트닉네임 중복체크
+	//닉네임 중복체크
 	@GetMapping("nickCheck")
 	public Model nickCheck(MemberVO memberVO, Model model)throws Exception {
+			
 			if(memberVO.getNickname()!="") {
 				memberVO= memberService.nickCheck(memberVO);
 			}
@@ -151,7 +152,7 @@ public class MemberController {
 			return model;
 	}
 	
-	//프론트이메일 중복체크
+	//이메일 중복체크
 	@GetMapping("emailCheck")
 	public Model emailCheck(MemberVO memberVO, Model model)throws Exception{
 		//""이아닐때 서비스에서 이메일체크를 실행한다.
@@ -171,7 +172,7 @@ public class MemberController {
 		return model;
 	}
 	
-	//프론트 연락처중복체체크
+	//연락처중복체체크
 	@ResponseBody//★@ResponseBody을 이용하면 자바 객체를 HTTP 응답 body로 전송할 수 있다.
 	@GetMapping("phoneCheck")
 	public String phoneCheck(MemberVO memberVO)throws Exception{
@@ -181,10 +182,102 @@ public class MemberController {
 		if(memberVO == null) {
 			msg="사용가능한 번호입니다.";
 		}
-		
 		return msg;
 	}
 	
+	//회원 정보수정-연락처중복체체크
+	@ResponseBody//★@ResponseBody을 이용하면 자바 객체를 HTTP 응답 body로 전송할 수 있다.
+	@GetMapping("phoneCheck2")
+	public String phoneCheck2(MemberVO memberVO, String phone, HttpSession session)throws Exception{
+		//이미 회원정보로 들어가있는 번호는 DB에 들어가있는 번호이기때문에 이미사용하고있는번호라고 뜸.
+		//그래서 세션에있는 phone번호와 내가입력한 폰번호가 같으면 사용가능하도록 조건을 만들어줌.
+		MemberVO memberVO2 = (MemberVO) session.getAttribute("member");
+		
+		String message= "이미 사용하고 있는 번호입니다.";
+		
+		String getPhone=memberVO2.getPhone().toString();
+		//System.out.println("val:"+phone);
+		//System.out.println("세션"+memberVO2.getPhone());
+		
+		Boolean check=false;
+		
+		if(phone.equals(getPhone)) {
+			check= true;
+			message="사용가능한 번호입니다.";
+		}
+		if(check == false) {
+			memberVO= memberService.phoneCheck2(memberVO);
+			if(memberVO == null ) {
+				message="사용가능한 번호입니다.";
+			}
+		}
+		return message;
+	}
+	
+	//회원정보수정-닉네임중복체크
+	@GetMapping("nickCheck2")
+	public Model nickCheck2(MemberVO memberVO, Model model, String nickname , HttpSession session)throws Exception {
+			
+			MemberVO memberVO2 = new MemberVO();
+			memberVO2=(MemberVO) session.getAttribute("member");
+			String getNickname = memberVO2.getNickname().toString();
+			//System.out.println(nickname);
+			//System.out.println(getNickname);
+			
+			boolean check= false;
+			
+			int result =0;
+			String msg= "중복된 닉네임입니다.";
+			
+			if(nickname.equals(getNickname)) {
+				check=true;
+				msg="사용가능한 닉네임입니다.";
+				result =1;
+			}
+			if(check == false) {
+				memberVO= memberService.nickCheck(memberVO);
+				if(memberVO == null) {
+					msg="사용가능한 닉네임입니다.";
+					result =1;
+				}
+			}
+			model.addAttribute("result", result);
+			model.addAttribute("msg", msg);
+			model.addAttribute("member", memberVO);
+			
+			return model;
+	}
+	
+	//회원정보수정-이메일 중복체크
+	@GetMapping("emailCheck2")
+	public Model emailCheck2(MemberVO memberVO, Model model, String email, HttpSession session)throws Exception{
+		MemberVO memberVO2 = new MemberVO();
+		memberVO2=(MemberVO) session.getAttribute("member");
+		String getEmail = memberVO2.getEmail().toString();
+		
+		boolean check= false;
+		int result =0;
+		String msg= "중복된 이메일입니다.";
+		
+		if(email.equals(getEmail)) {
+			check=true;
+			msg="사용가능한 이메일입니다.";
+			result = 1;
+		}
+		if(check == false) {
+			memberVO= memberService.emailCheck(memberVO);
+			if(memberVO == null) {
+				msg="사용가능한 이메일입니다.";
+				result = 1;
+			}
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("msg", msg);
+		model.addAttribute("member",memberVO);
+	
+		return model;
+	}
+
 	//로그인
 	@GetMapping("memberLogin")
 	public void memberLogin()throws Exception {
