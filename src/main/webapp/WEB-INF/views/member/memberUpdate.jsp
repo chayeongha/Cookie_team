@@ -24,7 +24,8 @@
     <div class="form-group">
 	      <label class="control-label col-sm-2" for="memId">Id:</label>
 	      <div class="col-sm-10">
-	        <input type="text" class="form-control" id="memId" value="${member.memId}" readonly="readonly" name="memId">  	
+	      	<h4>${member.memId}</h4>
+	        <input type="hidden" class="form-control" id="memId" value="${member.memId}" readonly="readonly" name="memId">  	
 	      </div>
     </div>
     
@@ -58,7 +59,7 @@
     <div class="form-group">
 	      <label class="control-label col-sm-2" for="nickname">Nickname:</label>
 	      <div class="col-sm-10">
-		      	<form:input path="nickname" class="form-control nickCheck" id="nickname" value="${member.nickname}" />
+		      	<form:input path="nickname" class="form-control nickCheck2" id="nickname" value="${member.nickname}" readonly="false" />
 				<form:errors path="nickname" cssStyle="color:red;" />
 	      </div>
     </div>
@@ -66,7 +67,7 @@
     <div class="form-group">
       	<label class="control-label col-sm-2" for="email">Phone number:</label>
      	 <div class="col-sm-10">          
-        		<form:input path="phone" class="form-control phoneCheck" value="${member.phone}" id="phone" onKeyup="inputPhoneNumber(this);"  maxlength="13" />
+        		<form:input path="phone" class="form-control phoneCheck2" value="${member.phone}" id="phone" onKeyup="inputPhoneNumber(this);"  maxlength="13" />
 				<form:errors path="phone" cssStyle="color:red;" />
 				<div class="pconfirm" style="color: red"></div>
       	</div>
@@ -74,9 +75,10 @@
      
     <div class="form-group">
      	<label class="control-label col-sm-2" for="email">Email:</label>
-    	 <div class="col-sm-10">          
-	     		<form:input path="email" value="${member.email}" class="form-control emailCheck" id="email" />
+    	 <div class="col-sm-10">   
+    	   		<form:input path="email" class="form-control emailCheck2" id="email2" value="${member.email}"  readonly="true"/>       
 				<form:errors path="email" cssStyle="color:red;" />
+<%-- 	     		<form:input path="email"  class="form-control emailCheck2" id="email" value="${member.email}" readonly="false" /> --%>
      	</div>
    </div>
      
@@ -178,17 +180,33 @@
 		});
 
 		//닉네임중복검사
-		$(".nickCheck").click(function(){
+		$(".nickCheck2").click(function(){
 			var nickname= $('#nickname').val();
 			window.open("./nickCheck2?nickname="+nickname, "","width=570,height=230,top=200, left=600");
+			$('.nickCheck').attr('readonly', true);
 		});
 
 		//이메일중복검사
-		$(".emailCheck").click(function(){
-			var email= $('#email').val();
-			window.open("./emailCheck2?email="+email, "","width=570,height=230,top=200, left=600");
-		});
+// 		$(".emailCheck2").click(function(){
+// 			var email= $('#email2').val();
+// 			window.open("./emailCheck2?email="+email, "","width=570,height=230,top=200, left=600");
+// 			//$('#email').attr('readonly', true);
+			
+// 		});
 
+		//이름 정규식
+		var nameRule =/^[가-힣a-zA-Z]+$/;
+
+		 $(".nameCheck2").blur(function(){
+				 if($('#name').val() != "" && nameRule.test($('#name').val()) != true){
+					alert("한글이나 영어만 사용가능합니다");
+					$('#name').val("");
+					$('#name').focus();
+					return;
+				}	
+		 });	
+		
+		
 		//비밀번호  정규식
 		var passwordRule=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,14}$/;
 
@@ -205,7 +223,7 @@
 		//연락처 정규식
 		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
 
-		$(".phoneCheck").blur(function(){
+		$(".phoneCheck2").blur(function(){
 			if($('#phone').val() != "" && phoneRule.test($('#phone').val()) != true){
 				alert("휴대폰 번호 형식에 맞게 입력해주세요");
 				$('#phone').val("");

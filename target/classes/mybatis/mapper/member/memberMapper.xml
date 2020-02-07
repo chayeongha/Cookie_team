@@ -64,7 +64,7 @@
    	
    	<!--회원정보 수정 -->
    	<update id="memberUpdate" parameterType="MemberVO">
-   			update members set pw=#{pw}, name=#{name}, nickname=#{nickname},phone=#{phone} 
+   			update members set pw=#{pw}, name=#{name}, nickname=#{nickname}, phone=#{phone}, email=#{email}
    			where memNum=#{memNum}
    	</update>
    	
@@ -113,4 +113,9 @@
 		update members set pw=#{pw} where memId=#{memId} and email=#{email}
 	</update>
 
+	<!--마이페이지 스토어소개 -->
+	<select id="sMiniList">
+		select * from store where sOn=1
+	</select>
+	
 </mapper>

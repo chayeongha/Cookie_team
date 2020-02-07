@@ -180,9 +180,7 @@ public class MemberService {
 	//업데이트검증
 	public boolean memberUpdateValidate(MemberVO memberVO, BindingResult bindingResult )throws Exception{
 		boolean check= false;
-		boolean check2= false;
-		boolean check3= false;
-		boolean check4= false;
+	
 		//검증결과
 		if(bindingResult.hasErrors()) {
 			check=true;
@@ -194,40 +192,7 @@ public class MemberService {
 			
 			bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
 		}
-		
-//		MemberVO nick = new MemberVO();
-//		nick = (MemberVO) session.getAttribute("member");
-//		String getNickname = nick.getNickname().toString();
-//		System.out.println(nickname);
-//		System.out.println();
-				
-		//닉네임이 중복인지 검증
-		MemberVO memberVO2 = new MemberVO();
-		memberVO2= memberMapper.nickCheck(memberVO);
-		
-		if(memberVO2 !=null) {
-			check2=true;
-			bindingResult.rejectValue("nickname", "memberVO.nickname.nickCheck");
-		}
-		
-		//이메일이 중복인지 검증
-		MemberVO memberVO3 = new MemberVO();
-		memberVO3= memberMapper.emailCheck(memberVO);
-		
-		if(memberVO3 != null) {
-			check3=true;
-			bindingResult.rejectValue("email", "memberVO.email.emailCheck");
-		}
-		
-		//연락처가 중복인지 검증
-		MemberVO memberVO4= new MemberVO();
-		memberVO4= memberMapper.phoneCheck(memberVO);
-		
-		if(memberVO4 != null) {
-			check4=true;
-			bindingResult.rejectValue("phone", "memberVO.phone.phoneCheck");
-		}
-		
+	
 		return check;
 	}
 	

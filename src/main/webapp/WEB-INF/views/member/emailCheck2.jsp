@@ -36,7 +36,7 @@
 		//이메일 사용
 		$('#useEmail').click(function(){
 			 var email= $('#email').val();
-			 $("#email", opener.document).val(email);
+			 $("#email2", opener.document).val(email);
 			window.self.close();
 		});
 
