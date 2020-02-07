@@ -92,52 +92,35 @@ public class QnaController {
 	
 	//글 수정 폼
 	@GetMapping("qnaUpdate")
-	public ModelAndView qnaUpdate(QnaVO qnaVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public void qnaUpdate(HttpSession session, QnaVO qnaVO, Model model) throws Exception {
+		
+		String writer = "abcdefghij";
 		
 		qnaVO = qnaService.qnaSelect(qnaVO);
 		
-		mv.addObject("update", qnaVO);
-		mv.addObject("boardName", "문의사항");
-		mv.setViewName("board/boardUpdate");
-		
-		return mv;
+		model.addAttribute("update", qnaVO);
 	}
 	
 	//글 수정
+	@ResponseBody
 	@PostMapping("qnaUpdate")
-	public ModelAndView qna(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile[] files, int[] fnums) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println("fnum 들어왔냡");
-		//System.out.println(qnaVO.getNum());
+	public int qna(QnaVO qnaVO) throws Exception{
 		
-		if(bindingResult.hasErrors()) {//에러가 생겼을 때 다시 form으로 돌아가게끔
-			qnaVO = qnaService.qnaSelect(qnaVO);
-			mv.addObject("update", qnaVO);
-			mv.addObject("boardName", "문의사항");
-			mv.setViewName("board/boardUpdate");// '/WEB-INF/views/'와 '.jsp'를 붙여줌
-		}else {
-			int result = qnaService.qnaUpdate(qnaVO, files, fnums);
-			String msg = "Update Fail";
-			
-			if(result>0) {
-				msg = "Update Success";
-			}
-			mv.setViewName("common/result");
-			mv.addObject("msg", msg);
-			mv.addObject("path", "./qnaSelect?num="+qnaVO.getNum());
-		}
+//		System.out.println(qnaVO.getWriter());
+//		System.out.println(qnaVO.getContents());
+//		System.out.println(qnaVO.getSecret());
+		int result = qnaService.qnaUpdate(qnaVO);
 		
-		return mv;
+		return result;
 	}
 	
 	//글 작성 폼
 	@GetMapping("qnaWrite")
 	public void qnaWrite(HttpSession session, Model model) throws Exception {
 		//String writer = (String)session.getAttribute("member");
-		//String writer = "a";
+		String writer = "abcdefghij";
 		
-		//model.addAttribute("writer", writer);
+		model.addAttribute("writer", writer);
 	}
 	
 	//글 등록
@@ -145,9 +128,9 @@ public class QnaController {
 	@PostMapping("qnaWrite")
 	public int qnaWrite(QnaVO qnaVO) throws Exception {
 
-		System.out.println(qnaVO.getWriter());
-		System.out.println(qnaVO.getContents());
-		System.out.println(qnaVO.getSecret());
+//		System.out.println(qnaVO.getWriter());
+//		System.out.println(qnaVO.getContents());
+//		System.out.println(qnaVO.getSecret());
 		
 		int result = qnaService.qnaWrite(qnaVO);
 		

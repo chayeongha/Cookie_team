@@ -1,7 +1,5 @@
 package com.cookie.basic.board.qna;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cookie.basic.util.FilePathGenerator;
-import com.cookie.basic.util.FileSaver;
 import com.cookie.basic.util.Pager;
 
 @Service
@@ -24,19 +20,14 @@ public class QnaService {
 	//글 삭제
 	@Transactional
 	public int qnaDelete(QnaVO qnaVO) throws Exception {
-		//System.out.println(noticeVO.getNum());
-		int result = qnaMapper.qnaDelete(qnaVO);
 		
-		return result;
+		return qnaMapper.qnaDelete(qnaVO);
 	}
 	
 	//글 수정
-	@Transactional
-	public int qnaUpdate(QnaVO qnaVO, MultipartFile[] files, int[] fnums) throws Exception {
+	public int qnaUpdate(QnaVO qnaVO) throws Exception {
 		
-		//notice 테이블 수정
-		int result = qnaMapper.qnaUpdate(qnaVO);
-		return result;
+		return qnaMapper.qnaUpdate(qnaVO);
 	}
 	
 	//글 작성

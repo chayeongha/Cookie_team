@@ -42,18 +42,18 @@
 										<label for="popCont">보안문자</label>
 									</th>
 									<td class="alignL">
-<!-- 										<div style="overflow:hidden"> -->
-<%-- 											<img id="ccimage" alt="캡차이미지" src="${pageContext.request.contextPath}/qna/captchaImg"> --%>
-<!-- 											<div id="ccaudio" style="display:none"></div> -->
-<!-- 										</div> -->
-<!-- 										<div style="padding:3px"> -->
-<!-- 											<input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"> -->
-<!-- 											<input id="soundOn" type="button" onclick="javaScript:audio()" value="음성듣기"> -->
-<!-- 										</div> -->
-<!-- 										<div style="padding:3px"> -->
-<!-- 											<input id="answer" type="text" value=""> -->
-<!-- 											<input id="check" type="button" value="확인"> -->
-<!-- 										</div> -->
+										<div style="overflow:hidden">
+											<img id="ccimage" alt="캡차이미지" src="./captchaImg">
+											<div id="ccaudio" style="display:none"></div>
+										</div>
+										<div style="padding:3px">
+											<input id="reload" type="button" onclick="getImage()" value="새로고침">
+											<input id="soundOn" type="button" onclick="audio()" value="음성듣기">
+										</div>
+										<div style="padding:3px">
+											<input id="answer" type="text" value="">
+											<input id="check" type="button" value="확인">
+										</div>
 										
 										
 										
@@ -146,44 +146,44 @@
 		window.close();
 	});
 
-// 	getImage(); //이미지 가져오기
+	getImage(); //이미지 가져오기
 
-// 	$('#check').click(function(){
-// 		var params = {answer : $('#answer').val()};
-// 		/* $.ajax(); */
-// 	});
+	$('#check').click(function(){
+		var params = {answer : $('#answer').val()};
+		/* $.ajax(); */
+	});
 
-// 	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
-// 	function audio(){
-// 		var rand = Math.random();
-// 		var uAgent = navigator.userAgent;
-// 		var soundUrl = './captchaAudio?rand='+rand;
+	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
+	function audio(){
+		var rand = Math.random();
+		var uAgent = navigator.userAgent;
+		var soundUrl = './captchaAudio?rand='+rand;
 
-// 		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MISE') > -1){
-// 			//IE 경우
-// 			audioPlayer(soundUrl);
-// 		}else if(!!document.createElement('audio').canPlayType){
-// 			//Chrome 경우
-// 			try {
-// 				new Audio(soundUrl).play();
-// 			} catch (e) {
-// 				audioPlayer(soundUrl);
-// 			}
-// 		}else {
-// 			window.open(soundUrl, '', 'width=1, height=1');
-// 		}
-// 	}
+		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1){
+			//IE 경우
+			audioPlayer(soundUrl);
+		}else if(!!document.createElement('audio').canPlayType){
+			//Chrome 경우
+			try {
+				new Audio(soundUrl).play();
+			} catch (e) {
+				audioPlayer(soundUrl);
+			}
+		}else {
+			window.open(soundUrl, '', 'width=1, height=1');
+		}
+	}
 
-// 	function getImage(){
-// 		var rand = Math.random();
-// 		var url = './captchaAudio?rand='+rand;
+	function getImage(){
+		var rand = Math.random();
+		var url = './captchaAudio?rand='+rand;
 
-// 		$('#ccimage').attr('src', url);
-// 	}
+		$('#ccimage').attr('src', url);
+	}
 
-// 	function audioPlayer(objUrl){
-// 		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
-// 	}
+	function audioPlayer(objUrl){
+		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
+	}
 </script>
 </body>
 </html>

@@ -6,17 +6,17 @@
   <mapper namespace="com.cookie.basic.board.qna.QnaMapper">
   	
   	<delete id="qnaDelete" parameterType="QnaVO">
-  		delete from qna where num = #{num}
+  		delete from qna where ref = #{ref}
   	</delete>
   	
   	<update id="qnaUpdate" parameterType="QnaVO">
-  		update qna set title = #{title}, writer = #{writer}, contents = #{contents}
-  		where num = #{num}
+  		update qna set contents = #{contents}, secret = #{secret}
+  		where num = #{num} and step = #{step}
   	</update>
   	
-  	<select id="qnaSelect" parameterType="QnaVO">
+  	<select id="qnaSelect" parameterType="QnaVO" resultType="QnaVO">
   		select * from qna
-  		where num = #{num}
+  		where num = #{num} and step = #{step}
   	</select>
   	
   	<insert id="qnaWrite" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">

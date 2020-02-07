@@ -46,7 +46,7 @@
 						<td class="td_num">${list.num}</td>
 						<td class="td_view">
 							<span class="state">미완료</span>
-							<c:if test="${list.secret == 1}">비밀글입니다.</c:if>
+							<c:if test="${list.secret == 1}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
 							<c:if test="${list.secret == 0}">
 								<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
 							</c:if>
@@ -56,19 +56,32 @@
 					</tr>
 					<tr class="trQna" style="display: table-row;">
 						<td colspan="4" class="qna_wrap" style="display: table-cell;">
+						<!-- 질문 -->
 							<div class="question">
 								<span class="iconQ">질문</span>
-								${list.contents}
+									<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
 								<br>
-								<div class="reply_wrap">
+								<div class="btns_wrap">
 									<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
+									<%-- <a href="qnaUpdate?num=${list.num}&step=0">수정하기</a> --%>
+									<!-- <form name="frmData" class="frmData" method="post"> -->
+										<input type="hidden" class="num" value="${list.num}">
+									<!-- </form> -->
+									<a href="javascript:void(0)" class="btn_update">수정하기</a>
+									<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
 								</div>
 							</div>
+							
+						<!-- 답변 -->
 							<c:if test="${list.step > 0}">
 								<div class="answer">
 									<span class="iconA">답변</span>
 									${list.contents}
 									<br>
+								</div>
+								<div class="btns_wrap">
+									<a href="qnaUpdate?num=${list.num}&step=1" >수정하기</a>
+									<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
 								</div>
 							</c:if>
 						</td>
@@ -78,8 +91,7 @@
 		</table>
 		
 		<div class="btn_wrap">
-			<!-- <a href="./qnaWrite" id="write" class="btn_write">문의하기</a> -->
-			<input type="button" value="문의하기" class="btn_write" onclick="openChild()">
+			<input type="button" value="문의하기" class="btn_write" onclick="openWrite()">
 		</div>
 		
 		<ul class="pagination">
@@ -109,16 +121,28 @@
 ////////////////////////////////////////////////////////////////////
 	var openWin;
 
-	function openChild() {
+	$('.btn_update').click(function(){
+		var num = $(this).parent().find('.num').val();
+		
+		openUpdate(num);
+	});
+
+	function openWrite() {
 		//window.name = "부모창 이름";
 		//window.name = "parentForm";
 		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
-		openWin = window.open("./qnaWrite", "childForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+		openWin = window.open("./qnaWrite", "wirteForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}
 
-	function setChildText() {
-		openWin.document.getElementById("cInput").value = document.getElementById("pInput").value;
+	function openUpdate(num) {
+		openWin = window.open("qnaUpdate?num="+num+"&step=0", "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}
+	
+// 	function setUpdateText() {
+
+// 		var num = $(this).parent().find('.num').val();
+// 		openWin.document.getElementById("num").value = num;
+// 	}
 
 
 // 	function PostOpen() {
