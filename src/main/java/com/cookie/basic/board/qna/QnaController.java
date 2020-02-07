@@ -1,5 +1,6 @@
 package com.cookie.basic.board.qna;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,25 +31,32 @@ public class QnaController {
 	private QnaService qnaService;
 	/////////////////////////////////////////////////////////////
 	//페이지 매핑
-	@GetMapping("captcha")
-	public String Captcha() {
-		return "captcha";
-	}
-	
+//	@GetMapping("captcha")
+//	public String Captcha() {
+//		return "captcha";
+//	}
+//	
 	//captcha 이미지 가져오는 메서드
 	@GetMapping("captchaImg")
 	@ResponseBody
 	public void captchaImg(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		new CaptchaUtil().getImgCaptcha(req, res);
+		new CaptchaUtil().getImgCaptCha(req, res);
 	}
 	
 	//전달받은 문자열로 음성 가져오는 메서드
 	@GetMapping("captchaAudio")
 	@ResponseBody
 	public void captchaAudio(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		Enumeration<String> e =req.getSession().getAttributeNames();
+		while (e.hasMoreElements()) {
+			String string = (String) e.nextElement();
+			System.out.println(string);
+			
+		}
 		Captcha captcha = (Captcha)req.getSession().getAttribute(Captcha.NAME);
 		String getAnswer = captcha.getAnswer();
-		new CaptchaUtil().getAudioCaptcha(req, res, getAnswer);
+		System.out.println(getAnswer);
+		new CaptchaUtil().getAudioCaptCha(req, res, getAnswer);
 	}
 	
 	//사용자가 입력한 보안문자 체크하는 메서드

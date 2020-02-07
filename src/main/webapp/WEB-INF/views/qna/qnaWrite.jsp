@@ -47,18 +47,13 @@
 											<div id="ccaudio" style="display:none"></div>
 										</div>
 										<div style="padding:3px">
-											<input id="reload" type="button" onclick="getImage()" value="새로고침">
-											<input id="soundOn" type="button" onclick="audio()" value="음성듣기">
+											<input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침">
+											<!-- <input id="soundOn" type="button" onclick="audio()" value="음성듣기"> -->
 										</div>
-										<div style="padding:3px">
-											<input id="answer" type="text" value="">
-											<input id="check" type="button" value="확인">
-										</div>
-										
-										
 										
 										<p class="cap_wrap">
 											<input type="text" id="captcha" name="captcha" placeholder="보안문자를 입력해 주세요.">
+											<input id="check" type="button" value="확인">
 											<span class="cap_help">영문, 숫자 조합을 공백없이 입력하세요(대소문자구분)</span>
 										</p>
 									</td>
@@ -145,12 +140,30 @@
 	$('#btnClose').click(function(){
 		window.close();
 	});
-
+	
+/////////////////////////////////////////////////////////////////
 	getImage(); //이미지 가져오기
 
 	$('#check').click(function(){
-		var params = {answer : $('#answer').val()};
-		/* $.ajax(); */
+		var params = {answer: $('#captcha').val()};
+		$.ajax({
+			type: 'POST',
+			url: 'chkAnswer',
+			data: params,
+			success: function(data){
+				alert(data);
+				if(data == 200){
+					alert('입력값이 일치합니다.');
+				}else {
+					alert('입력값이 일치하지 않습니다.');
+					getImage();
+					$('#captcha').val('');
+				}
+			},
+			error: function() {
+				alert("error");
+			}
+		});
 	});
 
 	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
@@ -176,7 +189,7 @@
 
 	function getImage(){
 		var rand = Math.random();
-		var url = './captchaAudio?rand='+rand;
+		var url = './captchaImg?rand='+rand;
 
 		$('#ccimage').attr('src', url);
 	}

@@ -22,7 +22,7 @@ public class CaptchaUtil {
 	private static int height = 50; //보안문자 이미지 세로크기
 	
 	//Captcha Image 생성
-	public void getImgCaptcha(HttpServletRequest req, HttpServletResponse res) {
+	public void getImgCaptCha(HttpServletRequest req, HttpServletResponse res) {
 		//폰트 및 컬러 설정
 		List<Font> fontList = new ArrayList<Font>();
 		fontList.add(new Font("", Font.HANGING_BASELINE, 40));
@@ -41,12 +41,14 @@ public class CaptchaUtil {
 				.build();
 		
 		//JSP에서 Captcha 객체에 접근할 수 있도록 session에 저장
+		System.out.println(Captcha.NAME);
+		System.out.println("captcha: "+captcha);
 		req.getSession().setAttribute(Captcha.NAME, captcha);
 		CaptchaServletUtil.writeImage(res, captcha.getImage());
 	}
 	
 	//Captcha Audio 생성
-	public void getAudioCaptcha(HttpServletRequest req, HttpServletResponse res, String answer) throws IOException {
+	public void getAudioCaptCha(HttpServletRequest req, HttpServletResponse res, String answer) throws IOException {
 		HttpSession session = req.getSession();
 		
 		Captcha captcha = (Captcha)session.getAttribute(Captcha.NAME);
