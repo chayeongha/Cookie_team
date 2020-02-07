@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cookie.basic.util.CaptchaUtil;
+import com.cookie.basic.util.CaptCha;
 import com.cookie.basic.util.Pager;
 import nl.captcha.Captcha;
 
@@ -36,19 +36,19 @@ public class QnaController {
 	}
 	
 	//captcha 이미지 가져오는 메서드
-	@GetMapping("captchaImg")
+	@GetMapping("captChaImg")
 	@ResponseBody
 	public void captchaImg(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		new CaptchaUtil().getImgCaptcha(req, res);
+		new CaptCha().getImgCaptcha(req, res);
 	}
 	
 	//전달받은 문자열로 음성 가져오는 메서드
-	@GetMapping("captchaAudio")
+	@GetMapping("captChaAudio")
 	@ResponseBody
 	public void captchaAudio(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Captcha captcha = (Captcha)req.getSession().getAttribute(Captcha.NAME);
 		String getAnswer = captcha.getAnswer();
-		new CaptchaUtil().getAudioCaptcha(req, res, getAnswer);
+		new CaptCha().getAudioCaptcha(req, res, getAnswer);
 	}
 	
 	//사용자가 입력한 보안문자 체크하는 메서드

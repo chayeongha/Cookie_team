@@ -42,18 +42,13 @@
 										<label for="popCont">보안문자</label>
 									</th>
 									<td class="alignL">
-										<div style="overflow:hidden">
-											<img id="ccimage" alt="캡차이미지" src="./captchaImg">
-											<div id="ccaudio" style="display:none"></div>
-										</div>
-										<div style="padding:3px">
-											<input id="reload" type="button" onclick="getImage()" value="새로고침">
-											<input id="soundOn" type="button" onclick="audio()" value="음성듣기">
-										</div>
-										<div style="padding:3px">
-											<input id="answer" type="text" value="">
-											<input id="check" type="button" value="확인">
-										</div>
+										<div id="captcha">Wait..</div>
+										<div id="audiocatpcha" style="display: none;"></div>
+										<input id="reLoad" type="button" value="새로고침">
+										<input id="soundOn" type="button" value="음성듣기">
+										<br>
+										<input type="text" id="answer" name="answer" value="">
+										<input type="button" id="frmSubmit" value="확인">
 										
 										
 										
@@ -146,44 +141,59 @@
 		window.close();
 	});
 
-	getImage(); //이미지 가져오기
-
 	$('#check').click(function(){
 		var params = {answer : $('#answer').val()};
 		/* $.ajax(); */
 	});
 
 	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
-	function audio(){
-		var rand = Math.random();
+	function changeCaptcha(){
+		$('#catpcha').html('<img src="'+${pageContext.request.contextPath}+'/captcha_mod/CaptChaImg.jsp?rand='+Math.random() + '"/>');
+	}
+
+	function winPlayer(objUrl) {
+		$('#audiocaptpcha').html('<bgsound src="' + objUrl + '">');
+	}
+
+	function audioCaptcha() {
 		var uAgent = navigator.userAgent;
-		var soundUrl = './captchaAudio?rand='+rand;
+		var soundUrl = 'captChaAudio.jsp';
 
-		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1){
-			//IE 경우
-			audioPlayer(soundUrl);
-		}else if(!!document.createElement('audio').canPlayType){
-			//Chrome 경우
-			try {
-				new Audio(soundUrl).play();
-			} catch (e) {
-				audioPlayer(soundUrl);
-			}
-		}else {
-			window.open(soundUrl, '', 'width=1, height=1');
+		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {
+			//IE일 경우 호출
+			winPlayer(soundUrl + '?agent=msie&rand=' + Math.random());
+		}else if (!!document.createElement('audio').canPlayType) {
+			//Chrome일 경우 호출
+			try { new Audio(soundUrl).play(); } catch(e) { winPlayer(soundUrl); }
+		} else window.open(soundUrl, '', 'width=1, height=1');
+	}
+
+	//화면 호출시 가장 먼저 호출되는 부분
+	changeCaptcha(); //Captcha image 요청
+
+	$('#reLoad').click(function(){ changeCaptcha(); }); //새로고침 버튼
+	$('#soundOn').click(function(){ audioCaptcha(); }); //음성듣기 버튼
+
+	//확인 버튼
+	$('#frmSubmit').click(function(){
+		if(!$('#answer').val()){
+			alert('이미지에 보이는 숫자 또는 스피커를 통해 들리는 숫자를 입력해 주세요.');
+		} else {
+			$.ajax({
+				url: 'chkAnswer',
+				type: 'POST',
+				dataType: 'text',
+				data: 'answer=' + $('#answer').val(),
+				async: false,
+				success: function(resp) {
+					alert(resp);
+					$('#reLoad').click();
+					$('#answer').val('');
+				}
+			});
 		}
-	}
-
-	function getImage(){
-		var rand = Math.random();
-		var url = './captchaAudio?rand='+rand;
-
-		$('#ccimage').attr('src', url);
-	}
-
-	function audioPlayer(objUrl){
-		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
-	}
+		
+	});
 </script>
 </body>
 </html>

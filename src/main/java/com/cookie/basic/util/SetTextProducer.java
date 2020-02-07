@@ -7,8 +7,8 @@ public class SetTextProducer implements TextProducer {
 	
 	private final String str;
 	
-	public SetTextProducer(String getAnswer) {
-		this.str = getAnswer;
+	public SetTextProducer(String answer) {
+		this.str = answer;
 	}
 	
 	@Override
