@@ -232,6 +232,7 @@
 // 					}else if(data.result == 2){
 					var cartTotal = $(".totalPrice").text();
 					var cn = $(".cafeNum").val();
+					cartTotal = cartTotal/mmCount;
 					jQuery.ajaxSettings.traditional = true;
 						$.ajax({
 							url: "../cart/cartInsert",
