@@ -69,6 +69,10 @@
 		update cart set mmCount=#{mmCount} where cartNum=#{cartNum}
 	</update>
 	
+	<update id="cartUpdate" parameterType="CartVO">
+		update cart set mmCount=#{mmCount}, cartTotal = #{cartTotal} where cartNum=#{cartNum}
+	</update>
+	
 	 <select id="cartList" parameterType="CartVO" resultMap="cartResult">
 		select * from cart C
 		left outer join cartOption CO

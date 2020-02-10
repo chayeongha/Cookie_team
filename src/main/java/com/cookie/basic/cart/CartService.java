@@ -53,5 +53,10 @@ public class CartService {
 		return cartMapper.cartDelete(cartVO);
 	}
 	
+	//카트에서 수량추가
+	public int cartUpdate(CartVO cartVO) throws Exception{
+		return cartMapper.cartUpdate(cartVO);
+	}
+	
 	
 }

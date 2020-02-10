@@ -143,25 +143,29 @@
 							$('.btn_amount_change'+${cartList.cartNum}).click(function() {
 								var cart_amount = $('#count'+${cartList.cartNum}).text();
 								var cart_num = ${cartList.cartNum};
+								var cart_price = $(this).parent().parent().find($(".product_info_onePrice")).text();
+								cart_price = cart_price.replace(",","");
 								
 								$.ajax({
-									url: "cartUpdate",
+									url: "./cartUpdate",
 									type: "post",
-									async: false,
+									
 									data: {
-										cart_amount: cart_amount,
-										cart_num: cart_num
+										"cart_amount": cart_amount,
+										"cart_num": cart_num,
+										"cart_price": cart_price
 									},
 									success: function(data) {
 										//alert(data);
 										if(data>0){
 											alert("수량이 변경되었습니다.");
-											var price = mmCount * ${cartList.cartTotal};
-											price = addComma(price);
-											$('.product_info_price'+${cartList.cartNum}).text(price);
+											//var price = mmCount * ${cartList.cartTotal};
+											//price = addComma(price);
+											//$('.product_info_price'+${cartList.cartNum}).text(price);
 											
-											$('#input_camount'+${cartList.cartNum}).val(cart_amount);
-											calTotal();
+											//$('#input_camount'+${cartList.cartNum}).val(cart_amount);
+											//calTotal();
+											location.href = "cartList";
 										}else {
 											alert("수량 변경 실패");
 										}

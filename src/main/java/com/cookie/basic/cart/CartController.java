@@ -125,6 +125,20 @@ public class CartController {
 		return result;
 	}
 	
+	@ResponseBody
+	@PostMapping("cartUpdate")
+	public int cartUpdate(String cart_amount, String cart_num,String cart_price) throws Exception{
+		int result= 0;
+		
+		CartVO cartVO = new CartVO();
+		cartVO.setCartNum(Integer.parseInt(cart_num));
+		cartVO.setMmCount(Integer.parseInt(cart_amount));
+		cartVO.setCartTotal(Integer.parseInt(cart_price));
+		
+		result = cartService.cartUpdate(cartVO);
+		return result;
+	}
+	
 	
 
 }
