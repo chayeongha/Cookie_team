@@ -59,4 +59,10 @@ public class CartService {
 	}
 	
 	
+	//카트옵션 셀렉트
+	public List<CartOptionVO> coptSelect(CartOptionVO cartOptionVO)throws Exception{
+		return cartMapper.coptSelect(cartOptionVO);
+	}
+	
+
 }

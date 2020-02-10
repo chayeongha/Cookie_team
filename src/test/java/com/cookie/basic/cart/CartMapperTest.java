@@ -68,7 +68,7 @@ class CartMapperTest {
 //		System.out.println(list.size());
 	}
 	 
-	@Test
+	//@Test
 	public void sortTest() throws Exception {
 		List<CartOptionVO> cartOptionVOs = new ArrayList<CartOptionVO>();
 		
@@ -90,5 +90,16 @@ class CartMapperTest {
 		System.out.println(cartOptionVOs.get(0).getOptNum());
 		System.out.println(cartOptionVOs.get(1).getOptNum());
 		System.out.println(cartOptionVOs.get(2).getOptNum());
+	}
+	
+	@Test
+	public void coptTest() throws Exception{
+		CartOptionVO cartOptionVO = new CartOptionVO();
+		cartOptionVO.setCartNum(1);
+		List<CartOptionVO> ar = cartMapper.coptSelect(cartOptionVO);
+		for(int i=0; i<ar.size();i++) {
+			System.out.println(ar.get(i).getMoptVOs().size());
+			System.out.println(ar.get(i).getMoptVOs());
+		}
 	}
 }

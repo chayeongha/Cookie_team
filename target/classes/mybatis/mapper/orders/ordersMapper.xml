@@ -32,10 +32,12 @@
 			<result column="takeOut" property="takeOut" />
 			<result column="ooStatus" property="ooStatus" />
 		</collection>
-		<collection property="cartVO" javaType="CartVO">
+		<collection property="cartVOs"  javaType="ArrayList" ofType="CartVO">
 			<id column="cartNum" property="cartNum" />
 			<result column="mmCount" property="mmCount" />
 			<result column="cartStatus" property="cartStatus" />
+			<result column="cartTotal" property="cartTotal" />
+			<result column="ocNum" property="ocNum" />
 			<collection property="menuVOs" javaType="ArrayList" ofType="MenuVO">
 				<id column="mmNum" property="mmNum" />
 				<result column="mmName" property="mmName" />
@@ -62,7 +64,7 @@
 	select OL.*, OD.*, CA.*,ME.*, MO.*
         from orderList OL
         left outer join orders OD on OL.ooNum = OD.ooNum
-        left outer join cart CA on OL.cartNum = CA.cartNum
+        left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
         where OD.nickname = #{nickname};
@@ -78,7 +80,7 @@
 	select OL.*, OD.*, CA.*,ME.*, MO.*
         from orderList OL
         left outer join orders OD on OL.ooNum = OD.ooNum
-        left outer join cart CA on OL.cartNum = CA.cartNum
+        left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
         where OD.ssNum = #{ssNum};
@@ -86,7 +88,7 @@
   
 
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
- 	insert into orderList values(null ,#{ooNum}, #{cartNum})
+ 	insert into orderList values(null ,#{ooNum}, #{ocNum})
  </insert>
 
   

@@ -19,10 +19,10 @@ class OredersTest {
 	//@Test
 	public void orderInserttest() throws Exception{
 		OrdersVO ordersVO = new OrdersVO();
-		ordersVO.setNickname("name1");
+		ordersVO.setNickname("관리자");
 		ordersVO.setOoTotal(123123);
-		ordersVO.setPhone("010-1111-1111");
-		ordersVO.setSsNum(1);
+		ordersVO.setPhone("010-7173-8910");
+		ordersVO.setSsNum(2);
 		ordersVO.setTakeOut(1);
 		
 		int result = ordersMapper.ordersInsert(ordersVO);
@@ -40,7 +40,7 @@ class OredersTest {
 	//@Test
 	public void orderListInsert()throws Exception{
 		OrderListVO orderListVO = new OrderListVO();
-		orderListVO.setCartNum(2);
+		//orderListVO.setCartNum(2);
 		orderListVO.setOoNum(2);
 		
 		int result = ordersMapper.orderListInsert(orderListVO);
@@ -55,14 +55,13 @@ class OredersTest {
 		List<OrderListVO> listVOs = ordersMapper.orderListList(ordersVO);
 		
 		for(int i=0; i<listVOs.size();i++) {
-		System.out.println(listVOs.get(i).getCartVO().getMmNum())	;
 			System.out.println(listVOs.get(i).getOrdersVO().getPhone());
 			
 		}
 		
 	}
 	
-	@Test
+	//@Test
 		public void orderListSS()throws Exception{
 			OrderListVO orderListVO = new OrderListVO();
 			OrdersVO ordersVO = new OrdersVO();
@@ -71,7 +70,6 @@ class OredersTest {
 			List<OrderListVO> listVOs = ordersMapper.orderListSS(ordersVO);
 			
 			for(int i=0; i<listVOs.size();i++) {
-			System.out.println(listVOs.get(i).getCartVO().getMmNum())	;
 				System.out.println(listVOs.get(i).getOrdersVO().getPhone());
 				
 			}
