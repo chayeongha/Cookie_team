@@ -26,6 +26,11 @@
 	border-radius: 5px;
 }
 
+.orderBox_inner{
+	padding: 10px;
+	letter-spacing: -1.5px;
+}
+
 .order2 {
 	border: none;
 	width: 270px;
