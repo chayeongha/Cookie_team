@@ -10,8 +10,16 @@ public class CalendarController {
 	
 	//멤버캘린더
 	@GetMapping("calmain")
-	public void mCalendar()throws Exception {
+	public void calmain()throws Exception {
 		
 		
 	}
+	
+	//멤버캘린더2
+	@GetMapping("calmain2")
+	public void calmain2()throws Exception {
+		
+		
+	}
+	
 }

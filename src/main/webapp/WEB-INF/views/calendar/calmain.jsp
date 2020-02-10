@@ -8,70 +8,13 @@
 <link href='/fullcalendar/core/main.css' rel='stylesheet' />
 <link href='/fullcalendar/daygrid/main.css' rel='stylesheet' />
 <link href='/fullcalendar/timegrid/main.css' rel='stylesheet' />
+
 <script src='/fullcalendar/core/main.js'></script>
 <script src='/fullcalendar/daygrid/main.js'></script>
-<script src='/fullcalendar/timegrid/main.js'></script>
-<script src='/fullcalendar/interaction/main.js'></script>
-<script src='fullcalendar/core/locales/ko.js'></script>
+<script src='/fullcalendar/interaction/main.min.js'></script>
+<script src='/fullcalendar/timegrid/main.min.js'></script>
+<script src='/fullcalendar/core/locales/ko.js'></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var Calendar = FullCalendar.Calendar;
-    var Draggable = FullCalendarInteraction.Draggable;
- 
-    var containerEl = document.getElementById('external-events');
-    var calendarEl = document.getElementById('calendar');
-    var checkbox = document.getElementById('drop-remove');
- 
-    // initialize the external events
-    // -----------------------------------------------------------------
- 
-    new Draggable(containerEl, {
-      itemSelector: '.fc-event',
-      eventData: function(eventEl) {
-        return {
-          title: eventEl.innerText
-        };
-      }
-    });
- 
-    // initialize the calendar
-    // -----------------------------------------------------------------
- 
-    var calendar = new Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      editable: true,
-      droppable: true, // this allows things to be dropped onto the calendar
-      drop: function(info) {
-        // is the "remove after drop" checkbox checked?
-        if (checkbox.checked) {
-          // if so, remove the element from the "Draggable Events" list
-          info.draggedEl.parentNode.removeChild(info.draggedEl);
-        }
-      },
-      locale: 'ko'
-    });
- 
-    calendar.render();
-  });
- 
-	var calendar = new Calendar(calendarEl, {
-	  dateClick: function() {
-	    alert('a day has been clicked!');
-	  }
-	});
-	  
-	calendar.on('dateClick', function(info) {
-		  console.log('clicked on ' + info.dateStr);
-	});
-		  	
-
-</script>
 </head>
 
 <body>
@@ -91,7 +34,67 @@ document.addEventListener('DOMContentLoaded', function() {
     </p>
   </div>
  
- <div id='calendar' style="width: 50%; height: 50%;"></div>
+
+ 
+ <div class="container calendar-container">
+	<div id="calendar" style="max-width:900px; margin:40px auto; width: 50%; height: 50%;"></div>
+</div>
+ 
+ <script type="text/javascript">
+
+ 	document.addEventListener('DOMContentLoaded', function() {
+	    var Calendar = FullCalendar.Calendar;
+	    var Draggable = FullCalendarInteraction.Draggable;
+	 
+	    var containerEl = document.getElementById('external-events');
+	    var calendarEl = document.getElementById('calendar');
+	    var checkbox = document.getElementById('drop-remove');
+	 
+	    // initialize the external events
+	    // -----------------------------------------------------------------
+	 	
+
+	    new Draggable(containerEl, {
+	      itemSelector: '.fc-event',
+	      eventData: function(eventEl) {
+	        return {
+	          title: eventEl.innerText
+	        };
+	      }
+	    });
+	 
+	    // initialize the calendar
+	    // -----------------------------------------------------------------
+	    var calendar = new Calendar(calendarEl, {
+		  plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+	      header: {
+	        left: 'prev,next today',
+	        center: 'title',
+	        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+	      },
+	      dateClick: function() {
+	 		    alert('a day has been clicked!');
+	 	   },
+	      editable: true,
+	      droppable: true, // this allows things to be dropped onto the calendar
+	      drop: function(info) {
+	        // is the "remove after drop" checkbox checked?
+	        if (checkbox.checked) {
+	          // if so, remove the element from the "Draggable Events" list
+	          info.draggedEl.parentNode.removeChild(info.draggedEl);
+	        }
+	      },
+	      locale: 'ko'
+	    });
+	 
+	    calendar.render();
+	  });
+		 		
+
+ 		 	
+ 
+ </script>
+ 
  
 </body>
 </html>

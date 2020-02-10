@@ -108,6 +108,7 @@
 		<div class="">
 			<h2>멤버 캘린더</h2>
 			<a href="${pageContext.request.contextPath}/calendar/calmain">캘린더 ?nickname=${member.nickname}</a>
+			<a href="${pageContext.request.contextPath}/calendar/calmain2">캘린더 ?nickname=${member.nickname}</a>
 		</div>
 		
 		
