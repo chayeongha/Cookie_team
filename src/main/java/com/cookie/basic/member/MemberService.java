@@ -32,7 +32,7 @@ public class MemberService {
 	@Autowired 
 	private FileSaver fileSaver;
 	
-	//검증
+	//회원가입 검증
 	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		//트루일땐 에러 펄스면 에러x
 		boolean check= false;//비번이 일치하는지검증
@@ -90,24 +90,30 @@ public class MemberService {
 		return check;
 	}
 	
-	//프론트 아이디중복검사
+	
+	//아이디중복검사
 	public MemberVO idCheck(MemberVO memberVO)throws Exception {
 		return memberMapper.idCheck(memberVO);
 	}
 	
-	//프론트 닉네임중복검사
+	//닉네임중복검사
 	public MemberVO nickCheck(MemberVO memberVO)throws Exception {
 		return memberMapper.nickCheck(memberVO);
 	}
 	
-	//프론트 이메일중복검사
+	//이메일중복검사
 	public MemberVO emailCheck(MemberVO memberVO)throws Exception {
 		return memberMapper.emailCheck(memberVO);
 	}
 	
-	//프론트 연락처중복검사
+	//연락처중복검사
 	public MemberVO phoneCheck(MemberVO memberVO)throws Exception{
 		return memberMapper.phoneCheck(memberVO);
+	}
+	
+	//업데이트 연락처중복검사
+	public MemberVO phoneCheck2(MemberVO memberVO)throws Exception{
+		return memberMapper.phoneCheck2(memberVO);
 	}
 	
 	//회원가입
@@ -145,6 +151,7 @@ public class MemberService {
 	
 	//네이버 회원가입
 	public int naverJoin(MemberVO memberVO) throws Exception{
+		memberVO.setEmail(memberVO.getName()+"님은 Naver로그인 회원입니다.");
 		return memberMapper.naverJoin(memberVO);
 	}
 	
@@ -155,6 +162,7 @@ public class MemberService {
 	
 	//카카오 회원가입
 	public int kakaoJoin(MemberVO memberVO) throws Exception{
+		memberVO.setEmail(memberVO.getName()+"님은 Kakao로그인 회원입니다.");
 		return memberMapper.kakaoJoin(memberVO);
 	}
 		
@@ -169,7 +177,26 @@ public class MemberService {
 		return memberMapper.memberLogin(memberVO);
 	}
 	
-	//수정
+	//업데이트검증
+	public boolean memberUpdateValidate(MemberVO memberVO, BindingResult bindingResult )throws Exception{
+		boolean check= false;
+	
+		//검증결과
+		if(bindingResult.hasErrors()) {
+			check=true;
+		}
+		
+		//비번이 일치하는지 검증
+		if(!memberVO.getPw().equals(memberVO.getPwCheck())) {
+			check=true;
+			
+			bindingResult.rejectValue("pwCheck", "memberVO.pw.notEqual");
+		}
+	
+		return check;
+	}
+	
+	//업데이트
 	public int memberUpdate(MemberVO memberVO,MultipartFile files)throws Exception{
 		
 		File file = filePathGenerator.getUseClassPathResource("upload");

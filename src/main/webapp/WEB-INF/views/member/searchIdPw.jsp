@@ -25,7 +25,7 @@
 				<div class="sub_title font-weight-bold text-white">
 
 					<h1 class="mainTxT">아이디/비밀번호 찾기</h1>
-					<p> 인증된 이메일만 정보 찾기가 가능합니다.</p>
+					
 				</div>
 				<div class="searchBigBox">
 					<div class="searchBox ">
@@ -75,7 +75,7 @@
 						
 						
 						<button id="pwConfirm" type="button" class="bbtn" style="display: inline;">확인</button>
-						<button id="searchBtn2" type="submit" class="bbtn" style="display: inline;">임시번호 보내기</button>
+						<button id="searchBtn2" type="submit" class="bbtn" style="display: none;">임시번호 보내기</button>
 						
 					</form>
 				</div>
@@ -217,7 +217,7 @@
 		}
 		//window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };타이머가 시작하는거.
 		
-		//아이디찾기에서 이름과 폰번호과 같은지 검증
+		//입력한 회원정보가 맞는지 검증.
 		$("#idConfirm").click(function(){
 			$.ajax({
 				url:"idSearch",
@@ -237,6 +237,7 @@
 					}else{
 						alert("입력하신 정보가 일치하지 않습니다.");
 						$('#inputName_1').val("");
+						$('#inputName_1').focus();
 						$('#inputPhone_1').val("");
 					}		
 				}
@@ -312,6 +313,7 @@
 		/*~~~~~~~~~~~~~~~~~~~~~아이디찾기 끝~~~~~~~~~~~~~~~~~~~~~~~  */
 		
 		/*~~~~~~~~~~~~~~~~~~~~비밀번호 찾기~~~~~~~~~~~~~~~~~~~~~~~~~~  */
+		//입력한 회원정보가있는지 검증.
 		$("#pwConfirm").click(function(){
 			//alert("test");
 			$.ajax({
@@ -323,6 +325,15 @@
 				},
 				success: function(data){
 					alert(data);
+					if(data=="입력하신 정보가 회원정보와 일치합니다."){
+						$('#pwConfirm').css('display' , 'none');
+						$('#searchBtn2').css('display' , 'inline');
+					}else if(data=="입력하신정보가 회원정보와 일치하지않습니다."){
+						$('#pwConfirm').css('display' , 'inline');
+						$('#searchBtn2').css('display' , 'none');
+						$('#inputId').val("");
+						$('#inputEmail').val("");
+					}
 				}
 			});
 		});

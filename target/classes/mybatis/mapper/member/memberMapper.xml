@@ -57,9 +57,14 @@
    			select phone from members where phone=#{phone}
    	</select>
    	
+   	<!--연락처중복검사2  -->
+   	<select id="phoneCheck2" parameterType="MemberVO" resultType="MemberVO">
+   			select phone from members where phone=#{phone}
+   	</select>
+   	
    	<!--회원정보 수정 -->
    	<update id="memberUpdate" parameterType="MemberVO">
-   			update members set pw=#{pw}, name=#{name}, nickname=#{nickname},phone=#{phone} 
+   			update members set pw=#{pw}, name=#{name}, nickname=#{nickname}, phone=#{phone}, email=#{email}
    			where memNum=#{memNum}
    	</update>
    	
@@ -70,7 +75,7 @@
 	
 	<!-- 카카오 회원가입-->
   	<insert id="kakaoJoin" parameterType="MemberVO">
-  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',null,1,2)
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',#{email},1,2)
   	</insert>
 
   	<!-- 카카오 -->
@@ -80,7 +85,7 @@
   
   	<!-- 네이버 회원가입-->
   	<insert id="naverJoin" parameterType="MemberVO">
-  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',null,1,1)
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',#{email},1,1)
   	</insert>
   
   	<!-- 네이버 -->
@@ -107,4 +112,10 @@
 	<update id="pwUpdate" parameterType="MemberVO">
 		update members set pw=#{pw} where memId=#{memId} and email=#{email}
 	</update>
+
+	<!--마이페이지 스토어소개 -->
+	<select id="sMiniList">
+		select * from store where sOn=1
+	</select>
+	
 </mapper>

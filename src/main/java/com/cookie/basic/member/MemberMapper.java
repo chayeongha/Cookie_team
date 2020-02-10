@@ -46,6 +46,9 @@ public interface MemberMapper {
 	//연락처 중복검사
 	public MemberVO phoneCheck(MemberVO memberVO)throws Exception;
 	
+	//연락처 중복검사2
+	public MemberVO phoneCheck2(MemberVO memberVO)throws Exception;
+		
 	//수정
 	public int memberUpdate(MemberVO memberVO)throws Exception;
 	

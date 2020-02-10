@@ -83,6 +83,7 @@
 		
 		<div class="box2">
 			<h1>주문내역</h1>
+			<a href="${pageContext.request.contextPath}/orders/orderListList?nickname=${member.nickname}">오더리스트 페이지</a>
 			<div class="box2_inner">
 				<h1>222</h1>
 				<h1>222</h1>

@@ -11,6 +11,7 @@
   <update id="ordersUpdate" parameterType="OrdersVO">
    update orders set ooStatus=1 where ooNum=#{ooNum}
   </update>
+  
   <!--오더리스트 아님!  -->
   <select id="ordersList" parameterType="OrdersVO" resultType="OrdersVO">
   	select * from orders where nickname = #{nickname}

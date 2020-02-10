@@ -36,79 +36,79 @@
 		  <form:form class="form-horizontal" id="frm" action="./memberJoin" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
 			    
 			    <div class="frmBox">
-			      <label for="memId">아이디</label>
-			      <div>
-				      <form:input path="memId" placeholder="한글이나 특수문자를 제외하고 입력하세요" class="form-control idCheck" id="memId" readonly="true"/>
-				      <form:errors path="memId" cssStyle="color:red;" />
-			      </div>
+				      <label for="memId">아이디</label>
+				      <div>
+					      <form:input path="memId" placeholder="한글이나 특수문자를 제외하고 입력하세요" class="form-control idCheck" id="memId" readonly="true"/>
+					      <form:errors path="memId" cssStyle="color:red;" />
+				      </div>
 			    </div>
 			    
 			    <div class="frmBox">
-			      <label for="pw">비밀번호</label>
-			      <div>          
-			      <form:password path="pw" class="form-control" id="pw" placeholder="6~14자리 내에 영문과 ,숫자 ,특수기호를 다 사용하여 입력하세요 "/>
-					 <form:errors path="pw" cssStyle="color:red;" />
-			      </div>
-			     </div>
+				      <label for="pw">비밀번호</label>
+				      <div>          
+				      	 <form:password path="pw" class="form-control" id="pw" placeholder="6~14자리 내에 영문과 ,숫자 ,특수기호를 다 사용하여 입력하세요 "/>
+						 <form:errors path="pw" cssStyle="color:red;" />
+				      </div>
+			    </div>
 			     
-			      <div class="frmBox">
-			      <label for="pw2">비밀번호 확인</label>
-			      <div>          
-				      <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check"/>
-					  <form:errors path="pwCheck" cssStyle="color:red;" />
-			      </div>
+			     <div class="frmBox">
+				      <label for="pw2">비밀번호 확인</label>
+				      <div>          
+					      <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check"/>
+						  <form:errors path="pwCheck" cssStyle="color:red;" />
+				      </div>
 			     </div>
 			     
 			    <div class="frmBox">
-			      <label for="name">이름</label>
-			      <div>
-				      <form:input path="name" class="form-control nameCheck" id="name" placeholder="Enter name"/>
-					  <form:errors path="name" cssStyle="color:red;" />
-			      </div>
+				      <label for="name">이름</label>
+				      <div>
+					      <form:input path="name" class="form-control nameCheck" id="name" placeholder="Enter name"/>
+						  <form:errors path="name" cssStyle="color:red;" />
+				      </div>
 			    </div>
 			     
 			    <div class="frmBox">
-			      <label for="nickname">닉네임 </label>
-			      <div>
-				      <form:input path="nickname" class="form-control nickCheck" id="nickname" placeholder="Enter nickname" readonly="true"/>
-					  <form:errors path="nickname" cssStyle="color:red;" />
-			      </div>
+				      <label for="nickname">닉네임 </label>
+				      <div>
+					      <form:input path="nickname" class="form-control nickCheck" id="nickname" placeholder="Enter nickname" readonly="true"/>
+						  <form:errors path="nickname" cssStyle="color:red;" />
+				      </div>
 			    </div>
 			    
 			     <div class="frmBox">
-			      	<label for="email">연락처</label>
+			      	 <label for="email">연락처</label>
 			     	 <div>         
-			      		<form:input path="phone" class="form-control phoneCheck" id="phone" placeholder="Enter phone" onKeyup="inputPhoneNumber(this);" maxlength="13" />
-					  	<form:errors path="phone" cssStyle="color:red;" />
+			      		  <form:input path="phone" class="form-control phoneCheck" id="phone" placeholder="Enter phone" onKeyup="inputPhoneNumber(this);" maxlength="13" />
+					  	  <form:errors path="phone" cssStyle="color:red;" />
 					  	<div class="pconfirm" style="color: red"></div>
-			      	</div>
+			      	  </div>
 			     </div>
 			     
 			     <div class="frmBox">
 				      <label for="memId">이메일</label>
 				      <div>
-				        <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email" readonly="true"/>
-				      	<form:errors path="email" cssStyle="color:red;" />
+					       <form:input path="email" placeholder="ex) xxxxx@cookie.com" class="form-control emailCheck" id="email" readonly="true"/>
+					       <form:errors path="email" cssStyle="color:red;" />
 				      </div>
 		   		 </div>
 			     
 			     <div>
-			      	<div> 
-			     		<input type="hidden" class="form-control" name="kind" value="${kind}">
-			     		<input type="hidden" class="form-control" name="grade" value="${memberVO.grade}"> 
-			     	</div>
+			      		<div> 
+			     			<input type="hidden" class="form-control" name="kind" value="${kind}">
+			     			<input type="hidden" class="form-control" name="grade" value="${memberVO.grade}"> 
+			     		</div>
 			 	</div>
 			   
 			    <div class="frmBox">
-					<label for="files">Profile:</label> 
-					<input type="file" class="form-control" id="files" name="files">
-					<img id="blah" alt="your image" src="#" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
+						<label for="files">Profile:</label> 
+						<input type="file" class="form-control" id="files" name="files">
+						<img id="blah" alt="your image" src="#" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
 				</div>
 				
 			    <div>        
-			      <div>
-			      	<button type="submit" class="btn_join">→ 가입하기</button>
-			      </div>
+			      	<div>
+			      		<button type="submit" class="btn_join">→ 가입하기</button>
+			      	</div>
 			    </div>
 			
 		  </form:form>
@@ -117,8 +117,10 @@
    	<c:import url="../layout/footer.jsp" />
 
 	<script type="text/javascript">
-	//파라미터 숨기기
-	history.replaceState({}, null, location.pathname);
+
+		//파라미터 숨기기
+		history.replaceState({}, null, location.pathname);
+
 		//이미지를넣었을 때 미리보여지는것.
 		$(function(){
 			$("#files").on('change',function(){
