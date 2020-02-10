@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cookie.basic.store.StoreMapper;
 import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.FilePathGenerator;
 import com.cookie.basic.util.FileSaver;
@@ -257,5 +258,8 @@ public class MemberService {
 	public int pwUpdate(MemberVO memberVO)throws Exception{
 		return memberMapper.pwUpdate(memberVO);
 	}
-	
+	//마이페이지 스토어소개 
+	public List<StoreVO>sMiniList(StoreVO storeVO)throws Exception{
+		return memberMapper.sMiniList(storeVO);
+	}
 }

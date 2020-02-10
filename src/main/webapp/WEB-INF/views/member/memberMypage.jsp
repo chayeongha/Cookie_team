@@ -11,6 +11,12 @@
 <c:import url="../layout/header.jsp" />
 <link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <link href="/css/member/memberMypage.css" rel="stylesheet"/>
+<!--이미지슬라이더  -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+
 </head>
 <body>
 <div class="body_main">
@@ -92,23 +98,37 @@
 				<h1>222</h1>
 			</div>
 		</div>
+		
+		<div class="" style="width: 240px; height: 300px;">
+			<h2>전국의 매장을 만나보세요.</h2>
+			<div class="storeMiniList">
+		</div>
+		
+		
+		<div class="">
+			<h2>멤버 캘린더</h2>
+			<a href="${pageContext.request.contextPath}/calendar/calmain">캘린더 ?nickname=${member.nickname}</a>
+		</div>
+		
+		
+		</div>
 	
-	</div>
-</div>	
+	</div>	
+</div>
 
 	<c:import url="../layout/footer.jsp" />	
 
 <script type="text/javascript">
 
 		//정보수정
-		 $('#mUp').click(function() {
-			
+		$('#mUp').click(function() {
+		
 			location.href="./memberUpdate";
-				
+			
 		});
 
 		//회원탈퇴
-		 $('#mDel').click(function(){
+		$('#mDel').click(function(){
 				
 			if(confirm("회원을 탈퇴하시겠습니까?")){
 
@@ -132,8 +152,15 @@
 		   }
 		});
 
+		//해당div에 스토어 미니 리스트를 출력해줌.
+		$(document).ready(function(){
+		    $(".storeMiniList").load("./storeMiniList");
+		  
+		});
+		
+			
 </script>
 		
-</div>		
+	
 </body>
 </html>

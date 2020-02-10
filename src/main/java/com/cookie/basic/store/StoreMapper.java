@@ -56,5 +56,4 @@ public interface StoreMapper {
 
 	public List<StoreVO> storeDetail(StoreVO storeVO) throws Exception;
 
-
 }

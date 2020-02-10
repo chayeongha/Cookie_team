@@ -10,7 +10,7 @@
 <body>
 고객이 확인하는 페이지
 <c:forEach items="${lists}" var="vo">
-<tr class="listTr">
+			<tr class="listTr">
 					<td>${vo.olNum}</td>
 					<td>${vo.ordersVO.nickname}</td>
 					<td>${vo.ordersVO.ooDate}</td>
@@ -27,7 +27,7 @@
 					<td>${opt.optPrice}</td>
 					</c:forEach>
 					</c:forEach>
-				</tr>
+			</tr>
 
 </c:forEach>
 

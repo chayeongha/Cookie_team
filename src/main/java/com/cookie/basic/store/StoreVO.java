@@ -24,8 +24,6 @@ public class StoreVO {
 
 	
 	
-	
-	
 	public List<MoptVO> getMoptVOs() {
 		return moptVOs;
 	}

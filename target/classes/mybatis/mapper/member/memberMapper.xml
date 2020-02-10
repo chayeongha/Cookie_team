@@ -112,10 +112,34 @@
 	<update id="pwUpdate" parameterType="MemberVO">
 		update members set pw=#{pw} where memId=#{memId} and email=#{email}
 	</update>
-
+	
+	<!--스토어미니리스트 resultmap  -->
+  	<resultMap type="StoreVO" id="sMiniList">
+  			<id column="ssNum" property="ssNum"/>
+  			<result column="sName" property="sName"/>
+  			<result column="sTel" property="sTel"/>
+  			<result column="roadFullAddr" property="roadFullAddr"/>
+  			<result column="memId" property="memId"/>
+  			<result column="sNotice" property="sNotice"/>
+  			<result column="sOn" property="sOn"/>
+  			<result column="memNum" property="memNum"/>
+  		<association property="storeFilesVO" javaType="storeFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>
+  		</association>
+  	</resultMap>
+	
 	<!--마이페이지 스토어소개 -->
-	<select id="sMiniList">
-		select * from store where sOn=1
+	<select id="sMiniList" parameterType="StoreVO" resultMap="sMiniList">
+		select S.*,F.* from store S left join storeFiles F
+			on S.ssNum=F.ssNum
+ 			where S.sOn=1
+			union
+			select S.*,F.* from store S right join storeFiles F
+			on S.ssNum=F.ssNum
+			where S.sOn=1
 	</select>
+	
 	
 </mapper>

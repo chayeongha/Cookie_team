@@ -288,6 +288,18 @@ public class MemberController {
 		
 	}
 	
+	//스토어미니리스트
+	@GetMapping("storeMiniList")
+	public ModelAndView sMiniList(StoreVO storeVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<StoreVO>ar = memberService.sMiniList(storeVO);
+		
+		mv.addObject("smList", ar);
+		mv.setViewName("member/storeMiniList");
+		
+		return mv;
+	}
+	
 	//멤버업데이트
 	@GetMapping("memberUpdate")
 	public void memberUpdate(HttpSession session )throws Exception{	
@@ -494,7 +506,7 @@ public class MemberController {
 	//인증번호보내기
 	@ResponseBody 
 	@RequestMapping("sendSms")
-	 public int sendSms(String receiver ,HttpSession session) { 
+	 public int sendSms(String receiver ,HttpSession session){ 
 		
 		// 6자리 인증 코드 생성 
 		int rand = (int) (Math.random() * 899999) + 100000; 
@@ -554,10 +566,11 @@ public class MemberController {
 		return rand; 
 	} 
 	
+
 	//입력한번호가 저장된 코드가 맞는지 확인
 	@ResponseBody 
 	@RequestMapping("smsCheck") 
-	public String smsCheck(String code, HttpSession session, Integer SetTime) { 
+	public String smsCheck(String code, HttpSession session, Integer SetTime){ 
 		//세션에있는 보안문자를 불러옴.
 		String saveCode =session.getAttribute("rand").toString();
 		
@@ -599,69 +612,70 @@ public class MemberController {
 	}
 	
 	//이메일로 임시비밀번호 보내기
-		@RequestMapping(value ="/sendEmail" ,method=RequestMethod.GET)
-		public ModelAndView sendEmail(@RequestParam Map<String, Object> paramMap, ModelMap model, MemberVO memberVO)throws Exception{
-			
-			ModelAndView mv = new ModelAndView();
-			
-			String memId =(String)paramMap.get("memId");
-			String email = (String)paramMap.get("email");
-			
-			//임시비밀번호 생성
-			int pwLen =10; //임시번호 10자리 수 
-			
-			char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 
-			'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
-			'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-
-			int idx=0;
-			
-			StringBuffer sb = new StringBuffer();
-
-			//System.out.println("charSet.length :::: "+charSet.length);
-
-			for (int i = 0; i < pwLen; i++) {
-
-				idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거)
-				//System.out.println("idx :::: "+idx);
+	@RequestMapping(value ="/sendEmail" ,method=RequestMethod.GET)
+	public ModelAndView sendEmail(@RequestParam Map<String, Object> paramMap, ModelMap model, MemberVO memberVO)throws Exception{
 		
-				sb.append(charSet[idx]);
-			}
-			String pw =sb.toString();
-			
-			//난수를 이메일로 보내는 동시에 난수를 일치한 회원의 비밀번호로 업데이트시켜줌.
-			memberVO.setMemId(memId);
-			memberVO.setEmail(email);
-			memberVO.setPw(pw);
+		ModelAndView mv = new ModelAndView();
 		
-			memberService.pwUpdate(memberVO);
-			
-			//System.out.println(memberVO.getMemId());
-			//System.out.println(memberVO.getEmail());
-			//System.out.println(memberVO.getPw());
-			
-			try {
-	            MimeMessage msg = mailSender.createMimeMessage();
-	            MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
-	             
-	            messageHelper.setSubject(memId+"님 비밀번호 찾기 메일입니다.");
-	            messageHelper.setText("비밀번호는 "+pw+" 입니다.");
-	            messageHelper.setTo(email);
-	            msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
-	            mailSender.send(msg);
-	        }catch(MessagingException e) {
-	            System.out.println("MessagingException");
-	            e.printStackTrace();
-	        }
-			
-			String message ="이메일전송";
-			String path= "./searchIdPw";
-			mv.addObject("message", message);
-			mv.addObject("path", path);
-			mv.setViewName("common/emailSuccess");
-			return mv;
+		String memId =(String)paramMap.get("memId");
+		String email = (String)paramMap.get("email");
+		
+		//임시비밀번호 생성
+		int pwLen =10; //임시번호 10자리 수 
+		
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 
+		'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
+		'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+		int idx=0;
+		
+		StringBuffer sb = new StringBuffer();
+
+		//System.out.println("charSet.length :::: "+charSet.length);
+
+		for (int i = 0; i < pwLen; i++) {
+
+			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거)
+			//System.out.println("idx :::: "+idx);
+	
+			sb.append(charSet[idx]);
 		}
+		String pw =sb.toString();
+		
+		//난수를 이메일로 보내는 동시에 난수를 일치한 회원의 비밀번호로 업데이트시켜줌.
+		memberVO.setMemId(memId);
+		memberVO.setEmail(email);
+		memberVO.setPw(pw);
+	
+		memberService.pwUpdate(memberVO);
+		
+		//System.out.println(memberVO.getMemId());
+		//System.out.println(memberVO.getEmail());
+		//System.out.println(memberVO.getPw());
+		
+		try {
+            MimeMessage msg = mailSender.createMimeMessage();
+            MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
+             
+            messageHelper.setSubject(memId+"님 비밀번호 찾기 메일입니다.");
+            messageHelper.setText("비밀번호는 "+pw+" 입니다.");
+            messageHelper.setTo(email);
+            msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
+            mailSender.send(msg);
+        }catch(MessagingException e) {
+            System.out.println("MessagingException");
+            e.printStackTrace();
+        }
+		
+		String message ="이메일전송";
+		String path= "./searchIdPw";
+		mv.addObject("message", message);
+		mv.addObject("path", path);
+		mv.setViewName("common/emailSuccess");
+		return mv;
 	}
-
+	
+	
+}
 	
 
