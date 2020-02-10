@@ -31,6 +31,10 @@
 	letter-spacing: -1.5px;
 }
 
+.order2 > a {
+	color:white;
+}
+
 .order2 {
 	border: none;
 	width: 270px;
