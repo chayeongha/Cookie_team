@@ -143,7 +143,7 @@ input {
 	overflow: hidden;
     padding: 12px 20px 13px;
     background-color: #fafafa;
-    border-top: 3px solid #000;
+    border-top: 3px solid #f23600;
 }
 input[type="checkbox"].custom_checkbox_all {
 	overflow: hidden;
@@ -212,7 +212,7 @@ strong.checkbox_select {
 	overflow: hidden;
     position: relative;
     padding: 20px 0 0;
-    border-top: 1px solid #d6d6d6;
+    border-top: 1px solid #ffede3;
 }
 input[type="checkbox"].cart_checkbox {
 	overflow: hidden;
@@ -259,6 +259,7 @@ input[type="checkbox"].cart_checkbox:checked + label:before {
     left: auto;
     float: left;
     width: 90px;
+    height:90px;
     margin-right: 17px;
 }
 .cart_list_style li .product_info_name {
@@ -296,14 +297,14 @@ input[type="checkbox"].cart_checkbox:checked + label:before {
 .cart_list_style li .product_info_amount_wrap {
 	float: left;
     position: relative;
-    width: 98px;
+    width: 166px;
     margin-top: 30px;
     padding: 0 34px;
 }
 .product_info_amount_wrap .product_info_count {
 	float: left;
     width: 36px;
-    height: 29px;
+    
     font-size: 16px;
     color: #000;
     line-height: 29px;

@@ -29,4 +29,7 @@ public interface CartMapper {
 	
 	//카트 장바구니
 	public List<CartVO> cartList(CartVO cartVO) throws Exception;
+	
+	//카트 삭제
+	public int cartDelete(CartVO cartVO) throws Exception;
 }

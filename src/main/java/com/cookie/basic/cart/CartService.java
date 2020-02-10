@@ -48,5 +48,10 @@ public class CartService {
 		return cartMapper.cartList(cartVO);
 	}
 	
+	//카트 삭제
+	public int cartDelete(CartVO cartVO) throws Exception{
+		return cartMapper.cartDelete(cartVO);
+	}
+	
 	
 }

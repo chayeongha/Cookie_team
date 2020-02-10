@@ -27,11 +27,33 @@
 		<result column="nickname" property="nickname"/>
 		<result column="lot" property="lot"/>
 		<result column="cartTotal" property="cartTotal"/>
+		<result column="ssNum" property="ssNum"/>
 		<collection property="cartOptionVOs" javaType="List" ofType="CartOptionVO">
 			<id column="coNum" property="coNum"/>
 			<result column="optNum" property="optNum"/>
 			<result column="optCount" property="optCount"/>
-			<result column="cartNum" property="cartNum"/>
+			<collection property="moptVOs" javaType="List" ofType="MoptVO">
+	  				<id column="optNum" property="optNum"/>
+	  				<result column="optName" property="optName"/>
+		  			<result column="optPrice" property="optPrice"/>
+		  			<result column="optCount" property="optCount"/>
+	  		</collection>
+		</collection>
+		<collection property="menuVOs" javaType="List" ofType="menuVO">
+			<id column="mmNum" property="mmNum" />
+			<result column="mmName" property="mmName" />
+			<result column="mmPrice" property="mmPrice" />
+			<result column="mmCount" property="mmCount" />
+			<result column="cmNum" property="cmNum" />
+			<result column="mmTemp" property="mmTemp" />
+			<result column="ssNum" property="ssNum" />
+			
+			<collection property="menuFiles" javaType="MenuFilesVO" >
+				<id column="mfNum" property="mfNum"/>
+				<result column="mfName" property="mfName"/>
+				<result column="moNum" property="moNum"/>
+			</collection>
+			
 		</collection>
 	</resultMap>
 	
@@ -44,14 +66,24 @@
 	</select>
 	
 	<update id="cartAdd" parameterType="CartVO">
-		update cart set mmCount=#{mmCount} where cartNum=#{cartNum};
+		update cart set mmCount=#{mmCount} where cartNum=#{cartNum}
 	</update>
 	
 	 <select id="cartList" parameterType="CartVO" resultMap="cartResult">
 		select * from cart C
 		left outer join cartOption CO
 	    on C.cartNum = CO.cartNum
+        left outer join menu M
+        on M.mmNum = C.mmNum
+        left outer join menuFiles MF
+        on M.mmNum = MF.mmNum
+        left outer join mopt MP
+        on MP.optNum = CO.optNum
 		where cartStatus=0 and nickname=#{nickname}
 	</select>
+	
+	<delete id="cartDelete" parameterType="CartVO">
+		delete from cart where cartNum=#{cartNum}
+	</delete>
 	
 </mapper>

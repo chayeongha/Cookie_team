@@ -113,6 +113,18 @@ public class CartController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@PostMapping("cartDelete")
+	public int cartDelete(String[] list) throws Exception{
+		int result = 0;
+		for (String ar : list) {
+			CartVO cartVO = new CartVO();
+			cartVO.setCartNum(Integer.parseInt(ar));
+			result = cartService.cartDelete(cartVO);
+		}
+		return result;
+	}
+	
 	
 
 }
