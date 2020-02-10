@@ -40,7 +40,7 @@ public class CartController {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		int ct = Integer.parseInt(cartTotal);
 		int ssNum = Integer.parseInt(cn);
-		System.out.println(ct);
+		
 		String lot ="";
 		String nickname = memberVO.getNickname();
 		CartVO cartVO = new CartVO();
