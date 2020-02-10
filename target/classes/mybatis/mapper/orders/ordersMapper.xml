@@ -32,7 +32,7 @@
 			<result column="ooStatus" property="ooStatus" />
 		</collection>
 		<collection property="cartVO" javaType="CartVO">
-			<id column="cartNum" property="cartNum" />
+			<id column="ocNum" property="ocNum" />
 			<result column="mmCount" property="mmCount" />
 			<result column="cartStatus" property="cartStatus" />
 			<collection property="menuVOs" javaType="ArrayList" ofType="MenuVO">
@@ -61,7 +61,7 @@
 	select OL.*, OD.*, CA.*,ME.*, MO.*
         from orderList OL
         left outer join orders OD on OL.ooNum = OD.ooNum
-        left outer join cart CA on OL.cartNum = CA.cartNum
+        left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
         where OD.nickname = #{nickname};
@@ -73,7 +73,7 @@
 	select OL.*, OD.*, CA.*,ME.*, MO.*
         from orderList OL
         left outer join orders OD on OL.ooNum = OD.ooNum
-        left outer join cart CA on OL.cartNum = CA.cartNum
+        left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
         where OD.ssNum = #{ssNum} and OD.ooStatus=0;
@@ -85,7 +85,7 @@
 	select OL.*, OD.*, CA.*,ME.*, MO.*
         from orderList OL
         left outer join orders OD on OL.ooNum = OD.ooNum
-        left outer join cart CA on OL.cartNum = CA.cartNum
+        left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
         where OD.ssNum = #{ssNum} and OD.ooStatus=1;
@@ -93,7 +93,7 @@
 	
 <!--리스트 생성-->
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
- 	insert into orderList values(null ,#{ooNum}, #{cartNum})
+ 	insert into orderList values(null ,#{ooNum}, #{ocNum})
  </insert>
 
 
@@ -110,7 +110,7 @@
 			<result column="ooStatus" property="ooStatus" />
 		</collection>
 		<collection property="cartVO" javaType="CartVO">
-			<id column="cartNum" property="cartNum" />
+			<id column="ocNum" property="ocNum" />
 			<result column="mmCount" property="mmCount" />
 			<result column="cartStatus" property="cartStatus" />
 		</collection>
@@ -120,9 +120,10 @@
 <select id="orderMoney" parameterType="OrdersVO" resultMap="OrderListM">
 	select OL.*, OD.ooTotal, OD.ooDate,OD.ssNum,CA.cartStatus from orderList OL
 	left outer join orders OD on OL.ooNum = OD.ooNum
-	left outer join cart CA on OL.cartNum = CA.cartNum
+	left outer join cart CA on OL.ocNum = CA.ocNum
 	where OD.ssNum=#{ssNum} and CA.cartStatus=0;
 </select>
+  
   
   
 

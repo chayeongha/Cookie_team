@@ -15,19 +15,31 @@ public class CartVO {
 	private List<CartOptionVO> cartOptionVOs;
 	private List<MenuVO> menuVOs;
 	private String lot;
+	private int ocNum;
+	private int ssNum;
+	
+	
 
 
 	
+	public int getSsNum() {
+		return ssNum;
+	}
+	public void setSsNum(int ssNum) {
+		this.ssNum = ssNum;
+	}
+	public int getOcNum() {
+		return ocNum;
+	}
+	public void setOcNum(int ocNum) {
+		this.ocNum = ocNum;
+	}
 	public String getLot() {
 		return lot;
 	}
 	public void setLot(String lot) {
 		this.lot = lot;
 		}
-
-	
-	
-	
 	
 	public List<CartOptionVO> getCartOptionVOs() {
 		return cartOptionVOs;

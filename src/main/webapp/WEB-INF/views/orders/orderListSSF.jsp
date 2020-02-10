@@ -22,6 +22,7 @@
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
 				</div>
 					<!--테이크 아웃 여부 및 제조 여부-->
+					
 					<div class="OrderR">
 					<c:if test="${vo.ordersVO.takeOut eq 1}">
 					 <div class="ListTake">테이크 아웃</div>
@@ -39,20 +40,23 @@
 					</div>
 					
 					<!--메뉴 옵션-->
+					<div class="MAll">
 					<c:forEach items="${vo.cartVO.menuVOs}" var="me">
-					<div class="OrderM">
-						<div>${me.mmName}</div>
-						<div>가격 : ${me.mmPrice}</div>
+					<div class="OM">
+						<div class="OrderM">
+							<div>${me.mmName}</div>
+							<div>가격 : ${me.mmPrice}</div>
+						</div>
 					</div>
-
+					
 						<!--CartOptions에서 받아오는걸로 변경하기 -->
 						<div class="OrderO">
 						<c:forEach items="${me.menuOptions}" var="opt">
 							<div>${opt.optName}</div>
-							
 						</c:forEach>
 						</div>
 					</c:forEach>
+					</div>
 					
 				</div>
 			</div>

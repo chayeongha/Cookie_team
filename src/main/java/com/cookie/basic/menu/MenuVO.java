@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import com.cookie.basic.cart.CartOptionVO;
 
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class MenuVO {
 	private int ssNum;
 	private MenuFilesVO menuFiles;
 	private List<MoptVO> menuOptions;
+	private List<CartOptionVO> cartOptionVOs;
 	
 
 }

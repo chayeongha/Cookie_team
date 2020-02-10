@@ -36,7 +36,7 @@ public class StoreController {
 	@Autowired
 	private MenuService menuService;
 	@Autowired
-	private CartService CartService;
+	private CartService cartService;
 
 	@Autowired
 	private OrdersService ordersService;
@@ -149,12 +149,16 @@ public class StoreController {
 
 	// 매장상세정보//Pos 작동 (ON)
 	@GetMapping("myinfoS")
-	public ModelAndView myInfoS(StoreVO storeVO, HttpSession session, StoreCloseVO storeCloseVO) throws Exception {
+	public ModelAndView myInfoS(StoreVO storeVO, HttpSession session, StoreCloseVO storeCloseVO, MenuVO menuVO, CartVO cartVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		storeVO = storeService.info(storeVO);
 		session.setAttribute("store", storeVO);
 		storeCloseVO = storeService.storeAdminSelect(storeCloseVO);
+		List<CartVO> ar2 = cartService.cartCount(cartVO);
+		List<MenuVO> ar = menuService.menuList(menuVO);
+		mv.addObject("list", ar);
+		mv.addObject("cart", ar2);
 		mv.addObject("store", storeVO);
 		mv.addObject("close", storeCloseVO);
 
