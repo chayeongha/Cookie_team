@@ -513,7 +513,7 @@ public class MemberController {
 		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM), 
 
 		// 청기와랩에 등록한 Application Id 와 API key 를 입력합니다. 
-		new UsernamePasswordCredentials("ckdmsdk", "da7aa03e47ac11eaaf6a0cc47a1fcfae")); 
+		new UsernamePasswordCredentials("hanna", "a1ceb7b647b611ea81cd0cc47a1fcfae")); 
 
 		AuthCache authCache = new BasicAuthCache(); 
 		authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme()); 
@@ -526,7 +526,7 @@ public class MemberController {
 		try { HttpPost httpPost = new HttpPost(url); httpPost.setHeader("Content-type", "application/json; charset=utf-8");
 
 		 //문자에 대한 정보 
-		String json = "{\"sender\":\"01097883481\",\"receivers\":[\"" + receiver + "\"],\"content\":\"쿠키입니다."+"인증번호 6자리를 입력해주세요 [인증번호 :"+rand+"]\"}"; 
+		String json = "{\"sender\":\"01071319540\",\"receivers\":[\"" + receiver + "\"],\"content\":\"쿠키입니다."+"인증번호 6자리를 입력해주세요 [인증번호 :"+rand+"]\"}"; 
 
 		StringEntity se = new StringEntity(json, "UTF-8");
 		 httpPost.setEntity(se); 
