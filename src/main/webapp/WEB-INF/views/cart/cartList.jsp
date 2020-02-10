@@ -6,77 +6,94 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>My Cart</title>
+<c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
+<link href="${pageContext.request.contextPath}/css/store/storeDetail.css"
+	rel="stylesheet">
 </head>
 <body>
-
-
-<div id="container">
-		<div id="contents">
-			<div class="cart_step_wrap">
-				<ul class="cart_step_unit">
-					<li class="step1 active">
-						<span>STEP 01</span>
-						<strong>장바구니</strong>
-					</li>
-					<li class="step2">
-						<span>STEP 02</span>
-						<strong>결제하기</strong>
-					</li>
-					<li class="step3">
-						<span>STEP 03</span>
-						<strong>결제완료</strong>
-					</li>
-				</ul>
-			</div>
+	<div class="body_main">
+		<div class="b"></div>
+		<div id="container">
+			<div id="contents">
+					<h1>Cookie My Cart</h1>
+					<div class="cart_step_wrap">
+						<ul class="cart_step_unit">
+							<li class="step1 active">
+								<span>STEP 01</span>
+								<strong>장바구니</strong>
+							</li>
+							<li class="step2">
+								<span>STEP 02</span>
+								<strong>결제하기</strong>
+							</li>
+							<li class="step3">
+								<span>STEP 03</span>
+								<strong>결제완료</strong>
+							</li>
+						</ul>
+					</div>
+					<div class="cart_list_wrap">
+						<p class="cart_all_wrap">
+							<input type="checkbox" id="checkbox_all" class="custom_checkbox_all" checked="checked">
+							<label for="checkbox_all">
+								전체선택
+							</label>
+							<strong class="checkbox_name">상품명</strong>
+							<strong class="checkbox_price">판매금액</strong>
+							<strong class="checkbox_amount">수량</strong>
+							<strong class="checkbox_total">구매금액</strong>
+							<strong class="checkbox_select">선택</strong>
+						</p>
+						
+						<form action="../order/orderList" method="post" id="frm">
 			
-			<div class="cart_list_wrap">
-				<p class="cart_all_wrap">
-					<input type="checkbox" id="checkbox_all" class="custom_checkbox_all" checked="checked">
-					<label for="checkbox_all">
-						전체선택
-					</label>
-					<strong class="checkbox_name">상품명</strong>
-					<strong class="checkbox_price">판매금액</strong>
-					<strong class="checkbox_amount">수량</strong>
-					<strong class="checkbox_total">구매금액</strong>
-					<strong class="checkbox_select">선택</strong>
-				</p>
-<!-- ------------------------------------------------------------ -->
-			<form action="../order/orderList" method="post" id="frm">
-			
-				<ul class="cart_list_style">
+							<ul class="cart_list_style">
+<!-- --aaaaaaaaaaaaaaaaaaaaaaa -->							
 				
 					<c:set var="sum" value="0" />
 				
 					<c:forEach items="${cartList}" var="cartList">
+					<c:forEach items="${cartList.menuVOs}" var="menuVO">
 					
-						<li id="cart_item_idx_${cartList.cart_num}">
-							<input type="checkbox" class="cart_checkbox" id="checkbox${cartList.cart_num}" value="${cartList.cart_num}" checked="checked">
+						<li id="cart_item_idx_${cartList.cartNum}">
+							<input type="checkbox" class="cart_checkbox" id="checkbox${cartList.cartNum}" value="${cartList.cartNum}" checked="checked">
 							
-							<label for="checkbox${cartList.cart_num}"></label>
+							<label for="checkbox${cartList.cartNum}"></label>
 							
-							<a href="storeSelect?store_num=${cartList.store_num}" class="product_info_img">
-								<img alt="${cartList.store_name}" src="../resources/upload/store/th/${cartList.store_thumbimg}">
-								<strong class="product_info_name">${cartList.store_name}</strong>
-								<input type="hidden" class="sname" id="input_sname${cartList.cart_num}" value="${cartList.store_name}">
-								<span class="product_info_note">${cartList.store_note}</span>
+							<a href="storeSelect?store_num=${cartList.cartNum}" class="product_info_img">
+								<img alt="${cartList.cartNum}" onerror="this.src='../images/header/mm.png'" src="${pageContext.request.contextPath}/menu/${menuVO.menuFiles.mfName}">
+								<strong class="product_info_name">${menuVO.mmName}</strong>
+								<input type="hidden" class="sname" id="input_sname${cartList.cartNum}" value="${cartList.ssNum}">
+								<span class="product_info_note">
+									<c:if test="${not empty cartList.cartOptionVOs}">
+										<c:forEach items="${cartList.cartOptionVOs}" var="cartoptVO">
+											<c:forEach items="${cartoptVO.moptVOs}" var="moptVO">
+												<p>${moptVO.optName} ${moptVO.optCount}</p>
+											</c:forEach>
+										</c:forEach>
+									</c:if>
+									<c:if test="${empty cartList.cartOptionVOs}">
+										추가된 옵션이 없습니다.
+									</c:if>
+								</span>
 							</a>
 							
 							<div class="product_info_onePrice_wrap">
-								<span class="product_info_onePrice"><fmt:formatNumber value="${cartList.store_price}" pattern="###,###,###" /></span>
-								<input type="hidden" class="sprice" id="input_sprice${cartList.cart_num}" value="${cartList.store_price}">
+								<span class="product_info_onePrice"><fmt:formatNumber value="${cartList.cartTotal}" pattern="###,###,###" /></span>
+								<input type="hidden" class="sprice" id="input_sprice${cartList.cartNum}" value="${cartList.cartTotal}">
 							</div>
 							
 							<div class="product_info_amount_wrap">
-								<span class="product_info_count" id="count${cartList.cart_num}">${cartList.cart_amount}</span>
-								<input type="hidden" class="camount" id="input_camount${cartList.cart_num}" value="${cartList.cart_amount}">
-								<a href="#none" class="btn_amount_plus btn_amount_plus${cartList.cart_num}">+</a>
-								<a href="#none" class="btn_amount_minus btn_amount_minus${cartList.cart_num}">-</a>
-								<a href="#none" class="btn_amount_change btn_amount_change${cartList.cart_num}">변경</a>
+								<span class="product_info_count" id="count${cartList.cartNum}">${cartList.mmCount}</span>
+								<input type="hidden" class="camount" id="input_camount${cartList.cartNum}" value="${cartList.mmCount}">
+								<a href="#none" class="btn_amount_plus btn_amount_plus${cartList.cartNum}">+</a>
+								<a href="#none" class="btn_amount_minus btn_amount_minus${cartList.cartNum}">-</a>
+								<a href="#none" class="btn_amount_change btn_amount_change${cartList.cartNum}">변경</a>
 							</div>
 							
-							<span class="product_info_price product_info_price${cartList.cart_num}"><fmt:formatNumber value="${cartList.store_price*cartList.cart_amount}" pattern="###,###,###" /></span>
+							<span class="product_info_price product_info_price${cartList.cartNum}"><fmt:formatNumber value="${cartList.cartTotal*cartList.mmCount}" pattern="###,###,###" /></span>
 							
 						<script type="text/javascript">
 							//,찍어주는 정규식 함수
@@ -106,45 +123,49 @@
 								});
 							}
 							//수량 박스 증가
-							$('.btn_amount_plus'+${cartList.cart_num}).click(function() {
-								var count = $('#count'+${cartList.cart_num}).text();
+							$('.btn_amount_plus'+${cartList.cartNum}).click(function() {
+								var count = $('#count'+${cartList.cartNum}).text();
 								//alert(count);
 								count++;
 								//alert(count);
-								$('#count'+${cartList.cart_num}).text(count);
+								$('#count'+${cartList.cartNum}).text(count);
 							});
 							//수량 박스 감소
-							$('.btn_amount_minus'+${cartList.cart_num}).click(function() {
-								var count = $('#count'+${cartList.cart_num}).text();
+							$('.btn_amount_minus'+${cartList.cartNum}).click(function() {
+								var count = $('#count'+${cartList.cartNum}).text();
 								count--;
 								if(count<1){
 									count = 1;
 								}
-								$('#count'+${cartList.cart_num}).text(count);
+								$('#count'+${cartList.cartNum}).text(count);
 							});
 							//수량 박스 변경
-							$('.btn_amount_change'+${cartList.cart_num}).click(function() {
-								var cart_amount = $('#count'+${cartList.cart_num}).text();
-								var cart_num = ${cartList.cart_num};
+							$('.btn_amount_change'+${cartList.cartNum}).click(function() {
+								var cart_amount = $('#count'+${cartList.cartNum}).text();
+								var cart_num = ${cartList.cartNum};
+								var cart_price = $(this).parent().parent().find($(".product_info_onePrice")).text();
+								cart_price = cart_price.replace(",","");
 								
 								$.ajax({
-									url: "cartUpdate",
+									url: "./cartUpdate",
 									type: "post",
-									async: false,
+									
 									data: {
-										cart_amount: cart_amount,
-										cart_num: cart_num
+										"cart_amount": cart_amount,
+										"cart_num": cart_num,
+										"cart_price": cart_price
 									},
 									success: function(data) {
 										//alert(data);
 										if(data>0){
 											alert("수량이 변경되었습니다.");
-											var price = cart_amount * ${cartList.store_price};
-											price = addComma(price);
-											$('.product_info_price'+${cartList.cart_num}).text(price);
+											//var price = mmCount * ${cartList.cartTotal};
+											//price = addComma(price);
+											//$('.product_info_price'+${cartList.cartNum}).text(price);
 											
-											$('#input_camount'+${cartList.cart_num}).val(cart_amount);
-											calTotal();
+											//$('#input_camount'+${cartList.cartNum}).val(cart_amount);
+											//calTotal();
+											location.href = "cartList";
 										}else {
 											alert("수량 변경 실패");
 										}
@@ -157,35 +178,37 @@
 						</script>
 <!-- ------------------------------------------------------------ -->
 							<div class="product_info_btn_wrap">
-								<button type="submit" id="btn_now${cartList.cart_num}">바로구매</button>
+								<button type="submit" id="btn_now${cartList.cartNum}">바로구매</button>
 							</div>
 							
 						<script type="text/javascript">
-							$('#btn_now'+${cartList.cart_num}).click(function() {
-								$('#input_sname'+${cartList.cart_num}).attr("name", "sname");
-								$('#input_sprice'+${cartList.cart_num}).attr("name", "sprice");
-								$('#input_camount'+${cartList.cart_num}).attr("name", "camount");
+							$('#btn_now'+${cartList.cartNum}).click(function() {
+								$('#input_sname'+${cartList.cartNum}).attr("name", "sname");
+								$('#input_sprice'+${cartList.cartNum}).attr("name", "sprice");
+								$('#input_camount'+${cartList.cartNum}).attr("name", "camount");
 							});	
 						</script>
 <!-- ------------------------------------------------------------ -->
-							<a href="#" class="btn_product_del btn_product_del${cartList.cart_num}">삭제</a>
+							<a href="#" class="btn_product_del btn_product_del${cartList.cartNum}">삭제</a>
 							
 						<script type="text/javascript">
-							$('.btn_product_del'+${cartList.cart_num}).click(function() {
+							$('.btn_product_del'+${cartList.cartNum}).click(function() {
 								var confirm_val = confirm("선택하신 상품을 삭제하시겠습니까?");
 								
 								if(confirm_val){
 									var array_check = new Array();
 									
-									//alert($('#checkbox'+${cartList.cart_num}).val());
-									array_check.push($('#checkbox'+${cartList.cart_num}).val());
+									//alert($('#checkbox'+${cartList.cartNum}).val());
+									array_check.push($('#checkbox'+${cartList.cartNum}).val());
 									
-									//alert(array_check);
-									
+									jQuery.ajaxSettings.traditional = true;
 									$.ajax({
-										url: "cartDelete",
-										type: "post",
-										data: { list: array_check},
+										url: "./cartDelete",
+										type: "POST",
+										data: {
+											"list" : array_check,
+											
+											},
 										success: function(result) {
 											if(result == 1){
 												alert("삭제되었습니다.");
@@ -203,13 +226,17 @@
 						</script>
 					
 						</li>
-					
-					<c:set var="sum" value="${sum + (cartList.store_price*cartList.cart_amount)}" />	
+							<c:set var="sum" value="${sum + (cartList.cartTotal*cartList.mmCount)}" />	
 						
-					</c:forEach>
-				</ul>
-			</form>
-<!-- ------------------------------------------------------------ -->
+						
+
+								
+								</c:forEach>	
+								</c:forEach>
+							</ul>
+						</form>
+							
+							
 				<a href="#none" class="btn_del_selected">
 					선택 상품 삭제
 					<span class="span_btn"></span>
@@ -301,12 +328,14 @@
 							array_check.push($(this).val());
 						});
 						
-						//alert(array_check);
 						
+						jQuery.ajaxSettings.traditional = true;
 						$.ajax({
-							url: "cartDelete",
-							type: "post",
-							data: { list: array_check},
+							url: "./cartDelete",
+							type: "POST",
+							data: { 
+								"list": array_check
+								},
 							success: function(result) {
 								if(result == 1){
 									alert("삭제되었습니다.");
@@ -409,18 +438,16 @@
 					}
 				});
 			</script>
-			
+						
+						
+					</div>
+
+
+
 			</div>
 		</div>
-	</div>
-
-
-
-
-
-
-
-
+<c:import url="../layout/footer.jsp" />
+</div>
 
 </body>
 </html>

@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cookie.basic.cart.CartVO;
+
 @Repository
 @Mapper
 public interface StoreMapper {
@@ -55,5 +57,7 @@ public interface StoreMapper {
 	public List<StoreVO> storeMap() throws Exception;
 
 	public List<StoreVO> storeDetail(StoreVO storeVO) throws Exception;
+	
+	
 
 }

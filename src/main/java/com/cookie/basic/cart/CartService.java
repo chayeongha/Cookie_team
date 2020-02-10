@@ -44,4 +44,19 @@ public class CartService {
 		return cartMapper.cartOptNo(cartVO);
 	}
 	
+	public List<CartVO> cartList(CartVO cartVO) throws Exception{
+		return cartMapper.cartList(cartVO);
+	}
+	
+	//카트 삭제
+	public int cartDelete(CartVO cartVO) throws Exception{
+		return cartMapper.cartDelete(cartVO);
+	}
+	
+	//카트에서 수량추가
+	public int cartUpdate(CartVO cartVO) throws Exception{
+		return cartMapper.cartUpdate(cartVO);
+	}
+	
+	
 }

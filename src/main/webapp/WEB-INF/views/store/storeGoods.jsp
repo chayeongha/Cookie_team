@@ -174,8 +174,8 @@
 							X 
 						</div>
 					</div>
+						<input type="hidden" value="${storeVO.ssNum}" class="cafeNum">
 					<div class="content">
-						
 					</div>
 					
 				</div>

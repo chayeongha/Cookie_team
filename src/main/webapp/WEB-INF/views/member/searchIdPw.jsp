@@ -50,9 +50,9 @@
 						</div>
 						
 						<div class="form-group">
-							<button id="idConfirm" type="button" class="bbtn " style="display: inline;">확인</button>
-							<button id="searchBtn" onclick="sendSms();" type="button" class="bbtn"  style="display: none;" data-toggle="modal" data-target="#myModal">인증번호 받기</button>
-							문자인증 작동하려면 집어넣기 onclick="sendSms();"
+							<button id="idConfirm" type="button" class="bbtn">확인</button>
+							<button id="searchBtn" onclick="sendSms();" type="button" class="bbtn" data-toggle="modal" data-target="#myModal" style="display:none">인증번호 받기</button>
+							<!-- 문자인증 작동하려면 집어넣기 onclick="sendSms();" -->
 						</div>
 				</div>
 			
@@ -61,7 +61,7 @@
 
 					<form action="sendEmail" method="get">
 						<p> 아래 이메일주소를 입력하시면,
-							<br> 입력하신 이메일로 새암호를 보내드립니다<br>
+							<br> 입력하신 이메일로 새암호를 보내드립니다.<br>
 						</p>
 						<br>
 						<div class="idpw">
@@ -74,8 +74,10 @@
 						</div>
 						
 						
-						<button id="pwConfirm" type="button" class="bbtn" style="display: inline;">확인</button>
-						<button id="searchBtn2" type="submit" class="bbtn" style="display: none;">임시번호 보내기</button>
+
+						<button id="pwConfirm" type="button" class="bbtn" >확인</button>
+						<button id="searchBtn2" type="submit" class="bbtn" style="display:none">임시번호 보내기</button>
+
 						
 					</form>
 				</div>
@@ -103,7 +105,7 @@
 		     
 			     <div class="modal-body">
 						
-						<div class="attc" style="display: inline">
+						<div class="attc" style="display: block">
 				  			<div class="timer" style="display: none">
 		 						<div id="ViewTimer"></div>
 		 						<button class="btn btn-warning exTime">시간연장</button>
@@ -130,7 +132,7 @@
 	</div>
 	<!--모달창 끝  -->
 
-	<a class="btn btn-danger" href="${pageContext.request.contextPath}/">쿠키로</a>
+	
 
 <script type="text/javascript">
 
@@ -231,7 +233,7 @@
 						alert("입력하신 정보가 일치합니다.");
 						$('#inputName_1').prop('readonly', true);
 						$('#inputPhone_1').prop('readonly', true);
-						$('#searchBtn').css('display' , 'inline');	
+						$('#searchBtn').css('display' , 'block');	
 						$('#idConfirm').css('display' , 'none');
 						$(".findedId").html("회원님의 ID는 \""+data+"\"입니다.");	
 					}else{
@@ -255,7 +257,7 @@
 				success: function(data) { 
 					if (data != null) { 
 					//alert("인증번호 전송");
-					$('.timer').css('display' ,'inline');
+					$('.timer').css('display' ,'block');
 					SetTime=60;//타이머시간을 다시정해준후
 					tid=setInterval('msg_time()',1000);//타이머를 시작
 					}else {
@@ -279,7 +281,7 @@
 							alert("번호 인증 성공");
 							//모달창 닫기 참고
 				 			//$('#myModal').modal("hide");
-				 			$('.findedId').css('display' , 'inline');
+				 			$('.findedId').css('display' , 'block');
 				 			$('.attc').css('display' , 'none');
 						
 				 			//모달창 닫기했을때 지정된주소로~

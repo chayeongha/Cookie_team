@@ -68,9 +68,9 @@
 		<div class="store_back">
 			<a href="../" style="color: white;"><i
 				class="fa fa-arrow-circle-left"
-				style="font-size: 42px; margin-left: 20px;"></i></a>
+				style="font-size: 55px; margin-left: 20px;"></i></a>
 		</div>
-		<div class="storeJoinTi">지금 바로 매장 등록을 해보세요!</div>
+		<div class="storeJoinTi">* Cookie Order *<p>지금 바로 매장 등록을 해보세요!</p></div>
 	</div>
 	<div class="storeInsertForm">
 		<form action="storeInsert" method="post" enctype="multipart/form-data"
@@ -79,26 +79,26 @@
 
 			<input type="hidden" id="memNum" name="memNum" value="${member.memNum}">
 			<div>
-				<div class="store_label">점주 아이디:</div>
+				<div class="store_label">점주 아이디</div>
 				<!-- id 세션에서 점주 아이디만 받아오기 -->
 				<input type="text" id="memId" name="memId" 
 					class="store_input" value="${member.memId}" readonly="readonly">		
 			</div>
 
 			<div>
-				<div class="store_label">지점이름:</div>
+				<div class="store_label">지점이름</div>
 				<input type="text" id="sName" name="sName" placeholder="　지점이름을 입력해주세요" class="store_input"> 
 					<input type="button" id="OK" value="중복확인">
 			</div>
 
 			<div>
-				<div class="store_label">지점전화번호:</div>
+				<div class="store_label">지점전화번호</div>
 				<input type="text" id="sTel" name="sTel" placeholder="　지점의 전화번호를 입력해주세요" class="store_input">
 			</div>
 
 			<div>
 
-				<div class="store_label">지점주소:</div>
+				<div class="store_label">지점주소</div>
 				<input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="　지점의 주소를 입력해주세요" readonly="readonly"
 					class="store_input"> <input type="button"
 					onClick="goPopup();" value="주소 검색" class="addrbtn" />

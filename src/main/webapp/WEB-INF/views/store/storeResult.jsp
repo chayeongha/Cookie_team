@@ -17,7 +17,6 @@
 	
 	<div class="MenuStyle">
 		<img alt="" src="${pageContext.request.contextPath}/menu/${Detail.menuFiles.mfName}" onerror="this.src='../images/header/mm.png'" style="width: 300px; height: 300px;" class="MeImg">
-
 		<!-- 메뉴 -->
 		<div class="DName">
 			${Detail.mmName}
@@ -54,12 +53,15 @@
 
 	</div>
 	<script type="text/javascript">
+
+	var opt_PM = 1;
 		//메뉴 수량 감소
 		$('.aMinus').click(function() {
+			opt_PM = $('.mcount').val();
 			var num = $('.mcount').val();
 			var minusNum = num - 1;
 			var price = ${Detail.mmPrice};
-
+			
 			if (minusNum <= 0) {
 				$('.mcount').val(1);
 			} else {
@@ -73,13 +75,15 @@
 
 		//메뉴 수량 증가
 		$('.aPlus').click(function() {
+			opt_PM = $('.mcount').val();
 			var num = $('.mcount').val();
 			var price = ${Detail.mmPrice};
-
+			opt_PM++;
+			
 			num++;
 			$('.mcount').val(num);
 
-			var price = price * num;
+			var price = price * num
 
 			$('.totalMenu').text(price);
 			totalPrice();
@@ -92,7 +96,6 @@
 			var minusNum = num - 1;
 			var price = $(this).attr("id");
 			
-			
 			if (minusNum <= 0) {
 				$(this).parent().find('input.ocount').val(0);
 				//$(this).parent().parent().find('input.optNum').removeAttr("name");
@@ -101,7 +104,7 @@
 				$(this).parent().find('input.ocount').val(minusNum);
 				$(this).parent().parent().find('input.optNum').attr("name", "optNum");
 				
-				price = price * minusNum;
+				price = price * minusNum * opt_PM;
 			}
 
 			$(this).parent().find('input.optPrice').val(price);
@@ -109,17 +112,18 @@
 			totalPrice();
 		});
 
+		
 		//옵션 수량 증가
 		$('.optPlus').click(function() {
 			var num = $(this).parent().find('input.ocount').val();
 			//alert(num);
 			var price = $(this).attr("id");
 			//alert(price);
-
+			
 			num++;
 			$(this).parent().find('input.ocount').val(num);
 
-			var price = price * num;
+			var price = price * num * opt_PM;;
 			
 			$(this).parent().find('input.optPrice').val(price);
 			if(num>0){
@@ -226,6 +230,8 @@
 // 						}
 // 					//동일 상품 존재 X - Insert
 // 					}else if(data.result == 2){
+					var cartTotal = $(".totalPrice").text();
+					var cn = $(".cafeNum").val();
 					jQuery.ajaxSettings.traditional = true;
 						$.ajax({
 							url: "../cart/cartInsert",
@@ -235,7 +241,9 @@
 								mmNum: mmNum,
 								mmCount: mmCount,
 								optNum: optNum,
-								optCount:optCount
+								optCount:optCount,
+								cartTotal:cartTotal,
+								cn:cn
 							},
 							success: function() {
 								alert("장바구니에 추가되었습니다.");	
