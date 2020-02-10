@@ -174,7 +174,7 @@
 			Money.removeAttr("style");
 
 			/* var order = $(".storesidebar > #Order").css("background-color","white"); */
-
+			
 			$.ajax({
 				url : "../store/storeNotice",
 				type : 'GET',
@@ -189,6 +189,7 @@
 				}
 
 			});
+		
 		});
 
 		var ssNum = $("#ssNum").val();
@@ -203,6 +204,8 @@
 					ReviewT.removeAttr("style");
 					Money.removeAttr("style");
 
+
+				
 					$.ajax({
 						url : "../orders/orderListSS",
 						type : 'GET',
@@ -219,6 +222,7 @@
 						}
 
 					});
+				
 				});
 
 		/*제조 완료일떄*/
