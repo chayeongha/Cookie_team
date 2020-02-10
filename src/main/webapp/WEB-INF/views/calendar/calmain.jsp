@@ -34,6 +34,8 @@
     </p>
   </div>
  
+
+ 
  <div class="container calendar-container">
 	<div id="calendar" style="max-width:900px; margin:40px auto; width: 50%; height: 50%;"></div>
 </div>
