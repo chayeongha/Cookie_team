@@ -77,7 +77,7 @@
 }
 
 .container{
-	height:1200px;
+	height: auto;
 }
 
 .box2_inner{
@@ -85,4 +85,27 @@
 	background: #ffede3;
 	
 	
+}
+
+.box3{
+	width: 100%;
+	
+}
+
+.box3_inner{
+	float:left;
+	margin-left:45px;
+	width: 500px;
+	height: 300px;
+	margin-top:20px;
+	margin-bottom:50px;
+}
+
+.box3_inner > h1{
+	font-family: CookieRun-Black;
+	color:#f23600;
+}
+
+.slider > div > img{
+	margin-left: 150px;
 }
