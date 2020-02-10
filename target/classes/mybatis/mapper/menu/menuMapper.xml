@@ -31,7 +31,6 @@
 	</resultMap>
 
 
-
 	<insert id="menuInsert" parameterType="MenuVO" useGeneratedKeys="true" keyProperty="mmNum">
 		insert into menu values(null, #{mmName}, #{mmPrice}, #{mmCount}, #{cmNum}, #{mmTemp}, #{ssNum})
 	</insert>

@@ -10,8 +10,9 @@
 
 .orderBox2 {
 	width: 534px;
-	height: 300px;
+	height: auto;
 	margin: auto;
+	overflow: hidden;
 }
 
 .listTr {
@@ -19,13 +20,12 @@
 	font-size: 18px;
 }
 
-.ListT{
+.ListT {
 	width: 526px;
 	height: 60px;
 	background-color: #ff674efa;
 	color: white;
 }
-
 
 .ListNum {
 	width: 150px;
@@ -48,11 +48,10 @@
 
 .OrderR {
 	width: 120px;
-	height: 100px;
+	height: 165px;
 	float: left;
 	text-align: center;
 	margin-top: 90px;
-
 }
 
 .ListTake {
@@ -62,19 +61,33 @@
 
 .OrderM {
 	width: 147px;
-	height: 100px;
+	height: 20px;
 	float: left;
-	margin-top: 90px;
 	text-align: center;
+}
 
+.OM {
+	width: 147px;
+	height: 50px;
+	float: left;
+	margin-top: 7px;
 }
 
 .OrderO {
-	width: 259px;
+	width: 147px;
 	height: auto;
-	float: left;
+	margin-left: 130px;
 	text-align: center;
-	margin-top: 80px;
+	margin-top: 9px;
+	font-size: 17px;
+	color:  #000057;
 
 	/* display: flex; */
+}
+
+.MAll {
+	width: 200px;
+	height: 245px;
+	float: left;
+	margin-left: 100px;
 }

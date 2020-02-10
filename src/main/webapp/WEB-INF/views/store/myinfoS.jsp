@@ -37,6 +37,28 @@
 
 
 
+	<div class="InfoBox">
+		<div class="Update_storeInfo">
+			<a href="./storeUpdate?ssNum=${store.ssNum}" style="color: black;">
+			<i class="fa fa-history" style="font-size: 24px; color: black;"></i>
+			Update
+			</a>
+		</div>
+	<div class="SmenuList">
+	<a href="../menu/menuList?ssNum=${store.ssNum}"style="color: black;">메뉴리스트</a>
+	</div>
+	
+	<input type="hidden" value="${close.cwait}">
+	
+	
+	<c:if test="${close.cwait eq null}">
+	<input type="button" id="ByeInsert" value="폐업신청">
+	</c:if>
+	<c:if test="${close.cwait eq 0}"><div class="daeki">승인대기중</div></c:if>
+	<c:if test="${close.cwait eq 1}">
+	<a href="./deleteStore?ssNum=${store.ssNum}"><input type="button" id="ByeDelete" value="폐업"></a>
+	</c:if>
+	</div>
 	<div class="storeInfoSection">
 		<div class="myStoreDetail">
 			<div class="Detail1">매장명 :${store.sName}</div>
@@ -44,30 +66,29 @@
 			<div class="Detail1">매장 위치: ${store.roadFullAddr}</div>
 		</div>
 		<div class="myMoney">
-			<div class="myMoney_1">일매출현황</div>
+			<div class="myMoney_1">재고현황</div>
+			<c:forEach items="${list}" var="li">
+				<div class="Mname">${li.mmName}</div> 
+				<div class="Mcount">${li.mmCount} </div>
+				<div class="MmNum">${li.mmNum}</div>
+			</c:forEach>
+			
+			<c:forEach items="${cart}" var="ca">
+				<div class="Ccount">${ca.mmCount}</div> 
+				<div class="CmNum">${ca.mmNum}</div>
+			</c:forEach>
+			
 		</div>
 	</div>
-	<a href="./storeUpdate?ssNum=${store.ssNum}">
-		<div class="Update_storeInfo">
-			<i class="fa fa-history" style="font-size: 24px; color: black;"></i>
-			Update
-		</div>
-	</a>
 
-	<a href="../menu/menuList?ssNum=${store.ssNum}">메뉴리스트</a>
+	<script type="text/javascript">
+		var OCount = $(".Mcount").val();
+		var CCount = $(".Ccount").val();
+		var Mnum = $(".MmNum").val();
+		var Cnum = $("CmNum").val();	
+	</script>	
 
-	
-	<input type="hidden" value="${close.cwait}">
-	
-	
-	<c:if test="${close.cwait eq null}">
-	<input type="button" id="ByeInsert" value="폐업등록">
-	</c:if>
-	<c:if test="${close.cwait eq 0}">승인대기중</c:if>
-	<c:if test="${close.cwait eq 1}">
-	<a href="./deleteStore?ssNum=${store.ssNum}"><input type="button" id="ByeDelete" value="폐업"></a>
-	</c:if>
-	
+
 
 
 
@@ -86,7 +107,7 @@
 				location.href = "./storeClose";
 			} else {
 				alert("취소");
-				location.replcate = "./";
+				location.replace = "./";
 			}
 		});
 	</script>

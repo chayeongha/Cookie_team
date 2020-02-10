@@ -11,9 +11,10 @@
 .storeJoinTi {
 	
 	height: 80px;
-	font-family: CookieRun-Black;
-	font-size: 38px;
-	margin-left: 735px;
+
+	font-family: CookieRun-Regular;
+	font-size: 28px;
+	margin-left: 695px;
 	text-align: center;
 	margin-top: 15px;
 	float: left;
@@ -111,6 +112,7 @@
 	overflow: hidden;
 	background-color: #f6f6f6;
 	margin: 0 auto;
+	padding-bottom: 10px;
 }
 
 .store_list_box {

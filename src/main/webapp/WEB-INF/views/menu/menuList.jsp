@@ -104,6 +104,7 @@
 		<div></div>
 
 		<a class="menuselect" href="./menuInsert?ssNum=${store.ssNum}">메뉴추가</a>
+		<a class="storeHome" href="../store/myInfo">매장관리 페이지</a>
 
 	</div>
 

@@ -39,15 +39,12 @@
 .mmTable {
 	width: 1000px;
 	height: auto;
-	overflow:hidden;
+	overflow: hidden;
 	margin: 0 auto;
 	margin-top: 50px;
 	border-collapse: collapse;
 	margin-left: 200px;
-	
 }
-
-
 
 .clrt {
 	background-color: #ff674efa;
@@ -58,18 +55,14 @@
 	height: 30px;
 }
 
-.listTr{
+.listTr {
 	background-color: #c58e7929;
-	border-bottom-style:none;
-	
+	border-bottom-style: none;
 }
-
-
 
 tbody>tr {
 	width: 1200px;
 	height: 40px;
-
 }
 
 tr>td {
@@ -79,23 +72,20 @@ tr>td {
 	font-family: CookieRun-Regular;
 	text-align: center;
 	line-height: 30px;
-	
 }
 
-.ammNum{
+.ammNum {
 	color: black;
-	
 }
 
-a:hover{
-	color:#ff674efa;
+a:hover {
+	color: white;
 }
 
-
-.menuselect{
+.menuselect {
 	width: 100px;
 	height: 40px;
-	background-color:#ff674efa;
+	background-color: #ff674efa;
 	float: right;
 	margin-top: 50px;
 	margin-right: 100px;
@@ -105,11 +95,23 @@ a:hover{
 	color: black;
 	font-family: CookieRun-Regular;
 	font-size: 20px;
-	
-	
+}
+.storeHome{
+	width: 150px;
+	height: 40px;
+	background-color: #ff674efa;
+	float: right;
+	margin-top: 50px;
+	margin-right: 50px;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 40px;
+	color: black;
+	font-family: CookieRun-Regular;
+	font-size: 20px;
 }
 
-.cfTi{
+.cfTi {
 	color: black;
 	font-family: CookieRun-Regular;
 	font-size: 38px;
@@ -118,11 +120,10 @@ a:hover{
 	margin-top: 20px;
 	text-align: center;
 	line-height: 50px;
-		margin-left: 200px;
+	margin-left: 200px;
 }
 
-
-.BevTi{
+.BevTi {
 	color: black;
 	font-family: CookieRun-Regular;
 	font-size: 38px;
@@ -131,10 +132,10 @@ a:hover{
 	margin-top: 20px;
 	text-align: center;
 	line-height: 50px;
-		margin-left: 200px;
+	margin-left: 200px;
 }
 
-.dsTi{
+.dsTi {
 	color: black;
 	font-family: CookieRun-Regular;
 	font-size: 38px;
@@ -143,8 +144,5 @@ a:hover{
 	margin-top: 20px;
 	text-align: center;
 	line-height: 50px;
-		margin-left: 200px;
+	margin-left: 200px;
 }
-
-
-

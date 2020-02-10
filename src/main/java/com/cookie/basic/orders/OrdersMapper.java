@@ -19,5 +19,8 @@ public interface OrdersMapper {
 	public int orderListInsert(OrderListVO orderListVO)throws Exception;
 	public List<OrderListVO> orderListList(OrdersVO ordersVO)throws Exception;
 	public List<OrderListVO> orderListSS(OrdersVO ordersVO)throws Exception;
-
+	public List<OrderListVO> orderListSSF(OrdersVO ordersVO)throws Exception;
+	
+	//매장별 총액
+	public List<OrderListVO> orderMoney(OrdersVO ordersVO)throws Exception;
 }

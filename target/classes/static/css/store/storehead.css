@@ -95,8 +95,42 @@
 }
 
 
+.MoneyT{
+	width: 500px;
+	height: 150px;
+	text-align: center;
+	line-height: 30px;
+	font-family: CookieRun-Black;
+	font-size: 24px;
 
+}
 
+.MoneyT > p{
+	font-family: CookieRun-Black;
+	font-size: 24px;
+	margin-top: 15px;
+}
+
+.TMWrap{
+	width: 200px;
+	height: 60px;
+	margin: auto;
+
+}
+.TMWrap> input{
+	border: none;
+	float: left;
+	width: 200px;
+	background-color: transparent;
+	float: left;
+}
+
+.TodayM{
+	float: left;
+}
+.Mw{
+	float: left;
+}
 
 
 /**********************  Footer ********************************/

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -20,8 +19,6 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 
-
-
 </head>
 <body>
 
@@ -41,16 +38,15 @@
 				</i>
 			</div>
 			<body onload="printClock()">
-				<div
-					style="width: 270px; height: 30px; margin-top: 10px; float: left; font-family: CookieRun-Black; line-height: 30px; color: black; font-size: 36px; text-align: center;"
+				<div style="width: 270px; height: 30px; margin-top: 10px; float: left; font-family: CookieRun-Black; line-height: 30px; color: black; font-size: 36px; text-align: center;"
 					id="clock"></div>
-				<button class="section_ok">완료</button>
-				<button class="section_ok">대기</button>
+				<button class="section_ok" id="finish">완료목록</button>
+				<!-- <button class="section_ok" id="wait">대기</button> -->
 				<div class="section_title">Cafe ManageMent</div>
 		</div>
 		<div class="storesidebar">
-			<button class="side1" id="Order">주문</button>
-			<button class="side1" id="QnaT">질문관리</button>
+			<button class="side1" id="Order">주문대기</button>
+			<button class="side1" id="QnaT">리뷰관리</button>
 			<button class="side1" id="ReviewT">공지사항</button>
 			<button class="side1" id="Money">매출</button>
 		</div>
@@ -68,6 +64,15 @@
 			</button>
 		</form>
 	</div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,41 +130,118 @@
 	</script>
 
 	<script type="text/javascript">
-		$("#ReviewT").click(function(){
-		$.ajax({
-				url : "../store/storeNotice",
-				type : 'GET',
+	var ReviewT = $(".storesidebar > #ReviewT");
+	var order = $(".storesidebar > #Order");
+	var Money =  $(".storesidebar > #Money");
+	var QnaT =  $(".storesidebar > #QnaT");
 
-				success : function(data) {
-					$(".storeNextSide").html(data);
-						alert(data);
+
+	/*돈*/
+
+	
+		$("#Money").click(function() {
+
+			Money.css("background-color", "#ffd6c8");
+			order.removeAttr("style");
+			ReviewT.removeAttr("style");
+
+			$.ajax({
+				url : "../orders/orderMoney",
+				type : 'GET',
+				data : {
+					"ssNum" : ssNum
 				},
+				success : function(data) {
+					
+					
+					$(".storeNextSide").html(data);
+					//alert(data);
+					
+				},	
 				error : function() {
-					alert("실패");
+					//alert("실패");
 				}
 
 			});
 		});
 
-		var ssNum =$("#ssNum").val();
+		/*공지사항*/
+		
+		$("#ReviewT").click(function() {
 
-		$("#Order").click(function(){
-			
-		$.ajax({
-				url : "../orders/orderListSS",
+			ReviewT.css("background-color", "#ffd6c8");
+			order.removeAttr("style");
+			Money.removeAttr("style");
+
+			/* var order = $(".storesidebar > #Order").css("background-color","white"); */
+
+			$.ajax({
+				url : "../store/storeNotice",
 				type : 'GET',
-				data : {
-						"ssNum":ssNum
-					},
+
 				success : function(data) {
+					
 					$(".storeNextSide").html(data);
-					alert(data);
+					//alert(data);
 				},
 				error : function() {
-					alert("실패");
+					//alert("실패");
 				}
 
 			});
+		});
+
+		var ssNum = $("#ssNum").val();
+
+		/*주문*/
+		
+		$("#Order").click(
+				function() {
+					order = $(".storesidebar > #Order").css(
+							"background-color", "#ffd6c8");
+					
+					ReviewT.removeAttr("style");
+					Money.removeAttr("style");
+
+					$.ajax({
+						url : "../orders/orderListSS",
+						type : 'GET',
+						data : {
+							"ssNum" : ssNum
+						},
+						success : function(data) {
+							
+							$(".storeNextSide").html(data);
+							//alert(data);
+						},
+						error : function() {
+							//alert("실패");
+						}
+
+					});
+				});
+
+		/*제조 완료일떄*/
+	
+		$("#finish").click(function() {
+
+			$.ajax({
+				url : "../orders/orderListSSF",
+				type : 'GET',
+				data : {
+					"ssNum" : ssNum
+				},
+				success : function(data) {
+				
+					$(".storeNextSide").html(data);
+					//alert(data);
+				},
+				error : function() {
+					//alert("실패");
+				}
+
+			});
+
 		});
 	</script>
 

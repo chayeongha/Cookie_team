@@ -43,6 +43,7 @@ public class CartService {
 	public int cartOptNo(CartVO cartVO) throws Exception{
 		return cartMapper.cartOptNo(cartVO);
 	}
+
 	
 	public List<CartVO> cartList(CartVO cartVO) throws Exception{
 		return cartMapper.cartList(cartVO);
@@ -64,5 +65,11 @@ public class CartService {
 		return cartMapper.coptSelect(cartOptionVO);
 	}
 	
+
+
+	//재고 갯수
+	public List<CartVO> cartCount(CartVO cartVO)throws Exception{
+		return cartMapper.cartCount(cartVO);
+	}
 
 }

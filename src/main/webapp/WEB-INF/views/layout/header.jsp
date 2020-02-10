@@ -38,11 +38,14 @@
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></div>
 			</c:if>
 			
-			<c:if test="${sessionScope.member.grade ne 9999}">
+			<c:if test="${sessionScope.member.grade eq 1}">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberMypage">Mypage</a></div>
 			</c:if>
 			<c:if test="${sessionScope.member.grade eq 9999}">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/admin/adminMain">adminPage</a></div>
+			</c:if>
+			<c:if test="${sessionScope.member.grade eq 8888}">
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/store/myInfo">Mystore</a></div>
 			</c:if>
 			
 			

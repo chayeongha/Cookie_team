@@ -20,7 +20,7 @@
 			<a href="../" style="color: white;"><i class="fa fa-home"
 				style="font-size: 42px; margin-left: 20px;"></i></a>
 		</div>
-		<div class="storeJoinTi">매장 정보</div>
+		<div class="storeJoinTi" style="color: white;">매장 정보</div>
 	</div>
 	<div class="class_select_store">매장을 선택해주세요</div>
 	<input type="hidden" id="memNum" name="memNum" value="${member.memNum}">

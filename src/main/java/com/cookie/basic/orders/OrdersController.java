@@ -81,7 +81,7 @@ public class OrdersController {
 		return mv;
 	}
 
-	// orderList List 점주가 확인할떄 ssNum으로 확인
+	// orderList List 점주가 확인할떄 ssNum으로 확인(제조대기)
 	@GetMapping("orderListSS")
 	public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -114,9 +114,11 @@ public class OrdersController {
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListSS");
 
+
 		return mv;
 	}
 	
+
 	//인증번호보내기
 		@ResponseBody 
 		@RequestMapping("sendOrder")
@@ -169,5 +171,37 @@ public class OrdersController {
 					client.getConnectionManager().shutdown();
 			}
 		} 
+
+	
+	// orderList List 점주가 확인할떄 ssNum으로 확인(제조완료)
+		@GetMapping("orderListSSF")
+		public ModelAndView orderListSSF(OrdersVO ordersVO) throws Exception {
+			ModelAndView mv = new ModelAndView();
+			List<OrderListVO> ar = ordersService.orderListSSF(ordersVO);
+			mv.addObject("lists", ar);
+			mv.setViewName("orders/orderListSSF");
+
+
+			return mv;
+		}
+	
+		//총액 불러오기
+		@GetMapping("orderMoney")
+		public ModelAndView orderMoney(OrdersVO ordersVO)throws Exception{
+			ModelAndView mv = new ModelAndView();
+			List<OrderListVO> ar = ordersService.orderMoney(ordersVO);
+			mv.addObject("money", ar);
+			mv.setViewName("orders/orderMoney");
+			
+			return mv;
+		}
+		
+		
+		
+		
+		
+
+	
+
 
 }
