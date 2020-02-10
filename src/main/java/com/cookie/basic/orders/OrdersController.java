@@ -3,6 +3,7 @@ package com.cookie.basic.orders;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -86,10 +87,30 @@ public class OrdersController {
 		ModelAndView mv = new ModelAndView();
 		List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
 		CartOptionVO cartOptionVO = new CartOptionVO();
-		System.out.println(ar.get(0).getCartVO().getCartNum());
-		cartOptionVO.setCartNum(ar.get(0).getCartVO().getCartNum());
-		List<CartOptionVO> ar2 = cartService.coptSelect(cartOptionVO);
-		mv.addObject("lists2", ar2);
+		List<CartOptionVO> ar3 = new ArrayList<CartOptionVO>();
+		for(int i=0; i<ar.size();i++) {
+			System.out.println("arsize1 :"+ar.size());
+			System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());
+			List<CartOptionVO> ar2;
+			for(int j=0; j<ar.get(i).getCartVOs().size();j++) {
+				cartOptionVO.setCartNum(ar.get(i).getCartVOs().get(j).getCartNum());
+				System.out.println("cartNUm :"+cartOptionVO.getCartNum());
+				System.out.println("안쪽 size : " + ar.get(i).getCartVOs().size());
+				System.out.println("J : "+j );
+				ar2 = cartService.coptSelect(cartOptionVO);
+				if(ar2.size() == 0){
+					break;
+				}
+				for(int k=0; k<ar2.size(); k++) {
+					System.out.println(ar2.get(k).getMoptVOs());
+					ar3.add(ar2.get(k));
+				}
+				
+				}
+		}
+		System.out.println("ar3:"+ar3.size());
+		//ar2 = cartService.coptSelect(cartOptionVO);
+		mv.addObject("lists2", ar3);
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListSS");
 

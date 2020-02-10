@@ -37,10 +37,11 @@
 		<id column="coNum" property="coNum"/>
 		<result column="optCount" property="optCount"/>
 		<result column="cartNum" property="cartNum"/>
-		<collection property="moptVO" javaType="MoptVO">
+		<collection property="moptVOs" javaType="ArrayList" ofType="MoptVO">
 			<id column="optNum" property="optNum"/>
 			<result column="optName" property="optName"/>
 			<result column="optPrice" property="optPrice"/>
+			<result column="mmNum" property="mmNum"/>
 		</collection>
 	
 	

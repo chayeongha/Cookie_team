@@ -21,7 +21,6 @@
 					<div class="ListNum">리스트 번호 : ${vo.olNum}</div>
 					<div class="ListName">닉네임 : ${vo.ordersVO.nickname}</div>
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
-					<div> 카트 넘버 : ${vo.cartVO.cartNum}</div>
 				</div>
 					<!--테이크 아웃 여부 및 제조 여부-->
 					<div class="OrderR">
@@ -43,23 +42,29 @@
 				<input type="hidden" id="hssnum" value="${vo.ordersVO.ssNum}">
 				<input type="text" id="hphone" value="${vo.ordersVO.phone}">
 					</div>
-					
+					<c:forEach items="${vo.cartVOs}" var="ce">
 					<!--메뉴 옵션-->
-					<c:forEach items="${vo.cartVO.menuVOs}" var="me">
+					<c:forEach items="${ce.menuVOs}" var="me">
 					<div class="OrderM">
 						<div>${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
+						<div>${me.mmNum}</div>
 					</div>
 
 						<!--CartOptions에서 받아오는걸로 변경하기 -->
 						<div class="OrderO">
 						<c:forEach items="${lists2}" var="opt">
-							<div>${opt.moptVO.optName}</div>
-							<div>${opt.moptVO.optPrice}</div>
+						<c:forEach items="${opt.moptVOs}" var="opm">
+						<c:if test="${me.mmNum eq opm.mmNum}">
+							<div>${opm.optName}</div>
+							<div>${opm.optPrice}</div>
+						<div>${opm.mmNum}</div>
+						</c:if>
+						</c:forEach>
 						</c:forEach>
 						</div>
 					</c:forEach>
-					
+					</c:forEach>
 					<c:if test="${vo.ordersVO.ooStatus eq 0}">
 					<input type="button" value="제조 완료" style="cursor: pointer;" id="upbtn" class="ordersUpdate"> 
 					</c:if>
