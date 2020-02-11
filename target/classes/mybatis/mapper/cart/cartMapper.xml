@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cookie.basic.cart.CartMapper">
+
+	<insert id="cartInsert" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum">
+		insert into cart
+		values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal},#{ssNum},0)
+	</insert>
+	<insert id="cartOptionInsert" parameterType="CartOptionVO">
+		insert into cartOption values(0,#{optNum},#{optCount},#{cartNum})
+	</insert>
+	
+	<insert id="cartOptNo" parameterType="CartVO">
+		insert into cart values(0,#{mmNum},#{mmCount},0,#{nickname},#{lot},#{cartTotal},#{ssNum},0)
+	</insert>
+	
+
+	<resultMap type="CartVO" id="cartResult">
+		<id column="cartNum" property="cartNum"/>
+		<result column="mmNum" property="mmNum"/>
+		<result column="mmCount" property="mmCount"/>
+		<result column="cartStatus" property="cartStatus"/>
+		<result column="nickname" property="nickname"/>
+		<result column="lot" property="lot"/>
+		<result column="cartTotal" property="cartTotal"/>
+		<result column="ssNum" property="ssNum"/>
+		<result column="ocNum" property="ocNum"/>
+		<collection property="cartOptionVOs" javaType="List" ofType="CartOptionVO">
+
+			<id column="coNum" property="coNum"/>
+			<result column="optNum" property="optNum"/>
+			<result column="optCount" property="optCount"/>
+			<collection property="moptVOs" javaType="List" ofType="MoptVO">
+	  				<id column="optNum" property="optNum"/>
+	  				<result column="optName" property="optName"/>
+		  			<result column="optPrice" property="optPrice"/>
+		  			<result column="optCount" property="optCount"/>
+	  		</collection>
+		</collection>
+		<collection property="menuVOs" javaType="List" ofType="menuVO">
+			<id column="mmNum" property="mmNum" />
+			<result column="mmName" property="mmName" />
+			<result column="mmPrice" property="mmPrice" />
+			<result column="mmCount" property="mmCount" />
+			<result column="cmNum" property="cmNum" />
+			<result column="mmTemp" property="mmTemp" />
+			<result column="ssNum" property="ssNum" />
+			
+			<collection property="menuFiles" javaType="MenuFilesVO" >
+				<id column="mfNum" property="mfNum"/>
+				<result column="mfName" property="mfName"/>
+				<result column="moNum" property="moNum"/>
+			</collection>
+			
+		</collection>
+	</resultMap>
+	
+
+	<resultMap type="CartOptionVO" id="copt">
+		<id column="coNum" property="coNum"/>
+		<result column="optCount" property="optCount"/>
+		<result column="cartNum" property="cartNum"/>
+		<collection property="moptVOs" javaType="ArrayList" ofType="MoptVO">
+			<id column="optNum" property="optNum"/>
+			<result column="optName" property="optName"/>
+			<result column="optPrice" property="optPrice"/>
+			<result column="mmNum" property="mmNum"/>
+		</collection>
+	
+	
+	</resultMap>
+	
+	<select id="coptSelect" resultMap="copt" parameterType="CartOptionVO">
+		select CO.*, MO.*
+		from cartOption CO
+		left outer join mopt MO on CO.optNum = MO.optNum
+		where CO.cartNum = #{cartNum};
+	</select>
+	
+	
+	<select id="cartCount" parameterType="CartVO" resultType="CartVO">
+		select * from cart where ssNum=#{ssNum}
+	</select>
+	
+	<select id="cartSelect" resultType="CartVO" parameterType="CartVO">
+		select * from cartOption where cartNum in (select cartNum from cart where nickname=#{nickname})
+
+	</select>
+	
+	<select id="cartOne" parameterType="CartVO" resultType="CartVO">
+		select * from cart where lot=#{lot} and nickname=#{nickname} 
+	</select>
+	
+	<update id="cartAdd" parameterType="CartVO">
+		update cart set mmCount=#{mmCount} where cartNum=#{cartNum}
+	</update>
+	
+	<update id="cartUpdate" parameterType="CartVO">
+		update cart set mmCount=#{mmCount}, cartTotal = #{cartTotal} where cartNum=#{cartNum}
+	</update>
+	
+	 <select id="cartList" parameterType="CartVO" resultMap="cartResult">
+		select * from cart C
+		left outer join cartOption CO
+	    on C.cartNum = CO.cartNum
+        left outer join menu M
+        on M.mmNum = C.mmNum
+        left outer join menuFiles MF
+        on M.mmNum = MF.mmNum
+        left outer join mopt MP
+        on MP.optNum = CO.optNum
+		where cartStatus=0 and nickname=#{nickname}
+	</select>
+	
+	<delete id="cartDelete" parameterType="CartVO">
+		delete from cart where cartNum=#{cartNum}
+	</delete>
+	
+</mapper>
