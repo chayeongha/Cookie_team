@@ -5,6 +5,7 @@ import java.util.List;
 import com.cookie.basic.menu.MenuVO;
 
 public class CartVO {
+
    
    private int cartNum;
    private int mmNum;
@@ -85,4 +86,5 @@ public class CartVO {
    public void setOcNum(int ocNum) {
       this.ocNum = ocNum;
    }
+
 }

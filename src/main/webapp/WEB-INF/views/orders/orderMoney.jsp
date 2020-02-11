@@ -97,13 +97,13 @@
         	 
             var t2 = new Circlebar({
                 element: ".circlebar",
-                maxValue: 100,
+                maxValue: avg,
                 fontColor: "#777",
                 fontSize: "30px",
                 skin: "fire",
                 type: "progress"
             });
-        }
+        });
     </script>
 
 	<script type="text/javascript">

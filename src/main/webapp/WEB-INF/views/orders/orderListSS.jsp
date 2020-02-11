@@ -13,7 +13,11 @@
 <body>
 	<input type="hidden" value="${store.ssNum}">
 	<c:forEach items="${lists}" var="vo">
-		<c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}">
+
+	<c:if test="${vo.ordersVO.ooStatus ne 1}">
+		
+
+		<%-- <c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}"> --%>
 		<div class="orderBox">
 			<div class="orderBox2">
 				<div class="listTr">
@@ -24,7 +28,7 @@
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
 				</div>
 					<!--테이크 아웃 여부 및 제조 여부-->
-					<div class="OrderR">
+				
 					<c:if test="${vo.ordersVO.takeOut eq 1}">
 					 <div class="ListTake">테이크 아웃</div>
 					</c:if> 
@@ -46,24 +50,24 @@
 					<c:forEach items="${vo.cartVOs}" var="ce">
 					<!--메뉴 옵션-->
 					<c:forEach items="${ce.menuVOs}" var="me">
-					<div class="OrderM">
+					
 						<div>${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
-						<div>${me.mmNum}</div>
-					</div>
+						<div style="display: none;">${me.mmNum}</div>
+					
 
 						<!--CartOptions에서 받아오는걸로 변경하기 -->
-						<div class="OrderO">
+						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
 						<c:if test="${me.mmNum eq opm.mmNum}">
 							<div>${opm.optName}</div>
-							<div>${opm.optPrice}</div>
-						<div>${opm.mmNum}</div>
+							<div style="display: none;">${opm.optPrice}</div>
+						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
 						</c:forEach>
 						</c:forEach>
-						</div>
+					
 					</c:forEach>
 					</c:forEach>
 					<c:if test="${vo.ordersVO.ooStatus eq 0}">
@@ -75,16 +79,23 @@
 					</c:if> 
 				</div>
 			</div>
-		</div>
 		</c:if>
+		
+		<%-- </c:if> --%>
 	</c:forEach>
 
 <script type="text/javascript">
+
 		//Update 제조완료
 		var upbtn = document.getElementById('upbtn');
 		var ooNum = $("#hoonum").val();
 		var ssNum = $("#hssnum").val();
 		var receiver = $("#hphone").val();
+
+
+		
+		if(upbtn != null){
+		
 		upbtn.onclick = function() {
 			console.log(ooNum);
 			console.log(ssNum);
@@ -104,6 +115,9 @@
 					}
 				} 
 			});
+
+
+
 			
 			$.ajax({
 				type : "POST",
@@ -118,6 +132,9 @@
 				}
 			});
 		}
+
+		}
+		
 	</script>
 
 
