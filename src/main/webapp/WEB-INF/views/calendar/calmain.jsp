@@ -72,9 +72,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		  	
 
 </script>
+<c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
+<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/board/qnaList.css" rel="stylesheet">
 </head>
 
 <body>
+<div class="body_main">
+	<div class="b"></div>
+	<!-- 서브 타이틀 -->
+	<div class="subTitle_wrap">
+		<div class="subTitle_inner">
+			<h2>Calendar</h2>
+		</div>
+	</div>
  
  <div id="external-events">
     <p>
@@ -93,5 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
  <div id='calendar' style="width: 50%; height: 50%;"></div>
  
+ <c:import url="../layout/footer.jsp" />
+</div> 
 </body>
 </html>
