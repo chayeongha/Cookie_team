@@ -79,7 +79,7 @@
         left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.ssNum = #{ssNum}
+        where OD.ssNum = #{ssNum} and OD.ooStatus=#{ooStatus}
 	</select>
 	
 	<!-- 점주 조회(제조 완료) -->
@@ -91,7 +91,7 @@
         left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.ssNum = #{ssNum}
+        where OD.ssNum = #{ssNum} and OD.ooStatus=#{ooStatus}
 	</select>
 	
 <!--리스트 생성-->

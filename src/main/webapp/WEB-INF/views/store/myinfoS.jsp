@@ -85,7 +85,12 @@
 		var OCount = $(".Mcount").val();
 		var CCount = $(".Ccount").val();
 		var Mnum = $(".MmNum").val();
-		var Cnum = $("CmNum").val();	
+		var Cnum = $(".CmNum").val();	
+
+
+
+
+		
 	</script>	
 
 

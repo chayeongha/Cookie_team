@@ -84,8 +84,8 @@ public class OrdersController {
 	// orderList List 점주가 확인할떄 ssNum으로 확인(제조대기)
 	@GetMapping("orderListSS")
 	public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception {
-		System.out.println("가영언니");
-		System.out.println(ordersVO.getSsNum());
+		
+		ordersVO.setOoStatus(0);
 		
 		ModelAndView mv = new ModelAndView();
 		List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
@@ -123,10 +123,16 @@ public class OrdersController {
 	
 	@GetMapping("orderListSSF")
 	public ModelAndView orderListSSF(OrdersVO ordersVO) throws Exception {
+		
+		System.out.println("스토어:"+ordersVO.getSsNum());
+		ordersVO.setOoStatus(1);
+		
 		ModelAndView mv = new ModelAndView();
-		List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
+		List<OrderListVO> ar = ordersService.orderListSSF(ordersVO);
+		System.out.println(ar.size());
 		CartOptionVO cartOptionVO = new CartOptionVO();
 		List<CartOptionVO> ar3 = new ArrayList<CartOptionVO>();
+		
 		for(int i=0; i<ar.size();i++) {
 			System.out.println("arsize1 :"+ar.size());
 			System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());

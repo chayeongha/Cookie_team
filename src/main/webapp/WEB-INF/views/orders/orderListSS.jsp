@@ -85,11 +85,17 @@
 	</c:forEach>
 
 <script type="text/javascript">
+
 		//Update 제조완료
 		var upbtn = document.getElementById('upbtn');
 		var ooNum = $("#hoonum").val();
 		var ssNum = $("#hssnum").val();
 		var receiver = $("#hphone").val();
+
+
+		
+		if(upbtn != null){
+		
 		upbtn.onclick = function() {
 			console.log(ooNum);
 			console.log(ssNum);
@@ -109,6 +115,9 @@
 					}
 				} 
 			});
+
+
+
 			
 			$.ajax({
 				type : "POST",
@@ -123,6 +132,9 @@
 				}
 			});
 		}
+
+		}
+		
 	</script>
 
 

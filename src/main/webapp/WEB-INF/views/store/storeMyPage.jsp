@@ -134,13 +134,13 @@
 	var order = $(".storesidebar > #Order");
 	var Money =  $(".storesidebar > #Money");
 	var QnaT =  $(".storesidebar > #QnaT");
-
+	var ssNum = $("#ssNum").val();
 
 	/*돈*/
 
 	
 		$("#Money").click(function() {
-
+			ssNum = $("#ssNum").val();
 			Money.css("background-color", "#ffd6c8");
 			order.removeAttr("style");
 			ReviewT.removeAttr("style");
@@ -168,7 +168,7 @@
 		/*공지사항*/
 		
 		$("#ReviewT").click(function() {
-
+			ssNum = $("#ssNum").val();
 			ReviewT.css("background-color", "#ffd6c8");
 			order.removeAttr("style");
 			Money.removeAttr("style");
@@ -192,19 +192,18 @@
 		
 		});
 
-		var ssNum = $("#ssNum").val();
+		
 
 		/*주문*/
 		
-		$("#Order").click(
-				function() {
+		$("#Order").click(function() {
 					order = $(".storesidebar > #Order").css(
 							"background-color", "#ffd6c8");
 					
 					ReviewT.removeAttr("style");
 					Money.removeAttr("style");
 
-
+//alert(ssNum);
 				
 					$.ajax({
 						url : "../orders/orderListSS",
@@ -213,9 +212,9 @@
 							"ssNum" : ssNum
 						},
 						success : function(data) {
+							console.log(data);
 							
 							$(".storeNextSide").html(data);
-							//alert(data);
 						},
 						error : function() {
 							//alert("실패");
@@ -227,8 +226,10 @@
 
 		/*제조 완료일떄*/
 	
+	
 		$("#finish").click(function() {
-
+		ssNum = $("#ssNum").val();
+		//alert(ssNum);
 			$.ajax({
 				url : "../orders/orderListSSF",
 				type : 'GET',
@@ -236,9 +237,9 @@
 					"ssNum" : ssNum
 				},
 				success : function(data) {
-				
+				//alert("안녕");
+					//console.log(data);
 					$(".storeNextSide").html(data);
-					//alert(data);
 				},
 				error : function() {
 					//alert("실패");
