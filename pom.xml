@@ -21,7 +21,13 @@
 	</properties>
 
 	<dependencies>
-
+		<!-- simplecaptcha -->
+		<dependency>
+			<groupId>nl.captcha</groupId>
+			<artifactId>simplecaptcha</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+	
 		<!-- javaSDK -->
 		<dependency>
 		    <groupId>net.nurigo</groupId>

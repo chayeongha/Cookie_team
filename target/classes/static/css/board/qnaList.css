@@ -78,7 +78,7 @@ table {
 }
 .qna_tb td .view_txt {
 	display: inline-block;
-    width: 442px;
+    width: 700px;
     height: 18px;
     color: #666;
     overflow: hidden;
@@ -99,7 +99,7 @@ table {
 	position: relative;
     width: 95%;
     margin: 0 auto;
-    padding: 16px 0 18px 108px;
+    padding: 16px 16px 18px 108px;
     border-bottom: 1px solid #e5e5e5;
     background: #f5f5f5;
     font-size: 14px;
@@ -116,6 +116,16 @@ table {
     font-size: 0;
     line-height: 0;
 }
+.qna_tb td.qna_wrap .btns_wrap {
+	margin-top: 12px;
+}
+a.btn_reply {
+	font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    text-decoration: none;
+}
+/* 답변 */
 .qna_tb td.qna_wrap .answer {
 	position: relative;
     width: 95%;
@@ -139,25 +149,27 @@ table {
     line-height: 0;
 }
 .btn_wrap {
-	display: inline-block;
-    zoom: 1;
-    width: 100%;
-    margin-top: 10px;
-    text-align: right;
+	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
+	width: 84px;
+	height: 45px;
+	border-radius: 3px;
 }
-button.btn_write {
-	min-width: 90px;
-	height: 40px;
-    cursor: pointer;
+input.btn_write {
+	display: block;
+	float: right;
+	text-decoration: none;
     font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-    vertical-align: middle;
-    border: none;
-    background-color: #666;
     color: #fff;
+    font-weight: bold;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+    background-color: #666666;
 }
-button.btn_write:hover {
+input.btn_write:hover {
 	background-color: #F23600;
 }
 

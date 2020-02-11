@@ -23,6 +23,9 @@ public interface QnaMapper {
 	//글 생성
 	public int qnaWrite(QnaVO qnaVO) throws Exception;
 	
+	//Ref
+	public int qnaRef(QnaVO qnaVO) throws Exception;
+	
 	//전체 글 개수
 	public int qnaCount(Pager pager) throws Exception;
 	
