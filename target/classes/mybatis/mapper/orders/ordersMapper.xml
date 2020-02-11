@@ -9,12 +9,16 @@
   </insert>
   
   <update id="ordersUpdate" parameterType="OrdersVO">
-   update orders set ooStatus=1 where ooNum=#{ooNum}
+   update orders set ooStatus=1 where nickname=#{nickname} and ooStatus=0
+  </update>
+  
+  <update id="ordersUpdate2" parameterType="OrdersVO">
+   update orders set ooStatus=2 where ooNum=#{ooNum}
   </update>
   
   <!--오더리스트 아님!  -->
   <select id="ordersList" parameterType="OrdersVO" resultType="OrdersVO">
-  	select * from orders where nickname = #{nickname}
+  	select * from orders where nickname = #{nickname} and ooStatus=0
   </select>
   
   
@@ -96,7 +100,7 @@
 	
 <!--리스트 생성-->
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
- 	insert into orderList values(null ,#{ooNum}, null)
+ 	insert into orderList values(null ,#{ooNum}, 0)
  </insert>
 
 <resultMap type="OrderListVO" id="OrderListM">
@@ -129,12 +133,12 @@
 </select>
   
   <update id="orderListUpdate" parameterType="OrderListVO">
-  	update orderList set ocNum = #{ocNum} where olNum=#{olNum}
+  	update orderList set ocNum=#{ocNum} where olNum=#{olNum}
   </update>
 
   
   <select id="orderListSelectOne" parameterType="OrderListVO" resultType="OrderListVO">
-   select * from orderList where ooNum=#{ooNum}
+   select * from orderList where ooNum=#{ooNum} and ocNum=0
   </select>
   
 

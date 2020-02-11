@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.cart.CartOptionVO;
 import com.cookie.basic.cart.CartService;
+import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.store.StoreVO;
@@ -56,7 +57,7 @@ public class OrdersController {
 		ordersVO.setOoNum(Integer.parseInt(ooNum));
 		ordersVO.setSsNum(Integer.parseInt(ssNum));
 
-		int result = ordersService.ordersUpdate(ordersVO);
+		int result = ordersService.ordersUpdate2(ordersVO);
 		String message = "Update fail";
 		String path = "./orderListSS?ssNum=" + ordersVO.getSsNum();
 		if (result > 0) {
@@ -72,39 +73,64 @@ public class OrdersController {
 	// orderList
 	
 	//orderList insert
-	@GetMapping("orderListInsert")
-	public void orderListInsert(OrderListVO orderListVO, HttpSession session, int ooTotal,int takeOut)throws Exception{
+	@PostMapping("orderListInsert")
+	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum)throws Exception{
 		//1단계 orders 생성
+		ModelAndView mv = new ModelAndView();
+		System.out.println("length"+cartNum.length);
+		System.out.println(cartNum[0]);
+		 
 		OrdersVO ordersVO = new OrdersVO();
 		MemberVO memberVO = new MemberVO();
 		StoreVO storeVO = (StoreVO)session.getAttribute("store");
+		
 		memberVO = (MemberVO)session.getAttribute("member");
 		ordersVO.setNickname(memberVO.getNickname());
 		ordersVO.setPhone(memberVO.getPhone());
-		ordersVO.setSsNum(storeVO.getSsNum());
+		String[] sarray = sname.split(",");
+		System.out.println(sarray[0]);
+		ordersVO.setSsNum(Integer.parseInt(sarray[0]));
 		//ooTotal 값 넘어오는거 받아서 넣어주기
-		ordersVO.setOoTotal(ooTotal);
-		ordersVO.setTakeOut(takeOut);
+		String[] parray = cartTotalPrice.split(",");
+		ordersVO.setOoTotal(Integer.parseInt(parray[0]));
+		ordersVO.setTakeOut(0);
 		ordersService.ordersInsert(ordersVO);
 		//2단계 orderSelect로 ooNum 가져오기
 		OrdersVO ordersVO2 = new OrdersVO();
 		ordersVO2.setNickname(memberVO.getNickname());
 		ordersVO2 = ordersService.ordersList(ordersVO);
 		System.out.println("ooNum :" + ordersVO2.getOoNum());
+		//ooStatus 1로 Update
+		OrdersVO ordersVO4 = new OrdersVO();
+		ordersVO4.setNickname(memberVO.getNickname());
+		ordersService.ordersUpdate(ordersVO4);
 		//3단계 orderList생성
 		orderListVO.setOoNum(ordersVO2.getOoNum());
 		ordersService.orderListInsert(orderListVO);
 		
 		//4단계 orderList Select후 Update(olNum=ocNum)
 		OrderListVO orderListVO2 = new OrderListVO();
-		orderListVO2.setOoNum(orderListVO2.getOoNum());
+		orderListVO2.setOoNum(ordersVO2.getOoNum());
 		orderListVO2 = ordersService.orderListSelectOne(orderListVO2);
-		System.out.println(orderListVO2.getOlNum());
+		System.out.println("olNum :"+orderListVO2.getOlNum());
+		System.out.println("ooNum2 :" +orderListVO2.getOoNum());
 		OrderListVO orderListVO3 = new OrderListVO();
 		orderListVO3.setOlNum(orderListVO2.getOlNum());
 		orderListVO3.setOcNum(orderListVO2.getOlNum());
+		System.out.println(orderListVO3.getOcNum());
 		ordersService.orderListUpdate(orderListVO3);
 		
+		//해당되는 카트의 ocNum도 같게 업데이트
+		//cartStatus 1로 Update
+		for(int i=0;i<cartNum.length;i++) {
+			CartVO cartVO = new CartVO();
+			cartVO.setCartNum(Integer.parseInt(cartNum[i]));
+			cartVO.setOcNum(orderListVO3.getOcNum());
+			cartService.cartUpdate2(cartVO);
+		}
+		
+		mv.setViewName("member/memberMypage");
+		return mv;
 	}
 
 	// orderList List 고객이 확인할떄

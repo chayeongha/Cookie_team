@@ -20,11 +20,17 @@ public class OrdersService {
 		return result;
 	}
 
-	// ordersUpdate
+	// ordersUpdate  닉네임으로
 	public int ordersUpdate(OrdersVO ordersVO) throws Exception {
 		int result = ordersMapper.ordersUpdate(ordersVO);
 		return result;
 	}
+	
+	// ordersUpdate2
+		public int ordersUpdate2(OrdersVO ordersVO) throws Exception {
+			int result = ordersMapper.ordersUpdate2(ordersVO);
+			return result;
+		}
 
 	// orders List
 	public OrdersVO ordersList(OrdersVO ordersVO) throws Exception {
@@ -63,7 +69,7 @@ public class OrdersService {
 	//orderList Update
 	public int orderListUpdate(OrderListVO orderListVO)throws Exception{
 		
-		return ordersMapper.orderListInsert(orderListVO);
+		return ordersMapper.orderListUpdate(orderListVO);
 	}
 	//orderList SelectOne
 	public OrderListVO orderListSelectOne(OrderListVO orderListVO)throws Exception{

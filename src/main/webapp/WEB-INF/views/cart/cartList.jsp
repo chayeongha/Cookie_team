@@ -48,7 +48,7 @@
 							<strong class="checkbox_select">선택</strong>
 						</p>
 						
-						<form action="../order/orderList" method="post" id="frm">
+						<form action="../orders/orderListInsert" method="post" id="frm">
 			
 							<ul class="cart_list_style">
 <!-- --aaaaaaaaaaaaaaaaaaaaaaa -->							
