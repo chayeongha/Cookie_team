@@ -93,77 +93,36 @@
 			</div>
 	</div>
 <script type="text/javascript">
-	//등록 버튼
-	$('#btnSave').click(function(){
-		
-		if($('input[name="secret"]').is(":checked")){
-			$('input[name="secret"]').val(1);
-		}else {
-			$('input[name="secret"]').val(0);
-		}
 
-		var writer = $('input[name="writer"]').val();
-		var contents = $('#popCont').val();
-		var secret = $('input[name="secret"]').val();
-
-		if(writer == null || writer == ""){
-			alert("로그인 후 이용하세요");
-			self.close();
-		}else {
-			if(contents != ""){
-				$.ajax({
-					type: "POST",
-					url: "./qnaWrite",
-					data: {
-						writer: writer,
-						contents: contents,
-						secret: secret
-					},
-					success: function(data){
-						if(data > 0){
-							opener.location.reload();
-							self.close();
-						}else{
-							alert("잠시 후에 다시 시도해주세요.");
-						}
-					},
-					error: function(){
-						alert("잠시 후에 다시 시도해주세요.");
-					}
-					
-				});
-			}
-		}
-	});
-	
-	//취소 버튼
-	$('#btnClose').click(function(){
-		window.close();
-	});
-	
-/////////////////////////////////////////////////////////////////
+///captcha/////////////////////////////////////////////////////////////
 	getImage(); //이미지 가져오기
 
 	$('#check').click(function(){
-		var params = {answer: $('#captcha').val()};
-		$.ajax({
-			type: 'POST',
-			url: 'chkAnswer',
-			data: params,
-			success: function(data){
-				alert(data);
-				if(data == 200){
-					alert('입력값이 일치합니다.');
-				}else {
-					alert('입력값이 일치하지 않습니다.');
-					getImage();
-					$('#captcha').val('');
+		var params = $('#captcha').val();
+		if(params != null && params!=""){
+		
+			$.ajax({
+				type: 'POST',
+				url: 'chkAnswer',
+				data: params,
+				success: function(data){
+					//alert(data);
+					if(data == 200){
+						//alert('입력값이 일치합니다.');
+					}else {
+						alert('보안문자 입력값이 일치하지 않습니다.\n다시 입력해주세요.');
+						getImage();
+						$('#captcha').val('');
+					}
+				},
+				error: function() {
+					alert("error");
 				}
-			},
-			error: function() {
-				alert("error");
-			}
-		});
+			});
+			
+		}else {
+			alert("보안문자를 입력해주세요.");
+		}
 	});
 
 	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
@@ -197,6 +156,84 @@
 	function audioPlayer(objUrl){
 		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
 	}
+
+//////////////////////////////////////////////////////////////////////////////////
+	
+	//등록 버튼
+	$('#btnSave').click(function(){
+		if($('input[name="secret"]').is(":checked")){
+			$('input[name="secret"]').val(1);
+		}else {
+			$('input[name="secret"]').val(0);
+		}
+		
+		var writer = $('input[name="writer"]').val();
+		var contents = $('#popCont').val();
+		var secret = $('input[name="secret"]').val();
+
+		if(writer == null || writer == ""){
+			alert("로그인 후 이용하세요");
+			self.close();
+		}else {
+			
+			if(contents != ""){
+				var params = $('#captcha').val();
+				if(params != null && params!=""){
+				
+					$.ajax({
+						type: 'POST',
+						url: 'chkAnswer',
+						data: {
+							answer: params
+						},
+						success: function(data){
+							//alert(data);
+							if(data == 200){
+								//alert('입력값이 일치합니다.');
+	
+								$.ajax({
+									type: "POST",
+									url: "./qnaWrite",
+									data: {
+										writer: writer,
+										contents: contents,
+										secret: secret
+									},
+									success: function(data){
+										if(data > 0){
+											opener.location.reload();
+											self.close();
+										}else{
+											alert("잠시 후에 다시 시도해주세요.");
+										}
+									},
+									error: function(){
+										alert("잠시 후에 다시 시도해주세요.");
+									}
+								});
+							}else {
+								alert('보안문자 입력값이 일치하지 않습니다.\n다시 입력해주세요.');
+								getImage();
+								$('#captcha').val('');
+							}
+						},
+						error: function() {
+							alert("error");
+						}
+					});
+				}else {
+					alert("보안문자를 입력해주세요.");
+				}
+			}else {
+				alert("문의내용을 입력해주세요.");
+			}
+		}
+	});
+	
+	//취소 버튼
+	$('#btnClose').click(function(){
+		window.close();
+	});
 </script>
 </body>
 </html>
