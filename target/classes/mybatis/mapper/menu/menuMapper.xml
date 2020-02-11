@@ -69,5 +69,10 @@
 	<delete id="menuDelete" parameterType="MenuVO">
 		delete from menu where mmNum=#{mmNum}
 	</delete>
+	
+	
+	<update id="countUpdate" parameterType="MenuVO">
+		update menu set mmCount=#{mmCount} where ssNum=#{ssNum}
+	</update>
 
 </mapper>

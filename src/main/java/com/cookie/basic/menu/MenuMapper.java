@@ -24,5 +24,7 @@ public interface MenuMapper {
 	
 	public List<MenuVO> categoryList3(MenuVO menuVO)throws Exception;
 	
+	public int countUpdate(MenuVO menuVO)throws Exception;
+	
 	
 }

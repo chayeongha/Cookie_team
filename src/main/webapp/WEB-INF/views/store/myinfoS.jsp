@@ -77,9 +77,11 @@
 			</c:forEach>
 
 			<c:forEach items="${cart}" var="ca">
-				<div class="Ccount">${ca.mmCount}</div>
-				<div class="CmNum">${ca.mmNum}</div>
+				<div class="Ccount">주문 갯수 : ${ca.mmCount}</div>
+				<div class="CmNum">메뉴 번호 : ${ca.mmNum}</div>
 			</c:forEach>
+
+			
 
 		</div>
 	</div>

@@ -230,5 +230,8 @@ public class MenuService {
 		return menuMapper.menuDelete(menuVO);
 	}
 	
-
+	public int countUpdate(MenuVO menuVO)throws Exception{
+		return menuMapper.countUpdate(menuVO);
+	}	
+	
 }
