@@ -13,6 +13,7 @@ public interface OrdersMapper {
 
 	public int ordersInsert(OrdersVO ordersVO)throws Exception;
 	public int ordersUpdate(OrdersVO ordersVO)throws Exception;
+	public int ordersUpdate2(OrdersVO ordersVO)throws Exception;
 	public OrdersVO ordersList(OrdersVO ordersVO)throws Exception;
 	
 	//오더리스트 매퍼
