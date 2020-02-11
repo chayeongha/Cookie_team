@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.cart.CartOptionVO;
 import com.cookie.basic.cart.CartService;
+import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.store.StoreVO;
@@ -73,8 +74,12 @@ public class OrdersController {
 	
 	//orderList insert
 	@PostMapping("orderListInsert")
-	public void orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname)throws Exception{
+	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum)throws Exception{
 		//1단계 orders 생성
+		ModelAndView mv = new ModelAndView();
+		System.out.println("length"+cartNum.length);
+		System.out.println(cartNum[0]);
+		 
 		OrdersVO ordersVO = new OrdersVO();
 		MemberVO memberVO = new MemberVO();
 		StoreVO storeVO = (StoreVO)session.getAttribute("store");
@@ -115,6 +120,17 @@ public class OrdersController {
 		System.out.println(orderListVO3.getOcNum());
 		ordersService.orderListUpdate(orderListVO3);
 		
+		//해당되는 카트의 ocNum도 같게 업데이트
+		//cartStatus 1로 Update
+		for(int i=0;i<cartNum.length;i++) {
+			CartVO cartVO = new CartVO();
+			cartVO.setCartNum(Integer.parseInt(cartNum[i]));
+			cartVO.setOcNum(orderListVO3.getOcNum());
+			cartService.cartUpdate2(cartVO);
+		}
+		
+		mv.setViewName("member/memberMypage");
+		return mv;
 	}
 
 	// orderList List 고객이 확인할떄

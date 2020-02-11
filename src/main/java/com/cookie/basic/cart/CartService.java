@@ -59,6 +59,11 @@ public class CartService {
 		return cartMapper.cartUpdate(cartVO);
 	}
 	
+	//카트 스테이터스 업데이트
+	public int cartUpdate2(CartVO cartVO) throws Exception{
+		return cartMapper.cartUpdate2(cartVO);
+	}
+	
 	
 	//카트옵션 셀렉트
 	public List<CartOptionVO> coptSelect(CartOptionVO cartOptionVO)throws Exception{

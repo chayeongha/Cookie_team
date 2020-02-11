@@ -36,6 +36,8 @@ public interface CartMapper {
 	
 	//카트에서 수량 추가
 	public int cartUpdate(CartVO cartVO) throws Exception;
+	//카트 스테이터스 업데이트
+	public int cartUpdate2(CartVO cartVO) throws Exception;
 
 	//카트 재고 갯수
 	public List<CartVO> cartCount(CartVO cartVO)throws Exception;
