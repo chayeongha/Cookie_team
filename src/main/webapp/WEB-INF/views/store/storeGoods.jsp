@@ -54,7 +54,7 @@
 					</c:forEach>
 				</c:if>
 			</div>
-			<button class="order2"><a href="${pageContext.request.contextPath}/cart/cartList">주 문 하 기</a></button>
+			<button class="order2"><a href="${pageContext.request.contextPath}/cart/cartList?ssNum=${storeVO.ssNum}">주 문 하 기</a></button>
 		</div>
 		<div class="innerBox">
 			<div class="box1">

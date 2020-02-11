@@ -378,6 +378,7 @@ public class StoreController {
 			MemberVO memberVO = (MemberVO)session.getAttribute("member");
 			CartVO cartVO = new CartVO();
 			cartVO.setNickname(memberVO.getNickname());
+			cartVO.setSsNum(storeVO.getSsNum());
 			List<CartVO> ar = cartService.cartList(cartVO);
 			mv.addObject("cartVO",ar);
 		
