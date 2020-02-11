@@ -22,7 +22,7 @@
 				<div class="pop_qna_wrap">
 					<div class="tbl_wrap">
 						<table class="tbl">
-							<caption>문의내용 수정</caption>
+							<caption>문의내용 작성</caption>
 							<colgroup>
 								<col style="width:25%">
 								<col style="width:75%">
@@ -42,20 +42,14 @@
 										<label for="popCont">보안문자</label>
 									</th>
 									<td class="alignL">
-<!-- 										<div style="overflow:hidden"> -->
-<%-- 											<img id="ccimage" alt="캡차이미지" src="${pageContext.request.contextPath}/qna/captchaImg"> --%>
-<!-- 											<div id="ccaudio" style="display:none"></div> -->
-<!-- 										</div> -->
-<!-- 										<div style="padding:3px"> -->
-<!-- 											<input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"> -->
-<!-- 											<input id="soundOn" type="button" onclick="javaScript:audio()" value="음성듣기"> -->
-<!-- 										</div> -->
-<!-- 										<div style="padding:3px"> -->
-<!-- 											<input id="answer" type="text" value=""> -->
-<!-- 											<input id="check" type="button" value="확인"> -->
-<!-- 										</div> -->
-										
-										
+										<div style="overflow:hidden">
+											<img id="ccimage" alt="캡차이미지" src="./captchaImg">
+											<div id="ccaudio" style="display:none"></div>
+										</div>
+										<div style="padding:3px">
+											<input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침">
+											<!-- <input id="soundOn" type="button" onclick="audio()" value="음성듣기"> -->
+										</div>
 										
 										<p class="cap_wrap">
 											<input type="text" id="captcha" name="captcha" placeholder="보안문자를 입력해 주세요.">
@@ -70,10 +64,10 @@
 					<div class="chk_wrap">
 						<label for="secret">
 							<c:if test="${update.secret == 1}">
-								<input type="checkbox" checked="checked" name="secret" id="secret" value="0" class="chk"> 비밀글로 문의하기
+							<input type="checkbox" checked="checked" name="secret" id="secret" value="1" class="chk"> 비밀글로 문의하기
 							</c:if>
 							<c:if test="${update.secret == 0}">
-								<input type="checkbox" name="secret" id="secret" value="0" class="chk"> 비밀글로 문의하기
+							<input type="checkbox" name="secret" id="secret" value="0" class="chk"> 비밀글로 문의하기
 							</c:if>
 						</label>
 					</div>
@@ -96,17 +90,54 @@
 				</div>
 			<!-- 버튼 -->
 				<div class="btn_wrap">
-					<input type="hidden" name="num" id="num" value="${update.num}">
+					<input type="hidden" name="num" value="${update.num}">
 					<input type="hidden" name="writer" value="${update.writer}">
-					<button id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></button>
+					<button id="btnSave" class="popbtn popbtn1" title="수정"><span>수정</span></button>
 					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
 			</div>
 	</div>
 <script type="text/javascript">
-	//등록 버튼
-	$('#btnSave').click(function(){
 
+///captcha/////////////////////////////////////////////////////////////
+	getImage(); //이미지 가져오기
+
+	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
+	function audio(){
+		var rand = Math.random();
+		var uAgent = navigator.userAgent;
+		var soundUrl = './captchaAudio?rand='+rand;
+
+		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1){
+			//IE 경우
+			audioPlayer(soundUrl);
+		}else if(!!document.createElement('audio').canPlayType){
+			//Chrome 경우
+			try {
+				new Audio(soundUrl).play();
+			} catch (e) {
+				audioPlayer(soundUrl);
+			}
+		}else {
+			window.open(soundUrl, '', 'width=1, height=1');
+		}
+	}
+
+	function getImage(){
+		var rand = Math.random();
+		var url = './captchaImg?rand='+rand;
+
+		$('#ccimage').attr('src', url);
+	}
+
+	function audioPlayer(objUrl){
+		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
+	}
+
+//////////////////////////////////////////////////////////////////////////////////
+	
+	//수정 버튼
+	$('#btnSave').click(function(){
 		if($('input[name="secret"]').is(":checked")){
 			$('input[name="secret"]').val(1);
 		}else {
@@ -116,36 +147,66 @@
 		var num = $('input[name="num"]').val();
 		var writer = $('input[name="writer"]').val();
 		var contents = $('#popCont').val();
-		var step = 0;
 		var secret = $('input[name="secret"]').val();
-		
+
 		if(writer == null || writer == ""){
 			alert("로그인 후 이용하세요");
 			self.close();
 		}else {
+			
 			if(contents != ""){
-				$.ajax({
-					type: "POST",
-					url: "./qnaUpdate",
-					data: {
-						num: num,
-						writer: writer,
-						contents: contents,
-						step: step,
-						secret: secret
-					},
-					success: function(data){
-						if(data > 0){
-							opener.location.reload();
-							self.close();
-						}else{
-							alert("잠시 후에 다시 시도해주세요.");
+				var params = $('#captcha').val();
+				
+				if(params != null && params !=""){
+				
+					$.ajax({
+						type: 'POST',
+						url: 'chkAnswer',
+						data: {
+							answer: params
+						},
+						success: function(data){
+							//alert(data);
+							if(data == 200){
+								alert('입력값이 일치합니다.');
+	
+								$.ajax({
+									type: "POST",
+									url: "./qnaUpdate",
+									data: {
+										num: num,
+										writer: writer,
+										contents: contents,
+										secret: secret
+									},
+									success: function(data){
+										alert(data);
+										if(data > 0){
+											opener.location.reload();
+											self.close();
+										}else{
+											alert("잠시 후에 다시 시도해주세요.1");
+										}
+									},
+									error: function(){
+										alert("잠시 후에 다시 시도해주세요.2");
+									}
+								});
+							}else {
+								alert('보안문자 입력값이 일치하지 않습니다.\n다시 입력해주세요.');
+								getImage();
+								$('#captcha').val('');
+							}
+						},
+						error: function() {
+							alert("error");
 						}
-					},
-					error: function(){
-						alert("에러");
-					}
-				});
+					});
+				}else {
+					alert("보안문자를 입력해주세요.");
+				}
+			}else {
+				alert("문의내용을 입력해주세요.");
 			}
 		}
 	});
@@ -154,45 +215,6 @@
 	$('#btnClose').click(function(){
 		window.close();
 	});
-
-// 	getImage(); //이미지 가져오기
-
-// 	$('#check').click(function(){
-// 		var params = {answer : $('#answer').val()};
-// 		/* $.ajax(); */
-// 	});
-
-// 	//매번 랜덤값을 파라미터로 전달하는 이유 : IE의 경우 매번 다른 임의 값을 전달하지 않으면 '새로고침'을 클릭해도 정상 호출되지 않아 이미지가 변경되지 않는 문제가 발생된다
-// 	function audio(){
-// 		var rand = Math.random();
-// 		var uAgent = navigator.userAgent;
-// 		var soundUrl = './captchaAudio?rand='+rand;
-
-// 		if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MISE') > -1){
-// 			//IE 경우
-// 			audioPlayer(soundUrl);
-// 		}else if(!!document.createElement('audio').canPlayType){
-// 			//Chrome 경우
-// 			try {
-// 				new Audio(soundUrl).play();
-// 			} catch (e) {
-// 				audioPlayer(soundUrl);
-// 			}
-// 		}else {
-// 			window.open(soundUrl, '', 'width=1, height=1');
-// 		}
-// 	}
-
-// 	function getImage(){
-// 		var rand = Math.random();
-// 		var url = './captchaAudio?rand='+rand;
-
-// 		$('#ccimage').attr('src', url);
-// 	}
-
-// 	function audioPlayer(objUrl){
-// 		$('#ccaudio').html('<bgsoun src="'+objUrl+'">');
-// 	}
 </script>
 </body>
 </html>

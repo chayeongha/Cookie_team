@@ -66,7 +66,7 @@ public class QnaController {
 		String result = "";
 		Captcha captcha = (Captcha)req.getSession().getAttribute(Captcha.NAME);
 		String answer = req.getParameter("answer");
-		
+		System.out.println(answer);
 		if(answer != null && !"".equals(answer)) {
 			if(captcha.isCorrect(answer)) {
 				req.getSession().removeAttribute(Captcha.NAME);
@@ -114,9 +114,11 @@ public class QnaController {
 	@PostMapping("qnaUpdate")
 	public int qna(QnaVO qnaVO) throws Exception{
 		
-//		System.out.println(qnaVO.getWriter());
-//		System.out.println(qnaVO.getContents());
-//		System.out.println(qnaVO.getSecret());
+		System.out.println(qnaVO.getWriter());
+		System.out.println(qnaVO.getContents());
+		System.out.println(qnaVO.getSecret());
+		System.out.println(qnaVO.getStep());
+		
 		int result = qnaService.qnaUpdate(qnaVO);
 		
 		return result;
