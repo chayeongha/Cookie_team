@@ -23,7 +23,7 @@
 				<div class="listTr">
 				<!--주문 정보-->
 				<div class="ListT">
-					<div class="ListNum">리스트 번호 : ${vo.ooNum}</div>
+					<div class="ListNum">리스트 번호 : ${vo.ordersVO.ooNum}</div>
 					<div class="ListName">닉네임 : ${vo.ordersVO.nickname}</div>
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
 				</div>
