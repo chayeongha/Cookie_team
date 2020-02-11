@@ -141,5 +141,4 @@
 			where S.sOn=1
 	</select>
 	
-	
 </mapper>
