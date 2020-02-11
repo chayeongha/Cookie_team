@@ -168,7 +168,7 @@
 											
 											//$('#input_camount'+${cartList.cartNum}).val(cart_amount);
 											//calTotal();
-											location.href = "cartList";
+											location.href = "cartList?ssNum="+sN;
 										}else {
 											alert("수량 변경 실패");
 										}
@@ -250,7 +250,7 @@
 										success: function(result) {
 											if(result == 1){
 												alert("삭제되었습니다.");
-												location.href = "cartList";
+												location.href = "cartList?ssNum="+sN;
 											}else {
 												alert("삭제 실패");
 											}
@@ -281,6 +281,8 @@
 				</a>
 				
 			<script type="text/javascript">
+
+			var sN = $(".sname").val();
 				//버튼 활성화, 비활성화 배경색 변경
 				function btn_active() {
 					if($('.cart_checkbox:checked').length > 0){
@@ -377,7 +379,7 @@
 							success: function(result) {
 								if(result == 1){
 									alert("삭제되었습니다.");
-									location.href = "cartList";
+									location.href = "cartList?ssNum="+sN;
 								}else {
 									alert("삭제 실패");
 								}
