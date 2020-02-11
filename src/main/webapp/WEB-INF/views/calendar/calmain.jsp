@@ -20,6 +20,14 @@
 <body>
  
  <div id="external-events">
+    
+    <div class="ckbtn1" style="display: inline">
+    	<button id="ckbtn" type="button" class="ckBtn">출석체크</button>
+    </div>
+    <div class="ckbtn2" style="display: none">
+    	<button id="ckbtn2" type="button" class="ckBtn2">출석완료</button>
+    </div>
+    
     <p>
       <strong>Draggable Events</strong>
     </p>
@@ -40,6 +48,12 @@
  
  <script type="text/javascript">
 
+	$('ckBtn').click(function(){
+
+	});
+
+
+ 
  	document.addEventListener('DOMContentLoaded', function() {
 	    var Calendar = FullCalendar.Calendar;
 	    var Draggable = FullCalendarInteraction.Draggable;
@@ -73,6 +87,11 @@
 	      dateClick: function() {
 	 		    alert('a day has been clicked!');
 	 	   },
+	 	  customButtons: {
+				text:'출석체크하기',
+				id: 'check'
+				
+	 	  },
 	      editable: true,
 	      droppable: true, // this allows things to be dropped onto the calendar
 	      drop: function(info) {
