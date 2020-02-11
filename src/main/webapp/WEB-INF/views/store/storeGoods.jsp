@@ -30,8 +30,31 @@
 		<div class="order">
 			<img src="${pageContext.request.contextPath}/images/menu/cart.png">
 			<h3 style="display: inline-block;">장바구니</h3>
-			<div class="orderBox"></div>
-			<button class="order2">주 문 하 기</button>
+			<div class="orderBox">
+				<c:if test="${not empty cartVO}">
+					<c:forEach items="${cartVO}" var="cartVOs">
+						<c:forEach items="${cartVOs.menuVOs}" var="menuVOs">
+							<c:if test="${menuVOs.ssNum eq storeVO.ssNum}">
+								<div class="orderBox_inner">
+								<h4>${menuVOs.mmName}</h4>
+								수량: ${menuVOs.mmCount}<br>
+									<c:if test="${not empty cartVOs.cartOptionVOs}">
+										<c:forEach items="${cartVOs.cartOptionVOs}" var="cartoptVO">
+											<c:forEach items="${cartoptVO.moptVOs}" var="moptVO">
+												${moptVO.optName} ${moptVO.optCount}
+											</c:forEach>
+										</c:forEach>
+									</c:if>
+									<c:if test="${empty cartVOs.cartOptionVOs}">
+										추가된 옵션이 없습니다.
+									</c:if>
+								</div>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
+				</c:if>
+			</div>
+			<button class="order2"><a href="${pageContext.request.contextPath}/cart/cartList">주 문 하 기</a></button>
 		</div>
 		<div class="innerBox">
 			<div class="box1">
