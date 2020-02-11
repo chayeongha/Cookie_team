@@ -19,5 +19,6 @@ public interface OrdersMapper {
 	public int orderListInsert(OrderListVO orderListVO)throws Exception;
 	public List<OrderListVO> orderListList(OrdersVO ordersVO)throws Exception;
 	public List<OrderListVO> orderListSS(OrdersVO ordersVO)throws Exception;
-
+	public int orderListUpdate(OrderListVO orderListVO)throws Exception;
+	public OrderListVO orderListSelectOne(OrderListVO orderListVO)throws Exception;
 }

@@ -32,6 +32,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cookie.basic.cart.CartOptionVO;
 import com.cookie.basic.cart.CartService;
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.store.StoreVO;
 
 @Controller
 @RequestMapping("/orders/**")
@@ -68,6 +70,42 @@ public class OrdersController {
 	}
 
 	// orderList
+	
+	//orderList insert
+	@GetMapping("orderListInsert")
+	public void orderListInsert(OrderListVO orderListVO, HttpSession session, int ooTotal,int takeOut)throws Exception{
+		//1단계 orders 생성
+		OrdersVO ordersVO = new OrdersVO();
+		MemberVO memberVO = new MemberVO();
+		StoreVO storeVO = (StoreVO)session.getAttribute("store");
+		memberVO = (MemberVO)session.getAttribute("member");
+		ordersVO.setNickname(memberVO.getNickname());
+		ordersVO.setPhone(memberVO.getPhone());
+		ordersVO.setSsNum(storeVO.getSsNum());
+		//ooTotal 값 넘어오는거 받아서 넣어주기
+		ordersVO.setOoTotal(ooTotal);
+		ordersVO.setTakeOut(takeOut);
+		ordersService.ordersInsert(ordersVO);
+		//2단계 orderSelect로 ooNum 가져오기
+		OrdersVO ordersVO2 = new OrdersVO();
+		ordersVO2.setNickname(memberVO.getNickname());
+		ordersVO2 = ordersService.ordersList(ordersVO);
+		System.out.println("ooNum :" + ordersVO2.getOoNum());
+		//3단계 orderList생성
+		orderListVO.setOoNum(ordersVO2.getOoNum());
+		ordersService.orderListInsert(orderListVO);
+		
+		//4단계 orderList Select후 Update(olNum=ocNum)
+		OrderListVO orderListVO2 = new OrderListVO();
+		orderListVO2.setOoNum(orderListVO2.getOoNum());
+		orderListVO2 = ordersService.orderListSelectOne(orderListVO2);
+		System.out.println(orderListVO2.getOlNum());
+		OrderListVO orderListVO3 = new OrderListVO();
+		orderListVO3.setOlNum(orderListVO2.getOlNum());
+		orderListVO3.setOcNum(orderListVO2.getOlNum());
+		ordersService.orderListUpdate(orderListVO3);
+		
+	}
 
 	// orderList List 고객이 확인할떄
 	@GetMapping("orderListList")

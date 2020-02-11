@@ -88,10 +88,16 @@
   
 
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
- 	insert into orderList values(null ,#{ooNum}, #{ocNum})
+ 	insert into orderList values(null ,#{ooNum}, null)
  </insert>
 
+  <update id="orderListUpdate" parameterType="OrderListVO">
+  	update orderList set ocNum = #{ocNum} where olNum=#{olNum}
+  </update>
   
+  <select id="orderListSelectOne" parameterType="OrderListVO" resultType="OrderListVO">
+   select * from orderList where ooNum=#{ooNum}
+  </select>
   
 
 </mapper>

@@ -17,73 +17,9 @@ public class CartVO {
 	private String lot;
 	private int cartTotal;
 	private int ssNum;
-
-	
-	public int getCartTotal() {
-		return cartTotal;
-	}
-	public void setCartTotal(int cartTotal) {
-		this.cartTotal = cartTotal;
-	}
-	public int getSsNum() {
-		return ssNum;
-	}
-	public void setSsNum(int ssNum) {
-		this.ssNum = ssNum;
-	}
 	private int ocNum;
 	
 	
-	public int getOcNum() {
-		return ocNum;
-	}
-	public void setOcNum(int ocNum) {
-		this.ocNum = ocNum;
-	}
-
-
-	
-	
-	
-	
-	
-	public int getSsNum() {
-		return ssNum;
-	}
-	public void setSsNum(int ssNum) {
-		this.ssNum = ssNum;
-	}
-	public int getCartTotal() {
-		return cartTotal;
-	}
-	public void setCartTotal(int cartTotal) {
-		this.cartTotal = cartTotal;
-	}
-	public String getLot() {
-		return lot;
-	}
-	public void setLot(String lot) {
-		this.lot = lot;
-		}
-
-	
-	
-	
-	
-	public List<CartOptionVO> getCartOptionVOs() {
-		return cartOptionVOs;
-	}
-	public void setCartOptionVOs(List<CartOptionVO> cartOptionVOs) {
-		this.cartOptionVOs = cartOptionVOs;
-
-	}
-	public List<MenuVO> getMenuVOs() {
-		return menuVOs;
-	}
-	public void setMenuVOs(List<MenuVO> menuVOs) {
-		this.menuVOs = menuVOs;
-	}
-
 	public int getCartNum() {
 		return cartNum;
 	}
@@ -114,6 +50,41 @@ public class CartVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
+	public List<CartOptionVO> getCartOptionVOs() {
+		return cartOptionVOs;
+	}
+	public void setCartOptionVOs(List<CartOptionVO> cartOptionVOs) {
+		this.cartOptionVOs = cartOptionVOs;
+	}
+	public List<MenuVO> getMenuVOs() {
+		return menuVOs;
+	}
+	public void setMenuVOs(List<MenuVO> menuVOs) {
+		this.menuVOs = menuVOs;
+	}
+	public String getLot() {
+		return lot;
+	}
+	public void setLot(String lot) {
+		this.lot = lot;
+	}
+	public int getCartTotal() {
+		return cartTotal;
+	}
+	public void setCartTotal(int cartTotal) {
+		this.cartTotal = cartTotal;
+	}
+	public int getSsNum() {
+		return ssNum;
+	}
+	public void setSsNum(int ssNum) {
+		this.ssNum = ssNum;
+	}
+	public int getOcNum() {
+		return ocNum;
+	}
+	public void setOcNum(int ocNum) {
+		this.ocNum = ocNum;
+	}
 
 }
