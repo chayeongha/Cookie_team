@@ -18,7 +18,7 @@
 				<c:forEach items="${ar}" var="vo">
 					<c:if test="${vo.sOn eq 1}">
 						<div class="sList">
-						<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}">
+						<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}" onerror="this.src='../images/header/mm.png'">
 						<div style="float:right">
 							<div class="volist">
 								<br><br><br><br>

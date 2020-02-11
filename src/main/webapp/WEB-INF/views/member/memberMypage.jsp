@@ -96,23 +96,22 @@
 				<h1>222</h1>
 				<h1>222</h1>
 				<h1>222</h1>
+				
 			</div>
 		</div>
-		
-		<div class="" style="width: 240px; height: 300px;">
-			<h2>전국의 매장을 만나보세요.</h2>
-			<div class="storeMiniList">
+		<div class="box2">
+			<div class="box3_inner">
+				<h1>전국의 매장을 만나보세요.</h1>
+				<div class="storeMiniList">
+				</div>			
+			</div>
+			<div class="box3_inner">
+				<h1>멤버 캘린더</h1>
+				<div class="">
+				<a href="${pageContext.request.contextPath}/calendar/calmain">캘린더 ?nickname=${member.nickname}</a>
+				</div>
+			</div>
 		</div>
-		
-		
-		<div class="">
-			<h2>멤버 캘린더</h2>
-			<a href="${pageContext.request.contextPath}/calendar/calmain">캘린더 ?nickname=${member.nickname}</a>
-		</div>
-		
-		
-		</div>
-	
 	</div>	
 </div>
 
