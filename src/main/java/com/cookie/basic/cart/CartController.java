@@ -109,7 +109,7 @@ public class CartController {
 		List<CartVO> ar = cartService.cartList(cartVO);
 		
 		mv.addObject("cartList", ar);
-		
+		mv.addObject("memberVO",memberVO);
 		return mv;
 	}
 	
