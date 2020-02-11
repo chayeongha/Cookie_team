@@ -23,4 +23,6 @@ public interface OrdersMapper {
 	
 	//매장별 총액
 	public List<OrderListVO> orderMoney(OrdersVO ordersVO)throws Exception;
+	public int orderListUpdate(OrderListVO orderListVO)throws Exception;
+	public OrderListVO orderListSelectOne(OrderListVO orderListVO)throws Exception;
 }

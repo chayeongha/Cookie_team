@@ -96,9 +96,8 @@
 	
 <!--리스트 생성-->
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
- 	insert into orderList values(null ,#{ooNum}, #{ocNum})
+ 	insert into orderList values(null ,#{ooNum}, null)
  </insert>
-
 
 <resultMap type="OrderListVO" id="OrderListM">
 		<id column="olNum" property="olNum" />
@@ -127,7 +126,14 @@
 	where OD.ssNum=#{ssNum} and CA.cartStatus=0;
 </select>
   
+  <update id="orderListUpdate" parameterType="OrderListVO">
+  	update orderList set ocNum = #{ocNum} where olNum=#{olNum}
+  </update>
+
   
+  <select id="orderListSelectOne" parameterType="OrderListVO" resultType="OrderListVO">
+   select * from orderList where ooNum=#{ooNum}
+  </select>
   
 
 </mapper>

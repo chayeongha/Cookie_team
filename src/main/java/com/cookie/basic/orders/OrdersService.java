@@ -60,5 +60,15 @@ public class OrdersService {
 	public List<OrderListVO> orderMoney(OrdersVO ordersVO)throws Exception{
 		return ordersMapper.orderMoney(ordersVO);
 	}
+	//orderList Update
+	public int orderListUpdate(OrderListVO orderListVO)throws Exception{
+		
+		return ordersMapper.orderListInsert(orderListVO);
+	}
+	//orderList SelectOne
+	public OrderListVO orderListSelectOne(OrderListVO orderListVO)throws Exception{
+		
+		return ordersMapper.orderListSelectOne(orderListVO);
+	}
 
 }
