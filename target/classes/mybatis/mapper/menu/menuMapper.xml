@@ -70,4 +70,10 @@
 		delete from menu where mmNum=#{mmNum}
 	</delete>
 
+
+	<update id="countUpdate" parameterType="MenuVO">
+		update menu set mmCount = mmCount-nvl((select mmCount from cart where cartNum =#{cartNum}),0) where mmNum=(select mmNum from cart where cartNum=#{cartNum})
+	</update>
+
+
 </mapper>
