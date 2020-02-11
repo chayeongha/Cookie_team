@@ -100,9 +100,12 @@ public class CartController {
 
 
 	@GetMapping("cartList")
-	public ModelAndView storeDetail(HttpSession session) throws Exception {
+	public ModelAndView storeDetail(HttpSession session,int ssNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
 		CartVO cartVO = new CartVO();
+		cartVO.setSsNum(ssNum);
+		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		cartVO.setNickname(memberVO.getNickname());
 		
