@@ -34,6 +34,7 @@ import com.cookie.basic.cart.CartService;
 import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.menu.MenuVO;
 import com.cookie.basic.store.StoreVO;
 
 @Controller
@@ -127,7 +128,21 @@ public class OrdersController {
 			cartVO.setCartNum(Integer.parseInt(cartNum[i]));
 			cartVO.setOcNum(orderListVO3.getOcNum());
 			cartService.cartUpdate2(cartVO);
+			//카트넘 찾기 
+			CartVO cartVO2 = new CartVO();
+			cartVO2 = ordersService.findcartNum(cartVO);
+			
+			MenuVO menuVO = new MenuVO();
+			menuVO.setMmNum(cartVO2.getMmNum());
+			menuVO = ordersService.findmmCount(menuVO);
+			int mCount = menuVO.getMmCount();
+			int cCount = cartVO2.getMmCount();
+			System.out.println(mCount);
+			System.out.println(cCount);
+			menuVO.setMmCount(mCount-cCount);
+			ordersService.UpdateCount(menuVO);
 		}
+		
 		
 		mv.setViewName("member/memberMypage");
 		return mv;

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cookie.basic.cart.CartVO;
+import com.cookie.basic.menu.MenuMapper;
+import com.cookie.basic.menu.MenuVO;
 import com.cookie.basic.util.FilePathGenerator;
 import com.cookie.basic.util.FileSaver;
 
@@ -28,7 +30,8 @@ public class StoreService {
 	private FileSaver fileSaver;
 	@Autowired
 	private StoreFilesMapper storeFilesMapper;
-
+	@Autowired
+	private MenuMapper menuMapper;
 	
 	//스토어 신청
 	public int storeInsert(StoreVO storeVO, MultipartFile files) throws Exception {
@@ -94,6 +97,14 @@ public class StoreService {
 
 		return result;
 
+	}
+	
+	
+	
+	//재고 업데이트
+	public int countUpdate(MenuVO menuVO)throws Exception{
+		
+	
 	}
 	
 	

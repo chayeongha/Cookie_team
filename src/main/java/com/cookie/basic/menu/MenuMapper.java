@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.cookie.basic.cart.CartVO;
+
 @Repository
 @Mapper
 public interface MenuMapper {
@@ -25,4 +27,7 @@ public interface MenuMapper {
 	public List<MenuVO> categoryList3(MenuVO menuVO)throws Exception;
 	
 	public int countUpdate(MenuVO menuVO)throws Exception;
+	
+	public CartVO findCartNum(CartVO cartVO)throws Exception;
+	
 }
