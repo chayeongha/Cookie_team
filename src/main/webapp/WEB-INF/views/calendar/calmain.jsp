@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	<!-- 서브 타이틀 -->
 	<div class="subTitle_wrap">
 		<div class="subTitle_inner">
-			<h2>Calendar</h2>
+			<h2>My Calendar</h2>
 		</div>
 	</div>
  
