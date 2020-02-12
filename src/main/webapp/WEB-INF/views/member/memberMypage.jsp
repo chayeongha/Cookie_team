@@ -142,7 +142,7 @@
 
 					if (data == 1) {
 						alert("성공적으로 회원정보가 삭제되었습니다")
-						location.href="./memberIndex";
+						location.href="../";
 					}else{
 						alert("처리가 실패되었습니다");
 					}
