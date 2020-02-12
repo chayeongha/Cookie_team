@@ -43,16 +43,18 @@
 					
 					<input type="hidden" id="hoonum" value="${vo.ordersVO.ooNum}">
 				<input type="hidden" id="hssnum" value="${vo.ordersVO.ssNum}">
-				<input type="text" id="hphone" value="${vo.ordersVO.phone}">
+				<div class="phoneBox">
+				<input type="text" id="hphone" readonly="readonly" value="${vo.ordersVO.phone}">
+				</div>
 					</div>
 					<c:forEach items="${vo.cartVOs}" var="ce">
 					<!--메뉴 옵션-->
 					<c:forEach items="${ce.menuVOs}" var="me">
-					
+					<div class="mBox">
 						<div>${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
-					
+				
 
 						<!--CartOptions에서 받아오는걸로 변경하기 -->
 						
@@ -65,14 +67,16 @@
 						</c:if>
 						</c:forEach>
 						</c:forEach>
+							</div>
 					
 					</c:forEach>
 					</c:forEach>
 					
-					
+					<div class="msgBox">
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
 					 <div>메세지 전송 완료!</div>
 					</c:if> 
+					</div>
 				</div>
 			</div>
 		</c:if>

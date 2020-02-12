@@ -100,12 +100,7 @@ public class StoreService {
 	}
 	
 	
-	
-	//재고 업데이트
-	public int countUpdate(MenuVO menuVO)throws Exception{
-		
-	
-	}
+
 	
 	
 	// 폐점
