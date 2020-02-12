@@ -23,7 +23,7 @@
 /*c*/
 
 #external-events{
-	left: 400px;
+	left: 550px;
 	top:300px;
 	
 }
@@ -58,7 +58,7 @@
 
 
 .fc-unthemed td.fc-today {
-	background: #ff712d;  
+	background: #ffac84;  
 }
 
 .fc-unthemed th,
@@ -79,6 +79,30 @@
 	font-size:25px;
 	color:#ff712d;
 }
+
+#ckbtn22, #ckbtn11{
+	border:none;
+	background: transparent;
+	font-family: CookieRun-Black;
+	font-size:30px;
+	color:#f23600;
+	margin:0 auto;
+}
+
+#ckbtn11{
+	border:none;
+	background: transparent;
+	font-family: CookieRun-Black;
+	font-size:30px;
+	color:#ff712d;
+	margin:0 auto;
+}
+
+#ckbtn11:hover{
+	font-size:32px;
+	color:#f23600;
+}
+
 
 /**/
 .test{

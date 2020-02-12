@@ -52,7 +52,10 @@
 	    	<input type="hidden" value="${gcheck.checkDate}" class="checkDate">
 	    </c:forEach>
 	    <!--  -->
-	  
+	 
+	  <p>　</p>
+	  <p>출석체크 버튼을 눌러야 </p>
+	  <p> 출석이 완료됩니다.</p>
 	</div>
 
  <div class="container calendar-container">

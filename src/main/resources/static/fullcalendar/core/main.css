@@ -5,14 +5,16 @@ html, body {
   font-size: 14px;
 }
 #external-events {
-  position: fixed;
-  z-index: 2;
-  top: 20px;
-  left: 20px;
-  width: 150px;
+  position:absolute;
+  width: 200px;
+  height:130px;
   padding: 0 10px;
-  border: 1px solid #ccc;
-  background: #eee;
+  border: 1px solid #ffd6bf;
+  background: #ffede3;
+}
+
+#external-events > p {
+	letter-spacing: -2px;
 }
 .demo-topbar + #external-events { /* will get stripped out */
   top: 60px;
