@@ -9,14 +9,10 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
 </head>
+
 <body>
 		
-
-</head>
-<body>
-
   <div class="slider">
 	   	<c:forEach items="${smList }" var="sm">
 	   	
@@ -29,8 +25,7 @@
 	   	</c:forEach>
   </div>
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	$(document).ready(function () {
 
@@ -54,8 +49,7 @@
 
 		});
 
-
-		</script>	
+</script>	
 		
 </body>
 </html>

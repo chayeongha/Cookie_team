@@ -58,7 +58,7 @@ public class CalController {
 		//ModelAndView mv = new ModelAndView();
 		int result = calService.checkInsert(calVO);
 	
-		System.out.println(calVO.getCheckDate());
+		//System.out.println(calVO.getCheckDate());
 		
 		String msg ="출석실패";
 	
@@ -71,13 +71,6 @@ public class CalController {
 		//mv.setViewName("common/result");
 		
 		return msg;
-	}
-	
-	/////test용//
-	//멤버캘린더2
-	@GetMapping("calmain2")
-	public void calmain2()throws Exception {
-		
 	}
 	
 }

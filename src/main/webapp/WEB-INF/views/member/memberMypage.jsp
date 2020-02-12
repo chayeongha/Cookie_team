@@ -16,7 +16,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
-
 </head>
 <body>
 <div class="body_main">
@@ -109,8 +108,8 @@
 			</div>
 			<div class="box3_inner">
 				<h1>멤버 캘린더</h1>
-				<div class="">
 				<a href="${pageContext.request.contextPath}/calendar/calmain">캘린더 ?nickname=${member.nickname}</a>
+				<div class="memberCalendar">
 				</div>
 			</div>
 		</div>
@@ -123,9 +122,7 @@
 
 		//정보수정
 		$('#mUp').click(function() {
-		
 			location.href="./memberUpdate";
-			
 		});
 
 		//회원탈퇴
@@ -156,10 +153,8 @@
 		//해당div에 스토어 미니 리스트를 출력해줌.
 		$(document).ready(function(){
 		    $(".storeMiniList").load("./storeMiniList");
-		  
 		});
-		
-			
+
 </script>
 		
 	

@@ -4,6 +4,5 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/resources/application.properties=UTF-8
 encoding//src/main/resources/messages/messages_ko_KR.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/calendar/calmain.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/calendar/calmain2.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8
