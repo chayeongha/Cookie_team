@@ -191,7 +191,14 @@ button.popbtn span {
 }
 
 
-
+#reload{
+	width: 20px;
+	height: 20px;
+	background:transparent;
+	background-image: url(../../images/board/60961.png);
+	background-size: cover;
+	border:none;
+}
 
 
 

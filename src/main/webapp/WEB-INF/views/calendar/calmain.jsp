@@ -17,10 +17,21 @@
 <script src='/fullcalendar/timegrid/main.min.js'></script>
 <script src='/fullcalendar/core/locales/ko.js'></script>
 <link href="${pageContext.request.contextPath}/css/board/qnaList.css" rel="stylesheet">
+<c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
+<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/board/qnaList.css" rel="stylesheet">
 </head>
 
 <body>
- 	<c:import url="../template/boot.jsp"/>
+ 	<div class="body_main">
+	<div class="b"></div>
+	<!-- 서브 타이틀 -->
+	<div class="subTitle_wrap">
+		<div class="subTitle_inner">
+			<h2>My Calendar</h2>
+		</div>
+	</div>
 
 	<div id="external-events">
 	
@@ -68,6 +79,7 @@
 			}
 		});
 	});
+
 
  	//풀캘린더
  	document.addEventListener('DOMContentLoaded', function() {
@@ -151,7 +163,10 @@
 	$(".test").parent().addClass("test2");
  	
 </script>
+
  
  
+ <c:import url="../layout/footer.jsp" />
+</div> 
 </body>
 </html>
