@@ -6,9 +6,14 @@
 	<insert id="checkInsert" parameterType="CalVO" useGeneratedKeys="true" keyProperty="checkNum">
 	  		insert into checks values(null,#{memNum}, #{memCheck}, now())
 	</insert>
-	<!--출석 db가져오기 -->
+	<!--출석 정보가져오기 -->
 	<select id="getCheck" parameterType="CalVO" resultType="CalVO">
 			select * from checks where memNum=#{memNum} and memCheck="y"
+	</select>
+	
+	<!--memCheck(출석여부) 가져오기  -->
+	<select id="getMemCheck" parameterType="CalVO" resultType="String">
+			select memCheck from checks where memNum=#{memNum} and checkDate=curdate()
 	</select>
 
 </mapper>

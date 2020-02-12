@@ -294,13 +294,14 @@ temporary rendered events).
   /* make the <a> tag block */
   font-size: 0.85em;
   line-height: 1.4;
-  border-radius: 3px;
-  border: 1px solid #3788d8;
+  background-image: url("../../images/check2.png");
+	background-size: cover;
 }
 
 .fc-event,
 .fc-event-dot {
-  background-color: #3788d8;
+background-image: url("check2.png");
+background-size: cover;
   /* default BACKGROUND color */
 }
 

@@ -21,5 +21,9 @@ public class CalService {
 		return calmapper.getCheck(calVO);
 	}
 	
+	//memCheck(출석여부) 가져오기
+	public String getMemCheck(CalVO calVO)throws Exception{
+		return calmapper.getMemCheck(calVO);
+	}
 	
 }

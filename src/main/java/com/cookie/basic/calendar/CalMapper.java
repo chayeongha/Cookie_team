@@ -14,4 +14,7 @@ public interface CalMapper {
 	
 	//출석 db가져오기
 	public List<CalVO> getCheck(CalVO calVO)throws Exception;
+	
+	//memCheck(출석여부) 가져오기
+	public String getMemCheck(CalVO calVO)throws Exception;
 }

@@ -1,5 +1,8 @@
 package com.cookie.basic.calendar;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,11 +28,19 @@ public class CalController {
 	@GetMapping("calmain")
 	public ModelAndView calmain(CalVO calVO, HttpSession session)throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		//출석체크데이터를가져온 리스트
 		MemberVO memberVO=(MemberVO) session.getAttribute("member");
 		calVO.setMemNum(memberVO.getMemNum());
-		
+
 		List<CalVO>ar =calService.getCheck(calVO);
 		
+		CalVO calVO2 = new CalVO();
+		calVO2.setMemNum(memberVO.getMemNum());
+		String mcheck=calService.getMemCheck(calVO2);
+		//System.out.println(mcheck);
+		
+		mv.addObject("mcheck", mcheck);
 		mv.addObject("getCheck", ar);
 		mv.setViewName("calendar/calmain");
 		
@@ -43,11 +54,11 @@ public class CalController {
 	}
 	@ResponseBody
 	@PostMapping("checkInsert")
-	public String checkInsert(CalVO calVO, HttpSession session)throws Exception {
+	public String checkInsert(CalVO calVO)throws Exception {
 		//ModelAndView mv = new ModelAndView();
-		
 		int result = calService.checkInsert(calVO);
-
+	
+		System.out.println(calVO.getCheckDate());
 		
 		String msg ="출석실패";
 	
