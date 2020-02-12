@@ -17,6 +17,14 @@ public class QnaService {
 	private QnaMapper qnaMapper;
 	
 	
+	//답변 작성
+	public int qnaAnswer(QnaVO qnaVO) throws Exception {
+		int result = qnaMapper.qnaWrite(qnaVO);
+		result = qnaMapper.qnaAnswerCheck(qnaVO);
+		
+		return result;
+	}
+	
 	//글 삭제
 	@Transactional
 	public int qnaDelete(QnaVO qnaVO) throws Exception {

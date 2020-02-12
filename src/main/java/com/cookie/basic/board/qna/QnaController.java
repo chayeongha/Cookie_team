@@ -78,6 +78,25 @@ public class QnaController {
 		return result;
 	}
 	/////////////////////////////////////////////////////////////
+	//문의 답변 폼
+	@GetMapping("qnaAnswer")
+	public void qnaAnswer(QnaVO qnaVO, Model model) throws Exception {
+		String writer = "abcdefghij";
+		qnaVO = qnaService.qnaSelect(qnaVO);
+		
+		model.addAttribute("answer", qnaVO);
+	}
+	
+	//문의 답변 등록
+	@ResponseBody
+	@PostMapping("qnaAnswer")
+	public int qnaAnswer(QnaVO qnaVO) throws Exception{
+		
+		int result = qnaService.qnaAnswer(qnaVO);
+		
+		return result;
+	}
+	
 	//글 삭제
 	@GetMapping("qnaDelete")
 	public ModelAndView qnaDelete(QnaVO qnaVO) throws Exception {

@@ -19,7 +19,6 @@
 		<typeAlias type="com.cookie.basic.board.review.ReviewVO" alias="ReviewVO"/>
   		<typeAlias type="com.cookie.basic.board.review.ReviewFilesVO" alias="ReviewFilesVO"/>
 		<typeAlias type="com.cookie.basic.board.qna.QnaVO" alias="QnaVO"/>
-  		<typeAlias type="com.cookie.basic.board.qna.QnaFilesVO" alias="QnaFilesVO"/>
 		
   		<typeAlias type="com.cookie.basic.member.MemberVO" alias="MemberVO" />
   		<typeAlias type="com.cookie.basic.member.MemberFilesVO" alias="MemberFilesVO" />

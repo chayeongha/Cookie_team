@@ -11,6 +11,9 @@ import com.cookie.basic.util.Pager;
 @Repository
 public interface QnaMapper {
 
+	//답변 여부
+	public int qnaAnswerCheck(QnaVO qnaVO) throws Exception;
+	
 	//글 삭제
 	public int qnaDelete(QnaVO qnaVO) throws Exception;
 	

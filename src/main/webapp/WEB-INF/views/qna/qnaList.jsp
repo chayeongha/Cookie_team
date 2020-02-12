@@ -42,46 +42,51 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="list">
-					<tr>
-						<td class="td_num">${list.num}</td>
-						<td class="td_view">
-							<span class="state">미완료</span>
-							<c:if test="${list.secret == 1}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
-							<c:if test="${list.secret == 0}">
-								<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
-							</c:if>
-						</td>
-						<td class="td_writer">${list.writer}</td>
-						<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-					</tr>
+					<c:if test="${list.step == 0}">
+						<tr>
+							<td class="td_num">${list.num}</td>
+							<td class="td_view">
+								<c:if test="${list.acheck eq 0}">
+									<span class="state">미완료</span>
+								</c:if>
+								<c:if test="${list.acheck eq 1}">
+									<span class="state stateF">답변완료</span>
+								</c:if>
+								<c:if test="${list.secret == 1}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
+								<c:if test="${list.secret == 0}">
+									<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
+								</c:if>
+							</td>
+							<td class="td_writer">${list.writer}</td>
+							<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+						</tr>
+					</c:if>
 					<tr class="trQna" style="display: table-row;">
 						<td colspan="4" class="qna_wrap" style="display: table-cell;">
 						<!-- 질문 -->
-							<div class="question">
-								<span class="iconQ">질문</span>
-									<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
-								<br>
-								<div class="btns_wrap">
-									<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
-									<%-- <a href="qnaUpdate?num=${list.num}&step=0">수정하기</a> --%>
-									<!-- <form name="frmData" class="frmData" method="post"> -->
+							<c:if test="${list.step == 0}">
+								<div class="question">
+									<span class="iconQ">질문</span>
+										<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
+									<br>
+									<div class="btns_wrap">
 										<input type="hidden" class="num" value="${list.num}">
-									<!-- </form> -->
-									<a href="javascript:void(0)" class="btn_update">수정하기</a>
-									<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
+										<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
+										<a href="javascript:void(0)" class="btn_update">수정하기</a>
+										<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
+									</div>
 								</div>
-							</div>
-							
+							</c:if>
 						<!-- 답변 -->
 							<c:if test="${list.step > 0}">
-								<div class="answer">
+								<div class="answer" title="1">
 									<span class="iconA">답변</span>
-									${list.contents}
+									<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
 									<br>
-								</div>
-								<div class="btns_wrap">
-									<a href="qnaUpdate?num=${list.num}&step=1" >수정하기</a>
-									<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
+									<div class="btns_wrap">	
+										<a href="qnaUpdate?num=${list.num}&step=1">수정하기</a>
+										<a href="qnaDelete?num=${list.num}">삭제하기</a>
+									</div>
 								</div>
 							</c:if>
 						</td>
@@ -121,12 +126,20 @@
 ////////////////////////////////////////////////////////////////////
 	var openWin;
 
+	//수정
 	$('.btn_update').click(function(){
 		var num = $(this).parent().find('.num').val();
 		
 		openUpdate(num);
 	});
-
+	
+	//답변
+	$('.btn_reply').click(function(){
+		var num = $(this).parent().find('.num').val();
+		
+		openAnswer(num);
+	});
+	
 	function openWrite() {
 		//window.name = "부모창 이름";
 		//window.name = "parentForm";
@@ -135,7 +148,11 @@
 	}
 
 	function openUpdate(num) {
-		openWin = window.open("qnaUpdate?num="+num+"&step=0", "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+		openWin = window.open("qnaUpdate?num="+num, "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+	}
+
+	function openAnswer(num) {
+		openWin = window.open("qnaAnswer?num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
 	}
 	
 // 	function setUpdateText() {

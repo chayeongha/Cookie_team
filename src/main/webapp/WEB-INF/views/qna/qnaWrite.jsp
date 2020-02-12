@@ -169,6 +169,7 @@
 									data: {
 										writer: writer,
 										contents: contents,
+										step: 0,
 										secret: secret
 									},
 									success: function(data){
