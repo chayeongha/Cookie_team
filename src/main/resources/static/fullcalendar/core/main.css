@@ -1,3 +1,38 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+#external-events {
+  position: fixed;
+  z-index: 2;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #eee;
+}
+.demo-topbar + #external-events { /* will get stripped out */
+  top: 60px;
+}
+#external-events .fc-event {
+  margin: 1em 0;
+  cursor: move;
+}
+#calendar-container {
+  position: relative;
+  z-index: 1;
+  margin-left: 200px;
+}
+#calendar {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+/*---------------------------------------------------------------------  */
+
 @charset "UTF-8";
 .fc {
   direction: ltr;
@@ -259,13 +294,14 @@ temporary rendered events).
   /* make the <a> tag block */
   font-size: 0.85em;
   line-height: 1.4;
-  border-radius: 3px;
-  border: 1px solid #3788d8;
+  background-image: url("../../images/check2.png");
+	background-size: cover;
 }
 
 .fc-event,
 .fc-event-dot {
-  background-color: #3788d8;
+background-image: url("check2.png");
+background-size: cover;
   /* default BACKGROUND color */
 }
 
@@ -1051,36 +1087,5 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   }
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 14px;
-}
-#external-events {
-  position: fixed;
-  z-index: 2;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  padding: 0 10px;
-  border: 1px solid #ccc;
-  background: #eee;
-}
-.demo-topbar + #external-events { /* will get stripped out */
-  top: 60px;
-}
-#external-events .fc-event {
-  margin: 1em 0;
-  cursor: move;
-}
-#calendar-container {
-  position: relative;
-  z-index: 1;
-  margin-left: 200px;
-}
-#calendar {
-  max-width: 900px;
-  margin: 20px auto;
-}
+
 

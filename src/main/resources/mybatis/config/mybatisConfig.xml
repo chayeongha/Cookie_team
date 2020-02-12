@@ -39,6 +39,9 @@
   		<typeAlias type="com.cookie.basic.store.StoreFilesVO" alias="StoreFilesVO"/>
   		
   		<typeAlias type="com.cookie.basic.orders.OrdersVO" alias="OrdersVO"/>
+  		
+  		<typeAlias type="com.cookie.basic.calendar.CalVO" alias="CalVO"/>
+  		
   	</typeAliases>
 
   </configuration>
