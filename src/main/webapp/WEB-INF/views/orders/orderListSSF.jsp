@@ -14,7 +14,7 @@
 	<input type="hidden" value="${store.ssNum}">
 	
 	<c:forEach items="${lists}" var="vo">
-<c:if test="${vo.ordersVO.ooStatus eq 1}">
+<c:if test="${vo.ordersVO.ooStatus eq 2}">
 		<%-- <c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}"> --%>
 		<div class="orderBox">
 			<div class="orderBox2">
@@ -34,10 +34,10 @@
 					 <div class="ListTake">매장</div>
 					</c:if> 
 					<input type="hidden" value="${vo.ordersVO.ooStatus}">
-					<c:if test="${vo.ordersVO.ooStatus eq 0}">
+					<c:if test="${vo.ordersVO.ooStatus eq 1}">
 					 <div>제조 대기</div>
 					</c:if> 
-					<c:if test="${vo.ordersVO.ooStatus eq 1}">
+					<c:if test="${vo.ordersVO.ooStatus eq 2}">
 					 <div>제조 완료</div>
 					</c:if> 
 					
@@ -70,7 +70,7 @@
 					</c:forEach>
 					
 					
-					<c:if test="${vo.ordersVO.ooStatus eq 1}">
+					<c:if test="${vo.ordersVO.ooStatus eq 2}">
 					 <div>메세지 전송 완료!</div>
 					</c:if> 
 				</div>

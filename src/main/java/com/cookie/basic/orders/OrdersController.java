@@ -138,32 +138,17 @@ public class OrdersController {
 	public ModelAndView orderListList(OrdersVO ordersVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<OrderListVO> ar = ordersService.orderListList(ordersVO);
-
-		mv.addObject("lists", ar);
-		mv.setViewName("orders/orderListList");
-
-		return mv;
-	}
-
-	// orderList List 점주가 확인할떄 ssNum으로 확인(제조대기)
-	@GetMapping("orderListSS")
-	public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception {
-		
-		ordersVO.setOoStatus(0);
-		
-		ModelAndView mv = new ModelAndView();
-		List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
 		CartOptionVO cartOptionVO = new CartOptionVO();
 		List<CartOptionVO> ar3 = new ArrayList<CartOptionVO>();
 		for(int i=0; i<ar.size();i++) {
-			System.out.println("arsize1 :"+ar.size());
-			System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());
+			//System.out.println("arsize1 :"+ar.size());
+			//System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());
 			List<CartOptionVO> ar2;
 			for(int j=0; j<ar.get(i).getCartVOs().size();j++) {
 				cartOptionVO.setCartNum(ar.get(i).getCartVOs().get(j).getCartNum());
-				System.out.println("cartNUm :"+cartOptionVO.getCartNum());
-				System.out.println("안쪽 size : " + ar.get(i).getCartVOs().size());
-				System.out.println("J : "+j );
+				//System.out.println("cartNUm :"+cartOptionVO.getCartNum());
+				//System.out.println("안쪽 size : " + ar.get(i).getCartVOs().size());
+				//System.out.println("J : "+j );
 				ar2 = cartService.coptSelect(cartOptionVO);
 				if(ar2.size() == 0){
 					break;
@@ -175,7 +160,44 @@ public class OrdersController {
 				
 				}
 		}
-		System.out.println("ar3:"+ar3.size());
+		mv.addObject("lists2", ar3);
+		mv.addObject("lists", ar);
+		mv.setViewName("orders/orderListList");
+
+		return mv;
+	}
+
+	// orderList List 점주가 확인할떄 ssNum으로 확인(제조대기)
+	@GetMapping("orderListSS")
+	public ModelAndView orderListSS(OrdersVO ordersVO) throws Exception {
+		
+		ordersVO.setOoStatus(1);
+		
+		ModelAndView mv = new ModelAndView();
+		List<OrderListVO> ar = ordersService.orderListSS(ordersVO);
+		CartOptionVO cartOptionVO = new CartOptionVO();
+		List<CartOptionVO> ar3 = new ArrayList<CartOptionVO>();
+		for(int i=0; i<ar.size();i++) {
+			//System.out.println("arsize1 :"+ar.size());
+			//System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());
+			List<CartOptionVO> ar2;
+			for(int j=0; j<ar.get(i).getCartVOs().size();j++) {
+				cartOptionVO.setCartNum(ar.get(i).getCartVOs().get(j).getCartNum());
+				//System.out.println("cartNUm :"+cartOptionVO.getCartNum());
+				//System.out.println("안쪽 size : " + ar.get(i).getCartVOs().size());
+				//System.out.println("J : "+j );
+				ar2 = cartService.coptSelect(cartOptionVO);
+				if(ar2.size() == 0){
+					break;
+				}
+				for(int k=0; k<ar2.size(); k++) {
+					System.out.println(ar2.get(k).getMoptVOs());
+					ar3.add(ar2.get(k));
+				}
+				
+				}
+		}
+		//System.out.println("ar3:"+ar3.size());
 		//ar2 = cartService.coptSelect(cartOptionVO);
 		mv.addObject("lists2", ar3);
 		mv.addObject("lists", ar);
@@ -188,12 +210,13 @@ public class OrdersController {
 	@GetMapping("orderListSSF")
 	public ModelAndView orderListSSF(OrdersVO ordersVO) throws Exception {
 		
+		//
 		System.out.println("스토어:"+ordersVO.getSsNum());
-		ordersVO.setOoStatus(1);
+		ordersVO.setOoStatus(2);
 		
 		ModelAndView mv = new ModelAndView();
 		List<OrderListVO> ar = ordersService.orderListSSF(ordersVO);
-		System.out.println(ar.size());
+		//System.out.println(ar.size());
 		CartOptionVO cartOptionVO = new CartOptionVO();
 		List<CartOptionVO> ar3 = new ArrayList<CartOptionVO>();
 		
@@ -203,9 +226,9 @@ public class OrdersController {
 			List<CartOptionVO> ar2;
 			for(int j=0; j<ar.get(i).getCartVOs().size();j++) {
 				cartOptionVO.setCartNum(ar.get(i).getCartVOs().get(j).getCartNum());
-				System.out.println("cartNUm :"+cartOptionVO.getCartNum());
-				System.out.println("안쪽 size : " + ar.get(i).getCartVOs().size());
-				System.out.println("J : "+j );
+				//System.out.println("cartNUm :"+cartOptionVO.getCartNum());
+				//System.out.println("안쪽 size : " + ar.get(i).getCartVOs().size());
+				//System.out.println("J : "+j );
 				ar2 = cartService.coptSelect(cartOptionVO);
 				if(ar2.size() == 0){
 					break;
