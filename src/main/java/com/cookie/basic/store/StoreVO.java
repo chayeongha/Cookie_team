@@ -16,6 +16,7 @@ public class StoreVO {
 	private String sNotice;
 	private int sOn;
 	private int memNum;
+	private int storeTotal;
 
 	private StoreFilesVO storeFilesVO;
 	private List<MenuVO> menuVO;
@@ -24,6 +25,16 @@ public class StoreVO {
 
 	
 	
+	
+	
+	public int getStoreTotal() {
+		return storeTotal;
+	}
+
+	public void setStoreTotal(int storeTotal) {
+		this.storeTotal = storeTotal;
+	}
+
 	public List<MoptVO> getMoptVOs() {
 		return moptVOs;
 	}
