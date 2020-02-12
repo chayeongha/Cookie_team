@@ -16,6 +16,7 @@
 <script src='/fullcalendar/interaction/main.min.js'></script>
 <script src='/fullcalendar/timegrid/main.min.js'></script>
 <script src='/fullcalendar/core/locales/ko.js'></script>
+
 <link href="${pageContext.request.contextPath}/css/board/qnaList.css" rel="stylesheet">
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />
@@ -138,6 +139,7 @@
 	          info.draggedEl.parentNode.removeChild(info.draggedEl);
 	        }
 	      },
+	      locale: 'ko',
 	      /*3.출석체크 */
 	      //이벤트안에 체크배열을 넣어줌.
 	      events: check,
