@@ -98,16 +98,7 @@ public class StoreService {
 		return result;
 
 	}
-	
-	
-	
-	//재고 업데이트
-	public int countUpdate(MenuVO menuVO)throws Exception{
 		
-	
-	}
-	
-	
 	// 폐점
 	public int deleteStore(StoreVO storeVO)throws Exception{
 		return storeMapper.deleteStore(storeVO);
