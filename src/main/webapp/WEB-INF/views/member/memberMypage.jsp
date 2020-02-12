@@ -82,11 +82,13 @@
     		
 
 		</div><!-- mypageBox끝 -->
-		<div class="e3">
-				<button class="bt" id="mDel">회원탈퇴</button>
-				<button class="bt" id="mUp">회원수정</button>
-		</div>		
 		
+		<c:if test="${member.kind eq null}">
+			<div class="e3">
+					<button class="bt" id="mDel">회원탈퇴</button>
+					<button class="bt" id="mUp">회원수정</button>
+			</div>		
+		</c:if>
 		<div class="box2">
 			<h1>주문내역</h1>
 			<a href="${pageContext.request.contextPath}/orders/orderListList?nickname=${member.nickname}">오더리스트 페이지</a>
