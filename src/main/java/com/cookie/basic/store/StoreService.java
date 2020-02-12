@@ -98,7 +98,7 @@ public class StoreService {
 		return result;
 
 	}
-		
+
 	// 폐점
 	public int deleteStore(StoreVO storeVO)throws Exception{
 		return storeMapper.deleteStore(storeVO);

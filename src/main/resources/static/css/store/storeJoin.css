@@ -9,20 +9,30 @@
 }
 
 .storeJoinTi {
-	
 	height: 80px;
-
 	font-family: CookieRun-Regular;
 	font-size: 28px;
 	margin-left: 695px;
 	text-align: center;
 	margin-top: 15px;
 	float: left;
+	color: #481000;
+}
+
+.storeJoinTi2 {
+	width:150px;
+	height: 80px;
+	margin-left: 819px;
+	font-family: CookieRun-Regular;
+	font-size: 28px;
+	text-align: center;
+	margin-top: 29px;
+	float: left;
 	color:#481000;
 }
 
-.storeJoinTi > p {
-	font-size:25px;
+.storeJoinTi>p {
+	font-size: 25px;
 }
 
 .storeInsertForm {
@@ -60,7 +70,6 @@
 	border: none;
 	margin-top: 10px;
 	border-radius: 4px;
-	
 }
 
 .store_join_btn {

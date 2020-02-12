@@ -1,18 +1,22 @@
 @charset "UTF-8";
 
 .orderBox {
-	width: 534px;
+	width: 550px;
 	height: 320px;
 	background-color: white;
 	border: 4px solid #ff674efa;
 	margin-top: 0.3px;
+	float: left;
+	overflow: auto;
+	overflow-x: hidden;
 }
 
 .orderBox2 {
-	width: 534px;
+	width: 542px;
 	height: auto;
 	margin: auto;
 	overflow: hidden;
+	
 }
 
 .listTr {
@@ -21,7 +25,7 @@
 }
 
 .ListT {
-	width: 526px;
+	width: 551;
 	height: 60px;
 	background-color: #ff674efa;
 	color: white;
@@ -45,8 +49,64 @@
 	height: 30px;
 	clear: both;
 }
-#hphone{
+
+.hphone {
 	width: 150px;
 	height: 20px;
 	border-style: none;
+}
+
+.mBox {
+	width: 170px;
+	height: 150px;
+	float: left;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
+	text-align: center;
+}
+
+.phoneBox {
+	width: 90%;
+	height: 40px;
+	clear: both;
+	text-align: right;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
+
+}
+
+.ordersUpdate {
+	width: 80px;
+	height: 40px;
+	border-style: none;
+	background-color: #ff674efa;
+	border-radius: 4px;
+	margin-left: 10px;
+}
+
+.msgBox {
+	width: 150px;
+	height: 40px;
+	clear: both;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
+	margin-top: 15px;
+	margin: auto;
+}
+
+#hphone {
+	border-style: none;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+width: 4px;
+}
+::-webkit-scrollbar-track {
+background-color: #ffd6c8;
+
+}
+::-webkit-scrollbar-thumb {
+background-color: #ffd6c8;
+
 }

@@ -53,8 +53,9 @@
 	float: left;
 	background-color: #efefef;
 	font-family: CookieRun-Regular;
-	font-size: 28px;
+	font-size: 24px;
 	text-align: center;
+	overflow: auto;
 }
 
 .Update_storeInfo {
@@ -198,18 +199,16 @@
 	margin-top: 50px;
 }
 
-.daeki{
+.daeki {
 	width: 105px;
 	height: 32px;
-	
 	font-family: CookieRun-Regular;
 	font-size: 18px;
 	text-align: center;
 	margin-top: 150px;
-	
 }
 
-#ByeDelete{
+#ByeDelete {
 	width: 105px;
 	height: 32px;
 	background-color: #ff674efa;
@@ -219,4 +218,30 @@
 	border-style: none;
 	border-radius: 4px;
 	margin-top: 150px;
+}
+
+.Mname {
+	width: 260px;
+	height: 40px;
+	float: left;
+	clear: both;
+	margin-left: 195px;
+}
+
+.Mcount {
+	width: 150px;
+	height: 40px;
+	float: left;
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: gray;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: gray;
 }

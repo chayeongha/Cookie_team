@@ -49,10 +49,11 @@
 					<!--메뉴 옵션-->
 					<c:forEach items="${ce.menuVOs}" var="me">
 					
+						<div class="mBox">
 						<div>${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
-					
+						</div>
 
 						<!--CartOptions에서 받아오는걸로 변경하기 -->
 						
@@ -70,10 +71,12 @@
 					</c:forEach>
 					<input type="hidden" class="hoonum" id="hoonum${ie.index}" value="${vo.ordersVO.ooNum}">
 					<input type="hidden" class="hssnum" id="hssnum${ie.index}" value="${vo.ordersVO.ssNum}">
-					<input type="text" class="hphone" id="hphone${ie.index}" value="${vo.ordersVO.phone}">
+					<div class="phoneBox">
+					<input type="text" class="hphone" id="hphone${ie.index}" readonly="readonly" value="${vo.ordersVO.phone}">
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
 					<input type="button" value="제조 완료" style="cursor: pointer;" id="upbtn${ie.index}" class="ordersUpdate"> 
 					</c:if>
+					</div>	
 					
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
 					 <div>메세지 전송 완료!</div>
