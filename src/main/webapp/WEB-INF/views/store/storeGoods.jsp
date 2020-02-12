@@ -69,7 +69,8 @@
 					<h3>* 매장 위치 *</h3>${storeVO.roadFullAddr}<br>
 					<br>
 					<div id="map"
-						style="width: 800px; height: 350px; margin: 0 auto; margin-bottom: 40px"></div>
+						style="width: 800px; height: 350px; margin: 0 auto; margin-bottom: 40px;  box-shadow: -60px 0px 100px -90px #000000,
+        60px 0px 100px -90px #000000;"></div>
 				</div>
 			</div>
 			<script>
