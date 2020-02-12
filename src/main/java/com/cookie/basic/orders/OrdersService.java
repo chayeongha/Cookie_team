@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.menu.MenuVO;
 
 @Service
 public class OrdersService {
@@ -75,6 +77,20 @@ public class OrdersService {
 	public OrderListVO orderListSelectOne(OrderListVO orderListVO)throws Exception{
 		
 		return ordersMapper.orderListSelectOne(orderListVO);
+	}
+	
+	//카트 넘 찾기 
+	public CartVO findcartNum(CartVO cartVO)throws Exception{
+		return ordersMapper.findcartNum(cartVO);
+	}
+	
+	//메뉴 넘 찾기 
+	public MenuVO findmmCount(MenuVO menuVO)throws Exception{
+		return ordersMapper.findmmCount(menuVO);
+	}
+	
+	public int UpdateCount(MenuVO menuVO)throws Exception{
+		return ordersMapper.UpdateCount(menuVO);
 	}
 
 }

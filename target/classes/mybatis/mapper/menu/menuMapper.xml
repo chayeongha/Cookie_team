@@ -70,4 +70,11 @@
 		delete from menu where mmNum=#{mmNum}
 	</delete>
 
+
+
+	
+	
+
+
+
 </mapper>

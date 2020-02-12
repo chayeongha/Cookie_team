@@ -69,14 +69,9 @@
 			<div class="myMoney_1">재고현황</div>
 			<c:forEach items="${list}" var="li">
 				<div class="Mname">${li.mmName}</div> 
-				<div class="Mcount">${li.mmCount} </div>
-				<div class="MmNum">${li.mmNum}</div>
+				<div class="Mcount">재고수 : ${li.mmCount}</div>
 			</c:forEach>
 			
-			<c:forEach items="${cart}" var="ca">
-				<div class="Ccount">${ca.mmCount}</div> 
-				<div class="CmNum">${ca.mmNum}</div>
-			</c:forEach>
 			
 		</div>
 	</div>

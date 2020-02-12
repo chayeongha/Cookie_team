@@ -270,7 +270,7 @@ public class StoreController {
 		storeVO.setsName(sName);
 
 		int result = storeService.checkStore(storeVO);
-
+		
 		if (result > 0) {
 			System.out.println("중복");
 		} else {
@@ -393,15 +393,15 @@ public class StoreController {
 	@ResponseBody
 	@GetMapping("storeResult")
 	public ModelAndView storeResult(String mmNum) throws Exception {
-
+		
 		ModelAndView mv = new ModelAndView();
-
+		
 		MenuVO menuVO = new MenuVO();
 		menuVO.setMmNum(Integer.parseInt(mmNum));
-
+		
 		menuVO = menuService.menuSelect(menuVO);
 		mv.addObject("Detail", menuVO);
-
+		
 		return mv;
 
 	}

@@ -141,5 +141,16 @@
    select * from orderList where ooNum=#{ooNum} and ocNum=0
   </select>
   
+  <select id="findcartNum" parameterType="CartVO" resultType="CartVO">
+  	select * from cart where cartNum=#{cartNum} and cartStatus=1;
+  </select>
+  
+  <select id= "findmmCount" parameterType="MenuVO" resultType="MenuVO">
+  	select * from menu where mmNum=#{mmNum}
+  </select>
+  
+  <update id="UpdateCount" parameterType="MenuVO">
+  	update menu set mmCount=#{mmCount} where mmNum=#{mmNum}
+  </update>
 
 </mapper>
