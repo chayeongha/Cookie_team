@@ -43,7 +43,7 @@
     	<button id="ckbtn22" type="button" class="btnCheck2" style="display: inline">출석완료</button>
 		</c:if>
 		
-	    <input type="text" id="memNum" class="memNumber" name="memNum" value="${member.memNum}">
+	    <input type="hidden" id="memNum" class="memNumber" name="memNum" value="${member.memNum}">
 	    	
 	    <!--1.출석체크 -->	
 		<!--스크립트에서 배열에 넣기위해 컨트롤에서 받은 출석날짜값이있는 ar을 반복문을돌림.-->
