@@ -69,4 +69,5 @@ public interface MemberMapper {
 	
 	//마이페이지 스토어소개 
 	public List<StoreVO>sMiniList(StoreVO storeVO)throws Exception;
+	
 }

@@ -262,4 +262,5 @@ public class MemberService {
 	public List<StoreVO>sMiniList(StoreVO storeVO)throws Exception{
 		return memberMapper.sMiniList(storeVO);
 	}
+	
 }

@@ -30,13 +30,10 @@ public class MemberVO {
 	private String email;
 	private Integer grade;
 	private Integer kind;
-
+	
 	private MemberFilesVO memberFilesVO;
 	
 	private Integer fnum;
 	private String fname;
 	
-
-
-
 }

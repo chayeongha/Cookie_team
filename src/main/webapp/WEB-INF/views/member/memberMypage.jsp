@@ -75,8 +75,13 @@
     		</div>
     		
     		<div class="box">
-      			<label for="name" class="e2">월 사용금액</label>
-      			<input type="text" class="" id="phone" value="" readonly="readonly">
+      			<label for="name" class="e2"> 적립금</label>
+      			<input type="text" class="" id="memPoint" value="${member.memPoint}" readonly="readonly">
+    		</div>
+    		
+    		<div class="box">
+      			<label for="name" class="e2"> 총 사용금액</label>
+      			<input type="text" class="" id="memTotal" value="${member.memTotal}" readonly="readonly">
     		</div>
     		
 

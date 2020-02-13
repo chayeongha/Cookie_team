@@ -5,7 +5,7 @@
   
   	<!--회원가입  -->
   	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
-  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{email},#{grade},#{kind})
+  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{email},#{grade},#{kind},0,0)
   	</insert>
 
   	<!--로그인 resultmap  -->
@@ -19,6 +19,8 @@
   			<result column="email" property="email"/>
   			<result column="grade" property="grade"/>
   			<result column="kind" property="kind"/>
+  			<result column="memPoint" property="memPoint"/>
+  			<result column="memTotal" property="memTotal"/>
   		<association property="memberFilesVO" javaType="memberFilesVO">
   			<id column="fnum" property="fnum"/>
   			<result column="fname" property="fname"/>
@@ -140,5 +142,5 @@
 			on S.ssNum=F.ssNum
 			where S.sOn=1
 	</select>
-	
+
 </mapper>
