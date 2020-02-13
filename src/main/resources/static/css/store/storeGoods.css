@@ -452,3 +452,16 @@ to {
 	background:#ff5604;
 	
 }
+
+.xxx{
+	float: right;
+	font-size:20px;
+	font-family: CookieRun-Regular;
+	border:none;
+	background: transparent;
+	margin-right:5px;
+}
+
+.xxx:hover {
+	font-size:21px;
+}
