@@ -546,24 +546,40 @@ table {
 	font-size:28px;
 	margin-left: 220px;
 }
-
-.toSelectBox >input[type=checkbox] {
-	display:none;
-}
-
-
 .toSelectBox > input[type=checkbox]{
 	height: 25px;
+	display: inline-block; 
+	cursor: pointer;
+	line-height: 25px; 
+
+
+}
+
+.toSelectBox > label {
+	display: none;
+}
+
+
+.toSelectBox > input[type="checkbox"] + label {
 	
-	display: inline-block; 
-	cursor: pointer;
-	line-height: 25px; 
-
+    font-size: 0;
+    cursor: pointer;
+}
+.toSelectBox > input[type="checkbox"] + label:before {
+	content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    font-size: 0;
+    background: transparent url(../../images/cart/checkbox_gray.png) -1px -1px scroll no-repeat;
+    background-size: 25px 25px;
+    background-position: -3px;
 }
 
-.toSelectBox > input[type="checkbox"]:checked {
-	display: inline-block; 
-	cursor: pointer;
-	line-height: 25px; 
-	background: url("../../images/cart/check-146099_960_720.png") no-repeat;
+.toSelectBox > input[type="checkbox"]:checked + label:before {
+	background: transparent url(../../images/cart/checkbox_red.png) -1px -1px scroll no-repeat;
+	background-size: 25px 25px;
+	background-position: -3px;
 }
+
+
