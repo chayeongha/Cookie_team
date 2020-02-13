@@ -15,5 +15,13 @@
 	<select id="getMemCheck" parameterType="CalVO" resultType="String">
 			select memCheck from checks where memNum=#{memNum} and checkDate=curdate()
 	</select>
-
+	
+	<!--출석할때마다 10포인트적립  -->
+	<select id="getmemPoint" parameterType="MemberVO" resultType="MemberVO">
+			select * from members where memNum=#{memNum}
+	</select>
+	
+	<update id="cpointUpdate" parameterType="MemberVO">
+		update members set memPoint=#{memPoint} where memNum=#{memNum}
+	</update>
 </mapper>

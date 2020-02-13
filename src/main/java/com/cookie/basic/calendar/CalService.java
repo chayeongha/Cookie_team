@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cookie.basic.member.MemberVO;
+
 @Service
 public class CalService {
 
@@ -24,6 +26,15 @@ public class CalService {
 	//memCheck(출석여부) 가져오기
 	public String getMemCheck(CalVO calVO)throws Exception{
 		return calmapper.getMemCheck(calVO);
+	}
+	
+	//출석할때마다 10포인트적립
+	public MemberVO getmemPoint(MemberVO memberVO)throws Exception{
+		return calmapper.getmemPoint(memberVO);
+	}
+	
+	public int cpointUpdate(MemberVO memberVO)throws Exception{
+		return calmapper.cpointUpdate(memberVO);
 	}
 	
 }

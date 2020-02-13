@@ -61,8 +61,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("memberIndex")
-	public void memberIndex()throws Exception{
+	
+	//이용약관
+	@GetMapping("useJoin")
+	public void useJoin()throws Exception{
 		
 	}
 	
