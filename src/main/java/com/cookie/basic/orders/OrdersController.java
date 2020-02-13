@@ -79,7 +79,7 @@ public class OrdersController {
 	
 	//orderList insert
 	@PostMapping("orderListInsert")
-	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum)throws Exception{
+	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum, int tocheck)throws Exception{
 		//1단계 orders 생성
 		ModelAndView mv = new ModelAndView();
 		//System.out.println("length"+cartNum.length);
@@ -98,7 +98,7 @@ public class OrdersController {
 		//ooTotal 값 넘어오는거 받아서 넣어주기
 		String[] parray = cartTotalPrice.split(",");
 		ordersVO.setOoTotal(Integer.parseInt(parray[0]));
-		ordersVO.setTakeOut(0);
+		ordersVO.setTakeOut(tocheck);
 		ordersService.ordersInsert(ordersVO);
 		//2단계 orderSelect로 ooNum 가져오기
 		OrdersVO ordersVO2 = new OrdersVO();
