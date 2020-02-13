@@ -168,6 +168,7 @@ public class OrdersController {
 		memberService.memTotalUpdate(memberVO2);
 		memberService.memPointUpdate(memberVO2);
 		
+		session.setAttribute("member", memberVO2);
 		
 		mv.setViewName("member/memberMypage");
 		return mv;
