@@ -5,7 +5,7 @@
   
   	<!--회원가입  -->
   	<insert id="memberJoin" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memNum">
-  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{email},#{grade},#{kind})
+  			insert into members values (null,#{memId},#{pw},#{name},#{nickname},#{phone},#{email},#{grade},#{kind},0,0)
   	</insert>
 
   	<!--로그인 resultmap  -->
@@ -75,7 +75,7 @@
 	
 	<!-- 카카오 회원가입-->
   	<insert id="kakaoJoin" parameterType="MemberVO">
-  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',#{email},1,2)
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',#{email},1,2,0,0)
   	</insert>
 
   	<!-- 카카오 -->
@@ -85,7 +85,7 @@
   
   	<!-- 네이버 회원가입-->
   	<insert id="naverJoin" parameterType="MemberVO">
-  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',#{email},1,1)
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',#{email},1,1,0,0)
   	</insert>
   
   	<!-- 네이버 -->
@@ -141,5 +141,18 @@
 			where S.sOn=1
 	</select>
 	
+	<!-- 적립금 셀렉트 -->
+	<select id="memPointSelect" parameterType="MemberVO" resultType="MemberVO">
+		select * from members where nickname = #{nickname}
+	</select>
+	
+	<!-- 적립금 업데이트 -->
+	<update id="memPointUpdate" parameterType="MemberVO">
+		update members set memPoint=#{memPoint} where nickname=#{nickname}
+	</update>
+	<!-- 총 사용금액 업데이트 -->
+	<update id="memTotalUpdate" parameterType="MemberVO" >
+      update members set memTotal=#{memTotal} where nickname=#{nickname}
+   </update>
 	
 </mapper>

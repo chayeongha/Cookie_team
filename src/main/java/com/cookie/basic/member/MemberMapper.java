@@ -69,4 +69,13 @@ public interface MemberMapper {
 	
 	//마이페이지 스토어소개 
 	public List<StoreVO>sMiniList(StoreVO storeVO)throws Exception;
+	
+	//적립금 셀렉트
+	public MemberVO memPointSelect(MemberVO memberVO)throws Exception;
+	
+	//적립금 업데이트
+	public int memPointUpdate(MemberVO memberVO)throws Exception;
+	
+	//총 사용금액 update
+	public int memTotalUpdate(MemberVO memberVO)throws Exception;
 }

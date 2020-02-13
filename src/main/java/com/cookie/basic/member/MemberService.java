@@ -262,4 +262,18 @@ public class MemberService {
 	public List<StoreVO>sMiniList(StoreVO storeVO)throws Exception{
 		return memberMapper.sMiniList(storeVO);
 	}
+	
+	//적립금 셀렉트
+	public MemberVO memPointSelect(MemberVO memberVO)throws Exception{
+		
+		return memberMapper.memPointSelect(memberVO);
+	}
+	//적립금 업데이트
+	public int memPointUpdate(MemberVO memberVO)throws Exception{
+		return memberMapper.memPointUpdate(memberVO);
+	}
+	//총 사용금액 업데이트
+	public int memTotalUpdate(MemberVO memberVO)throws Exception{
+	      return memberMapper.memTotalUpdate(memberVO);
+	   }
 }
