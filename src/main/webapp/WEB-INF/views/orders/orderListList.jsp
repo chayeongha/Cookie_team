@@ -35,20 +35,22 @@
 					</c:if> 
 					<input type="hidden" value="${vo.ordersVO.ooStatus}">
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
-					 <div>제조 대기</div>
+					 <div class="ListWait">제조 대기</div>
 					</c:if> 
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
-					 <div>제조 완료</div>
+					 <div class="ListWait">제조 완료</div>
 					</c:if> 
 					
 					<input type="hidden" id="hoonum" value="${vo.ordersVO.ooNum}">
 				<input type="hidden" id="hssnum" value="${vo.ordersVO.ssNum}">
-				<input type="text" id="hphone" value="${vo.ordersVO.phone}">
+				<div class="phoneBox2">
+				<input type="hidden" id="hphone" value="${vo.ordersVO.phone}">
+					</div>
 					</div>
 					<c:forEach items="${vo.cartVOs}" var="ce">
 					<!--메뉴 옵션-->
 					<c:forEach items="${ce.menuVOs}" var="me">
-					
+					<div class="mBox">
 						<div>${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
@@ -58,22 +60,25 @@
 						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
-						<c:if test="${me.mmNum eq opm.mmNum}">
-							<div>${opm.optName}</div>
+						<c:if test="${(me.mmNum eq opm.mmNum) and (ce.cartNum eq opt.cartNum)}">
+							<div class="optC">　${opt.optCount}개</div>
+							<div class="optN">${opm.optName}</div>
+							
 							<div style="display: none;">${opm.optPrice}</div>
 						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
 						</c:forEach>
 						</c:forEach>
+						</div>
 					
 					</c:forEach>
 					</c:forEach>
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
-					<div>주문 완료!</div>
+					<div class="finish">주문 완료!</div>
 					</c:if>
 					
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
-					 <div>음료 제조 완료!</div>
+					 <div class="finish">음료 제조 완료!</div>
 					</c:if> 
 				</div>
 			</div>

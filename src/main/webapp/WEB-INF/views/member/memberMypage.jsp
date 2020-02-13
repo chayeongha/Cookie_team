@@ -112,7 +112,8 @@
 			</div>
 			<div class="box4_inner">
 
-				<h1>포인트 내역</h1> <div class=""></div>
+				<h1>포인트 내역</h1> 
+				<button class="pointbtn">포인트 상세보기</button>
 
 				<c:if test="${member.grade ne 8888}">	
     		<div class="point">
@@ -180,6 +181,15 @@
 		$(document).ready(function(){
 		    $(".orderList").load("../orders/orderListList?nickname="+nickname2);
 		});
+
+
+
+
+		var nickname= $("#nickname").val();
+		
+		$(".pointbtn").click(function(){
+			location.href="http://localhost/member/pointList?nickname="+nickname
+			})
 		
 </script>
 		
