@@ -42,14 +42,40 @@
 			</thead>
 			
 			<tbody>
-					<c:if test="${list.step == 0}">
-						<tr>
-							<td class="td_num">${list.num}</td>
-								<c:if test="${list.acheck eq 0}">
-									<span class="state">미완료</span>
-								</c:if>
-								<c:if test="${list.acheck eq 1}">
-									<span class="state stateF">답변완료</span>
+				<c:forEach items="${lists}" var="list">
+						<c:if test="${list.step == 0}">
+							<tr class="${list.ref}">
+								<td class="td_num">${list.num}</td>
+								<td class="td_view">
+									<c:if test="${list.acheck eq 0}">
+										<span class="state">미완료</span>
+									</c:if>
+									<c:if test="${list.acheck eq 1}">
+										<span class="state stateF">답변완료</span>
+									</c:if>
+								<!-- 비밀글일때 -->
+									<c:if test="${list.secret eq 1}">
+										<c:if test="${member.nickname ne list.writer && member.grade ne 9999}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
+										<c:if test="${member.nickname eq list.writer || member.grade eq 9999}">
+											<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents} <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></a>
+										</c:if>
+									</c:if>
+								<!-- 비밀글 아닐때 -->
+									<c:if test="${list.secret eq 0}">
+										<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
+									</c:if>
+								</td>
+								<td class="td_writer">${list.writerS}</td>
+								<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+							</tr>
+						</c:if>
+						
+						<tr class="trQna trQna${list.ref}" style="display: table-row;">
+							<td colspan="4" class="qna_wrap" style="display: table-cell;">
+							<!-- 질문 -->
+								<c:if test="${list.step == 0}">
+									<div class="question">
+										<span class="iconQ">질문</span>
 											<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
 										<br>
 										<div class="btns_wrap">
