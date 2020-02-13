@@ -35,6 +35,7 @@ public class MemberVO {
 	
 	private Integer fnum;
 	private String fname;
+
 	private Integer memPoint;
 	private Integer memTotal;
 

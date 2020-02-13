@@ -78,4 +78,5 @@ public interface MemberMapper {
 	
 	//총 사용금액 update
 	public int memTotalUpdate(MemberVO memberVO)throws Exception;
+
 }

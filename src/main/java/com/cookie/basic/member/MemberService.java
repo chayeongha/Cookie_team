@@ -275,5 +275,6 @@ public class MemberService {
 	//총 사용금액 업데이트
 	public int memTotalUpdate(MemberVO memberVO)throws Exception{
 	      return memberMapper.memTotalUpdate(memberVO);
-	   }
+	}
+
 }

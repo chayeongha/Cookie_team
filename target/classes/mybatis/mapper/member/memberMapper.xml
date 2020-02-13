@@ -19,6 +19,8 @@
   			<result column="email" property="email"/>
   			<result column="grade" property="grade"/>
   			<result column="kind" property="kind"/>
+  			<result column="memPoint" property="memPoint"/>
+  			<result column="memTotal" property="memTotal"/>
   		<association property="memberFilesVO" javaType="memberFilesVO">
   			<id column="fnum" property="fnum"/>
   			<result column="fname" property="fname"/>
