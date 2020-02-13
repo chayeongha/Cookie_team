@@ -63,8 +63,8 @@ public class MemberController {
 	
 	
 	//이용약관
-	@GetMapping("useJoin")
-	public void useJoin()throws Exception{
+	@GetMapping("joinAgree")
+	public void joinAgree()throws Exception{
 		
 	}
 	
