@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.pointList.PointListService;
+import com.cookie.basic.pointList.PointListVO;
 
 @Controller
 @RequestMapping("/calendar/**")
@@ -24,6 +26,8 @@ public class CalController {
 	@Autowired
 	private CalService calService;
 	
+	@Autowired
+	private PointListService pointListService;
 	//캘린더
 	@GetMapping("calmain")
 	public ModelAndView calmain(CalVO calVO, HttpSession session)throws Exception {
@@ -75,6 +79,21 @@ public class CalController {
 			calService.cpointUpdate(memberVO);
 			session.setAttribute("member", memberVO);
 		}
+		
+		//포인트리스트 기록 추가
+		//System.out.println(memberVO.getNickname());
+		PointListVO pointListVO = new PointListVO();
+		pointListVO.setNickname(memberVO.getNickname());
+		
+		pointListVO.setSsNum(0);
+		//출석날짜
+		pointListVO.setPoDate(calVO.getCheckDate());
+		//10적립
+		pointListVO.setPoChange(10);
+		//적립여부
+		pointListVO.setPoUse(0);
+		
+		pointListService.pointInsert(pointListVO);
 		
 		return msg;
 	}
