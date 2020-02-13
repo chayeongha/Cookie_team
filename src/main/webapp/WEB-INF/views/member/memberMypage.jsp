@@ -77,7 +77,7 @@
       			<input type="text" class="" id="email" value="${member.email}" readonly="readonly">
     		</div>
     		
-    	<c:if test="${member.grade eq 1 or member.grade eq 9999}">	
+    	<c:if test="${member.grade ne 8888}">	
     		<div class="box">
       			<label for="name" > 적립금</label>
       			<input type="text" class="" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
@@ -100,6 +100,7 @@
 					</c:if>
 			</div>		
 		</c:if>
+		
 		<div class="box2">
 			<h1>주문내역</h1>
 			 
