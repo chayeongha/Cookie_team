@@ -35,16 +35,16 @@
 					</c:if> 
 					<input type="hidden" value="${vo.ordersVO.ooStatus}">
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
-					 <div>제조 대기</div>
+					 <div class="ListWait">제조 대기</div>
 					</c:if> 
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
-					 <div>제조 완료</div>
+					 <div class="ListWait">제조 완료</div>
 					</c:if> 
 					
 					<input type="hidden" id="hoonum" value="${vo.ordersVO.ooNum}">
 				<input type="hidden" id="hssnum" value="${vo.ordersVO.ssNum}">
-				<div class="phoneBox">
-				<input type="text" id="hphone" readonly="readonly" value="${vo.ordersVO.phone}">
+				<div class="phoneBox2">
+				<input type="hidden" id="hphone" readonly="readonly" value="${vo.ordersVO.phone}">
 				</div>
 					</div>
 					<c:forEach items="${vo.cartVOs}" var="ce">

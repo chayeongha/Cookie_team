@@ -111,7 +111,9 @@
 				</div>			
 			</div>
 			<div class="box4_inner">
+
 				<h1>포인트 내역</h1> <div class=""></div>
+
 				<c:if test="${member.grade ne 8888}">	
     		<div class="point">
       			<label for="name"> 적립금</label>

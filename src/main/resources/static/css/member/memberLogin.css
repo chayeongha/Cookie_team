@@ -101,3 +101,51 @@
 .idpw >a:hover {
 	text-decoration: none;
 }
+
+
+/**memberUpdate**/
+.gradeBox1{
+	margin-left: 122px;
+	
+}
+.gradeBox{
+	border-style: none;
+	background-color: transparent;
+	font-family: CookieRun-Regular;
+	font-size: 19px;
+	margin-left: 25px;
+}
+.body_main{
+	overflow: hidden;
+	height: auto;
+	padding-bottom: 20px;
+}
+.profileBox{
+	margin-top: 50px;
+	margin-left: 122px;
+}
+.btn_update{
+	width: 80px;
+	height: 40px;
+	background-color: #ff712d;
+	margin-top: 20px;
+	float: right;
+	border-radius: 4px;
+	border-style: none;
+	margin-right: 15px;
+	font-family: CookieRun-Regular;
+	font-size: 19px;
+
+}
+.cancle{
+	width: 80px;
+	height: 40px;
+	background-color: #ff712d;
+	margin-top: 20px;
+	float: right;
+	border-radius: 4px;
+	border-style: none;
+	font-family: CookieRun-Regular;
+	font-size: 19px;
+	
+}
