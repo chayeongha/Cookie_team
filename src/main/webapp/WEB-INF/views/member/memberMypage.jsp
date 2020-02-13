@@ -77,17 +77,17 @@
       			<input type="text" class="" id="email" value="${member.email}" readonly="readonly">
     		</div>
     		
-    	<c:if test="${member.grade ne 8888}">	
-    		<div class="box">
-      			<label for="name" > 적립금</label>
-      			<input type="text" class="" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
+    	<%-- <c:if test="${member.grade ne 8888}">	
+    		<div class="point">
+      			<label for="name"> 적립금</label>
+      			<input type="text" class="point2" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
     		</div>
     		
-    		<div class="box">
+    		<div class="point">
       			<label for="name" > 총 사용금액</label>
-      			<input type="text" class="" id="memTotal" value="${member.memTotal}원" readonly="readonly">
+      			<input type="text" class="point2" id="memTotal" value="${member.memTotal}원" readonly="readonly">
     		</div>
-    	</c:if>	
+    	</c:if>	 --%>
 
 		</div><!-- mypageBox끝 -->
 		
@@ -101,25 +101,38 @@
 			</div>		
 		</c:if>
 		
-		<div class="box2">
-			<h1>주문내역</h1>
-			 
-			<div class="box2_inner">
-				주문한내역 4개까지만보여지고 나머지는 더보기 버튼눌러서 리스트페이지로?
-				<button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button>
-				<div class="orderList">
-				
-				</div>
-			</div>
-		</div>
+		
+		
+		
 		<div class="box2">
 			<div class="box3_inner">
 				<h1>전국의 매장을 만나보세요.</h1>
 				<div class="storeMiniList">
 				</div>			
 			</div>
+			<div class="box4_inner">
+				<h1>포인트 내역</h1> <div class=""></div>
+				<c:if test="${member.grade ne 8888}">	
+    		<div class="point">
+      			<label for="name"> 적립금</label>
+      			<input type="text" class="point2" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
+    		</div>
+    		<br>
+    		<div class="point">
+      			<label for="name" > 총 사용금액</label>
+      			<input type="text" class="point2" id="memTotal" value="${member.memTotal}원" readonly="readonly">
+    		</div>
+    	</c:if>	
+			</div>
+			 
+			<div class="box2_inner">
+				<%-- <button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button> --%>
 			
+				<div class="orderList">
+				</div>
+			</div>
 		</div>
+		
 	</div>
 </div>	
 
