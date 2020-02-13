@@ -12,7 +12,6 @@
 
 </head>
 <body>
-고객이 확인하는 페이지
 <input type="hidden" value="${store.ssNum}">
 	
 	<c:forEach items="${lists}" var="vo">
@@ -24,7 +23,6 @@
 				<!--주문 정보-->
 				<div class="ListT">
 					<div class="ListNum">리스트 번호 : ${vo.ordersVO.ooNum}</div>
-					<div class="ListName">닉네임 : ${vo.ordersVO.nickname}</div>
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
 				</div>
 					<!--테이크 아웃 여부 및 제조 여부-->
@@ -114,6 +112,16 @@
 			</tr>
 </div>
 </c:forEach> --%>
+
+<script type="text/javascript">
+
+	/*타임스탬프 변환  */
+
+
+
+
+</script>
+
 
 </body>
 </html>

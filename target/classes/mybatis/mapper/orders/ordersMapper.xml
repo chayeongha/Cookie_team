@@ -71,7 +71,7 @@
         left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.nickname = #{nickname}
+        where OD.nickname = #{nickname} order by ooDate desc
 	</select>
   
   <!-- 점주가 ssNum으로 조회 (제조대기 디폴트)-->
