@@ -102,7 +102,7 @@
 			    <div class="frmBox">
 						<label for="files">Profile:</label> 
 						<input type="file" class="form-control" id="files" name="files">
-						<img id="blah" alt="your image" src="#" style="width: 200px; height: 200px;" onerror="this.src='../images/header/mm.png'"/>	
+						<img id="blah" alt="your image" src="#" style="width: 100px; height: 100px;" onerror="this.src='../images/header/profile.png'"/>	
 				</div>
 				
 			    <div>        
