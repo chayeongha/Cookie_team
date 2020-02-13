@@ -75,6 +75,8 @@
 					 <div>음료 제조 완료!</div>
 					</c:if> 
 				</div>
+				
+				<a href="../review/reviewWrite">후기작성</a>
 			</div>
 		<%-- </c:if> --%>
 	</c:forEach>

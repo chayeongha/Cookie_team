@@ -143,8 +143,8 @@ public class ReviewController {
 	
 	//글 작성 폼
 	@GetMapping("reviewWrite")
-	public String reviewWrite(ReviewVO reviewVO) throws Exception {
-		return "board/boardWrite";
+	public void reviewWrite(ReviewVO reviewVO) throws Exception {
+		
 	}
 	
 	//글 등록
