@@ -46,7 +46,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.cookie.basic.pointList.PointListService;
+import com.cookie.basic.pointList.PointListVO;
 import com.cookie.basic.store.StoreVO;
 
 import com.cookie.basic.util.Pager;
@@ -673,6 +674,21 @@ public class MemberController {
 		mv.addObject("path", path);
 		mv.setViewName("common/emailSuccess");
 		return mv;
+	}
+	
+	//pointList Page
+	@Autowired
+	private PointListService pointListService;
+	
+	@GetMapping("pointList")
+	public ModelAndView pointList(PointListVO pointListVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<PointListVO> ar = pointListService.pointList(pointListVO);
+		mv.addObject("lists", ar);
+		mv.setViewName("member/pointList");
+		
+		return mv;
+		
 	}
 	
 	

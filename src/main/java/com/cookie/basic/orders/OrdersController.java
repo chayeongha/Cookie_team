@@ -85,12 +85,12 @@ public class OrdersController {
 	
 	//orderList insert
 	@PostMapping("orderListInsert")
-	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum, int tocheck, String point)throws Exception{
+	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum, int tocheck, int point)throws Exception{
 		//1단계 orders 생성
 		ModelAndView mv = new ModelAndView();
 		//System.out.println("length"+cartNum.length);
 		//System.out.println(cartNum[0]);
-		System.out.println("Point1 :" + point);
+		System.out.println("Point :" + point);
 		 
 		OrdersVO ordersVO = new OrdersVO();
 		MemberVO memberVO = new MemberVO();
@@ -179,7 +179,7 @@ public class OrdersController {
 		pointListVO.setSsNum(ordersVO2.getSsNum());
 		pointListVO.setPoDate(ordersVO2.getOoDate());
 		
-		if(point == null) {
+		if(point == 0) {
 			//적립
 			int memPoint = (int) (memTotal*perp) ;
 			memberVO2.setMemPoint(memberVO2.getMemPoint()+memPoint);
@@ -187,9 +187,9 @@ public class OrdersController {
 			pointListVO.setPoChange(memPoint);
 		}else {
 			//사용
-			memberVO2.setMemPoint(memberVO2.getMemPoint()-Integer.parseInt(point));
+			memberVO2.setMemPoint(memberVO2.getMemPoint()-point);
 			pointListVO.setPoUse(1);
-			pointListVO.setPoChange(Integer.parseInt(point));
+			pointListVO.setPoChange(point);
 		}
 		memberService.memTotalUpdate(memberVO2);
 		memberService.memPointUpdate(memberVO2);
