@@ -42,6 +42,8 @@
   		
   		<typeAlias type="com.cookie.basic.calendar.CalVO" alias="CalVO"/>
   		
+  		<typeAlias type="com.cookie.basic.pointList.PointListVO" alias="PointListVO"/>
+  		
   	</typeAliases>
 
   </configuration>

@@ -36,6 +36,9 @@ import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberService;
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.menu.MenuVO;
+import com.cookie.basic.pointList.PointListMapper;
+import com.cookie.basic.pointList.PointListService;
+import com.cookie.basic.pointList.PointListVO;
 import com.cookie.basic.store.StoreVO;
 
 @Controller
@@ -50,6 +53,9 @@ public class OrdersController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private PointListService pointListService;
 
 	// orders
 	// ordersUpdate
@@ -79,11 +85,12 @@ public class OrdersController {
 	
 	//orderList insert
 	@PostMapping("orderListInsert")
-	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum, int tocheck)throws Exception{
+	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum, int tocheck, String point)throws Exception{
 		//1단계 orders 생성
 		ModelAndView mv = new ModelAndView();
 		//System.out.println("length"+cartNum.length);
 		//System.out.println(cartNum[0]);
+		System.out.println("Point1 :" + point);
 		 
 		OrdersVO ordersVO = new OrdersVO();
 		MemberVO memberVO = new MemberVO();
@@ -163,10 +170,30 @@ public class OrdersController {
 		System.out.println(memberVO2.getMemPoint());
 		System.out.println(memberVO2.getMemTotal());
 		
-		int memPoint = (int) (memTotal*perp) ;
-		memberVO2.setMemPoint(memberVO2.getMemPoint()+memPoint);
+		
+		//pointList Insert
+		PointListVO pointListVO = new PointListVO();
+		pointListVO.setNickname(memberVO2.getNickname());
+		System.out.println("ordersVO2.ssNum :" + ordersVO2.getSsNum());
+		System.out.println("ordersVO2.ooDate :" + ordersVO2.getOoDate());
+		pointListVO.setSsNum(ordersVO2.getSsNum());
+		pointListVO.setPoDate(ordersVO2.getOoDate());
+		
+		if(point == null) {
+			//적립
+			int memPoint = (int) (memTotal*perp) ;
+			memberVO2.setMemPoint(memberVO2.getMemPoint()+memPoint);
+			pointListVO.setPoUse(0);
+			pointListVO.setPoChange(memPoint);
+		}else {
+			//사용
+			memberVO2.setMemPoint(memberVO2.getMemPoint()-Integer.parseInt(point));
+			pointListVO.setPoUse(1);
+			pointListVO.setPoChange(Integer.parseInt(point));
+		}
 		memberService.memTotalUpdate(memberVO2);
 		memberService.memPointUpdate(memberVO2);
+		pointListService.pointInsert(pointListVO);
 		
 		session.setAttribute("member", memberVO2);
 		
