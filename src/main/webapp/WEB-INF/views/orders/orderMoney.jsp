@@ -79,9 +79,9 @@
 		
 		//하루 총 목표 금액이 250만원이라면  평균 퍼센테이지 구할수 있음
 
-		var avg = 2500000/first;
+		var avg = (first/2500000)*100;
 		//avg = Math.floor(avg);
-		//alert(avg+"%"); 
+		alert(avg+"%"); 
 		
 		$('.totalMoney').text(avg);
 

@@ -5,7 +5,7 @@
 	height: 320px;
 	background-color: white;
 	border: 4px solid #ff674efa;
-	margin-top: 0.3px;
+	margin-top: 16px;
 	float: left;
 	overflow: auto;
 	overflow-x: hidden;
@@ -16,9 +16,15 @@
 	height: auto;
 	margin: auto;
 	overflow: hidden;
-	
+	padding-bottom: 15px;
 }
 
+.ListTake{
+	text-align: center;
+}
+.ListWait{
+	text-align: center;
+}
 .listTr {
 	font-family: CookieRun-Regular;
 	font-size: 18px;
@@ -58,21 +64,32 @@
 
 .mBox {
 	width: 170px;
-	height: 150px;
+	height: auto;
 	float: left;
-	font-family: CookieRun-Regular;
-	font-size: 17px;
+	letter-spacing: -1.5px;
 	text-align: center;
+	margin-top: 15px;
+	font-size: 16px;
+	
 }
 
 .phoneBox {
-	width: 90%;
+	width: 84%;
 	height: 40px;
 	clear: both;
 	text-align: right;
 	font-family: CookieRun-Regular;
 	font-size: 17px;
+	margin-top: 123px;
+}
 
+.phoneBox2 {
+	width: 84%;
+	height: 40px;
+	clear: both;
+	text-align: right;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
 }
 
 .ordersUpdate {
@@ -99,14 +116,22 @@
 	background-color: transparent;
 }
 
+/* .mNameCol {
+	color: #3118bd;
+}
+
+.optNameCol {
+	color: maroon;
+} */
+
 ::-webkit-scrollbar {
-width: 4px;
+	width: 4px;
 }
+
 ::-webkit-scrollbar-track {
-background-color: #ffd6c8;
-
+	background-color: #ffd6c8;
 }
-::-webkit-scrollbar-thumb {
-background-color: #ffd6c8;
 
+::-webkit-scrollbar-thumb {
+	background-color: #ffd6c8;
 }

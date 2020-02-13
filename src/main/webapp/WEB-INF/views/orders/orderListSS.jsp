@@ -37,10 +37,10 @@
 					</c:if> 
 					<input type="hidden" value="${vo.ordersVO.ooStatus}">
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
-					 <div>제조 대기</div>
+					 <div class="ListWait">제조 대기</div>
 					</c:if> 
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
-					 <div>제조 완료</div>
+					 <div class="ListWait">제조 완료</div>
 					</c:if> 
 					
 					
@@ -50,29 +50,29 @@
 					<c:forEach items="${ce.menuVOs}" var="me">
 					
 						<div class="mBox">
-						<div>${me.mmName}</div>
+						<div class="mNameCol">${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
-						</div>
 
 						<!--CartOptions에서 받아오는걸로 변경하기 -->
 						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
 						<c:if test="${me.mmNum eq opm.mmNum}">
-							<div>${opm.optName}</div>
+							<div class="optNameCol">${opm.optName}</div>
 							<div style="display: none;">${opm.optPrice}</div>
 						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
 						</c:forEach>
 						</c:forEach>
+						</div>
 					
 					</c:forEach>
 					</c:forEach>
 					<input type="hidden" class="hoonum" id="hoonum${ie.index}" value="${vo.ordersVO.ooNum}">
 					<input type="hidden" class="hssnum" id="hssnum${ie.index}" value="${vo.ordersVO.ssNum}">
 					<div class="phoneBox">
-					<input type="text" class="hphone" id="hphone${ie.index}" readonly="readonly" value="${vo.ordersVO.phone}">
+					<input type="text" class="hphone" id="hphone${ie.index}" readonly="readonly" value="${vo.ordersVO.phone}" >
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
 					<input type="button" value="제조 완료" style="cursor: pointer;" id="upbtn${ie.index}" class="ordersUpdate"> 
 					</c:if>

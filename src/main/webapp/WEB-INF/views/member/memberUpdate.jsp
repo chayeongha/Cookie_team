@@ -82,27 +82,27 @@
      	</div>
    </div>
      
-    <div class="">
-     		<label for="name">grade</label>
+    <div class="gradeBox1">
+     		<label for="name">grade: </label>
      		<c:if test="${member.grade eq 1}">
-     			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly">
+     			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly" class="gradeBox">
      		</c:if>
      		<c:if test="${member.grade eq 2}">
-     			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly">
+     			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly" class="gradeBox">
      		</c:if>
      		<c:if test="${member.grade eq 3}">
-     			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly">
+     			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly" class="gradeBox">
      		</c:if>
      		<c:if test="${member.grade eq 9999}">
-     			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly">
+     			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly" class="gradeBox">
      		</c:if>
      		<c:if test="${member.grade eq 8888}">
-     			<input type="text" value="점장" style="color:#ff0000" readonly="readonly">
+     			<input type="text" value="점장" style="color:#ff0000" readonly="readonly" class="gradeBox">
      		</c:if>
-     		<input type="hidden" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly">
+     		<input type="hidden" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly" >
     </div>
      
-    <div class="">
+    <div class="profileBox">
 		<label for="files">Profile:</label> 
 		<div class="form-group">
 			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
@@ -115,8 +115,8 @@
 	
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
+  		<input type="button" class="cancle" value="cancle">
         <button type="submit" class="btn_update">→ 수정</button>
-  		<input type="button" class="btn btn-danger cancle" value="cancle">
       </div>
     </div>
   	
@@ -278,8 +278,8 @@
 		
 </script>
    
-   <c:import url="../layout/footer.jsp" />	
 </div>
+   <c:import url="../layout/footer.jsp" />	
 
 </body>
 </html>
