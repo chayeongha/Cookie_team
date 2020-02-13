@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cookie Qna Answer</title>
+<title>Cookie Qna Answer Update</title>
 <c:import url="../template/boot.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/board/qnaWrite.css" rel="stylesheet">
@@ -15,14 +15,14 @@
 	<div id="popWrap">
 			<div id="popHead">
 				<div class="popHeadEnd">
-					<h1>문의답변 작성</h1>
+					<h1>문의답변 수정</h1>
 				</div>
 			</div>
 			<div class="popBody_con">
 				<div class="pop_qna_wrap">
 					<div class="tbl_wrap">
 						<table class="tbl">
-							<caption>문의답변 작성</caption>
+							<caption>문의답변 수정</caption>
 							<colgroup>
 								<col style="width:25%">
 								<col style="width:75%">
@@ -33,7 +33,7 @@
 										<label for="popCont">문의내용</label>
 									</th>
 									<td class="alignL">
-										<textarea disabled="disabled" rows="10" cols="80">${answer.contents}</textarea>
+										<textarea disabled="disabled" rows="10" cols="80">${question.contents}</textarea>
 									</td>
 								</tr>
 								<tr>
@@ -41,7 +41,7 @@
 										<label for="popCont">답변내용</label>
 									</th>
 									<td class="alignL">
-										<textarea name="contents" id="popCont" rows="10" cols="80" placeholder="답변 내용을 작성해 주세요"></textarea>
+										<textarea name="contents" id="popCont" rows="10" cols="80" placeholder="답변 내용을 작성해 주세요">${answer.contents}</textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -51,9 +51,9 @@
 				
 			<!-- 버튼 -->
 				<div class="btn_wrap">
-					<input type="hidden" name="writer" value="${member.nickname}">
-					<input type="hidden" name="ref" value="${answer.num}">
-					<input type="hidden" name="secret" value="${answer.secret}">
+					<input type="hidden" name="num" value="${answer.num}">
+					<input type="hidden" name="writer" value="${answer.writer}">
+					<input type="hidden" name="secret" value="${question.secret}">
 					<button id="btnSave" class="popbtn popbtn1" title="등록"><span>등록</span></button>
 					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
@@ -64,9 +64,9 @@
 
 	//등록 버튼
 	$('#btnSave').click(function(){
+		var num = $('input[name="num"]').val();
 		var writer = $('input[name="writer"]').val();
 		var contents = $('#popCont').val();
-		var ref = $('input[name="ref"]').val();
 		var secret = $('input[name="secret"]').val();
 
 		if(writer == null || writer == ""){
@@ -78,11 +78,11 @@
 		
 				$.ajax({
 					type : "POST",
-					url : "./qnaAnswer",
+					url : "./qnaAnswerUpdate",
 					data : {
+						num : num,
 						writer : writer,
 						contents : contents,
-						ref : ref,
 						step : 1,
 						secret : secret,
 						acheck : 1

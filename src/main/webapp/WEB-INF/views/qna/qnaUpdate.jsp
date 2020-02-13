@@ -180,16 +180,16 @@
 										secret: secret
 									},
 									success: function(data){
-										alert(data);
+										//alert(data);
 										if(data > 0){
 											opener.location.reload();
 											self.close();
 										}else{
-											alert("잠시 후에 다시 시도해주세요.1");
+											alert("잠시 후에 다시 시도해주세요.");
 										}
 									},
 									error: function(){
-										alert("잠시 후에 다시 시도해주세요.2");
+										alert("잠시 후에 다시 시도해주세요.");
 									}
 								});
 							}else {

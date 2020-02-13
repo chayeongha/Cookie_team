@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.util.CaptchaUtil;
 import com.cookie.basic.util.Pager;
 import nl.captcha.Captcha;
@@ -78,16 +79,61 @@ public class QnaController {
 		return result;
 	}
 	/////////////////////////////////////////////////////////////
-	//문의 답변 폼
+	//답변 삭제
+	@GetMapping("qnaAnswerDelete")
+	public ModelAndView qnaAnswerDelete(QnaVO qnaVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		qnaVO.setAcheck(0);
+		int result = qnaService.qnaAnswerDelete(qnaVO);
+		
+		String msg = "Delete Fail";
+		
+		if(result>0) {
+			msg = "Delete Success";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "qnaList");
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	//답변 수정 폼
+	@GetMapping("qnaAnswerUpdate")
+	public void qnaAnswerUpdate(QnaVO qnaVO, Model model) throws Exception {
+
+		qnaVO = qnaService.qnaSelect(qnaVO);
+		model.addAttribute("question", qnaVO);
+		
+		qnaVO.setRef(qnaVO.getNum());
+		qnaVO.setStep(1);
+		QnaVO qnaVO2 = qnaService.qnaRefSelect(qnaVO);
+		model.addAttribute("answer", qnaVO2);
+	}
+	
+	//답변 수정
+	@ResponseBody
+	@PostMapping("qnaAnswerUpdate")
+	public int qnaAnswerUpdate(QnaVO qnaVO) throws Exception {
+		
+		int result = qnaService.qnaUpdate(qnaVO);
+		
+		return result;
+	}
+	
+	//답변 폼
 	@GetMapping("qnaAnswer")
-	public void qnaAnswer(QnaVO qnaVO, Model model) throws Exception {
-		String writer = "abcdefghij";
+	public void qnaAnswer(QnaVO qnaVO, Model model, HttpSession session) throws Exception {
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		qnaVO = qnaService.qnaSelect(qnaVO);
 		
 		model.addAttribute("answer", qnaVO);
+		model.addAttribute("member", memberVO);
 	}
 	
-	//문의 답변 등록
+	//답변 등록
 	@ResponseBody
 	@PostMapping("qnaAnswer")
 	public int qnaAnswer(QnaVO qnaVO) throws Exception{
@@ -121,8 +167,6 @@ public class QnaController {
 	@GetMapping("qnaUpdate")
 	public void qnaUpdate(HttpSession session, QnaVO qnaVO, Model model) throws Exception {
 		
-		String writer = "abcdefghij";
-		
 		qnaVO = qnaService.qnaSelect(qnaVO);
 		
 		model.addAttribute("update", qnaVO);
@@ -133,11 +177,6 @@ public class QnaController {
 	@PostMapping("qnaUpdate")
 	public int qna(QnaVO qnaVO) throws Exception{
 		
-		System.out.println(qnaVO.getWriter());
-		System.out.println(qnaVO.getContents());
-		System.out.println(qnaVO.getSecret());
-		System.out.println(qnaVO.getStep());
-		
 		int result = qnaService.qnaUpdate(qnaVO);
 		
 		return result;
@@ -146,10 +185,9 @@ public class QnaController {
 	//글 작성 폼
 	@GetMapping("qnaWrite")
 	public void qnaWrite(HttpSession session, Model model) throws Exception {
-		//String writer = (String)session.getAttribute("member");
-		String writer = "abcdefghij";
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		
-		model.addAttribute("writer", writer);
+		model.addAttribute("writer", memberVO.getNickname());
 	}
 	
 	//글 등록
@@ -157,10 +195,6 @@ public class QnaController {
 	@PostMapping("qnaWrite")
 	public int qnaWrite(QnaVO qnaVO) throws Exception {
 
-//		System.out.println(qnaVO.getWriter());
-//		System.out.println(qnaVO.getContents());
-//		System.out.println(qnaVO.getSecret());
-		
 		int result = qnaService.qnaWrite(qnaVO);
 		
 		return result;
@@ -183,13 +217,14 @@ public class QnaController {
 	
 	//리스트
 	@GetMapping("qnaList")
-	public void qnaList(Model model, Pager pager) throws Exception {
+	public void qnaList(Model model, Pager pager, HttpSession session) throws Exception {
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		
 		List<QnaVO> list = qnaService.qnaList(pager);
-		
-		model.addAttribute("list", list);
+
+		model.addAttribute("lists", list);
 		model.addAttribute("pager", pager);
-		
+		model.addAttribute("member", memberVO);
 	}
 	
 }

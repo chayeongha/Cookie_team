@@ -22,6 +22,7 @@ public class QnaVO {
 	
 	private int num;
 	private String writer;
+	private String writerS;
 	private String contents;
 	private Date regDate;
 	private int ref;
@@ -30,6 +31,12 @@ public class QnaVO {
 	private int secret;
 	private int acheck;
 	
+	public String getWriterS() {
+		return writerS;
+	}
+	public void setWriterS(String writerS) {
+		this.writerS = writerS;
+	}
 	public int getAcheck() {
 		return acheck;
 	}

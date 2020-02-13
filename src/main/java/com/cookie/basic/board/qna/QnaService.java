@@ -16,8 +16,23 @@ public class QnaService {
 	@Autowired
 	private QnaMapper qnaMapper;
 	
+	//답변 삭제
+	public int qnaAnswerDelete(QnaVO qnaVO) throws Exception {
+		
+		int result = qnaMapper.qnaAnswerCheck(qnaVO);
+		result = qnaMapper.qnaAnswerDelete(qnaVO);
+		
+		return result;
+	}
+	
+	//문의, 답변 구분
+	public QnaVO qnaRefSelect(QnaVO qnaVO) throws Exception {
+		
+		return qnaMapper.qnaRefSelect(qnaVO);
+	}
 	
 	//답변 작성
+	@Transactional
 	public int qnaAnswer(QnaVO qnaVO) throws Exception {
 		int result = qnaMapper.qnaWrite(qnaVO);
 		result = qnaMapper.qnaAnswerCheck(qnaVO);
