@@ -150,12 +150,21 @@ public class OrdersController {
 		//적립금 업데이트
 		MemberVO memberVO2 = memberService.memPointSelect(memberVO);
 		int memTotal = Integer.parseInt(parray[0]);
-		int memPoint = (int) (memTotal*0.01) ;
+		double perp = 0.0;
+		if(memberVO2.getMemTotal()<= 100000) {
+			perp = 0.01;
+		}else if(100000 < memberVO2.getMemTotal() && memberVO2.getMemTotal() <=500000) {
+			perp = 0.02;
+		}else {
+			perp = 0.03;
+		}
+		
 		memberVO2.setMemTotal(memberVO2.getMemTotal()+memTotal);
-		memberVO2.setMemPoint(memberVO2.getMemPoint()+memPoint);
 		System.out.println(memberVO2.getMemPoint());
 		System.out.println(memberVO2.getMemTotal());
 		
+		int memPoint = (int) (memTotal*perp) ;
+		memberVO2.setMemPoint(memberVO2.getMemPoint()+memPoint);
 		memberService.memTotalUpdate(memberVO2);
 		memberService.memPointUpdate(memberVO2);
 		
