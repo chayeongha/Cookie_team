@@ -173,6 +173,11 @@ table {
     color: #536dfe;
     letter-spacing: -1px;
 }
+.qna_tb td .stateF {
+	background: #e1e6f8;
+    border: 1px solid #536dfe;
+    color: #536dfe;
+}
 /* 답변완료 */
 .qna_tb td .state.complete {
 	background: #e1e6f8;

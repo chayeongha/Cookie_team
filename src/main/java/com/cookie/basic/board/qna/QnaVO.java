@@ -15,19 +15,34 @@ public class QnaVO {
 //			  `step` 		int(11) 		NOT NULL 				COMMENT 'step',
 //			  `depth` 		int(11) 		NOT NULL 				COMMENT 'depth',
 //			  `secret` 		int(11) 		DEFAULT '0',			COMMENT '비밀글여부',
+//				`acheck` 		int(11)			NOT NULL DEFAULT '0'	COMMENT '답변여부',
 //			  PRIMARY KEY (`num`)
 //			);
 	//시분초 정보까지 가져오려면 java.util.Date 사용
 	
 	private int num;
 	private String writer;
+	private String writerS;
 	private String contents;
 	private Date regDate;
 	private int ref;
 	private int step;
 	private int depth;
 	private int secret;
+	private int acheck;
 	
+	public String getWriterS() {
+		return writerS;
+	}
+	public void setWriterS(String writerS) {
+		this.writerS = writerS;
+	}
+	public int getAcheck() {
+		return acheck;
+	}
+	public void setAcheck(int acheck) {
+		this.acheck = acheck;
+	}
 	public int getNum() {
 		return num;
 	}
