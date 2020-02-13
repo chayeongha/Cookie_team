@@ -110,9 +110,9 @@ public class CartController {
 		cartVO.setNickname(memberVO.getNickname());
 		
 		List<CartVO> ar = cartService.cartList(cartVO);
-		
 		mv.addObject("cartList", ar);
 		mv.addObject("memberVO",memberVO);
+		mv.addObject("point", memberVO.getMemPoint());
 		return mv;
 	}
 	
