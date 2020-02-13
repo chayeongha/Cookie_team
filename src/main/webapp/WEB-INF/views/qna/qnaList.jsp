@@ -45,7 +45,6 @@
 					<c:if test="${list.step == 0}">
 						<tr>
 							<td class="td_num">${list.num}</td>
-							<td class="td_view">
 								<c:if test="${list.acheck eq 0}">
 									<span class="state">미완료</span>
 								</c:if>
