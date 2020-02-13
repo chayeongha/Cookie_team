@@ -54,21 +54,26 @@ public class CalController {
 	}
 	@ResponseBody
 	@PostMapping("checkInsert")
-	public String checkInsert(CalVO calVO)throws Exception {
-		//ModelAndView mv = new ModelAndView();
+	public String checkInsert(CalVO calVO, MemberVO memberVO ,HttpSession session)throws Exception {
+		
+		memberVO.setMemNum(calVO.getMemNum());
+		
+		//포인트를가져와서
+		memberVO=calService.getmemPoint(memberVO);
+		
+		//10포인트를 더해줌.
+		int memPoint2 = memberVO.getMemPoint()+10;
+		
 		int result = calService.checkInsert(calVO);
-	
-		//System.out.println(calVO.getCheckDate());
 		
 		String msg ="출석실패";
 	
 		if(result >0){
-			msg="출석되었습니다.";	
+			msg="출석되었습니다. 10포인트 적립";
+			//출석되었을때 10넣어준 포인트를 셋팅해주고 세션에 담아줌.
+			memberVO.setMemPoint(memPoint2);
+			session.setAttribute("member", memberVO);
 		}
-		
-		//mv.addObject("msg", msg);
-		//mv.addObject("path", "./calmain");
-		//mv.setViewName("common/result");
 		
 		return msg;
 	}

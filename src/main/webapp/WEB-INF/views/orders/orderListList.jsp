@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +14,6 @@
 <input type="hidden" value="${store.ssNum}">
 	
 	<c:forEach items="${lists}" var="vo">
-
 		<%-- <c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}"> --%>
 		<div class="orderBox">
 			<div class="orderBox2">
@@ -23,6 +21,7 @@
 				<!--주문 정보-->
 				<div class="ListT">
 					<div class="ListNum">리스트 번호 : ${vo.ordersVO.ooNum}</div>
+		<input type="hidden" class="orderDate" value="${vo.ordersVO.ooDate}">
 					<div class="ListDate">주문 날짜 : ${vo.ordersVO.ooDate}</div>
 				</div>
 					<!--테이크 아웃 여부 및 제조 여부-->
@@ -116,8 +115,12 @@
 <script type="text/javascript">
 
 	/*타임스탬프 변환  */
+	var orderDate =$(".orderDate").val();
+	
+	var date = new Date();
 
-
+	date.setTime(orderDate);
+	dateString = date.toLocale
 
 
 </script>
