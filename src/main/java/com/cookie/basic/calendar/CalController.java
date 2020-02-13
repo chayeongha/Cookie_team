@@ -72,6 +72,7 @@ public class CalController {
 			msg="출석되었습니다. 10포인트 적립";
 			//출석되었을때 10넣어준 포인트를 셋팅해주고 세션에 담아줌.
 			memberVO.setMemPoint(memPoint2);
+			calService.cpointUpdate(memberVO);
 			session.setAttribute("member", memberVO);
 		}
 		
