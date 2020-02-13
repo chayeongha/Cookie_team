@@ -272,7 +272,29 @@
 								</c:forEach>	
 								</c:forEach>
 							</ul>
+							
+							<div class="toSelectBox">
+							
+							<span>테이크 아웃</span>
+							<span>매장에서 먹기</span><br>
+							<img src="../../images/cart/to.png">
+							<img src="../../images/cart/to2.png">
+							<br>
+							<input type="checkbox" name="tocheck" value="1" onclick="Check1(this)" checked="checked">
+							<input type="checkbox" name="tocheck" value="2" onclick="Check1(this)">
+							</div>
 						</form>
+						
+						<script type="text/javascript">
+							function Check1(chk){
+							    var obj = document.getElementsByName("tocheck");
+							    for(var i=0; i<obj.length; i++){
+							        if(obj[i] != chk){
+							            obj[i].checked = false;
+							        }
+							    }
+							}
+						</script>
 							
 							
 				<a href="#none" class="btn_del_selected">
