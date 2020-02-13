@@ -34,6 +34,9 @@ public interface CartMapper {
 	//카트 삭제
 	public int cartDelete(CartVO cartVO) throws Exception;
 	
+	//카트 삭제
+	public int cartDelete2(CartVO cartVO) throws Exception;
+	
 	//카트에서 수량 추가
 	public int cartUpdate(CartVO cartVO) throws Exception;
 	//카트 스테이터스 업데이트

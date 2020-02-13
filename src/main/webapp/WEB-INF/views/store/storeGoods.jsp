@@ -32,12 +32,14 @@
 			<h3 style="display: inline-block;">장바구니</h3>
 			<div class="orderBox">
 				<c:if test="${not empty cartVO}">
+				
 					<c:forEach items="${cartVO}" var="cartVOs">
 						<c:forEach items="${cartVOs.menuVOs}" var="menuVOs">
 							<c:if test="${menuVOs.ssNum eq storeVO.ssNum}">
 								<div class="orderBox_inner">
 								<h4>${menuVOs.mmName}</h4>
 								수량: ${menuVOs.mmCount}<br>
+								<input type="hidden" value="${cartVOs.cartNum}" name="cnn">
 									<c:if test="${not empty cartVOs.cartOptionVOs}">
 										<c:forEach items="${cartVOs.cartOptionVOs}" var="cartoptVO">
 											<c:forEach items="${cartoptVO.moptVOs}" var="moptVO">
@@ -48,10 +50,34 @@
 									<c:if test="${empty cartVOs.cartOptionVOs}">
 										추가된 옵션이 없습니다.
 									</c:if>
+								<button class="xxx">x</button>
 								</div>
+								
+								<script type="text/javascript">
+
+									$(".xxx").click(function(){
+										var cnn = $(this).parent().find('input[name=cnn]').val()
+										
+										$.ajax({
+											url:"../cart/cartDelete2",
+											type:'post',
+											data:{
+												"cnn":cnn
+											},
+											success : function(data) {
+										        alert("해당상품을 삭제하였습니다.");
+										        location.reload(true);
+										    }
+
+										});
+
+									});
+
+								</script>
 							</c:if>
 						</c:forEach>
 					</c:forEach>
+					
 				</c:if>
 			</div>
 			<button class="order2"><a href="${pageContext.request.contextPath}/cart/cartList?ssNum=${storeVO.ssNum}">주 문 하 기</a></button>

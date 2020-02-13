@@ -129,6 +129,18 @@ public class CartController {
 	}
 	
 	@ResponseBody
+	@PostMapping("cartDelete2")
+	public int cartDelete2(String cnn) throws Exception{
+		int result = 0;
+		
+		CartVO cartVO = new CartVO();
+		cartVO.setCartNum(Integer.parseInt(cnn));
+		result = cartService.cartDelete(cartVO);
+			
+		return result;
+	}
+	
+	@ResponseBody
 	@PostMapping("cartUpdate")
 	public int cartUpdate(String cart_amount, String cart_num,String cart_price) throws Exception{
 		int result= 0;
