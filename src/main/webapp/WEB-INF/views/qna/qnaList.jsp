@@ -100,7 +100,7 @@
 										<br>
 										<div class="btns_wrap">	
 											<input type="hidden" class="num" value="${list.ref}">
-											<c:if test="${member.nickname eq list.writer}">
+											<c:if test="${member.grade eq 9999 && member.nickname eq list.writer}">
 												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
 												<a href="qnaAnswerDelete?num=${list.num}&&ref=${list.ref}">삭제하기</a>
 											</c:if>

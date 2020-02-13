@@ -78,15 +78,9 @@
 					<li class="next"><span id="${pager.lastNum+1}" class="index">></span></li>
 				</c:if>
 			</ul>
-			<!-- <script type="text/javascript">
-				$('.pagination li.index:first').addClass('active');
-				$('ul li.index a').click(function(){
-					$('.pagination li.index:first').removeClass('active');
-					$(this).parent().addClass('active');
-				});
-			</script> -->
-			
-			<a href="noticeWrite" id="btnW">글쓰기</a>
+			<c:if test="${member.grade eq 9999}">
+				<a href="noticeWrite" id="btnW">글쓰기</a>
+			</c:if>
 		</div>
 	</div>
 		<c:import url="../layout/footer.jsp" />

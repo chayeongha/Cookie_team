@@ -42,14 +42,16 @@
 						</c:forEach>
 					</ul>
 				</div>
-
+			
 				<div class="btn_notice_wrap">
-					<p class="btn_notice_update">
-						<a href="noticeUpdate?num=${select.num}">수정</a>
-					</p>
-					<p  class="btn_notice_delete">
-						<a href="noticeDelete?num=${select.num}">삭제</a>
-					</p>
+					<c:if test="${member.grade eq 9999 && member.nickname eq select.writer}">
+						<p class="btn_notice_update">
+							<a href="noticeUpdate?num=${select.num}">수정</a>
+						</p>
+						<p  class="btn_notice_delete">
+							<a href="noticeDelete?num=${select.num}">삭제</a>
+						</p>
+					</c:if>
 					<p class="btn_notice_list">
 						<a href="noticeList">목록</a>
 					</p>

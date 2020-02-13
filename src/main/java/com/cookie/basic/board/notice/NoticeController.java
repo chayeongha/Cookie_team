@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.util.Pager;
 
 @Controller
@@ -195,7 +196,8 @@ public class NoticeController {
 	
 	//리스트
 	@GetMapping("noticeList")
-	public ModelAndView noticeList(Pager pager) throws Exception {
+	public ModelAndView noticeList(Pager pager, HttpSession session) throws Exception {
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		
 		List<NoticeVO> list = noticeService.noticeList(pager);
@@ -203,6 +205,7 @@ public class NoticeController {
 		mv.addObject("list", list);
 		mv.addObject("pager", pager);
 		mv.addObject("boardName", "공지사항");
+		mv.addObject("member", memberVO);
 		mv.setViewName("board/boardList");
 		
 		return mv;
