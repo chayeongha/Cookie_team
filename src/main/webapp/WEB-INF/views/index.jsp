@@ -180,8 +180,9 @@
 	
 	
 	<script type="text/javascript">
-		var v = [];
-		var b = [];
+	
+		var v = [];	//위도
+		var b = []; //경도
 						
 		
 	document.addEventListener("DOMContentLoaded", function() {
@@ -194,11 +195,7 @@
 			cAddr.push($(this).val());	
 			
 		});
-
-		
-		
-
-		
+	
 		
     function getLocation(position) {
 		
@@ -261,12 +258,6 @@
 			});
 		}
 		
-		   
-		//console.log(v);
-		//console.log(b);
-		//console.log(positions);
-        
-        
         
 		        // 지도를 생성
 		        var map = new daum.maps.Map(mapContainer, mapOption);
@@ -285,7 +276,6 @@
 		    }
 		});
 			
-
 		
 	</script>
 

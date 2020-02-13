@@ -67,7 +67,7 @@
 				
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<c:if test="${pager.curPage == i}">
-						<li class="list"><span id="${i}" class="index" style="color: #f23600; text-decoration: underline;">${i}</span></li>
+						<li class="list"><span id="${i}" class="index" style="color: #f23600; ">${i}</span></li>
 					</c:if>
 					<c:if test="${pager.curPage != i}">
 						<li class="list"><span id="${i}" class="index">${i}</span></li>

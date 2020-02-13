@@ -6,10 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cookie Qna Update</title>
+<title>Cookie Notice Write</title>
 <c:import url="../template/boot.jsp" />
+<c:import url="../layout/header.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/board/qnaWrite.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/board/boardWrite.css" rel="stylesheet">
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </head>
 <body>
 	<div id="popWrap">
@@ -96,7 +100,11 @@
 					<button id="btnClose" class="popbtn popbtn2" title="취소"><span>취소</span></button>
 				</div>
 			</div>
-	</div>
+		</div>
+
+		<input type="button" class="btn btn-primary" id="write" value="Submit">
+     <a href="./noticeList" class="btn btn-warning">목록</a>
+     
 <script type="text/javascript">
 
 ///captcha/////////////////////////////////////////////////////////////
@@ -216,5 +224,6 @@
 		window.close();
 	});
 </script>
+	<c:import url="../layout/footer.jsp" />
 </body>
 </html>

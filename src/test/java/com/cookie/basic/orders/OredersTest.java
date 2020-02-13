@@ -3,16 +3,23 @@ package com.cookie.basic.orders;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.store.StoreVO;
 @SpringBootTest
 class OredersTest {
 	
 	@Autowired
 	private OrdersMapper ordersMapper;
+	
+	@Autowired
+	private OrdersController ordersController;
 	
 
 	
@@ -77,8 +84,6 @@ class OredersTest {
 		}
 		
 
-
-	
 	
 	
 }

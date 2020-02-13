@@ -1,27 +1,37 @@
 @charset "UTF-8";
 
 .orderBox {
-	width: 534px;
+	width: 550px;
 	height: 320px;
 	background-color: white;
 	border: 4px solid #ff674efa;
-	margin-top: 0.3px;
+	margin-top: 16px;
+	float: left;
+	overflow: auto;
+	overflow-x: hidden;
 }
 
 .orderBox2 {
-	width: 534px;
+	width: 542px;
 	height: auto;
 	margin: auto;
 	overflow: hidden;
+	padding-bottom: 15px;
 }
 
+.ListTake{
+	text-align: center;
+}
+.ListWait{
+	text-align: center;
+}
 .listTr {
 	font-family: CookieRun-Regular;
 	font-size: 18px;
 }
 
 .ListT {
-	width: 526px;
+	width: 551;
 	height: 60px;
 	background-color: #ff674efa;
 	color: white;
@@ -45,8 +55,83 @@
 	height: 30px;
 	clear: both;
 }
-#hphone{
+
+.hphone {
 	width: 150px;
 	height: 20px;
 	border-style: none;
+}
+
+.mBox {
+	width: 170px;
+	height: auto;
+	float: left;
+	letter-spacing: -1.5px;
+	text-align: center;
+	margin-top: 15px;
+	font-size: 16px;
+	
+}
+
+.phoneBox {
+	width: 84%;
+	height: 40px;
+	clear: both;
+	text-align: right;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
+	margin-top: 123px;
+}
+
+.phoneBox2 {
+	width: 84%;
+	height: 40px;
+	clear: both;
+	text-align: right;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
+}
+
+.ordersUpdate {
+	width: 80px;
+	height: 40px;
+	border-style: none;
+	background-color: #ff674efa;
+	border-radius: 4px;
+	margin-left: 10px;
+}
+
+.msgBox {
+	width: 150px;
+	height: 40px;
+	clear: both;
+	font-family: CookieRun-Regular;
+	font-size: 17px;
+	margin-top: 15px;
+	margin: auto;
+}
+
+#hphone {
+	border-style: none;
+	background-color: transparent;
+}
+
+/* .mNameCol {
+	color: #3118bd;
+}
+
+.optNameCol {
+	color: maroon;
+} */
+
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #ffd6c8;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ffd6c8;
 }

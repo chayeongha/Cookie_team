@@ -100,16 +100,19 @@ public class CartController {
 
 
 	@GetMapping("cartList")
-	public ModelAndView storeDetail(HttpSession session) throws Exception {
+	public ModelAndView storeDetail(HttpSession session,int ssNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
 		CartVO cartVO = new CartVO();
+		cartVO.setSsNum(ssNum);
+		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		cartVO.setNickname(memberVO.getNickname());
 		
 		List<CartVO> ar = cartService.cartList(cartVO);
-		
 		mv.addObject("cartList", ar);
 		mv.addObject("memberVO",memberVO);
+		mv.addObject("point", memberVO.getMemPoint());
 		return mv;
 	}
 	
@@ -122,6 +125,18 @@ public class CartController {
 			cartVO.setCartNum(Integer.parseInt(ar));
 			result = cartService.cartDelete(cartVO);
 		}
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("cartDelete2")
+	public int cartDelete2(String cnn) throws Exception{
+		int result = 0;
+		
+		CartVO cartVO = new CartVO();
+		cartVO.setCartNum(Integer.parseInt(cnn));
+		result = cartService.cartDelete(cartVO);
+			
 		return result;
 	}
 	

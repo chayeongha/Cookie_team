@@ -126,7 +126,7 @@
 			
 			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 				<c:if test="${pager.curPage == i}">
-					<li class="list"><a href="./qnaList?curPage=${i}" style="color: #f23600; text-decoration: underline;">${i}</a></li>
+					<li class="list"><a href="./qnaList?curPage=${i}" style="color: #f23600;">${i}</a></li>
 					
 				</c:if>
 				<c:if test="${pager.curPage != i}">

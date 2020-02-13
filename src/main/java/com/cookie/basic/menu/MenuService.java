@@ -29,7 +29,7 @@ public class MenuService {
 	//menuPreset
 	public int menuPreset(MenuVO menuVO, String [] menuP)throws Exception{
 		
-		List<MenuVO>menuVOs = new ArrayList<>();
+		List<MenuVO> menuVOs = new ArrayList<>();
 		int result = 0;
 		for(int i = 0; i<menuP.length; i++) { 
 			String[] spt = menuP[i].split(":");
@@ -229,6 +229,6 @@ public class MenuService {
 	public int menuDelete(MenuVO menuVO)throws Exception{
 		return menuMapper.menuDelete(menuVO);
 	}
-	
+		
 
 }

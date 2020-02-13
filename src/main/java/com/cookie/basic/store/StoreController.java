@@ -270,7 +270,7 @@ public class StoreController {
 		storeVO.setsName(sName);
 
 		int result = storeService.checkStore(storeVO);
-
+		
 		if (result > 0) {
 			System.out.println("중복");
 		} else {
@@ -366,17 +366,26 @@ public class StoreController {
 	// 스토어 굿즈(메뉴판 만드는곳)
 
 	@GetMapping("storeGoods")
-	public ModelAndView storeGoods(StoreVO storeVO, String mmNum) throws Exception {
+	public ModelAndView storeGoods(StoreVO storeVO, String mmNum,HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MenuVO menuVO = new MenuVO();
 
 		storeVO = storeService.storeGoods(storeVO);
 		menuVO.setSsNum(storeVO.getSsNum());
 		List<MenuVO> menuVOs = menuService.menuList(menuVO);
-
+		
+		if(session.getAttribute("member") != null) {
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			CartVO cartVO = new CartVO();
+			cartVO.setNickname(memberVO.getNickname());
+			cartVO.setSsNum(storeVO.getSsNum());
+			List<CartVO> ar = cartService.cartList(cartVO);
+			mv.addObject("cartVO",ar);
+		
+		}
+		
 		mv.addObject("storeVO", storeVO);
 		mv.addObject("list", menuVOs);
-
 		return mv;
 
 	}
@@ -384,15 +393,15 @@ public class StoreController {
 	@ResponseBody
 	@GetMapping("storeResult")
 	public ModelAndView storeResult(String mmNum) throws Exception {
-
+		
 		ModelAndView mv = new ModelAndView();
-
+		
 		MenuVO menuVO = new MenuVO();
 		menuVO.setMmNum(Integer.parseInt(mmNum));
-
+		
 		menuVO = menuService.menuSelect(menuVO);
 		mv.addObject("Detail", menuVO);
-
+		
 		return mv;
 
 	}

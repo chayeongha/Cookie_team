@@ -30,8 +30,57 @@
 		<div class="order">
 			<img src="${pageContext.request.contextPath}/images/menu/cart.png">
 			<h3 style="display: inline-block;">장바구니</h3>
-			<div class="orderBox"></div>
-			<button class="order2">주 문 하 기</button>
+			<div class="orderBox">
+				<c:if test="${not empty cartVO}">
+				
+					<c:forEach items="${cartVO}" var="cartVOs">
+						<c:forEach items="${cartVOs.menuVOs}" var="menuVOs">
+							<c:if test="${menuVOs.ssNum eq storeVO.ssNum}">
+								<div class="orderBox_inner">
+								<h4>${menuVOs.mmName}</h4>
+								수량: ${menuVOs.mmCount}<br>
+								<input type="hidden" value="${cartVOs.cartNum}" name="cnn">
+									<c:if test="${not empty cartVOs.cartOptionVOs}">
+										<c:forEach items="${cartVOs.cartOptionVOs}" var="cartoptVO">
+											<c:forEach items="${cartoptVO.moptVOs}" var="moptVO">
+												${moptVO.optName} ${moptVO.optCount}
+											</c:forEach>
+										</c:forEach>
+									</c:if>
+									<c:if test="${empty cartVOs.cartOptionVOs}">
+										추가된 옵션이 없습니다.
+									</c:if>
+								<button class="xxx">x</button>
+								</div>
+								
+								<script type="text/javascript">
+
+									$(".xxx").click(function(){
+										var cnn = $(this).parent().find('input[name=cnn]').val()
+										
+										$.ajax({
+											url:"../cart/cartDelete2",
+											type:'post',
+											data:{
+												"cnn":cnn
+											},
+											success : function(data) {
+										        alert("해당상품을 삭제하였습니다.");
+										        location.reload(true);
+										    }
+
+										});
+
+									});
+
+								</script>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
+					
+				</c:if>
+			</div>
+			<button class="order2"><a href="${pageContext.request.contextPath}/cart/cartList?ssNum=${storeVO.ssNum}">주 문 하 기</a></button>
 		</div>
 		<div class="innerBox">
 			<div class="box1">
@@ -46,7 +95,8 @@
 					<h3>* 매장 위치 *</h3>${storeVO.roadFullAddr}<br>
 					<br>
 					<div id="map"
-						style="width: 800px; height: 350px; margin: 0 auto; margin-bottom: 40px"></div>
+						style="width: 800px; height: 350px; margin: 0 auto; margin-bottom: 40px;  box-shadow: -60px 0px 100px -90px #000000,
+        60px 0px 100px -90px #000000;"></div>
 				</div>
 			</div>
 			<script>

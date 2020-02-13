@@ -48,7 +48,7 @@
 							<strong class="checkbox_select">선택</strong>
 						</p>
 						
-						<form action="../order/orderList" method="post" id="frm">
+						<form action="../orders/orderListInsert" method="post" id="frm">
 			
 							<ul class="cart_list_style">
 <!-- --aaaaaaaaaaaaaaaaaaaaaaa -->							
@@ -168,7 +168,7 @@
 											
 											//$('#input_camount'+${cartList.cartNum}).val(cart_amount);
 											//calTotal();
-											location.href = "cartList";
+											location.href = "cartList?ssNum="+sN;
 										}else {
 											alert("수량 변경 실패");
 										}
@@ -250,7 +250,7 @@
 										success: function(result) {
 											if(result == 1){
 												alert("삭제되었습니다.");
-												location.href = "cartList";
+												location.href = "cartList?ssNum="+sN;
 											}else {
 												alert("삭제 실패");
 											}
@@ -272,7 +272,57 @@
 								</c:forEach>	
 								</c:forEach>
 							</ul>
+						
+								<div class="toSelectBox">
+									<span>테이크 아웃</span>
+									<span>매장에서 먹기</span><br>
+									<img src="../../images/cart/to.png">
+									<img src="../../images/cart/to2.png">
+									<br>
+									<input type="checkbox" class="cck" id="cck1" name="tocheck" value="1" onclick="Check1(this)" checked="checked">
+									<label for="cck1">테이크 아웃</label>
+									<input type="checkbox" class="cck" id="cck2" name="tocheck" value="0" onclick="Check1(this)">
+									<label for="cck2">매장에서 먹기</label>
+								</div>
+								<c:if test="${point eq 0}">
+								<input type="hidden" value="${point}" id="Totalpoint" name="point">
+								</c:if>
+								<c:if test="${point gt 0}">
+								<div class="pointBox">
+									<span>Point: ${point}</span>
+									<input type="hidden" value="${point}" id="Totalpoint">
+									<input type="text" id="point1" name="point" value="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">점
+									<input type="button" id="Pbtn" value="사용하기">
+								</div>
+								</c:if>
+							
 						</form>
+						
+						<script type="text/javascript">
+
+						$("#cck1").click(function(){
+							if(!$("#cck1").prop("checked")){
+								$("#cck2").prop("checked",'true');
+							}
+						});
+
+						$("#cck2").click(function(){
+							if(!$("#cck2").prop("checked")){
+								$("#cck1").prop("checked",'true');
+							}
+						});
+						
+
+						
+							function Check1(chk){
+							    var obj = document.getElementsByName("tocheck");
+							    for(var i=0; i<obj.length; i++){
+							        if(obj[i] != chk){
+							            obj[i].checked = false;
+							        }
+							    }
+							}
+						</script>
 							
 							
 				<a href="#none" class="btn_del_selected">
@@ -281,6 +331,8 @@
 				</a>
 				
 			<script type="text/javascript">
+
+			var sN = $(".sname").val();
 				//버튼 활성화, 비활성화 배경색 변경
 				function btn_active() {
 					if($('.cart_checkbox:checked').length > 0){
@@ -377,7 +429,7 @@
 							success: function(result) {
 								if(result == 1){
 									alert("삭제되었습니다.");
-									location.href = "cartList";
+									location.href = "cartList?ssNum="+sN;
 								}else {
 									alert("삭제 실패");
 								}
@@ -437,6 +489,70 @@
 				</div>
 				
 			<script type="text/javascript">
+
+
+			
+			
+			var totalPoint = $("#Totalpoint").val();
+			totalPoint = parseInt(totalPoint);
+
+			var mm = $("#total_price").text();
+			mm = mm.replace(",","");
+			mm = parseInt(mm);
+
+			
+			var point1 = 0;
+			var sale = $("#sales_price").text();
+			sale= sale.replace(",","");
+			sale = parseInt(sale);
+			
+			$("#point1").blur(function(){
+			point1 = $("#point1").val();
+			point1 = parseInt(point1);
+
+					if(totalPoint<point1){
+						if(sale > point1){
+							$("#point1").val(totalPoint);
+						}else if(sale < point1){
+							$("#point1").val(sale);
+						}
+					}else{
+						if(sale > point1){
+							$("#point1").val(point1);
+						}else if(sale < point1){
+							$("#point1").val(sale);
+						}
+					}
+			});
+
+			$("#Pbtn").click(function(){
+				if(totalPoint<point1){
+					if(sale > point1){
+						$("#total_discount").text(addComma(totalPoint));
+					}else if(sale < point1){
+						$("#total_discount").text(addComma(sale));
+					}
+				}else{
+					if(sale > point1){
+						$("#total_discount").text(addComma(point1));
+					}else if(sale < point1){
+						$("#total_discount").text(addComma(sale));
+					}
+				}
+				
+				
+
+				var mmm = $("#total_discount").text();
+				mmm = mmm.replace(",","");
+				mmm = parseInt(mmm);
+				
+				$("#total_price").text(addComma(mm-mmm));
+				
+			});
+			
+			
+
+			
 				function parameter() {
 					
 					var sn_i = $('input[name="sname"]').length;
@@ -478,6 +594,8 @@
 							var total = $("#total_price").text();
 							total = total.replace(",","");
 							total = parseInt(total);
+							
+							
 							$('input[class="cartTotalPrice"]').val(total);
 							
 							$("#frm").submit(); //sname, sprice, camount, cartNum

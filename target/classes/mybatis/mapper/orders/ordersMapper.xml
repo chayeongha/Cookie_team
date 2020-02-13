@@ -9,12 +9,16 @@
   </insert>
   
   <update id="ordersUpdate" parameterType="OrdersVO">
-   update orders set ooStatus=1 where ooNum=#{ooNum}
+   update orders set ooStatus=1 where nickname=#{nickname} and ooStatus=0
+  </update>
+  
+  <update id="ordersUpdate2" parameterType="OrdersVO">
+   update orders set ooStatus=2 where ooNum=#{ooNum}
   </update>
   
   <!--오더리스트 아님!  -->
   <select id="ordersList" parameterType="OrdersVO" resultType="OrdersVO">
-  	select * from orders where nickname = #{nickname}
+  	select * from orders where nickname = #{nickname} and ooStatus=0
   </select>
   
   
@@ -67,7 +71,7 @@
         left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.nickname = #{nickname}
+        where OD.nickname = #{nickname} order by ooDate desc
 	</select>
   
   <!-- 점주가 ssNum으로 조회 (제조대기 디폴트)-->
@@ -96,7 +100,7 @@
 	
 <!--리스트 생성-->
  <insert id="orderListInsert" parameterType="OrderListVO" useGeneratedKeys="true" keyProperty="olNum">
- 	insert into orderList values(null ,#{ooNum}, null)
+ 	insert into orderList values(null ,#{ooNum}, 0)
  </insert>
 
 <resultMap type="OrderListVO" id="OrderListM">
@@ -125,17 +129,28 @@
 	select OL.*, OD.ooTotal, OD.ooDate,OD.ssNum,CA.cartStatus from orderList OL
 	left outer join orders OD on OL.ooNum = OD.ooNum
 	left outer join cart CA on OL.ocNum = CA.ocNum
-	where OD.ssNum=#{ssNum} and CA.cartStatus=0;
+	where OD.ssNum=#{ssNum} and CA.cartStatus=1;
 </select>
   
   <update id="orderListUpdate" parameterType="OrderListVO">
-  	update orderList set ocNum = #{ocNum} where olNum=#{olNum}
+  	update orderList set ocNum=#{ocNum} where olNum=#{olNum}
   </update>
 
   
   <select id="orderListSelectOne" parameterType="OrderListVO" resultType="OrderListVO">
-   select * from orderList where ooNum=#{ooNum}
+   select * from orderList where ooNum=#{ooNum} and ocNum=0
   </select>
   
+  <select id="findcartNum" parameterType="CartVO" resultType="CartVO">
+  	select * from cart where cartNum=#{cartNum} and cartStatus=1;
+  </select>
+  
+  <select id= "findmmCount" parameterType="MenuVO" resultType="MenuVO">
+  	select * from menu where mmNum=#{mmNum}
+  </select>
+  
+  <update id="UpdateCount" parameterType="MenuVO">
+  	update menu set mmCount=#{mmCount} where mmNum=#{mmNum}
+  </update>
 
 </mapper>

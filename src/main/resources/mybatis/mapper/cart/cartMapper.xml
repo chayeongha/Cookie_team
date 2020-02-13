@@ -103,6 +103,11 @@
 		update cart set mmCount=#{mmCount}, cartTotal = #{cartTotal} where cartNum=#{cartNum}
 	</update>
 	
+	<update id="cartUpdate2" parameterType="CartVO">
+		update cart set cartStatus=1, ocNum=#{ocNum} where cartNum=#{cartNum}
+	</update> 
+	
+	
 	 <select id="cartList" parameterType="CartVO" resultMap="cartResult">
 		select * from cart C
 		left outer join cartOption CO
@@ -113,7 +118,7 @@
         on M.mmNum = MF.mmNum
         left outer join mopt MP
         on MP.optNum = CO.optNum
-		where cartStatus=0 and nickname=#{nickname}
+		where cartStatus=0 and nickname=#{nickname} and C.ssNum=#{ssNum}
 	</select>
 	
 	<delete id="cartDelete" parameterType="CartVO">

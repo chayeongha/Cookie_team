@@ -43,13 +43,14 @@
 									</th>
 									<td class="alignL">
 										<div style="overflow:hidden">
-											<img id="ccimage" alt="캡차이미지" src="./captchaImg">
+											<img id="ccimage" alt="캡차이미지" src="./captchaImg"">
 											<div id="ccaudio" style="display:none"></div>
-										</div>
-										<div style="padding:3px">
-											<input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침">
+											<button id="reload" type="button" onclick="javaScript:getImage()"></button>
+											<!-- <input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"> -->
 											<!-- <input id="soundOn" type="button" onclick="audio()" value="음성듣기"> -->
 										</div>
+										
+										
 										
 										<p class="cap_wrap">
 											<input type="text" id="captcha" name="captcha" placeholder="보안문자를 입력해 주세요.">

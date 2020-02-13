@@ -516,3 +516,103 @@ table {
     background-color: #fb4357;
     cursor: pointer;
 }
+
+/**/
+
+.toSelectBox{
+	width: 100%;
+	border-bottom:1px solid red;
+	margin-top:30px;
+	
+}
+
+.toSelectBox > img{
+	width: 150px;
+	height: 150px;
+	margin-left: 220px;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+.toSelectBox > input{
+	margin-left: 220px;
+	width: 150px;
+	margin-bottom: 30px;
+}
+
+.toSelectBox > span{
+	font-family: CookieRun-Black; 
+	color:#DA281C;
+	font-size:28px;
+	margin-left: 220px;
+}
+.toSelectBox > input[type=checkbox]{
+	height: 25px;
+	display: inline-block; 
+	cursor: pointer;
+	line-height: 25px; 
+
+
+}
+
+.toSelectBox > label {
+	display: none;
+}
+
+
+.toSelectBox > input[type="checkbox"] + label {
+	
+    font-size: 0;
+    cursor: pointer;
+}
+.toSelectBox > input[type="checkbox"] + label:before {
+	content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    font-size: 0;
+    background: transparent url(../../images/cart/checkbox_gray.png) -1px -1px scroll no-repeat;
+    background-size: 25px 25px;
+    background-position: -3px;
+}
+
+.toSelectBox > input[type="checkbox"]:checked + label:before {
+	background: transparent url(../../images/cart/checkbox_red.png) -1px -1px scroll no-repeat;
+	background-size: 25px 25px;
+	background-position: -3px;
+}
+
+/*포인트*/
+.pointBox{
+	font-family: CookieRun-Black; 
+	font-size:30px;
+	color:#DA281C;
+	background: #ffede3;
+	margin-top:20px;
+	height: 60px;
+	line-height: 60px;
+	
+}
+
+#Pbtn{
+	float:right;
+	border:none;
+	background: transparent;
+	margin-right: 50px;
+}
+
+.pointBox >span{
+	margin-left: 150px;
+}
+
+#point1{
+	height: 40px;
+	width: 200px;
+	margin-left: 250px;
+	border:none;
+	background:transparent;
+	border-bottom:1px solid #DA281C;
+	text-align: right;
+	padding: 10px;
+	margin-right: 5px;
+}
