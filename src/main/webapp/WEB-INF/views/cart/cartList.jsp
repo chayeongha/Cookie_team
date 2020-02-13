@@ -284,6 +284,15 @@
 									<input type="checkbox" class="cck" id="cck2" name="tocheck" value="2" onclick="Check1(this)">
 									<label for="cck2">매장에서 먹기</label>
 								</div>
+								
+								<c:if test="${point gt 0}">
+								<div class="pointBox">
+									<span>Point: ${point}</span>
+									<input type="hidden" value="${point}" id="Totalpoint">
+									<input type="text" id="point1" name="point" value="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">점
+									<input type="button" id="Pbtn" value="사용하기">
+								</div>
+								</c:if>
 							
 						</form>
 						
@@ -478,6 +487,70 @@
 				</div>
 				
 			<script type="text/javascript">
+
+
+			
+			
+			var totalPoint = $("#Totalpoint").val();
+			totalPoint = parseInt(totalPoint);
+
+			var mm = $("#total_price").text();
+			mm = mm.replace(",","");
+			mm = parseInt(mm);
+
+			
+			var point1 = 0;
+			var sale = $("#sales_price").text();
+			sale= sale.replace(",","");
+			sale = parseInt(sale);
+			
+			$("#point1").blur(function(){
+			point1 = $("#point1").val();
+			point1 = parseInt(point1);
+
+					if(totalPoint<point1){
+						if(sale > point1){
+							$("#point1").val(totalPoint);
+						}else if(sale < point1){
+							$("#point1").val(sale);
+						}
+					}else{
+						if(sale > point1){
+							$("#point1").val(point1);
+						}else if(sale < point1){
+							$("#point1").val(sale);
+						}
+					}
+			});
+
+			$("#Pbtn").click(function(){
+				if(totalPoint<point1){
+					if(sale > point1){
+						$("#total_discount").text(addComma(totalPoint));
+					}else if(sale < point1){
+						$("#total_discount").text(addComma(sale));
+					}
+				}else{
+					if(sale > point1){
+						$("#total_discount").text(addComma(point1));
+					}else if(sale < point1){
+						$("#total_discount").text(addComma(sale));
+					}
+				}
+				
+				
+
+				var mmm = $("#total_discount").text();
+				mmm = mmm.replace(",","");
+				mmm = parseInt(mmm);
+				
+				$("#total_price").text(addComma(mm-mmm));
+				
+			});
+			
+			
+
+			
 				function parameter() {
 					
 					var sn_i = $('input[name="sname"]').length;
@@ -519,6 +592,8 @@
 							var total = $("#total_price").text();
 							total = total.replace(",","");
 							total = parseInt(total);
+							
+							
 							$('input[class="cartTotalPrice"]').val(total);
 							
 							$("#frm").submit(); //sname, sprice, camount, cartNum
