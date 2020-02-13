@@ -329,9 +329,9 @@
 					alert(data);
 					if(data=="입력하신 정보가 회원정보와 일치합니다."){
 						$('#pwConfirm').css('display' , 'none');
-						$('#searchBtn2').css('display' , 'inline');
+						$('#searchBtn2').css('display' , 'block');
 					}else if(data=="입력하신정보가 회원정보와 일치하지않습니다."){
-						$('#pwConfirm').css('display' , 'inline');
+						$('#pwConfirm').css('display' , 'block');
 						$('#searchBtn2').css('display' , 'none');
 						$('#inputId').val("");
 						$('#inputEmail').val("");
