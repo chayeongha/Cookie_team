@@ -582,4 +582,37 @@ table {
 	background-position: -3px;
 }
 
+/*포인트*/
+.pointBox{
+	font-family: CookieRun-Black; 
+	font-size:30px;
+	color:#DA281C;
+	background: #ffede3;
+	margin-top:20px;
+	height: 60px;
+	line-height: 60px;
+	
+}
 
+#Pbtn{
+	float:right;
+	border:none;
+	background: transparent;
+	margin-right: 50px;
+}
+
+.pointBox >span{
+	margin-left: 150px;
+}
+
+#point1{
+	height: 40px;
+	width: 200px;
+	margin-left: 250px;
+	border:none;
+	background:transparent;
+	border-bottom:1px solid #DA281C;
+	text-align: right;
+	padding: 10px;
+	margin-right: 5px;
+}
