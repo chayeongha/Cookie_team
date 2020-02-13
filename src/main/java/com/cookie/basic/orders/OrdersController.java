@@ -33,6 +33,7 @@ import com.cookie.basic.cart.CartOptionVO;
 import com.cookie.basic.cart.CartService;
 import com.cookie.basic.cart.CartVO;
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.member.MemberService;
 import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.menu.MenuVO;
 import com.cookie.basic.store.StoreVO;
@@ -46,14 +47,17 @@ public class OrdersController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	// orders
 	// ordersUpdate
 	@PostMapping("ordersUpdate")
 	public ModelAndView ordersUpdate(String ooNum, String ssNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(ooNum);
-		System.out.println(ssNum);
+		//System.out.println(ooNum);
+		//System.out.println(ssNum);
 		OrdersVO ordersVO = new OrdersVO();
 		ordersVO.setOoNum(Integer.parseInt(ooNum));
 		ordersVO.setSsNum(Integer.parseInt(ssNum));
@@ -78,8 +82,8 @@ public class OrdersController {
 	public ModelAndView orderListInsert(OrderListVO orderListVO, HttpSession session, String cartTotalPrice, String sname, String [] cartNum)throws Exception{
 		//1단계 orders 생성
 		ModelAndView mv = new ModelAndView();
-		System.out.println("length"+cartNum.length);
-		System.out.println(cartNum[0]);
+		//System.out.println("length"+cartNum.length);
+		//System.out.println(cartNum[0]);
 		 
 		OrdersVO ordersVO = new OrdersVO();
 		MemberVO memberVO = new MemberVO();
@@ -89,7 +93,7 @@ public class OrdersController {
 		ordersVO.setNickname(memberVO.getNickname());
 		ordersVO.setPhone(memberVO.getPhone());
 		String[] sarray = sname.split(",");
-		System.out.println(sarray[0]);
+		//System.out.println(sarray[0]);
 		ordersVO.setSsNum(Integer.parseInt(sarray[0]));
 		//ooTotal 값 넘어오는거 받아서 넣어주기
 		String[] parray = cartTotalPrice.split(",");
@@ -100,7 +104,7 @@ public class OrdersController {
 		OrdersVO ordersVO2 = new OrdersVO();
 		ordersVO2.setNickname(memberVO.getNickname());
 		ordersVO2 = ordersService.ordersList(ordersVO);
-		System.out.println("ooNum :" + ordersVO2.getOoNum());
+		//System.out.println("ooNum :" + ordersVO2.getOoNum());
 		//ooStatus 1로 Update
 		OrdersVO ordersVO4 = new OrdersVO();
 		ordersVO4.setNickname(memberVO.getNickname());
@@ -113,12 +117,12 @@ public class OrdersController {
 		OrderListVO orderListVO2 = new OrderListVO();
 		orderListVO2.setOoNum(ordersVO2.getOoNum());
 		orderListVO2 = ordersService.orderListSelectOne(orderListVO2);
-		System.out.println("olNum :"+orderListVO2.getOlNum());
-		System.out.println("ooNum2 :" +orderListVO2.getOoNum());
+		//System.out.println("olNum :"+orderListVO2.getOlNum());
+		//System.out.println("ooNum2 :" +orderListVO2.getOoNum());
 		OrderListVO orderListVO3 = new OrderListVO();
 		orderListVO3.setOlNum(orderListVO2.getOlNum());
 		orderListVO3.setOcNum(orderListVO2.getOlNum());
-		System.out.println(orderListVO3.getOcNum());
+		//System.out.println(orderListVO3.getOcNum());
 		ordersService.orderListUpdate(orderListVO3);
 		
 		//해당되는 카트의 ocNum도 같게 업데이트
@@ -137,11 +141,23 @@ public class OrdersController {
 			menuVO = ordersService.findmmCount(menuVO);
 			int mCount = menuVO.getMmCount();
 			int cCount = cartVO2.getMmCount();
-			System.out.println(mCount);
-			System.out.println(cCount);
+			//System.out.println(mCount);
+			//System.out.println(cCount);
 			menuVO.setMmCount(mCount-cCount);
 			ordersService.UpdateCount(menuVO);
 		}
+		//고객별 사용금액 업데이트
+		//적립금 업데이트
+		MemberVO memberVO2 = memberService.memPointSelect(memberVO);
+		int memTotal = Integer.parseInt(parray[0]);
+		int memPoint = (int) (memTotal*0.01) ;
+		memberVO2.setMemTotal(memberVO2.getMemTotal()+memTotal);
+		memberVO2.setMemPoint(memberVO2.getMemPoint()+memPoint);
+		System.out.println(memberVO2.getMemPoint());
+		System.out.println(memberVO2.getMemTotal());
+		
+		memberService.memTotalUpdate(memberVO2);
+		memberService.memPointUpdate(memberVO2);
 		
 		
 		mv.setViewName("member/memberMypage");
@@ -226,7 +242,7 @@ public class OrdersController {
 	public ModelAndView orderListSSF(OrdersVO ordersVO) throws Exception {
 		
 		//
-		System.out.println("스토어:"+ordersVO.getSsNum());
+		//System.out.println("스토어:"+ordersVO.getSsNum());
 		ordersVO.setOoStatus(2);
 		
 		ModelAndView mv = new ModelAndView();
@@ -236,8 +252,8 @@ public class OrdersController {
 		List<CartOptionVO> ar3 = new ArrayList<CartOptionVO>();
 		
 		for(int i=0; i<ar.size();i++) {
-			System.out.println("arsize1 :"+ar.size());
-			System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());
+			//System.out.println("arsize1 :"+ar.size());
+			//System.out.println("arsize2 :"+ar.get(i).getCartVOs().size());
 			List<CartOptionVO> ar2;
 			for(int j=0; j<ar.get(i).getCartVOs().size();j++) {
 				cartOptionVO.setCartNum(ar.get(i).getCartVOs().get(j).getCartNum());
@@ -255,7 +271,7 @@ public class OrdersController {
 				
 				}
 		}
-		System.out.println("ar3:"+ar3.size());
+		//System.out.println("ar3:"+ar3.size());
 		//ar2 = cartService.coptSelect(cartOptionVO);
 		mv.addObject("lists2", ar3);
 		mv.addObject("lists", ar);
