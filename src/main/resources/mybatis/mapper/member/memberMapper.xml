@@ -77,7 +77,7 @@
 	
 	<!-- 카카오 회원가입-->
   	<insert id="kakaoJoin" parameterType="MemberVO">
-  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',#{email},1,2)
+  		insert into members values(null,#{memId},null,#{nickname},#{nickname},'000-0000-0000',#{email},1,2,0,0)
   	</insert>
 
   	<!-- 카카오 -->
@@ -87,7 +87,7 @@
   
   	<!-- 네이버 회원가입-->
   	<insert id="naverJoin" parameterType="MemberVO">
-  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',#{email},1,1)
+  		insert into members values(null,#{memId},null,#{name},#{nickname},'000-0000-0000',#{email},1,1,0,0)
   	</insert>
   
   	<!-- 네이버 -->

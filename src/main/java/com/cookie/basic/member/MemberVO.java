@@ -30,7 +30,9 @@ public class MemberVO {
 	private String email;
 	private Integer grade;
 	private Integer kind;
-	
+	private Integer memPoint;
+	private Integer memTotal;
+
 	private MemberFilesVO memberFilesVO;
 	
 	private Integer fnum;
