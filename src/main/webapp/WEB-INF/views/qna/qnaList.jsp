@@ -40,59 +40,84 @@
 					<th scope="col">작성일</th>
 				</tr>
 			</thead>
+			
 			<tbody>
-				<c:forEach items="${list}" var="list">
-					<tr>
-						<td class="td_num">${list.num}</td>
-						<td class="td_view">
-							<span class="state">미완료</span>
-							<c:if test="${list.secret == 1}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
-							<c:if test="${list.secret == 0}">
-								<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
-							</c:if>
-						</td>
-						<td class="td_writer">${list.writer}</td>
-						<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-					</tr>
-					<tr class="trQna" style="display: table-row;">
-						<td colspan="4" class="qna_wrap" style="display: table-cell;">
-						<!-- 질문 -->
-							<div class="question">
-								<span class="iconQ">질문</span>
-									<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
-								<br>
-								<div class="btns_wrap">
-									<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
-									<%-- <a href="qnaUpdate?num=${list.num}&step=0">수정하기</a> --%>
-									<!-- <form name="frmData" class="frmData" method="post"> -->
-										<input type="hidden" class="num" value="${list.num}">
-									<!-- </form> -->
-									<a href="javascript:void(0)" class="btn_update">수정하기</a>
-									<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
-								</div>
-							</div>
-							
-						<!-- 답변 -->
-							<c:if test="${list.step > 0}">
-								<div class="answer">
-									<span class="iconA">답변</span>
-									${list.contents}
-									<br>
-								</div>
-								<div class="btns_wrap">
-									<a href="qnaUpdate?num=${list.num}&step=1" >수정하기</a>
-									<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
-								</div>
-							</c:if>
-						</td>
-					</tr>
+				<c:forEach items="${lists}" var="list">
+						<c:if test="${list.step == 0}">
+							<tr class="${list.ref}">
+								<td class="td_num">${list.num}</td>
+								<td class="td_view">
+									<c:if test="${list.acheck eq 0}">
+										<span class="state">미완료</span>
+									</c:if>
+									<c:if test="${list.acheck eq 1}">
+										<span class="state stateF">답변완료</span>
+									</c:if>
+								<!-- 비밀글일때 -->
+									<c:if test="${list.secret eq 1}">
+										<c:if test="${member.nickname ne list.writer && member.grade ne 9999}">비밀글입니다. <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></c:if>
+										<c:if test="${member.nickname eq list.writer || member.grade eq 9999}">
+											<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents} <img alt="비밀글" src="../images/board/lock-line.png" style="margin-bottom: 4px;"></a>
+										</c:if>
+									</c:if>
+								<!-- 비밀글 아닐때 -->
+									<c:if test="${list.secret eq 0}">
+										<a href="javascript:void(0)" id="showCloseDetail" class="view_txt">${list.contents}</a>
+									</c:if>
+								</td>
+								<td class="td_writer">${list.writerS}</td>
+								<td class="td_date"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+							</tr>
+						</c:if>
+						
+						<tr class="trQna trQna${list.ref}" style="display: table-row;">
+							<td colspan="4" class="qna_wrap" style="display: table-cell;">
+							<!-- 질문 -->
+								<c:if test="${list.step == 0}">
+									<div class="question">
+										<span class="iconQ">질문</span>
+											<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
+										<br>
+										<div class="btns_wrap">
+											<input type="hidden" class="num" value="${list.num}">
+											<c:if test="${member.grade eq 9999}">
+												<a href="javascript:void(0)" class="btn_reply">답변하기 ></a>
+											</c:if>
+											<c:if test="${member.nickname eq list.writer}">
+												<a href="javascript:void(0)" class="btn_update">수정하기</a>
+											</c:if>
+											<c:if test="${member.nickname eq list.writer || member.grade eq 9999}">
+												<a href="qnaDelete?ref=${list.ref}">삭제하기</a>
+											</c:if>
+										</div>
+									</div>
+								</c:if>
+							<!-- 답변 -->
+								<c:if test="${list.step > 0}">
+									<div class="answer">
+										<span class="iconA">답변</span>
+										<div style="white-space: pre-line;"><c:out value="${list.contents}" /></div>
+										<br>
+										<div class="btns_wrap">	
+											<input type="hidden" class="num" value="${list.ref}">
+											<c:if test="${member.nickname eq list.writer}">
+												<a href="javascript:void(0)" class="btn_replyUpdate">수정하기</a>
+												<a href="qnaAnswerDelete?num=${list.num}&&ref=${list.ref}">삭제하기</a>
+											</c:if>
+										</div>
+									</div>
+								</c:if>
+							</td>
+						</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		
-		<div class="btn_wrap">
-			<input type="button" value="문의하기" class="btn_write" onclick="openWrite()">
-		</div>
+		<c:if test="${member.grade ne 9999}">
+			<div class="btn_wrap">
+				<input type="button" value="문의하기" class="btn_write">
+			</div>
+		</c:if>
 		
 		<ul class="pagination">
 			<c:if test="${pager.curBlock gt 1}">
@@ -120,23 +145,69 @@
 
 ////////////////////////////////////////////////////////////////////
 	var openWin;
+	var nickname = "${member.nickname}";
 
+	$('.trQna').hide();
+
+	$('.view_txt').click(function(){
+		var i = $(this).parents('tr').attr('class');
+		$('.trQna'+i).slideToggle();
+	});
+
+	//문의 등록
+	$('.btn_write').click(function(){
+		//window.name = "부모창 이름";
+		//window.name = "parentForm";
+		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
+		if( nickname != null && nickname != ""){
+			openWin = window.open("./qnaWrite", "wirteForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+		}else {
+			var confirm_val = confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?");
+			if(confirm_val){
+				location.href = "../member/memberLogin";
+				//이동후에 로그인하면 다시 원래 페이지로 돌아오는 방법이 없을까?
+			}else{
+				location.href = "./qnaList";
+			}
+		}
+	});
+	
+
+	function openUpdate(num) {
+		openWin = window.open("qnaUpdate?num="+num, "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+	}
+
+	function openAnswer(num) {
+		openWin = window.open("qnaAnswer?num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+	}
+
+	function openAnswerUpdate(num) {
+		openWin = window.open("qnaAnswerUpdate?num="+num, "answerForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+	}
+
+	//문의 수정
 	$('.btn_update').click(function(){
 		var num = $(this).parent().find('.num').val();
 		
 		openUpdate(num);
 	});
+	
+	//답변
+	$('.btn_reply').click(function(){
+		var num = $(this).parent().find('.num').val();
+		
+		openAnswer(num);
+	});
 
-	function openWrite() {
-		//window.name = "부모창 이름";
-		//window.name = "parentForm";
-		//window.open("open할 window", "자식창 이름", "팝업창 옵션");
-		openWin = window.open("./qnaWrite", "wirteForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
-	}
-
-	function openUpdate(num) {
-		openWin = window.open("qnaUpdate?num="+num+"&step=0", "updateForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
-	}
+	//답변 수정
+	$('.btn_replyUpdate').click(function(){
+		var num = $(this).parent().find('.num').val();
+		
+		openAnswerUpdate(num);
+	})
+	
+	
+	
 	
 // 	function setUpdateText() {
 
@@ -243,11 +314,6 @@
 // 		    <input type="hidden" name="testval" />
 // 		</form>
 
-
-
-
-
-		
 
 			
 	
