@@ -31,16 +31,19 @@
 			<input type="hidden" class="form-control" id="memNum" value="${member.memNum}" readonly="readonly">
 			
 			<div class="box">
+      			
       			<label for="name" class="e">회원 등급</label>
-      			<c:if test="${member.grade eq 1}">
-      			<input type="text" class="" id="grade" value="Famliy" style="color:#00bb00" readonly="readonly">
+      		<c:if test="${member.grade eq 1 }">
+      			<c:if test="${member.memTotal le  100000 }">
+      			<input type="text" class="" id="grade" value="BRONZE COOKIE" style="color:#b07a5e" readonly="readonly">
       			</c:if>
-      			<c:if test="${member.grade eq 2}">
-      			<input type="text" class="" id="grade" value="VIP" style="color:#ff0080" readonly="readonly">
+      			<c:if test="${100000 lt member.memTotal  and member.memTotal  le  500000}">
+      			<input type="text" class="" id="grade" value="SILVER COOKIE" style="color:#c1c6cd" readonly="readonly">
       			</c:if>
-      			<c:if test="${member.grade eq 3}">
-      			<input type="text" class="" id="grade" value="SVIP" style="color:#ff0000" readonly="readonly">
+      			<c:if test="${500000 lt  member.memTotal }">
+      			<input type="text" class="" id="grade" value="GOLD COOKIE" style="color:#f0c828" readonly="readonly">
       			</c:if>
+      		</c:if>		
       			<c:if test="${member.grade eq 9999}">
       			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly">
       			</c:if>
@@ -76,12 +79,12 @@
     		
     		<div class="box">
       			<label for="name" class="e2"> 적립금</label>
-      			<input type="text" class="" id="memPoint" value="${member.memPoint}" readonly="readonly">
+      			<input type="text" class="" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
     		</div>
     		
     		<div class="box">
       			<label for="name" class="e2"> 총 사용금액</label>
-      			<input type="text" class="" id="memTotal" value="${member.memTotal}" readonly="readonly">
+      			<input type="text" class="" id="memTotal" value="${member.memTotal}원" readonly="readonly">
     		</div>
     		
 
