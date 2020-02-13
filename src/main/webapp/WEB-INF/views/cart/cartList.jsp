@@ -181,7 +181,7 @@
 						</script>
 <!-- ------------------------------------------------------------ -->
 							<div class="product_info_btn_wrap">
-								<button type="submit" id="btn_now${cartList.cartNum}">바로구매</button>
+								<button type="button" id="btn_now${cartList.cartNum}">바로구매</button>
 							</div>
 							
 						<script type="text/javascript">
@@ -196,7 +196,7 @@
 
 								var total =  amountt * pricee;
 								$('#input_cartTotalPrice'+${cartList.cartNum}).val(total);
-								/* var IMP = window.IMP; // 생략가능
+								var IMP = window.IMP; // 생략가능
 								IMP.init('imp12494718'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 								IMP.request_pay({
 								    pg : 'html5_inicis',
@@ -217,12 +217,13 @@
 								        msg += '상점 거래ID : ' + rsp.merchant_uid;
 								        msg += '결제 금액 : ' + rsp.paid_amount;
 								        msg += '카드 승인번호 : ' + rsp.apply_num;
+								        $("#frm").submit();
 								    } else {
 								        var msg = '결제에 실패하였습니다.';
 								        msg += '에러내용 : ' + rsp.error_msg;
 								    }
 								    alert(msg);
-								}); */
+								});
 								
 							});	
 						</script>
@@ -598,9 +599,9 @@
 							
 							$('input[class="cartTotalPrice"]').val(total);
 							
-							$("#frm").submit(); //sname, sprice, camount, cartNum
 							
-							/*  var IMP = window.IMP; // 생략가능
+							
+							var IMP = window.IMP; // 생략가능
 								IMP.init('imp12494718'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 								IMP.request_pay({
 								    pg : 'html5_inicis',
@@ -621,12 +622,13 @@
 								        msg += '상점 거래ID : ' + rsp.merchant_uid;
 								        msg += '결제 금액 : ' + rsp.paid_amount;
 								        msg += '카드 승인번호 : ' + rsp.apply_num;
+								        $("#frm").submit(); //sname, sprice, camount, cartNum
 								    } else {
 								        var msg = '결제에 실패하였습니다.';
 								        msg += '에러내용 : ' + rsp.error_msg;
 								    }
 								    alert(msg);
-								}); */
+								});
 						
 					}else{
 						alert("상품을 선택하세요.");
