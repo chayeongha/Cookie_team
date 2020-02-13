@@ -284,7 +284,9 @@
 									<input type="checkbox" class="cck" id="cck2" name="tocheck" value="0" onclick="Check1(this)">
 									<label for="cck2">매장에서 먹기</label>
 								</div>
-								
+								<c:if test="${point eq 0}">
+								<input type="hidden" value="${point}" id="Totalpoint" name="point">
+								</c:if>
 								<c:if test="${point gt 0}">
 								<div class="pointBox">
 									<span>Point: ${point}</span>
