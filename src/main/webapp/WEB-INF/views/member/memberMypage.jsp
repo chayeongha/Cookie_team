@@ -77,35 +77,38 @@
       			<input type="text" class="" id="email" value="${member.email}" readonly="readonly">
     		</div>
     		
+    	<c:if test="${member.grade eq 1 or member.grade eq 9999}">	
     		<div class="box">
-      			<label for="name" class="e2"> 적립금</label>
+      			<label for="name" > 적립금</label>
       			<input type="text" class="" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
     		</div>
     		
     		<div class="box">
-      			<label for="name" class="e2"> 총 사용금액</label>
+      			<label for="name" > 총 사용금액</label>
       			<input type="text" class="" id="memTotal" value="${member.memTotal}원" readonly="readonly">
     		</div>
-    		
+    	</c:if>	
 
 		</div><!-- mypageBox끝 -->
 		
 		<c:if test="${member.kind eq null}">
 			<div class="e3">
-					<button class="bt" id="mDel">회원탈퇴</button>
-					<button class="bt" id="mUp">회원수정</button>
+					<a class="bt" id="mDel">회원탈퇴</a>
+					<a class="bt" id="mUp">회원수정</a>	
+					<c:if test="${member.grade eq 1 }">
+						<a class="bt" href="${pageContext.request.contextPath}/calendar/calmain">출석체크 하러가기</a>
+					</c:if>
 			</div>		
 		</c:if>
 		<div class="box2">
 			<h1>주문내역</h1>
 			 
 			<div class="box2_inner">
-				<h1>222</h1>
-				<h1>222</h1>
-				<h1>222</h1>
-				<h1>222</h1>
-				<h1>222</h1>
+				주문한내역 4개까지만보여지고 나머지는 더보기 버튼눌러서 리스트페이지로?
+				<button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button>
+				<div class="orderList">
 				
+				</div>
 			</div>
 		</div>
 		<div class="box2">
@@ -114,20 +117,15 @@
 				<div class="storeMiniList">
 				</div>			
 			</div>
-			<div class="box3_inner">
-				<h1>멤버 캘린더</h1>
-				<a href="${pageContext.request.contextPath}/calendar/calmain">캘린더 ?nickname=${member.nickname}</a>
-				<div class="memberCalendar">
-				</div>
-			</div>
+			
 		</div>
-	</div>	
-</div>
+	</div>
+</div>	
 
 	<c:import url="../layout/footer.jsp" />	
 
 <script type="text/javascript">
-
+		var nickname2=$("#nickname").val();
 		//정보수정
 		$('#mUp').click(function() {
 			location.href="./memberUpdate";
@@ -135,7 +133,7 @@
 
 		//회원탈퇴
 		$('#mDel').click(function(){
-				
+			console.log(nickname2);
 			if(confirm("회원을 탈퇴하시겠습니까?")){
 
 				$.ajax({
@@ -162,7 +160,11 @@
 		$(document).ready(function(){
 		    $(".storeMiniList").load("./storeMiniList");
 		});
-
+		//해당div에  오더리스트를 출력해줌.
+		$(document).ready(function(){
+		    $(".orderList").load("../orders/orderListList?nickname="+nickname2);
+		});
+		
 </script>
 		
 	
