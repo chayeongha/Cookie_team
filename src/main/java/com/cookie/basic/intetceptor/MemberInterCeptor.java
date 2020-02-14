@@ -19,10 +19,11 @@ public class MemberInterCeptor extends HandlerInterceptorAdapter {
 			return true;
 		}else {
 			response.sendRedirect("./memberLogin");
-			return false;
+			return false; 
 		}	
 	}
 
 	//관리자로 로그인하지않았을 경우 못가도록 ADMIN관리페이지나 어드민메인페이지못들어가도록..해야함.
 	
 }
+
