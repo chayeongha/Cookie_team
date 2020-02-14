@@ -11,6 +11,10 @@
 
 </head>
 <body>
+<c:if test="${store.ssNum ne storeNum}">
+<h1>정상적인 접근 경로가 아닙니다</h1>
+</c:if>
+<c:if test="${store.ssNum eq storeNum}">
 	<input type="hidden" value="${store.ssNum}">
 	<c:forEach items="${lists}" var="vo" varStatus="ie">
 
@@ -71,9 +75,9 @@
 					
 					</c:forEach>
 					</c:forEach>
+					<div class="phoneBox">
 					<input type="hidden" class="hoonum" id="hoonum${ie.index}" value="${vo.ordersVO.ooNum}">
 					<input type="hidden" class="hssnum" id="hssnum${ie.index}" value="${vo.ordersVO.ssNum}">
-					<div class="phoneBox">
 					<input type="text" class="hphone" id="hphone${ie.index}" readonly="readonly" value="${vo.ordersVO.phone}" >
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
 					<input type="button" value="제조 완료" style="cursor: pointer;" id="upbtn${ie.index}" class="ordersUpdate"> 
@@ -110,8 +114,8 @@
 				   console.log(receiver);  
 				  
 						$.ajax({ 
-							url: "sendOrder", 
 							type: "POST", 
+							url : "/orders/sendOrder", 
 							data: { 
 								receiver : receiver
 							}, 
@@ -129,14 +133,14 @@
 						
 						$.ajax({
 							type : "POST",
-							url : "./ordersUpdate",
+							url : "/orders/ordersUpdate",
 							data : {
 								ooNum : ooNum,
 								ssNum : ssNum
 							},
 							success : function(data) {
 								alert("제조 완료");
-								window.location.href = "./orderListSS?ssNum=" + ssNum;
+								window.location.reload();
 							}
 						});
 				
@@ -187,6 +191,6 @@
 		
 	</script>
 
-
+</c:if>
 </body>
 </html>
