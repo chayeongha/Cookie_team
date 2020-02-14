@@ -38,7 +38,7 @@
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></div>
 			</c:if>
 			
-			<c:if test="${sessionScope.member.grade eq 1}">
+			<c:if test="${sessionScope.member.grade ne 9999}">
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberMypage">Mypage</a></div>
 			</c:if>
 			<c:if test="${sessionScope.member.grade eq 9999}">
