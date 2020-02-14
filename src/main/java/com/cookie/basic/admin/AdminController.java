@@ -1,15 +1,21 @@
 package com.cookie.basic.admin;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.orders.OrdersVO;
 import com.cookie.basic.store.StoreCloseVO;
 import com.cookie.basic.util.Pager;
 
@@ -22,9 +28,46 @@ public class AdminController {
 	
 	//어드민메인페이지
 	@GetMapping("adminMain")
-	public void adminMain() throws Exception{
-			
+	public Model adminMain(OrderListVO orderListVO,Model model) throws Exception{
+		
+		//월 포맷
+		DateFormat df = new SimpleDateFormat("yyyy-MM");
+	
+		Date today = new  Date();
+		
+		String thisMonth=df.format(today);
+		//System.out.println(thisMonth);
+		
+		//연 포맷
+		DateFormat df2 = new SimpleDateFormat("yyyy");
+		
+		Date year = new  Date();
+		
+		String thisYear=df2.format(year);
+		//System.out.println(thisYear);
+		
+		//주문건 카운트
+		int orderCount	= adminService.orderCount(orderListVO);
+		//System.out.println(orderCount);	
+	 
+	 
+		//포맷한 데이트들을 메서드에 넣어서 jsp로 보냄.
+		
+		//월매출
+		int mEarn=adminService.monthEarn(thisMonth);
+		//System.out.println(mEarn);
+		
+		//연매출
+		int yEarn=adminService.yearEarn(thisYear);
+		//System.out.println(yEarn);
+		
+		model.addAttribute("orderCount", orderCount);
+		model.addAttribute("mEarn", mEarn);
+		model.addAttribute("yEarn", yEarn);
+		
+		return model;
 	}
+	
 	
 	//어드민멤버리스트페이지
 	@GetMapping("adminMemberList")

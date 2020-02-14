@@ -660,8 +660,8 @@ public class MemberController {
             MimeMessage msg = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
              
-            messageHelper.setSubject(memId+"님 비밀번호 찾기 메일입니다.");
-            messageHelper.setText("비밀번호는 "+pw+" 입니다.");
+            messageHelper.setSubject("쿠키에서발송:"+memId+"님의 임시비밀번호");
+            messageHelper.setText("회원님의 임시 비밀번호는 "+pw+" 입니다.");
             messageHelper.setTo(email);
             msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
             mailSender.send(msg);
