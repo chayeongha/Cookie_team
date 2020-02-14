@@ -670,7 +670,7 @@ public class MemberController {
             e.printStackTrace();
         }
 		
-		String message ="이메일전송";
+		String message ="임시 비밀번호가 입력하신 메일로 발송되었습니다.";
 		String path= "./searchIdPw";
 		mv.addObject("message", message);
 		mv.addObject("path", path);
