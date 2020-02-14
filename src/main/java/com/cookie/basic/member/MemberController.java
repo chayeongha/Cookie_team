@@ -686,6 +686,7 @@ public class MemberController {
 	public ModelAndView pointList(PointListVO pointListVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<PointListVO> ar = pointListService.pointList(pointListVO);
+		mv.addObject("pointListVO", pointListVO);
 		mv.addObject("lists", ar);
 		mv.setViewName("member/pointList");
 		
