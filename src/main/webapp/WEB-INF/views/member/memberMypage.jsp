@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,6 +132,7 @@
 			<div class="box2_inner">
 				<%-- <button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button> --%>
 			
+				<div class="orderTT">주문내역</div>
 				<div class="orderList">
 				</div>
 			</div>
