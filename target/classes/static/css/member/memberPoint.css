@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.container{
+	overflow:hidden;
+	height: auto;
+}
 
 .pointHeader {
 	width: 100%;

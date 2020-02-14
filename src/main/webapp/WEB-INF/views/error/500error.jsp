@@ -13,7 +13,7 @@
 <div class="errorBody">
 	
 		<div class="img"><img alt="" src="/images/byeCookie.jpg" width="350px;" height="350px;"></div><div class="errorBody2">500</div>
-		<div class="errorBody3">Internal Server Error - 개발자가 잘못했네</div>
+		<div class="errorBody3">Internal Server Error - 예기치 못한 오류</div>
 	</div>
 
 
