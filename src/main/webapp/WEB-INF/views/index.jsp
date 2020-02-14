@@ -175,6 +175,11 @@
 				    	scrollTop : $(this.hash).offset().top
 				    },300)
 				  });
+
+
+		$(".storebtn").click(function(){
+			location.href="./member/selectJoin";
+			})
 			 
 			
 	</script>

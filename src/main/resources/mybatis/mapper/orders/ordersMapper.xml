@@ -83,7 +83,7 @@
         left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.ssNum = #{ssNum} and OD.ooStatus=#{ooStatus}
+        where OD.ssNum = #{ssNum} and OD.ooStatus=#{ooStatus} order By OL.olNum asc
 	</select>
 	
 	<!-- 점주 조회(제조 완료) -->
@@ -95,7 +95,7 @@
         left outer join cart CA on OL.ocNum = CA.ocNum
         left outer join menu ME on CA.mmNum = ME.mmNum
         left outer join mopt MO on ME.mmNum = MO.mmNum
-        where OD.ssNum = #{ssNum} and OD.ooStatus=#{ooStatus}
+        where OD.ssNum = #{ssNum} and OD.ooStatus=#{ooStatus} order By OL.olNum desc
 	</select>
 	
 <!--리스트 생성-->
@@ -129,7 +129,7 @@
 	select OL.*, OD.ooTotal, OD.ooDate,OD.ssNum,CA.cartStatus from orderList OL
 	left outer join orders OD on OL.ooNum = OD.ooNum
 	left outer join cart CA on OL.ocNum = CA.ocNum
-	where OD.ssNum=#{ssNum} and CA.cartStatus=1;
+	where OD.ssNum=#{ssNum} and CA.cartStatus=1 or CA.cartStatus=2;
 </select>
   
   <update id="orderListUpdate" parameterType="OrderListVO">

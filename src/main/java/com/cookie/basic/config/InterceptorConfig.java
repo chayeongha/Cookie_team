@@ -5,12 +5,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.cookie.basic.intetceptor.MemberInterCeptor;
+import com.cookie.basic.intetceptor.StoreInterCeptor;
 
 @Configuration								
 public class InterceptorConfig implements WebMvcConfigurer{
 
 	@Autowired
 	private MemberInterCeptor memberInterCeptor;
+	@Autowired
+	private StoreInterCeptor storeInterCeptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -50,6 +53,19 @@ public class InterceptorConfig implements WebMvcConfigurer{
 ////		.excludePathPatterns("/member/sendEmail")//뺴야함.
 ////		.excludePathPatterns("/member/phoneCheck");//뺴야함.
 ////		//멤버페이지로 들어왔을떄 패턴등록.
+
+		
+		registry.addInterceptor(storeInterCeptor)
+
+		.addPathPatterns("/store/**")
+		.addPathPatterns("/menu/**")
+		.excludePathPatterns("/store/storeList")
+		.excludePathPatterns("/store/storeList2")
+		.excludePathPatterns("/store/storeList3")
+		.excludePathPatterns("/store/storeGoods")
+		.excludePathPatterns("/store/storeResult");
+		
+		
 
 	}
 }

@@ -12,6 +12,11 @@
 </head>
 <body>
 
+<c:if test="${member.grade ne 8888}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${member.grade eq 8888}">
 	
 	<form action="storeNotice" method="post" name="form" id="form" enctype="multipart/form-data">
 	
@@ -25,7 +30,7 @@
 			<div class="btnBox"><button class="btnWrite">작성</button></div>
 		</div>
 </form>
-
+</c:if>
 
 
 	<script type="text/javascript">
