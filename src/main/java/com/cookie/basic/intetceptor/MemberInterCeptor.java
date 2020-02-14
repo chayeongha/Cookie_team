@@ -19,7 +19,9 @@ public class MemberInterCeptor extends HandlerInterceptorAdapter {
 			return true;
 		}else {
 			response.sendRedirect("./memberLogin");
+
 			return false; 
+
 		}	
 	}
 
