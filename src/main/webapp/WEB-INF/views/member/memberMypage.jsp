@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +111,8 @@
 			</div>
 			<div class="box4_inner">
 
-				<h1>포인트 내역</h1> <div class=""></div>
+				<h1>포인트 내역</h1> 
+				<button class="pointbtn">포인트 상세보기</button>
 
 				<c:if test="${member.grade ne 8888}">	
     		<div class="point">
@@ -128,6 +130,7 @@
 			<div class="box2_inner">
 				<%-- <button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button> --%>
 			
+				<div class="orderTT">주문내역</div>
 				<div class="orderList">
 				</div>
 			</div>
@@ -178,6 +181,15 @@
 		$(document).ready(function(){
 		    $(".orderList").load("../orders/orderListList?nickname="+nickname2);
 		});
+
+
+
+
+		var nickname= $("#nickname").val();
+		
+		$(".pointbtn").click(function(){
+			location.href="http://localhost/member/pointList?nickname="+nickname
+			})
 		
 </script>
 		

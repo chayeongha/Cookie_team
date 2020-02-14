@@ -12,6 +12,7 @@
 <link href="/css/member/memberLogin.css" rel="stylesheet"/>
 <c:import url="../template/boot.jsp" />
 <c:import url="../layout/header.jsp" />
+<link href="/css/member/memberUpdate.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="body_main">
@@ -21,43 +22,48 @@
 <h1>회원정보 수정</h1>
   <form:form class="form-horizontal" id="upfrm" action="./memberUpdate" modelAttribute="memberVO"  method="post" enctype="multipart/form-data">
     
+     <div class="frmBox">
     <div class="form-group">
-	      <label class="control-label col-sm-2" for="memId">Id:</label>
-	      <div class="col-sm-10">
-	      	<h4>${member.memId}</h4>
+	      <label class="control-label col-sm-2" for="memId">Id: </label><div class="idid">${member.memId}</div>
 	        <input type="hidden" class="form-control" id="memId" value="${member.memId}" readonly="readonly" name="memId">  	
-	      </div>
+    </div>
     </div>
     
     <input type="hidden" class="form-control" id="memNum" name="memNum" value="${member.memNum}" readonly="readonly">
 			
-			
+	<div class="frmBox">	
     <div class="form-group">
-	      <label class="control-label col-sm-2" for="pw">Password:</label>
+	      <label class="control-label col-sm-2" for="pw">Password</label>
 	      <div class="col-sm-10">          
 		      <form:password path="pw" class="form-control" id="pw" name="pw" placeholder="Enter password"/>
 			  <form:errors path="pw" cssStyle="color:red;" /> 
 	      </div>
     </div>	
+    </div>
      
+      <div class="frmBox">
     <div class="form-group">
-	      <label class="control-label col-sm-2" for="pwCheck">Pw Confirm:</label>
+	      <label class="control-label col-sm-2" for="pwCheck">Pw Confirm</label>
 	      <div class="col-sm-10">          
 		        <form:password path="pwCheck" class="form-control" id="pwCheck" placeholder="Enter password check" />
 				<form:errors path="pwCheck" cssStyle="color:red;" />
 	      </div>
     </div>
+    </div>
      
+      <div class="frmBox">
      <div class="form-group">
-	      <label class="control-label col-sm-2" for="name">Name:</label>
+	      <label class="control-label col-sm-2" for="name">Name</label>
 	      <div class="col-sm-10">
 		      	<form:input path="name" class="form-control nameCheck" id="name" value="${member.name}"/>
 		      	<form:errors path="name" cssStyle="color:red;" />
 	      </div>
     </div>
+    </div>
      
+      <div class="frmBox">
     <div class="form-group">
-	      <label class="control-label col-sm-2" for="nickname">Nickname:</label>
+	      <label class="control-label col-sm-2" for="nickname">Nickname</label>
 	      <div class="col-sm-10">
 		      	<form:input path="nickname" class="form-control nickCheck2" id="nickname" value="${member.nickname}" readonly="false" />
 				<form:errors path="nickname" cssStyle="color:red;" />
@@ -65,26 +71,46 @@
     </div>
     
     <div class="form-group">
-      	<label class="control-label col-sm-2" for="email">Phone number:</label>
+      	<label class="control-label col-sm-2" for="email">Phone number</label>
      	 <div class="col-sm-10">          
         		<form:input path="phone" class="form-control phoneCheck2" value="${member.phone}" id="phone" onKeyup="inputPhoneNumber(this);"  maxlength="13" />
 				<form:errors path="phone" cssStyle="color:red;" />
 				<div class="pconfirm" style="color: red"></div>
       	</div>
     </div>
+    </div>
      
+      <div class="frmBox">
     <div class="form-group">
-     	<label class="control-label col-sm-2" for="email">Email:</label>
+     	<label class="control-label col-sm-2" for="email">Email</label>
     	 <div class="col-sm-10">   
     	   		<form:input path="email" class="form-control emailCheck2" id="email2" value="${member.email}"  readonly="true"/>       
 				<form:errors path="email" cssStyle="color:red;" />
 <%-- 	     		<form:input path="email"  class="form-control emailCheck2" id="email" value="${member.email}" readonly="false" /> --%>
      	</div>
    </div>
+   </div>
      
+      <div class="frmBox">
     <div class="gradeBox1">
-     		<label for="name">grade: </label>
-     		
+
+     		<label for="name">grade</label>
+     		<c:if test="${member.grade eq 1}">
+     			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly" class="gradeBox">
+     		</c:if>
+     		<c:if test="${member.grade eq 2}">
+     			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly" class="gradeBox">
+     		</c:if>
+     		<c:if test="${member.grade eq 3}">
+     			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly" class="gradeBox">
+     		</c:if>
+     		<c:if test="${member.grade eq 9999}">
+     			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly" class="gradeBox">
+     		</c:if>
+     		<c:if test="${member.grade eq 8888}">
+     			<input type="text" value="점장" style="color:#ff0000" readonly="readonly" class="gradeBox">
+     		</c:if>
+
      		<input type="hidden" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly" >
    
       		<c:if test="${member.grade eq 1 }">
@@ -105,24 +131,30 @@
    					<input type="text" value="점주" style="color:#ff0000" readonly="readonly" class="gradeBox">
    			</c:if>
     </div>
+    </div>
      
+      <div class="frmBox">
     <div class="profileBox">
+
 		<label for="files">Profile:</label> 
 		<br>
 		<div class="form-group">
 			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 150px; height: 150px;" onerror="this.src='../images/header/profile.png'"/>	
-		</div> 
-			<input type="file"class="form-control" id="files" name="files">
 
+		</div> 
+			<input type="file" class="file_control" id="files" name="files">
+
+	</div>
 	</div>
 	
   		<input type="hidden" class="form-control" id="fnum" name="fnum" value="${member.memberFilesVO.fnum}">
-	
+	  <div class="frmBox">
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
   		<input type="button" class="cancle" value="cancle">
         <button type="submit" class="btn_update">→ 수정</button>
       </div>
+    </div>
     </div>
   	
   </form:form>

@@ -29,7 +29,7 @@
 
 .box>label {
 	font-size: 30px;
-	font-family: CookieRun-Black;
+	font-family:CookieRun-Regular;
 	color: #f23600;
 	width: 150px;
 	text-align: right;
@@ -39,7 +39,7 @@
 .box>input {
 	border: none;
 	font-size: 30px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	background: transparent;
 	color: black;
 }
@@ -47,11 +47,12 @@
 .mypageBox {
 	width: 100%;
 	background: #ffede3;
+	padding-bottom: 50px;
 }
 
 .bt {
-	font-size: 30px;
-	font-family: CookieRun-Black;
+	font-size: 19px;
+	font-family: CookieRun-Regular;
 	color: #f23600;
 	border: none;
 	background: transparent;
@@ -72,7 +73,7 @@
 
 .box2>h1 {
 	font-size: 36px;
-	font-family: CookieRun-Black;
+	font-family: CookieRun-Regular;
 	color: #f23600;
 	padding: 10px;
 }
@@ -159,6 +160,30 @@
 	font-size: 24px;
 	text-align: center;
 }
+
+
+.pointbtn{
+	width: 150px;
+	height: 40px;
+	border: none;
+	border-radius: 4px;
+	background-color: #f23600;
+	margin-left: 365px;
+	color: white;
+	font-family: CookieRun-Regular;
+	font-size: 19px;
+}
+
+.orderTT{
+	clear: both;
+	font-family: CookieRun-Regular;
+	font-family: CookieRun-Black;
+	color: #f23600;
+	font-size: 36px;
+	margin-left: 40px;
+}
+
+
 
 ::-webkit-scrollbar {
 	width: 4px;

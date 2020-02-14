@@ -58,8 +58,10 @@
 						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
-						<c:if test="${me.mmNum eq opm.mmNum}">
-							<div class="optNameCol">${opm.optName}</div>
+						<c:if test="${(me.mmNum eq opm.mmNum) and (ce.cartNum eq opt.cartNum)}">
+							<div class="optC">　${opt.optCount}개</div>
+							<div class="optN">${opm.optName}</div>
+							
 							<div style="display: none;">${opm.optPrice}</div>
 						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
