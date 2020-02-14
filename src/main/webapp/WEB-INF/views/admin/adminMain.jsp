@@ -40,8 +40,8 @@
 						<div
 							class="d-sm-flex align-items-center justify-content-between mb-4">
 							<h1
-								style="padding: 20px; font-size: 32px; font-family: CookieRun-Black; color: #f23600; line-height: 70px;">총
-								매출 현황</h1>
+								style="padding: 20px; font-size: 32px; font-family: CookieRun-Black; color: #f23600; line-height: 70px;">
+								총 매출 현황</h1>
 
 						</div>
 
@@ -100,9 +100,8 @@
 													</div>
 													<div class="col">
 														<div class="progress progress-sm mr-2">
-															<div class="progress-bar bg-info" role="progressbar"
-																style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-																aria-valuemax="100"></div>
+															<div class="progress-bar bg-info" role="progressbar" style="width: 50%" 
+															aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 														</div>
 													</div>
 												</div>

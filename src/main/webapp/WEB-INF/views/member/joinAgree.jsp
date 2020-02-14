@@ -6,81 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-
-
-.main{
-	width:600px;
-	height:1200px;
-	padding: 50px;
-	margin: 50px auto;
-	border: 1px solid black;
-
-}
-.mtitle{
-	width:500px;
-	height:300px;
-	
-	margin: 0 auto;
-}
-
-.agreement{
-	width:450px;
-	height: 100px;
-	overflow: scroll;
-	overflow-x:hidden;
-	overflow-y:auto;
-	padding: 20px;
-	margin: 20px auto;
-	border:1px solid black;
-	background-color:#f7f7f7;
-	
-}
-.test{
-	width:450px;
-	height: 200px;
-	margin:20px auto;
-	padding: 20px;
-	background-color:#f7f7f7;
-}
-
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
-}
-
-
-</style>
+<link href="/css/reset.css" rel="stylesheet"/>
+<link href="/css/member/agree.css" rel="stylesheet"/>
 </head>
 <body>
 	<c:import url="../template/boot.jsp" />
 	<div class="main">
 		<div class="mtitle">
-			<h2 style="text-align: center;">회원가입</h2>
-			
-			<p style="text-align: center;">회원가입 약관동의 및 본인인증단계입니다.</p>
+			<div class="AgreeJoin">회원가입</div>
 		</div>		
-		
-			홈페이지 이용약관 동의 (필수)
+		<div class="img"><img alt="" src="/images/header/mm.png" width="150px;" height="150px;"></div>		
+			<div class="AgreeSemi">회원가입 약관동의 및 본인인증단계입니다.</div>
+			<div class="agreeTi">홈페이지 이용약관 동의 (필수)
 			<span class="agree-check">
 				<input type="checkbox"name="agree1" id="check1" class="agree check1"> 
-				<label for="checkbox">동의</label>
+				<label for="checkbox"><span></span>동의</label>
+				
 			</span>
+			</div>
 			<div class="agreement">
 					<div class="privacy_cont">
 	           <p class="tit">쿠키 코리아는 고객님을 보호합니다.</p>
@@ -371,11 +314,12 @@
 			</div>
 			
 			
-			개인정보 수집 및 이용동의 (필수)
+			<div class="agreeTi">개인정보 수집 및 이용동의 (필수)
 			<span class="agree-check">
 				<input type="checkbox" name="agree2" id="check2" class="agree check2"> 
 				<label for="checkbox">동의</label>
 			</span>
+			</div>
 			<div class="agreement">
 				<ul class="pri_con mb40">
       <li>
@@ -436,13 +380,14 @@
       </li>
      </ul>
 			</div>
-			
+				<div class="agreeTi">
 				E-mail 및 SMS 광고성 정보 수신동의 (선택)
 				<span class="agree-check">
 				<input type="checkbox" name="agree3"  id="check3" class="agree check3"> 
 				<label for="checkbox">동의</label>
 				</span>
-				<span id="">다양한 프로모션 소식 및 신규 매장 정보를 보내 드립니다.</span>>
+				</div>
+				<div class="promotion">다양한 프로모션 소식 및 신규 매장 정보를 보내 드립니다.</div>
 			
 				<div class="test">
 						<h5>회원가입 유의사항</h5>
