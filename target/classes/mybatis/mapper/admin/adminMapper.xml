@@ -45,19 +45,20 @@
 	</select>
 	
 <!--월 매출-->
-	<select id="monthEarn" parameterType="String" resultType="Integer">
+	<select id="monthEarn" parameterType="String" resultType="String">
 		select sum(ooTotal) from orders where ooDate LIKE concat('%',#{thisMonth}, '%')
 	</select>
 
 <!--연 매출  -->
-	<select id="yearEarn" parameterType="String" resultType="Integer">
+	<select id="yearEarn" parameterType="String" resultType="String">
 		select sum(ooTotal) from orders where ooDate LIKE concat('%',#{thisYear}, '%')
 	</select>
 	
 <!--주문 건수  -->
-
 	<select id="orderCount" parameterType="OrderListVO" resultType="Integer">
 		select count(olNum) from orderList
 	</select>
 </mapper>
+
+	
 

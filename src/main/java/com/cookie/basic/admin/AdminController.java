@@ -2,6 +2,7 @@ package com.cookie.basic.admin;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,14 +30,22 @@ public class AdminController {
 	//어드민메인페이지
 	@GetMapping("adminMain")
 	public Model adminMain(OrderListVO orderListVO,Model model) throws Exception{
-		
+	
 		//월 포맷
 		DateFormat df = new SimpleDateFormat("yyyy-MM");
 	
 		Date today = new  Date();
-		
+	
 		String thisMonth=df.format(today);
 		//System.out.println(thisMonth);
+	
+		//월 보내기
+		String month= thisMonth.split("-")[1];
+		//System.out.println(month);
+		
+		//년 보내기
+		String cYear= thisMonth.split("-")[0];
+		//System.out.println(cYear);
 		
 		//연 포맷
 		DateFormat df2 = new SimpleDateFormat("yyyy");
@@ -46,29 +55,64 @@ public class AdminController {
 		String thisYear=df2.format(year);
 		//System.out.println(thisYear);
 		
+		List<String>monthar = new ArrayList<String>();
+		List<String>mEarnar = new ArrayList<String>();
+		for(int i=0;i<12;i++) {
+			if(i+1 <10) {
+				String thisMonth2=thisYear+"-0"+(i+1);
+				String monthEarn2=adminService.monthEarn(thisMonth2);
+				//System.out.println("test:"+thisMonth2);	
+				//System.out.println(monthEarn2);
+				monthar.add(thisMonth2);
+				mEarnar.add(monthEarn2);
+			}else if(10<=i+1) {
+				String thisMonth2=thisYear+"-"+Integer.toString(i+1);
+				String monthEarn2=adminService.monthEarn(thisMonth2);
+				//System.out.println("else:"+thisMonth2);
+				//System.out.println(monthEarn2);
+				monthar.add(thisMonth2);
+				mEarnar.add(monthEarn2);
+			}
+		}
+		
+		for(int i=0;i<monthar.size();i++) {
+			System.out.println(monthar.get(i));
+		}
+		
+//		for (String string : monthar) {
+//			System.out.println(monthar);
+//			
+//		}
+		
+		//System.out.println(monthar);
+		//System.out.println(mEarnar);
+		
 		//주문건 카운트
 		int orderCount	= adminService.orderCount(orderListVO);
 		//System.out.println(orderCount);	
 	 
-	 
 		//포맷한 데이트들을 메서드에 넣어서 jsp로 보냄.
 		
 		//월매출
-		int mEarn=adminService.monthEarn(thisMonth);
+		int mEarn=Integer.parseInt(adminService.monthEarn(thisMonth));
 		//System.out.println(mEarn);
 		
 		//연매출
-		int yEarn=adminService.yearEarn(thisYear);
+		int yEarn=Integer.parseInt(adminService.yearEarn(thisYear));
 		//System.out.println(yEarn);
 		
 		model.addAttribute("orderCount", orderCount);
 		model.addAttribute("mEarn", mEarn);
 		model.addAttribute("yEarn", yEarn);
+		model.addAttribute("cMonth", month);
+		model.addAttribute("cYear", cYear);
+		model.addAttribute("monthar", monthar);
+		model.addAttribute("mEarnar", mEarnar);
 		
 		return model;
 	}
 	
-	
+
 	//어드민멤버리스트페이지
 	@GetMapping("adminMemberList")
 	public  ModelAndView adminMemberList(Pager pager) throws Exception{

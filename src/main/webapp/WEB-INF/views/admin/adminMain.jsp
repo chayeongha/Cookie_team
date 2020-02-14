@@ -16,15 +16,15 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css"
 	rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
 <body id="page-top">
+	
 	<div class="body_main">
 		<div class="b"></div>
 		<!-- Page Wrapper -->
 		<div id="wrapper">
-
 
 			<!-- Content Wrapper -->
 			<div id="content-wrapper" class="d-flex flex-column">
@@ -54,7 +54,7 @@
 									<div class="card-body">
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
-												<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">월 매출 </div>
+												<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">${cMonth} 월 매출 </div>
 												<div class="h5 mb-0 font-weight-bold text-gray-800"> ${mEarn}</div>
 											</div>
 											<div class="col-auto">
@@ -71,7 +71,7 @@
 									<div class="card-body">
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
-												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">연 매출</div>
+												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">${cYear}년 총 매출</div>
 												<div class="h5 mb-0 font-weight-bold text-gray-800">${yEarn}</div>
 											</div>
 											<div class="col-auto">
@@ -140,8 +140,7 @@
 									<!-- Card Header - Dropdown -->
 									<div
 										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-										<h6 class="m-0 font-weight-bold text-primary">Earnings
-											Overview</h6>
+										<h6 class="m-0 font-weight-bold text-primary">${cYear}년 매출 그래프</h6>
 										<div class="dropdown no-arrow">
 											<a class="dropdown-toggle" href="#" role="button"
 												id="dropdownMenuLink" data-toggle="dropdown"
@@ -172,22 +171,16 @@
 							<div class="col-xl-4 col-lg-5">
 								<div class="card shadow mb-4">
 									<!-- Card Header - Dropdown -->
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-										<h6 class="m-0 font-weight-bold text-primary">Revenue
-											Sources</h6>
+									<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+										<h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
 										<div class="dropdown no-arrow">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="false"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+											<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+												<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 												<div class="dropdown-header">Dropdown Header:</div>
-												<a class="dropdown-item" href="#">Action</a> <a
-													class="dropdown-item" href="#">Another action</a>
+												<a class="dropdown-item" href="#">Action</a>
+												<a class="dropdown-item" href="#">Another action</a>
 												<div class="dropdown-divider"></div>
 												<a class="dropdown-item" href="#">Something else here</a>
 											</div>
@@ -212,15 +205,11 @@
 							</div>
 						</div>
 
-
-
 					</div>
 					<!-- /.container-fluid -->
 
 				</div>
 				<!-- End of Main Content -->
-
-
 
 			</div>
 			<!-- End of Content Wrapper -->
@@ -239,18 +228,14 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">×</span>
 						</button>
 					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
+					<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
 					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
+						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 						<a class="btn btn-primary" href="login.html">Logout</a>
 					</div>
 				</div>
@@ -283,9 +268,8 @@
 		<!-- 아래내용 -->
 		<div class="body2">
 
-
 			<div class="memberTitle">
-					<div class="PNAME">개인회원 <br></div>
+				<div class="PNAME">개인회원 <br></div>
 				<div class="memberListContainer">
 					<div id="listcontentWrap">
 						<div id="listcontent">
@@ -296,156 +280,149 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="bMemberTitle">
 					<div class="BNAME">비즈니스 회원 <br></div>
 				<div class="bmemberList">
 				</div>
 			</div>
+			
 			<div class="storeBye">
 				<div class="storeByeTi">스토어 폐업신청</div>
+				<c:forEach items="monthar" varStatus="s1" var="m">
+						<input type="text" id="${status1.index}cname" value="${m}">
+				</c:forEach>
+				
+				
+				
 				<div class="storeByeContainer"></div>
+				
+				
 			</div>
-
-
-
-
-
+			
+			
+			
+			
 			<!-- 2container -->
 		</div>
 
-</div>
-		<script type="text/javascript">
-			$(".")
-		</script>
+	</div>
 	
-		<script type="text/javascript">
-			getMemberList(1); 
-
+	<script type="text/javascript">
+		getMemberList(1); 
+	
+		$.ajax({
+			type : "GET",
+			url : "../store/storeAdmin",
+			error : function() {
+				alert("통신실패")
+			},
+			success : function(data) {
+				$(".storeByeContainer").html(data);
+				/*  alert("데이터 전송 성공"+data);   */
+			}
+		});
+	
+		/***************************일반회원***************************/
+	
+		function getMemberList(curPage) {
 			$.ajax({
 				type : "GET",
-				url : "../store/storeAdmin",
+				url : "../admin/adminMemberList",
+				async : false,
+				data : {
+					curPage : curPage,
+					grade : "1"
+	
+				},
 				error : function() {
 					alert("통신실패")
 				},
 				success : function(data) {
-					$(".storeByeContainer").html(data);
-					/*  alert("데이터 전송 성공"+data);   */
+					$("#memberList").html(data);
 				}
 			});
-
-			/***************************일반회원***************************/
-
-			function getMemberList(curPage) {
-				$.ajax({
-					type : "GET",
-					url : "../admin/adminMemberList",
-					async : false,
-					data : {
-						curPage : curPage,
-						grade : "1"
-
-					},
-					error : function() {
-						alert("통신실패")
-					},
-					success : function(data) {
-						$("#memberList").html(data);
-						 /* alert("데이터 전송 성공"+data);  */ 
-
-					}
-				});
-			}
-
-			$("#memberList").on("click", ".listnum", function() {
-				var curPage = $(this).attr("id");
-				getMemberList(curPage);
-				//두번째 페이지 이후 -클릭시 슬라이드업 다운
-				$(".subjectList a").on("click", function() {
-					var g = $(this).attr("title")
-					$(".subMenu").slideUp();
-					$(".subjectList .mainMenu").removeClass();
-
-					if (!$(this).next().is(":visible")) {
-						$(this).next().slideDown();
-						$(this).parent().addClass();
-					}
-
-				}); 
-
+		}
+	
+		$("#memberList").on("click", ".listnum", function() {
+			var curPage = $(this).attr("id");
+			getMemberList(curPage);
+			//두번째 페이지 이후 -클릭시 슬라이드업 다운
+			$(".subjectList a").on("click", function() {
+				var g = $(this).attr("title")
+				$(".subMenu").slideUp();
+				$(".subjectList .mainMenu").removeClass();
+	
+				if (!$(this).next().is(":visible")) {
+					$(this).next().slideDown();
+					$(this).parent().addClass();
+				}
+			}); 
+		});
+	
+		$("#memberList").on("click", ".listimg", function() {
+			var curPage = $(this).attr("id");
+			getMemberList(curPage);
+		})
+	
+		/**********************************비즈니스(점주))****************************/
+		getBMemberList(1); 
+		function getBMemberList(curPage) {
+			$.ajax({
+				type : "GET",
+				url : "../admin/adminMemberList?grade=8888",
+				async : false,
+				data : {
+					curPage : curPage,
+					grade : "8888"
+	
+				},
+				error : function() {
+					alert("통신실패")
+				},
+				success : function(data) {
+					$(".bmemberList").html(data);
+				}
 			});
-
-			$("#memberList").on("click", ".listimg", function() {
-				var curPage = $(this).attr("id");
-				getMemberList(curPage);
-			})
-
-			
-			
-			
-			/**********************************비즈니스(점주))****************************/
-			getBMemberList(1); 
-			function getBMemberList(curPage) {
-				$.ajax({
-					type : "GET",
-					url : "../admin/adminMemberList?grade=8888",
-					async : false,
-					data : {
-						curPage : curPage,
-						grade : "8888"
-
-					},
-					error : function() {
-						alert("통신실패")
-					},
-					success : function(data) {
-						$(".bmemberList").html(data);
-						/*  alert("데이터 전송 성공"+data);   */
-
-						}
-				});
-			}
-
-			$(".bmemberList").on("click", ".listnum", function() {
-				var curPage = $(this).attr("id");
-				getBMemberList(curPage);
+		}
+	
+		$(".bmemberList").on("click", ".listnum", function() {
+			var curPage = $(this).attr("id");
+			getBMemberList(curPage);
+	
 			//두번째 페이지 이후-클릭시 슬라이드업 다운
-			 			$(".subjectList a").on("click", function() {
-							var g = $(this).attr("title")
-							$(".subMenu").slideUp();
-							$(".subjectList .mainMenu").removeClass();
-
-							if (!$(this).next().is(":visible")) {
-								$(this).next().slideDown();
-								$(this).parent().addClass();
-							}
-
-						});  
-
-			});
-
-			$(".bmemberList").on("click", ".listimg", function() {
-				var curPage = $(this).attr("id");
-				getBMemberList(curPage);
-			})
-			
-				/*첫번째 페이지에서 둘다 슬라이드 다운 주기*/
-		 	$(".subjectList a").on("click", function() {
-					var g = $(this).attr("title")
-					$(".subMenu"+g).slideUp();
-					$(".subjectList .mainMenu").removeClass();
-						
-					if (!$(this).next().is(":visible")) {
-						$(this).next().slideDown();
-						$(this).parent().addClass();
-					}
-
-				}); 
-			
-			
+				$(".subjectList a").on("click", function() {
+				var g = $(this).attr("title")
+				$(".subMenu").slideUp();
+				$(".subjectList .mainMenu").removeClass();
+	
+				if (!$(this).next().is(":visible")) {
+					$(this).next().slideDown();
+					$(this).parent().addClass();
+				}
+			}); 
+		});
+	
+		$(".bmemberList").on("click", ".listimg", function() {
+			var curPage = $(this).attr("id");
+			getBMemberList(curPage);
+		})
 		
-			
-			
-			
-		</script>
+			/*첫번째 페이지에서 둘다 슬라이드 다운 주기*/
+	 	$(".subjectList a").on("click", function() {
+			var g = $(this).attr("title")
+			$(".subMenu"+g).slideUp();
+			$(".subjectList .mainMenu").removeClass();
+				
+			if (!$(this).next().is(":visible")) {
+				$(this).next().slideDown();
+				$(this).parent().addClass();
+			}
+		}); 
+
+		
+
+		
+	</script>
 </body>
 </html>

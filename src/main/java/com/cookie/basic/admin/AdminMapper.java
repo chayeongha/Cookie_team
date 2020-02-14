@@ -31,12 +31,13 @@ public interface AdminMapper {
 	public MemberVO pmemberSearch(MemberVO memberVO) throws Exception;
 
 	//월매출
-	public int monthEarn(String thisMonth)throws Exception;
+	public String monthEarn(String thisMonth)throws Exception;
 	
 	//연매출
-	public int yearEarn(String thisYear)throws Exception;
+	public String yearEarn(String thisYear)throws Exception;
 	
 	//주문건수
 	public int orderCount(OrderListVO orderListVO )throws Exception;
+	
 	
 }

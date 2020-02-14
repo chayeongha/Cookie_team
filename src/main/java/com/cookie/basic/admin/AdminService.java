@@ -42,12 +42,12 @@ public class AdminService {
 	}
 	
 	//월매출
-	public int monthEarn(String thisMonth)throws Exception{
+	public String monthEarn(String thisMonth)throws Exception{
 		return adminMapper.monthEarn(thisMonth);
 	}
 	
 	//월매출
-	public int yearEarn(String thisYear)throws Exception{
+	public String yearEarn(String thisYear)throws Exception{
 		return adminMapper.yearEarn(thisYear);
 	}
 	
