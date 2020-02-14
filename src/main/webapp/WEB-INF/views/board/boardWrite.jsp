@@ -52,10 +52,7 @@
        </div>
        <button class="btngo">등록</button>
        <input type="button" id="btn_add" class="btn_add" value="Add File">
-       <div id="files">
-         
-       </div>
-       
+       <div id="files"></div>
      </form:form>
      <a class="listgo" href="./noticeList">목록으로..</a>
      

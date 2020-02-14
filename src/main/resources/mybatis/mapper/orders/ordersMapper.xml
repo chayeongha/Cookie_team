@@ -20,8 +20,6 @@
   <select id="ordersList" parameterType="OrdersVO" resultType="OrdersVO">
   	select * from orders where nickname = #{nickname} and ooStatus=0
   </select>
-  
-  
 
   <!-- 오더리스트 매퍼 -->
 	<resultMap type="OrderListVO" id="OrderListJoin">
@@ -36,7 +34,7 @@
 			<result column="takeOut" property="takeOut" />
 			<result column="ooStatus" property="ooStatus" />
 		</collection>
-		<collection property="cartVOs"  javaType="ArrayList" ofType="CartVO">
+		<collection property="cartVOs" javaType="ArrayList" ofType="CartVO">
 			<id column="cartNum" property="cartNum" />
 			<result column="mmCount" property="mmCount" />
 			<result column="cartStatus" property="cartStatus" />

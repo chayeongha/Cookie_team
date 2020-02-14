@@ -76,7 +76,8 @@
 					</c:if> 
 				</div>
 				
-				<a href="../review/reviewWrite">후기작성</a>
+				<input type="hidden" class="olNum" value="${vo.ordersVO.olNum}">
+				<a href="javascript:void(0)" class="btn_review">후기작성</a>
 			</div>
 		<%-- </c:if> --%>
 	</c:forEach>
@@ -123,8 +124,19 @@
 
 	date.setTime(orderDate);
 	dateString = date.toLocale
+///////////////////////////////////////////////////////
 
+	//review 새 창 띄우기
+	function openWrite(num) {
+		openWin = window.open("../review/reviewWrite?olNum="+olNum, "reviewForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+	}
 
+	//리뷰 등록
+	$('.btn_review').click(function(){
+		var olNum = $(this).parent().find('input.olNum').val();
+		alert(olNum);
+		//openWrite();
+	});
 </script>
 
 
