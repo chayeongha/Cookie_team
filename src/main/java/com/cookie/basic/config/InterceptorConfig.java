@@ -35,8 +35,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.addPathPatterns("/member/*")
 		.excludePathPatterns("/member/memberLogin")
 		.excludePathPatterns("/member/selectJoin")
-		.excludePathPatterns("/member/memberJoin")
-		.excludePathPatterns("/member/memberIndex")//빼야함
+		.excludePathPatterns("/member/memberJoin");
+		/*.excludePathPatterns("/member/memberIndex")//빼야함
 		.excludePathPatterns("/member/emailCheck")//빼야함
 		.excludePathPatterns("/member/idCheck")//빼야함.
 		.excludePathPatterns("/member/nickCheck")//빼야함.
@@ -48,6 +48,6 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/member/pwSearch")//뺴야함.
 		.excludePathPatterns("/member/sendEmail")//뺴야함.
 		.excludePathPatterns("/member/phoneCheck");//뺴야함.
-		//멤버페이지로 들어왔을떄 패턴등록.
+*/		//멤버페이지로 들어왔을떄 패턴등록.
 	}
 }
