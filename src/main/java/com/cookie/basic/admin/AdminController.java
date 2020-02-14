@@ -57,6 +57,7 @@ public class AdminController {
 		
 		List<String>monthar = new ArrayList<String>();
 		List<String>mEarnar = new ArrayList<String>();
+	
 		for(int i=0;i<12;i++) {
 			if(i+1 <10) {
 				String thisMonth2=thisYear+"-0"+(i+1);
@@ -65,6 +66,7 @@ public class AdminController {
 				//System.out.println(monthEarn2);
 				monthar.add(thisMonth2);
 				mEarnar.add(monthEarn2);
+			
 			}else if(10<=i+1) {
 				String thisMonth2=thisYear+"-"+Integer.toString(i+1);
 				String monthEarn2=adminService.monthEarn(thisMonth2);
@@ -72,20 +74,13 @@ public class AdminController {
 				//System.out.println(monthEarn2);
 				monthar.add(thisMonth2);
 				mEarnar.add(monthEarn2);
+				
 			}
 		}
-		
-		for(int i=0;i<monthar.size();i++) {
-			System.out.println(monthar.get(i));
-		}
-		
-//		for (String string : monthar) {
-//			System.out.println(monthar);
-//			
-//		}
-		
-		//System.out.println(monthar);
-		//System.out.println(mEarnar);
+
+		//monthar.forEach(System.out::println);
+		//mEarnar.forEach(System.out::println);
+	
 		
 		//주문건 카운트
 		int orderCount	= adminService.orderCount(orderListVO);
@@ -112,7 +107,6 @@ public class AdminController {
 		return model;
 	}
 	
-
 	//어드민멤버리스트페이지
 	@GetMapping("adminMemberList")
 	public  ModelAndView adminMemberList(Pager pager) throws Exception{

@@ -288,24 +288,30 @@
 			
 			<div class="storeBye">
 				<div class="storeByeTi">스토어 폐업신청</div>
-				<c:forEach items="monthar" varStatus="s1" var="m">
-						<input type="text" id="${status1.index}cname" value="${m}">
-				</c:forEach>
-				
-				
-				
+					
 				<div class="storeByeContainer"></div>
-				
-				
+			
 			</div>
-			
-			
-			
-			
+
 			<!-- 2container -->
+		
+		<c:forEach items="${monthar }" varStatus="s1" var="m">
+				<input type="hidden" id="${s1.index}mname" value="${m}">
+		</c:forEach>
+					
+		<c:forEach items="${mEarnar}" varStatus="s2" var="e">
+			<c:if test="${not empty e  }">
+				<input type="hidden" id="${s2.index}ename" value="${e}">
+			</c:if>
+			<c:if test="${empty e  }">
+				<input type="hidden" id="${s2.index}ename" value="0" style="background: gold;">
+			</c:if>
+		</c:forEach>
+		
 		</div>
 
 	</div>
+	
 	
 	<script type="text/javascript">
 		getMemberList(1); 
@@ -419,8 +425,96 @@
 			}
 		}); 
 
-		
-
+	
+	// Area Chart Example
+	var ctx = document.getElementById("myAreaChart");
+	var myLineChart = new Chart(ctx, {
+	  type: 'line',
+	  data: {
+	    labels: [$('#0mname').val(), $('#1mname').val(),$('#2mname').val(), $('#3mname').val() , $('#4mname').val(), $('#5mname').val(), $('#6mname').val(),$('#7mname').val(),$('#8mname').val(),$('#9mname').val(),$('#10mname').val(),$('#11mname').val()],
+	    datasets: [{
+	      label: "판매량",
+	      lineTension: 0.3,
+	      backgroundColor: "rgba(78, 115, 223, 0.05)",
+	      borderColor: "rgba(78, 115, 223, 1)",
+	      pointRadius: 3,
+	      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+	      pointBorderColor: "rgba(78, 115, 223, 1)",
+	      pointHoverRadius: 3,
+	      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+	      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+	      pointHitRadius: 10,
+	      pointBorderWidth: 2,
+	      data: [$('#0ename').val(), $('#1ename').val(),$('#2ename').val(), $('#3ename').val() , $('#4ename').val(), $('#5ename').val(), $('#6ename').val(),$('#7ename').val(),$('#8ename').val(),$('#9ename').val(),$('#10ename').val(),$('#11ename').val()],
+	    }],
+	  },
+	  options: {
+	    maintainAspectRatio: false,
+	    layout: {
+	      padding: {
+	        left: 10,
+	        right: 25,
+	        top: 25,
+	        bottom: 0
+	      }
+	    },
+	    scales: {
+	      xAxes: [{
+	        time: {
+	          unit: 'date'
+	        },
+	        gridLines: {
+	          display: false,
+	          drawBorder: false
+	        },
+	        ticks: {
+	          maxTicksLimit: 11
+	        }
+	      }],
+	      yAxes: [{
+	        ticks: {
+	          maxTicksLimit: 5,
+	          padding: 10,
+	          // Include a dollar sign in the ticks
+	          callback: function(value, index, values) {
+	            return number_format(value)+'원';
+	          }
+	        },
+	        gridLines: {
+	          color: "rgb(234, 236, 244)",
+	          zeroLineColor: "rgb(234, 236, 244)",
+	          drawBorder: false,
+	          borderDash: [2],
+	          zeroLineBorderDash: [2]
+	        }
+	      }],
+	    },
+	    legend: {
+	      display: false
+	    },
+	    tooltips: {
+	      backgroundColor: "rgb(255,255,255)",
+	      bodyFontColor: "#858796",
+	      titleMarginBottom: 10,
+	      titleFontColor: '#6e707e',
+	      titleFontSize: 14,
+	      borderColor: '#dddfeb',
+	      borderWidth: 1,
+	      xPadding: 15,
+	      yPadding: 15,
+	      displayColors: false,
+	      intersect: false,
+	      mode: 'index',
+	      caretPadding: 10,
+	      callbacks: {
+	        label: function(tooltipItem, chart) {
+	          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+	          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '원';
+	        }
+	      }
+	    }
+	  }
+	});
 		
 	</script>
 </body>
