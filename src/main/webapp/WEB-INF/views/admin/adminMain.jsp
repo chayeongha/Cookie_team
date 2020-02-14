@@ -296,15 +296,15 @@
 			<!-- 2container -->
 		
 		<c:forEach items="${monthar }" varStatus="s1" var="m">
-				<input type="text" id="${s1.index}mname" value="${m}">
+				<input type="hidden" id="${s1.index}mname" value="${m}">
 		</c:forEach>
 					
 		<c:forEach items="${mEarnar}" varStatus="s2" var="e">
 			<c:if test="${not empty e  }">
-				<input type="text" id="${s2.index}ename" value="${e}">
+				<input type="hidden" id="${s2.index}ename" value="${e}">
 			</c:if>
 			<c:if test="${empty e  }">
-				<input type="text" id="${s2.index}ename" value="0" style="background: gold;">
+				<input type="hidden" id="${s2.index}ename" value="0" style="background: gold;">
 			</c:if>
 		</c:forEach>
 		
