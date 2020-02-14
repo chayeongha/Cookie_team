@@ -12,6 +12,11 @@
 </head>
 <body>
 
+<c:if test="${member.grade ne 8888}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${member.grade eq 8888}">
 
 <div class="storeHeader">
 		<div class="AddMenuTi">Menu Update</div>
@@ -117,7 +122,7 @@
     
 </form> 
 </div>
-   
+</c:if>   
  
 
 <script type="text/javascript" src="../../js/optAdd.js"></script>

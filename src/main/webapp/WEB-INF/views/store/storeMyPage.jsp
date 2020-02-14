@@ -22,6 +22,12 @@
 </head>
 <body>
 
+<c:if test="${member.grade ne 8888}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${member.grade eq 8888}">
+
 
 	<div class="storeHeader">
 		<div class="header_Update">
@@ -54,8 +60,6 @@
 	</div>
 
 
-
-
 	<div class="storeFooter">
 		<form action="storeMyPage" method="post" id="infoBye">
 			<input type="hidden" name="ssNum" id="ssNum" value="${store.ssNum}">
@@ -65,16 +69,7 @@
 		</form>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
+</c:if>
 
 
 	<script type="text/javascript">

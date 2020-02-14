@@ -15,6 +15,14 @@
 
 </head>
 <body>
+
+<c:if test="${store.memId ne member.memId}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${store.memId eq member.memId}">
+
+
 	<div class="storeHeader">
 
 		<div class="store_back">
@@ -39,13 +47,13 @@
 
 	<div class="InfoBox">
 		<div class="Update_storeInfo">
-			<a href="./storeUpdate?ssNum=${store.ssNum}" style="color: black;">
-			<i class="fa fa-history" style="font-size: 24px; color: black;"></i>
+			<a href="./storeUpdate?ssNum=${store.ssNum}" style="color: white;">
+			<i class="fa fa-history" style="font-size: 24px; color: white;"></i>
 			Update
 			</a>
 		</div>
 	<div class="SmenuList">
-	<a href="../menu/menuList?ssNum=${store.ssNum}"style="color: black;">메뉴리스트</a>
+	<a href="../menu/menuList?ssNum=${store.ssNum}"style="color: white;">메뉴리스트</a>
 	</div>
 	
 	<input type="hidden" value="${close.cwait}">
@@ -75,7 +83,7 @@
 			
 		</div>
 	</div>
-
+</c:if>
 	<script type="text/javascript">
 		var OCount = $(".Mcount").val();
 		var CCount = $(".Ccount").val();

@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
 		<h1>${member.name}님 환영합니다</h1>
 		<div class="mypageBox">
 			<div class="myImg">
-				<img alt="이미지를 넣어주세요!" onerror="this.src='../images/header/mm.png'" src="../upload/${member.memberFilesVO.fname}">
+				<img alt="이미지를 넣어주세요!" onerror="this.src='../images/header/profile.png'" src="../upload/${member.memberFilesVO.fname}" >
 			</div> 
 			
 			<input type="hidden" class="form-control" id="memNum" value="${member.memNum}" readonly="readonly">
@@ -95,13 +96,11 @@
 			<div class="e3">
 					<a class="bt" id="mDel">회원탈퇴</a>
 					<a class="bt" id="mUp">회원수정</a>	
-					<c:if test="${member.grade eq 1 }">
+					<c:if test="${member.grade ne 9999 }">
 						<a class="bt" href="${pageContext.request.contextPath}/calendar/calmain">출석체크 하러가기</a>
 					</c:if>
 			</div>		
 		</c:if>
-		
-		
 		
 		
 		<div class="box2">
@@ -112,9 +111,10 @@
 			</div>
 			<div class="box4_inner">
 
-				<h1>포인트 내역</h1> <div class=""></div>
+				<h1>포인트 내역</h1> 
+				<button class="pointbtn">포인트 상세보기</button>
 
-				<c:if test="${member.grade ne 8888}">	
+				<c:if test="${member.grade ne 9999}">	
     		<div class="point">
       			<label for="name"> 적립금</label>
       			<input type="text" class="point2" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
@@ -130,8 +130,10 @@
 			<div class="box2_inner">
 				<%-- <button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button> --%>
 			
-				<div class="orderList">
+				<div class="orderTT">주문내역</div>
+					<div class="orderList">
 				</div>
+				
 			</div>
 		</div>
 		
@@ -180,6 +182,15 @@
 		$(document).ready(function(){
 		    $(".orderList").load("../orders/orderListList?nickname="+nickname2);
 		});
+
+
+
+
+		var nickname= $("#nickname").val();
+		
+		$(".pointbtn").click(function(){
+			location.href="http://localhost/member/pointList?nickname="+nickname
+			})
 		
 </script>
 		

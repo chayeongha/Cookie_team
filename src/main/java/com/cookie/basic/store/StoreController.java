@@ -191,7 +191,8 @@ public class StoreController {
 
 	// 점주 페이지
 	@GetMapping("storeMyPage")
-	public void storeMyPage(StoreVO storeVO, Model model) throws Exception {
+	public void storeMyPage(StoreVO storeVO, Model model,HttpSession session) throws Exception {
+		storeVO = (StoreVO)session.getAttribute("store");
 		model.addAttribute("store", storeVO);
 	}
 

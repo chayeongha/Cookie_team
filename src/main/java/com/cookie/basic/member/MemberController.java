@@ -63,8 +63,8 @@ public class MemberController {
 	
 	
 	//이용약관
-	@GetMapping("useJoin")
-	public void useJoin()throws Exception{
+	@GetMapping("joinAgree")
+	public void joinAgree()throws Exception{
 		
 	}
 	
@@ -660,8 +660,8 @@ public class MemberController {
             MimeMessage msg = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
              
-            messageHelper.setSubject(memId+"님 비밀번호 찾기 메일입니다.");
-            messageHelper.setText("비밀번호는 "+pw+" 입니다.");
+            messageHelper.setSubject("쿠키에서발송:"+memId+"님의 임시비밀번호");
+            messageHelper.setText("회원님의 임시 비밀번호는 "+pw+" 입니다.");
             messageHelper.setTo(email);
             msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
             mailSender.send(msg);
@@ -670,7 +670,7 @@ public class MemberController {
             e.printStackTrace();
         }
 		
-		String message ="이메일전송";
+		String message ="임시 비밀번호가 입력하신 메일로 발송되었습니다.";
 		String path= "./searchIdPw";
 		mv.addObject("message", message);
 		mv.addObject("path", path);
@@ -686,6 +686,7 @@ public class MemberController {
 	public ModelAndView pointList(PointListVO pointListVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<PointListVO> ar = pointListService.pointList(pointListVO);
+		mv.addObject("pointListVO", pointListVO);
 		mv.addObject("lists", ar);
 		mv.setViewName("member/pointList");
 		

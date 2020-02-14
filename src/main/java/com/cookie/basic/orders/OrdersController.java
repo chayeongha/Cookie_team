@@ -59,18 +59,19 @@ public class OrdersController {
 
 	// orders
 	// ordersUpdate
+	@ResponseBody
 	@PostMapping("ordersUpdate")
 	public ModelAndView ordersUpdate(String ooNum, String ssNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		//System.out.println(ooNum);
-		//System.out.println(ssNum);
+		System.out.println("ooNum:"+ ooNum);
+		System.out.println("ssNum"+ssNum);
 		OrdersVO ordersVO = new OrdersVO();
 		ordersVO.setOoNum(Integer.parseInt(ooNum));
 		ordersVO.setSsNum(Integer.parseInt(ssNum));
 
 		int result = ordersService.ordersUpdate2(ordersVO);
 		String message = "Update fail";
-		String path = "./orderListSS?ssNum=" + ordersVO.getSsNum();
+		String path = "../store/storeMyPage?ssNum=" + ordersVO.getSsNum();
 		if (result > 0) {
 			message = "Update Success";
 		}
@@ -222,12 +223,13 @@ public class OrdersController {
 					break;
 				}
 				for(int k=0; k<ar2.size(); k++) {
-					System.out.println(ar2.get(k).getMoptVOs());
+					//System.out.println(ar2.get(k).getMoptVOs());
 					ar3.add(ar2.get(k));
 				}
 				
 				}
 		}
+		mv.addObject("nick", ordersVO.getNickname());
 		mv.addObject("lists2", ar3);
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListList");
@@ -267,6 +269,7 @@ public class OrdersController {
 		}
 		//System.out.println("ar3:"+ar3.size());
 		//ar2 = cartService.coptSelect(cartOptionVO);
+		mv.addObject("storeNum", ordersVO.getSsNum());
 		mv.addObject("lists2", ar3);
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListSS");
@@ -310,6 +313,7 @@ public class OrdersController {
 		}
 		//System.out.println("ar3:"+ar3.size());
 		//ar2 = cartService.coptSelect(cartOptionVO);
+		mv.addObject("storeNum", ordersVO.getSsNum());
 		mv.addObject("lists2", ar3);
 		mv.addObject("lists", ar);
 		mv.setViewName("orders/orderListSSF");
@@ -323,7 +327,7 @@ public class OrdersController {
 		@ResponseBody 
 		@RequestMapping("sendOrder")
 		 public void sendOrder(String receiver) { 
-			System.out.println(receiver);
+			System.out.println("전번"+receiver);
 			
 			//보내는 번호의 하이푼(특수문자)을 제거
 			receiver = receiver.replaceAll("-", "");
@@ -362,7 +366,7 @@ public class OrdersController {
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 				String line = ""; 
 				while ((line = bufferedReader.readLine()) != null) 
-					System.out.println(line);
+					//System.out.println(line);
 				inputStream.close(); 
 			}
 			} catch (Exception e) { 

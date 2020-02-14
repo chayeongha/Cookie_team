@@ -11,6 +11,11 @@
 
 </head>
 <body>
+<c:if test="${store.ssNum ne storeNum}">
+<h1>정상적인 접근 경로가 아닙니다</h1>
+</c:if>
+<c:if test="${store.ssNum eq storeNum}">
+
 	<input type="hidden" value="${store.ssNum}">
 	
 	<c:forEach items="${lists}" var="vo">
@@ -60,8 +65,10 @@
 						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
-						<c:if test="${me.mmNum eq opm.mmNum}">
-							<div>${opm.optName}</div>
+						<c:if test="${(me.mmNum eq opm.mmNum) and (ce.cartNum eq opt.cartNum)}">
+							<div class="optC">　${opt.optCount}개</div>
+							<div class="optN">${opm.optName}</div>
+							
 							<div style="display: none;">${opm.optPrice}</div>
 						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
@@ -83,6 +90,6 @@
 		<%-- </c:if> --%>
 	</c:forEach>
 
-
+</c:if>
 </body>
 </html>

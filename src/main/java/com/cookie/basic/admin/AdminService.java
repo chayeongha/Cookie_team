@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.orders.OrdersVO;
 import com.cookie.basic.store.StoreCloseVO;
 import com.cookie.basic.util.Pager;
 
@@ -37,6 +39,21 @@ public class AdminService {
 	//회원넘버로 검색
 	public MemberVO pmemberSearch(MemberVO memberVO) throws Exception{
 		return adminMapper.pmemberSearch(memberVO);
+	}
+	
+	//월매출
+	public String monthEarn(String thisMonth)throws Exception{
+		return adminMapper.monthEarn(thisMonth);
+	}
+	
+	//월매출
+	public String yearEarn(String thisYear)throws Exception{
+		return adminMapper.yearEarn(thisYear);
+	}
+	
+	//주문건수
+	public int orderCount(OrderListVO orderListVO)throws Exception{
+		return adminMapper.orderCount(orderListVO);
 	}
 
 }

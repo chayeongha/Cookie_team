@@ -26,7 +26,8 @@
     select PO.*, ST.sName
         from pointList PO
         left outer join store ST on PO.ssNum = ST.ssNum
-        where PO.nickname = #{nickname}
+        where PO.nickname = #{nickname} order By poDate desc
+
   </select>
   
 

@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.cookie.basic.cart.OrderListVO;
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.orders.OrdersVO;
 import com.cookie.basic.store.StoreCloseVO;
 import com.cookie.basic.util.Pager;
 
@@ -28,4 +30,14 @@ public interface AdminMapper {
 	//회원넘버로 검색
 	public MemberVO pmemberSearch(MemberVO memberVO) throws Exception;
 
+	//월매출
+	public String monthEarn(String thisMonth)throws Exception;
+	
+	//연매출
+	public String yearEarn(String thisYear)throws Exception;
+	
+	//주문건수
+	public int orderCount(OrderListVO orderListVO )throws Exception;
+	
+	
 }

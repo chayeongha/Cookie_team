@@ -11,6 +11,10 @@
 
 </head>
 <body>
+<c:if test="${store.ssNum ne storeNum}">
+<h1>정상적인 접근 경로가 아닙니다</h1>
+</c:if>
+<c:if test="${store.ssNum eq storeNum}">
 	<input type="hidden" value="${store.ssNum}">
 	<c:forEach items="${lists}" var="vo" varStatus="ie">
 
@@ -58,8 +62,10 @@
 						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
-						<c:if test="${me.mmNum eq opm.mmNum}">
-							<div class="optNameCol">${opm.optName}</div>
+						<c:if test="${(me.mmNum eq opm.mmNum) and (ce.cartNum eq opt.cartNum)}">
+							<div class="optC">　${opt.optCount}개</div>
+							<div class="optN">${opm.optName}</div>
+							
 							<div style="display: none;">${opm.optPrice}</div>
 						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
@@ -69,19 +75,23 @@
 					
 					</c:forEach>
 					</c:forEach>
+					<div class="phoneBox">
 					<input type="hidden" class="hoonum" id="hoonum${ie.index}" value="${vo.ordersVO.ooNum}">
 					<input type="hidden" class="hssnum" id="hssnum${ie.index}" value="${vo.ordersVO.ssNum}">
-					<div class="phoneBox">
+
+					<!-- <div class="phoneBox"> -->
+
 					<input type="text" class="hphone" id="hphone${ie.index}" readonly="readonly" value="${vo.ordersVO.phone}" >
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
 					<input type="button" value="제조 완료" style="cursor: pointer;" id="upbtn${ie.index}" class="ordersUpdate"> 
 					</c:if>
-					</div>	
+					<!-- </div>	 -->
 					
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
 					 <div>메세지 전송 완료!</div>
 					</c:if> 
 				</div>
+			</div>
 			</div>
 		</c:if>
 		
@@ -108,8 +118,8 @@
 				   console.log(receiver);  
 				  
 						$.ajax({ 
-							url: "sendOrder", 
 							type: "POST", 
+							url : "/orders/sendOrder", 
 							data: { 
 								receiver : receiver
 							}, 
@@ -127,14 +137,14 @@
 						
 						$.ajax({
 							type : "POST",
-							url : "./ordersUpdate",
+							url : "/orders/ordersUpdate",
 							data : {
 								ooNum : ooNum,
 								ssNum : ssNum
 							},
 							success : function(data) {
 								alert("제조 완료");
-								window.location.href = "./orderListSS?ssNum=" + ssNum;
+								window.location.reload();
 							}
 						});
 				
@@ -185,6 +195,6 @@
 		
 	</script>
 
-
+</c:if>
 </body>
 </html>

@@ -101,8 +101,9 @@
 			   
 			    <div class="frmBox">
 						<label for="files">Profile:</label> 
+						<br>
+						<img id="blah" alt="your image" src="#" style="width: 150px; height: 150px;" onerror="this.src='../images/header/profile.png'"/>	
 						<input type="file" class="form-control" id="files" name="files">
-						<img id="blah" alt="your image" src="#" style="width: 200px; height: 200px;" onerror="this.src='../images/header/mm.png'"/>	
 				</div>
 				
 			    <div>        
@@ -197,6 +198,17 @@
 						return;
 				}	
 		});
+
+		//비밀번호 확인 정규식
+		$("#pwCheck").blur(
+				function(){
+					if($('#pwCheck').val() != "" && passwordRule.test($('#pwCheck').val()) != true	){
+							alert("6~14자리 내에 영문과 숫자 특수문자로만 사용해주세요.");
+							$('#pwCheck').val("");
+							$('#pwCheck').focus();
+							return;
+					}	
+			});
 
 		//이름 정규식
 		var nameRule =/^[가-힣a-zA-Z]+$/;

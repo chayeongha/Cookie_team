@@ -16,7 +16,7 @@
 	text-align: center;
 	margin-top: 15px;
 	float: left;
-	color: #481000;
+	color: white;
 }
 
 .storeJoinTi2 {
@@ -70,6 +70,9 @@
 	border: none;
 	margin-top: 10px;
 	border-radius: 4px;
+	color: white;
+	font-family: CookieRun-Regular;
+	font-size: 19px;
 }
 
 .store_join_btn {

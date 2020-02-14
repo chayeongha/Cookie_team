@@ -19,5 +19,5 @@ public class OrdersVO {
 	private int takeOut;
 	private int ooStatus;
 	
-
+	private String thisMonth;
 }

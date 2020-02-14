@@ -34,7 +34,7 @@
 		      <input type="password" class="" id="pw" placeholder="Enter password" name="pw">
 		    </div>
 		    <div class="checkbox">
-		      <label><input type="checkbox" name="remember" id ="idSaveCheck"> Remember me</label>
+		      <label><input type="checkbox" name="remember" id ="idSaveCheck" > Remember me</label>
 		    </div>
 		    <div class="idpw">	    
 			    <a href="./searchIdPw">아이디 / 비밀번호 찾기</a>
