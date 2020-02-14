@@ -12,6 +12,12 @@
 </head>
 <body>
 
+
+<c:if test="${member.grade ne 8888}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${member.grade eq 8888}">
 <div class="storeHeader">
 		<div class="AddMenuTi">Menu List</div>
 		<div class="AddMenuTi2">메뉴 추가 및 관리</div>
@@ -107,7 +113,7 @@
 		<a class="storeHome" href="../store/myInfo">매장관리 페이지</a>
 
 	</div>
-
+</c:if>
 </body>
 
 

@@ -4,6 +4,8 @@
 <link href="${pageContext.request.contextPath}/css/store/storeList.css" rel="stylesheet">
 
 <body>
+
+
 <div class="wrap">
 		<div>
 			<c:if test="${empty ar}">
@@ -45,6 +47,7 @@
 				</c:forEach>
 					
 			</c:if>
+
 			<script type="text/javascript">
 				$(".sList").click(function(){
 					

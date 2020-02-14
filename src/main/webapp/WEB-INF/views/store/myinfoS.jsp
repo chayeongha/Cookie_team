@@ -15,6 +15,14 @@
 
 </head>
 <body>
+
+<c:if test="${store.memId ne member.memId}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${store.memId eq member.memId}">
+
+
 	<div class="storeHeader">
 
 		<div class="store_back">
@@ -75,7 +83,7 @@
 			
 		</div>
 	</div>
-
+</c:if>
 	<script type="text/javascript">
 		var OCount = $(".Mcount").val();
 		var CCount = $(".Ccount").val();

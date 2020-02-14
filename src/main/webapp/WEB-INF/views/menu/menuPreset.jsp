@@ -11,6 +11,12 @@
 <link href="/css/reset.css" rel="stylesheet" />
 </head>
 <body>
+
+<c:if test="${member.grade ne 8888}">
+<c:import url="../error/400error.jsp" />
+</c:if>
+
+<c:if test="${member.grade eq 8888}">
 <div class="storeHeader">
 <div class="mTitle">Menu Page</div>
 <div class="MsemiTitle">기본 메뉴만 추가하는 페이지입니다. 가격과 옵션 수량은 수정 페이지에서 설정해주세요</div>
@@ -201,7 +207,7 @@
     </div>
    
    </form>
-
+</c:if>
 	
 	
 
