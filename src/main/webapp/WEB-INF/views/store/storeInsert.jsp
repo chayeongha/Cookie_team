@@ -150,15 +150,15 @@
 						sName : sName
 					},
 					success : function(data) {
-						alert(data);
+						//alert(data);
 						if($.trim(data)>0){
 							alert("쓰지마");
 							$("#sName").val("");
 							$("#sName").focus();		
 						}else{
-							alert("써라");
+							alert("사용가능한 이름입니다:)");
 							scheck=1;
-							alert(scheck);
+							//alert(scheck);
 						}
 						
 					},

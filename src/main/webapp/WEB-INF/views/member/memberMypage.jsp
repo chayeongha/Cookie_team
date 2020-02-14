@@ -25,7 +25,7 @@
 		<h1>${member.name}님 환영합니다</h1>
 		<div class="mypageBox">
 			<div class="myImg">
-				<img alt="이미지를 넣어주세요!" onerror="this.src='../images/header/mm.png'" src="../upload/${member.memberFilesVO.fname}">
+				<img alt="이미지를 넣어주세요!" onerror="this.src='../images/header/profile.png'" src="../upload/${member.memberFilesVO.fname}" >
 			</div> 
 			
 			<input type="hidden" class="form-control" id="memNum" value="${member.memNum}" readonly="readonly">
@@ -100,8 +100,6 @@
 					</c:if>
 			</div>		
 		</c:if>
-		
-		
 		
 		
 		<div class="box2">

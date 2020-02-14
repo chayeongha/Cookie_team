@@ -84,28 +84,33 @@
      
     <div class="gradeBox1">
      		<label for="name">grade: </label>
-     		<c:if test="${member.grade eq 1}">
-     			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 2}">
-     			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 3}">
-     			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 9999}">
-     			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 8888}">
-     			<input type="text" value="점장" style="color:#ff0000" readonly="readonly" class="gradeBox">
-     		</c:if>
+     		
      		<input type="hidden" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly" >
+   
+      		<c:if test="${member.grade eq 1 }">
+	      			<c:if test="${member.memTotal le  100000 }">
+	      				<input type="text"  value="BRONZE COOKIE" style="color:#b07a5e" readonly="readonly" class="gradeBox">
+	      			</c:if>
+	      			<c:if test="${100000 lt member.memTotal  and member.memTotal  le  500000}">
+	      				<input type="text"  value="SILVER COOKIE" style="color:#c1c6cd" readonly="readonly" class="gradeBox">
+	      			</c:if>
+	      			<c:if test="${500000 lt  member.memTotal }">
+	      				<input type="text"   value="GOLD COOKIE" style="color:#f0c828" readonly="readonly" class="gradeBox">
+	      			</c:if>
+      		</c:if>		
+   			<c:if test="${member.grade eq 9999}">
+   					<input type="text" value="관리자" style="color:#ff0000" readonly="readonly" class="gradeBox">
+   			</c:if>
+   			<c:if test="${member.grade eq 8888}">
+   					<input type="text" value="점주" style="color:#ff0000" readonly="readonly" class="gradeBox">
+   			</c:if>
     </div>
      
     <div class="profileBox">
 		<label for="files">Profile:</label> 
+		<br>
 		<div class="form-group">
-			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 300px; height: 300px;" onerror="this.src='../images/header/mm.png'"/>	
+			<img id="blah" alt="your image" src="../upload/${member.memberFilesVO.fname}" style="width: 150px; height: 150px;" onerror="this.src='../images/header/profile.png'"/>	
 		</div> 
 			<input type="file"class="form-control" id="files" name="files">
 
@@ -220,6 +225,17 @@
 				}	
 		});
 
+		//비밀번호 확인 정규식
+		$("#pwCheck").blur(
+				function(){
+					if($('#pwCheck').val() != "" && passwordRule.test($('#pwCheck').val()) != true	){
+							alert("6~14자리 내에 영문과 숫자 특수문자로만 사용해주세요.");
+							$('#pwCheck').val("");
+							$('#pwCheck').focus();
+							return;
+					}	
+			});
+		
 		//연락처 정규식
 		var phoneRule = /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?\d{4}$/;
 

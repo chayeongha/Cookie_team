@@ -38,7 +38,7 @@ public class MenuController {
 			String message="Insert fail";
 			String path="./menuList?ssNum="+menuVO.getSsNum();
 			if(result>0) {
-				message="Insert Success";
+				message="메뉴 추가관리로 넘어갑니다:)";
 			}
 			mv.setViewName("common/result");
 			mv.addObject("msg", message);
