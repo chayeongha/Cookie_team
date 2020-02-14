@@ -11,6 +11,10 @@
 
 </head>
 <body>
+<c:if test="${member.nickname ne nick}">
+<h1>정상적인 접근경로가 아닙니다</h1>
+</c:if>
+<c:if test="${member.nickname eq nick}">
 <input type="hidden" value="${store.ssNum}">
 	
 	<c:forEach items="${lists}" var="vo">
@@ -129,7 +133,7 @@
 
 
 </script>
-
+</c:if>
 
 </body>
 </html>
