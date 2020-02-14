@@ -13,6 +13,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+<c:if test="${member.nickname ne pointListVO.nickname}">
+<h1>올바른 접근 경로가 아닙니다!</h1>
+</c:if>
+
+<c:if test="${member.nickname eq pointListVO.nickname}">
 
 <div class="pointHeader">
 	<div class="pointPre">
@@ -67,7 +72,7 @@ $(".history").click(function(){
 	
 })
 </script>
-
+</c:if>
 
 </body>
 </html>
