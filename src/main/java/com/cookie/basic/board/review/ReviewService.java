@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.FilePathGenerator;
 import com.cookie.basic.util.FileSaver;
 import com.cookie.basic.util.Pager;
@@ -26,24 +28,17 @@ public class ReviewService {
 	@Autowired
 	private FileSaver fileSaver;
 	///////////////////////////////////////////////////
-	//썸머파일삭제
-	public boolean summerFileDelete(String files) throws Exception {
-		File file = filePathGenerator.getUseClassPathResource("summernote");
-		
-		return fileSaver.fileDelete(file, files);
-	}
-	//썸머파일추가
-	public String summerFile(MultipartFile files) throws Exception {
-		File file = filePathGenerator.getUseClassPathResource("summernote");
-		System.out.println("summer note");
-		return fileSaver.save(file, files);
+	
+	//지점명 조회
+	public StoreVO snameSelect(StoreVO storeVO) throws Exception {
+		return reviewMapper.snameSelect(storeVO);
 	}
 	
-	//파일 다운
-	public ReviewFilesVO reviewFileSelect(ReviewFilesVO reviewFilesVO) throws Exception {
-		return reviewFilesMapper.reviewFilesSelect(reviewFilesVO);
+	//구매 목록 조회
+	public OrderListVO orderSelect(OrderListVO orderListVO) throws Exception {
+		return reviewMapper.orderSelect(orderListVO);
 	}
-	///////////////////////////////////////////////////
+	
 	//글 삭제
 	@Transactional
 	public int reviewDelete(ReviewVO reviewVO) throws Exception {

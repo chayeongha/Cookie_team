@@ -7,11 +7,11 @@ import com.cookie.basic.orders.OrdersVO;
 
 public class OrderListVO {
 
-	private int olNum;
-	private int ooNum; 
-	private int ocNum;
-	private OrdersVO ordersVO;
-	private List<CartVO> cartVOs;
+	private int olNum; //orderList PK
+	private int ooNum; //orders PK
+	private int ocNum; //cart + orderlist join하는 컬럼
+	private OrdersVO ordersVO; //주문자 정보 담겨있음
+	private List<CartVO> cartVOs; //ocnum으로 join한 결과 cartList
 	
 	public int getOlNum() {
 		return olNum;

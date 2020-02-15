@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.cookie.basic.intetceptor.BoardInterceptor;
 import com.cookie.basic.intetceptor.MemberInterCeptor;
 import com.cookie.basic.intetceptor.StoreInterCeptor;
 
@@ -14,6 +16,9 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	private MemberInterCeptor memberInterCeptor;
 	@Autowired
 	private StoreInterCeptor storeInterCeptor;
+	@Autowired
+	private BoardInterceptor boardInterceptor;
+	
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -64,6 +69,17 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/store/storeList3")
 		.excludePathPatterns("/store/storeGoods")
 		.excludePathPatterns("/store/storeResult");
+		
+		//게시판 인터셉터 등록
+		registry.addInterceptor(boardInterceptor)
+		.addPathPatterns("/notice/**")
+		.addPathPatterns("/qna/**")
+		.excludePathPatterns("/notice/noticeList")
+		.excludePathPatterns("/notice/noticeSelect")
+		.excludePathPatterns("/qna/qnaList")
+		.excludePathPatterns("/qna/qnaSelect")
+		;
+		
 		
 	}
 }

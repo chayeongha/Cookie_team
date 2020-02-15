@@ -21,6 +21,58 @@
   		</choose>
   	</sql>
   	
+  	<resultMap type="StoreVO" id="Sselect">
+  		<id column="ssNum" property="ssNum"/>
+  		<result column="sName" property="sName"/>
+  		<result column="sTel" property="sTel"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
+  		<result column="sNotice" property="sNotice"/>
+  		<result column="sOn" property="sOn"/>
+  		<result column="memNum" property="memNum"/>
+  		<result column="memId" property="memId"/>
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  	</resultMap>
+  	
+  	<select id="snameSelect" parameterType="StoreVO" resultMap="Sselect">
+  		select S.sName, SF.fName 
+  		from store S 
+  			left outer join storeFiles SF on S.ssNum = SF.ssNum 
+  		where S.ssNum = #{ssNum}
+  	</select>
+  	
+  	<resultMap type="OrderListVO" id="OLselect">
+  		<id column="olNum" property="olNum"/>
+  		<result column="ocNum" property="ocNum"/>
+  		<collection property="cartVOs" javaType="List" ofType="CartVO">
+	  		<result column="mmNum" property="mmNum"/>
+	  		<result column="mmCount" property="mmCount"/>
+	  		<result column="nickname" property="nickname"/>
+	  		<result column="ssNum" property="ssNum"/>
+	  		<collection property="menuVOs" javaType="List" ofType="MenuVO">
+		  		<result column="mmName" property="mmName"/>
+		  		<collection property="menuOptions" javaType="List" ofType="MoptVO">
+			  		<result column="optName" property="optName"/>
+	  			</collection>
+	  			<collection property="cartOptionVOs" javaType="List" ofType="CartOptionVO">
+			  		<result column="optCount" property="optCount"/>
+	  			</collection>
+  			</collection>
+ 		</collection>
+  	</resultMap>
+  	
+  	<select id="orderSelect" parameterType="OrderListVO" resultMap="OLselect">
+  		select OL.olNum, OL.ocNum, C.mmNum, C.nickname, C.ssNum, M.mmName, C.mmCount, O.optName, CO.optCount
+			from orderList OL
+				left outer join cart C on OL.ocNum = C.ocNum
+		        left outer join menu M on C.mmNum = M.mmNum
+		        left outer join mopt O on M.mmNum = O.mmNum
+		        left outer join cartOption CO on O.optNum = CO.optNum
+	        where OL.olNUm = #{olNum};
+  	</select>
   	
   	<resultMap type="ReviewVO" id="Select">
   		<id column="num" property="num"/>
@@ -59,10 +111,6 @@
   	
   	<insert id="reviewWrite" parameterType="ReviewVO" useGeneratedKeys="true" keyProperty="num">
   		insert into review values(0, #{title}, #{writer}, #{contents}, now())
-  		<!-- <selectKey resultType="Integer" keyProperty="num" order="AFTER">
-  			select LAST_INSERT_ID()
-  		</selectKey> -->
-  		<!-- auto increment를 받아오려면 Select Key를 쓰거나, (useGeneratedKeys="true" keyProperty="num")를 써준다 -->
   	</insert>
   	
   	<select id="reviewList" parameterType="Pager" resultType="reviewVO">

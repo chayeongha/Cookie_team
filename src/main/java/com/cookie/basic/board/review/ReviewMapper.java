@@ -5,12 +5,20 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.Pager;
 
 @Mapper
 @Repository
 public interface ReviewMapper {
 
+	//지점명 조회
+	public StoreVO snameSelect(StoreVO storeVO) throws Exception;
+	
+	//구매목록 조회
+	public OrderListVO orderSelect(OrderListVO orderListVO) throws Exception;
+	
 	//글 삭제
 	public int reviewDelete(ReviewVO reviewVO) throws Exception;
 	

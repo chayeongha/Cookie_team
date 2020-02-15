@@ -21,50 +21,84 @@
 		<!-- 서브 타이틀 -->
 	<div class="subTitle_wrap">
 		<div class="subTitle_inner">
-			<h2>${boardName} 글쓰기</h2>
+			<h2>${boardName} 수정</h2>
 		</div>
 	</div>
 	
    <div class="container">
-     <form:form action="noticeWrite" modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
+     <form:form modelAttribute="noticeVO" id="frm" enctype="multipart/form-data">
+       <form:hidden path="num" value="${update.num}" readonly="true" class="form-control" id="num" />
+       
         <div class="form-group">
          <label for="title" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">제목</label>
-         <form:input path="title" placeholder="Enter Title" class="form-control" id="title" />
+         <form:input path="title" value="${update.title}" placeholder="Enter Title" class="form-control" id="title" />
          <form:errors path="title" cssStyle="color:red;" />
        </div>
        
        <div class="form-group">
          <label for="writer" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">작성자</label>
-         <form:input path="writer" class="form-control" readonly="true" id="writer" value="${writer}"/>
+         <form:input path="writer" value="${update.writer}" class="form-control" id="writer"/>
        </div>
        
-<%--        <div class="form-group">
+       <div class="form-group">
          <label for="contents"></label>
-         <form:textarea path="contents" class="form-control" id="contents" placeholder="Enter Cotents" />
-         <form:errors path="contents" />
+         <textarea class="form-control" id="contents" name="contents">${update.contents}</textarea>
+         <%-- <form:errors path="contents" /> --%>
        </div>
-        --%>
-        
-          <div class="form-group">
-         <label for="contents"></label>
-         <textarea name="contents" class="form-control" id="contents" placeholder="Enter Cotents"></textarea>
-        
-       </div>
+       
        <button class="btngo">등록</button>
-       <input type="button" id="btn_add" class="btn_add" value="Add File">
-       <div id="files"></div>
+       
+       <input type="button" id="btn_add" class="btn_add" value="첨부파일">
+
+		<div>
+			<ul>
+				<c:forEach items="${update.noticeFilesVO}" var="file" varStatus="i">
+					<li>
+						<span class="oname">${file.oname}</span>
+						<input type="hidden" class="fnum" value="${file.fnum}">
+						<input type="button" class="del" id="del_${i}" value="X">
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			$('.del').click(function(){
+				var fnum = $(this).parent().find('.fnum').val();
+				//alert(fnum);
+				$(this).parent().find('.fnum').attr("name", "fnums");
+				//console.log($(this).parent().find('.fnum').attr("name"));
+				$(this).parent().find('.oname').remove();
+				$(this).remove();
+			    check--;
+			    //alert(check);
+			});
+		</script>
+		
+		<div id="files">
+			<div class="form-group tt">
+				<label for="file"></label> <br>
+				<div class="col-sm-11">
+					<input type="file" class="form-control" id="file" name="files">
+				</div>
+				<div class="col-sm-1">
+					<input type="button" class="del" value="X">
+				</div>
+			</div>
+		</div>
+
+		
      </form:form>
-     <a class="listgo" href="./noticeList">목록으로..</a>
      
+     <a class="listgo" href="./noticeList">목록으로..</a>
    </div>
    
 <script type="text/javascript">
-   //var files = $('#files').html();
-   var files = ' <div class="form-group tt">     <label for="file"></label>      <br>       <div class="col-sm-11">          <input type="file" class="form-control" id="file" name="files">       </div>       <div class="col-sm-1">          <input type="button" class="del" value="X">       </div>     </div>';
+   var files = $('#files').html();
    $('#files').empty(); //remove vs empty ; 나 포함 전체 지우기 vs 자식만 지우기
-   var check = 0;
+   var check = $('.oname').length;
    var index = 0; //index 번호
-   
+	//alert(check);
    $('#files').on("click", ".del", function() {
       //event.preventDefault();
       //alert("del");
@@ -95,15 +129,15 @@
 			$("#frm").submit();
 		}
 	});
-	var formData = null;
+
 	//summer Note
 	$("#contents").summernote(
 			{
 				height : 400,
 				callbacks : {
-					onImageUpload : function(file) {
+					onImageUpload : function(files) {
 						var formData = new FormData();
-						formData.append('file', file[0]);
+						formData.append('file', files[0]);
 
 						$.ajax({
 							type : "POST",
@@ -119,8 +153,6 @@
 								data = '../summernote/'+data;
 								//console.log(data);
 								$('#contents').summernote('insertImage', data);
-								console.log("썸머");
-								formData.delete('file');
 							}
 						});
 					},
@@ -145,8 +177,6 @@
 				}
 			});
 </script>
-   <!-- <script type="text/javascript" src="../js/summernote.js"></script> -->
-   <!-- <script type="text/javascript" src="../js/fileCount.js"></script> -->
 	<c:import url="../layout/footer.jsp" />
 </div>
 </body>
