@@ -178,7 +178,7 @@
 
 
 		$(".storebtn").click(function(){
-			location.href="./member/selectJoin";
+			location.href="./member/joinAgree";
 			})
 			 
 			

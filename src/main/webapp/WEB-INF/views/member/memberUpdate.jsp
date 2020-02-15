@@ -95,21 +95,21 @@
     <div class="gradeBox1">
 
      		<label for="name">grade</label>
-     		<c:if test="${member.grade eq 1}">
-     			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 2}">
-     			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 3}">
-     			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 9999}">
-     			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly" class="gradeBox">
-     		</c:if>
-     		<c:if test="${member.grade eq 8888}">
-     			<input type="text" value="점장" style="color:#ff0000" readonly="readonly" class="gradeBox">
-     		</c:if>
+<%--      		<c:if test="${member.grade eq 1}"> --%>
+<!--      			<input type="text"value="Famliy" style="color:#00bb00" readonly="readonly" class="gradeBox"> -->
+<%--      		</c:if> --%>
+<%--      		<c:if test="${member.grade eq 2}"> --%>
+<!--      			<input type="text" value="VIP" style="color:#ff0080" readonly="readonly" class="gradeBox"> -->
+<%--      		</c:if> --%>
+<%--      		<c:if test="${member.grade eq 3}"> --%>
+<!--      			<input type="text" value="SVIP" style="color:#ff0000" readonly="readonly" class="gradeBox"> -->
+<%--      		</c:if> --%>
+<%--      		<c:if test="${member.grade eq 9999}"> --%>
+<!--      			<input type="text" value="관리자" style="color:#ff0000" readonly="readonly" class="gradeBox"> -->
+<%--      		</c:if> --%>
+<%--      		<c:if test="${member.grade eq 8888}"> --%>
+<!--      			<input type="text" value="점장" style="color:#ff0000" readonly="readonly" class="gradeBox"> -->
+<%--      		</c:if> --%>
 
      		<input type="hidden" class="form-control" id="grade" name="grade" value="${member.grade}" readonly="readonly" >
    
