@@ -51,7 +51,7 @@
 			
 		</c:if>
 		<c:if test="${empty sessionScope.member}">
-			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/selectJoin">Join</a></div>
+			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/joinAgree">Join</a></div>
 			<div class="h1_txt"><a href="${pageContext.request.contextPath}/member/memberLogin">Login</a></div>
 		</c:if>
 		</div>
