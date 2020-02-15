@@ -131,7 +131,9 @@
 				<%-- <button class="btn" onclick="location='../orders/orderListList?nickname=${member.nickname}'">더 보기</button> --%>
 			
 				<div class="orderTT">주문내역</div>
+					
 					<div class="orderList">
+					
 				</div>
 				
 			</div>
