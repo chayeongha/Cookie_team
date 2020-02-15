@@ -144,8 +144,15 @@ public class NoticeController {
 	
 	//글 작성 폼
 	@GetMapping("noticeWrite")
-	public String noticeWrite(NoticeVO noticeVO) throws Exception {
-		return "board/boardWrite";
+	public ModelAndView noticeWrite(NoticeVO noticeVO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		
+		mv.addObject("writer", memberVO.getNickname());
+		mv.setViewName("board/boardWrite");
+		
+		return mv;
 	}
 	
 	//글 등록

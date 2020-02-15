@@ -35,7 +35,7 @@
        
        <div class="form-group">
          <label for="writer" style="font-family: CookieRun-Black; font-size:25px; color:#f23600;">작성자</label>
-         <form:input path="writer" class="form-control" id="writer" value=""/>
+         <form:input path="writer" class="form-control" readonly="true" id="writer" value="${writer}"/>
        </div>
        
 <%--        <div class="form-group">
