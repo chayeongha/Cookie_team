@@ -256,7 +256,7 @@ public class MemberController {
 			memberVO2.setNickname(nickname);
 			int result= memberService.naverJoin(memberVO2);
 			session.setAttribute("member", memberVO2);
-
+			
 		}else {
 			session.setAttribute("member", memberVO);
 		}

@@ -37,18 +37,20 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/member/joinAgree")
 		.excludePathPatterns("/member/selectJoin")
 		.excludePathPatterns("/member/memberJoin")
-		.excludePathPatterns("/member/memberIndex")//빼야함
-		.excludePathPatterns("/member/emailCheck")//빼야함
-		.excludePathPatterns("/member/idCheck")//빼야함.
-		.excludePathPatterns("/member/nickCheck")//빼야함.
-		.excludePathPatterns("/member/searchIdPw")//빼야함.
-		.excludePathPatterns("/member/idSearch")//빼야함.
-		.excludePathPatterns("/member/sendSms")//뺴야함.
-		.excludePathPatterns("/member/smsCheck")//뺴야함.
-		.excludePathPatterns("/member/memberLogout")//뺴야함.
-		.excludePathPatterns("/member/pwSearch")//뺴야함.
-		.excludePathPatterns("/member/sendEmail")//뺴야함.
-		.excludePathPatterns("/member/phoneCheck");//뺴야함.
+		.excludePathPatterns("/member/memberIndex")
+		.excludePathPatterns("/member/emailCheck")
+		.excludePathPatterns("/member/idCheck")
+		.excludePathPatterns("/member/nickCheck")
+		.excludePathPatterns("/member/searchIdPw")
+		.excludePathPatterns("/member/idSearch")
+		.excludePathPatterns("/member/sendSms")
+		.excludePathPatterns("/member/smsCheck")
+		.excludePathPatterns("/member/memberLogout")
+		.excludePathPatterns("/member/pwSearch")
+		.excludePathPatterns("/member/sendEmail")
+		.excludePathPatterns("/member/phoneCheck")
+		.excludePathPatterns("/member/memberKakao")
+		.excludePathPatterns("/member/memberNaver");
 		
 	}
 }
