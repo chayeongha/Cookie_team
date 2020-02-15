@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.FilePathGenerator;
 import com.cookie.basic.util.FileSaver;
 import com.cookie.basic.util.Pager;
@@ -27,6 +28,12 @@ public class ReviewService {
 	@Autowired
 	private FileSaver fileSaver;
 	///////////////////////////////////////////////////
+	
+	//지점명 조회
+	public StoreVO snameSelect(StoreVO storeVO) throws Exception {
+		return reviewMapper.snameSelect(storeVO);
+	}
+	
 	//구매 목록 조회
 	public OrderListVO orderSelect(OrderListVO orderListVO) throws Exception {
 		return reviewMapper.orderSelect(orderListVO);

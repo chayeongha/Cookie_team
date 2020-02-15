@@ -35,12 +35,26 @@
 								<tr>
 									<th scope="row">구매상품</th>
 									<td>
-<!-- 										<div class="image"> -->
-<!-- 											<img alt="상품이미지" src=""> -->
-<!-- 										</div> -->
+										<div class="image">
+											<img alt="${store.sName}" src="../upload/${store.storeFilesVO.fName}">
+										</div>
 										<div class="con_area">
-											<p id="prdName" class="tit"></p>
-											<p class="option"></p>
+											<c:forEach items="${order.cartVOs}" var="cart">
+												<c:forEach items="${cart.menuVOs}" var="menu">
+													<p id="prdName" class="tit">메뉴명 : ${menu.mmName}</p>
+													<p id="prdName" class="tit">메뉴수량 : ${cart.mmCount}</p>
+													
+													<c:forEach items="${menu.menuOptions}" var="opt">
+														<p class="option">옵션명 : ${opt.optName}</p>
+													</c:forEach>
+													<c:forEach items="${menu.cartOptionVOs}" var="optc">
+														<p class="option">옵션횟수 : ${optc.optCount}</p>
+													</c:forEach>
+												</c:forEach>
+												
+												<p id="prdName" class="tit"></p>
+												<p class="option"></p>
+											</c:forEach>
 										</div>
 									</td>
 								</tr>
@@ -144,7 +158,7 @@
       }
    });
 
- 
+   
  	//등록 버튼
 	$('#btnSave').click(function(){
 		if($('input[name="secret"]').is(":checked")){

@@ -21,6 +21,29 @@
   		</choose>
   	</sql>
   	
+  	<resultMap type="StoreVO" id="Sselect">
+  		<id column="ssNum" property="ssNum"/>
+  		<result column="sName" property="sName"/>
+  		<result column="sTel" property="sTel"/>
+  		<result column="roadFullAddr" property="roadFullAddr"/>
+  		<result column="sNotice" property="sNotice"/>
+  		<result column="sOn" property="sOn"/>
+  		<result column="memNum" property="memNum"/>
+  		<result column="memId" property="memId"/>
+  		<association property="storeFilesVO" javaType="StoreFilesVO">
+  			<id column="fNum" property="fNum"/>
+  			<result column="fName" property="fName"/>
+  			<result column="oName" property="oName"/>  		
+  		</association>
+  	</resultMap>
+  	
+  	<select id="snameSelect" parameterType="StoreVO" resultMap="Sselect">
+  		select S.sName, SF.fName 
+  		from store S 
+  			left outer join storeFiles SF on S.ssNum = SF.ssNum 
+  		where S.ssNum = #{ssNum}
+  	</select>
+  	
   	<resultMap type="OrderListVO" id="OLselect">
   		<id column="olNum" property="olNum"/>
   		<result column="ocNum" property="ocNum"/>

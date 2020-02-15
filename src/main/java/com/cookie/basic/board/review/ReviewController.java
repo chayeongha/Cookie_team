@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.Pager;
 
 @Controller
@@ -91,10 +92,13 @@ public class ReviewController {
 	
 	//글 작성 폼
 	@GetMapping("reviewWrite")
-	public void reviewWrite(OrderListVO orderListVO, Model model) throws Exception {
+	public void reviewWrite(OrderListVO orderListVO, StoreVO storeVO, Model model) throws Exception {
 		orderListVO = reviewService.orderSelect(orderListVO);
+		storeVO = reviewService.snameSelect(storeVO);
+		System.out.println(storeVO.getStoreFilesVO().getfName());
 		
 		model.addAttribute("order", orderListVO);
+		model.addAttribute("store", storeVO);
 	}
 	
 	//글 등록
