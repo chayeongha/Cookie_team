@@ -17,7 +17,7 @@
 <c:if test="${member.nickname eq nick}">
 <input type="hidden" value="${store.ssNum}">
 	
-	<c:forEach items="${lists}" var="vo">
+	<c:forEach items="${lists}" var="vo" varStatus="voStatus">
 		<%-- <c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}"> --%>
 		<div class="orderBox">
 			<div class="orderBox2">
@@ -54,7 +54,8 @@
 					<!--메뉴 옵션-->
 					<c:forEach items="${ce.menuVOs}" var="me">
 					<div class="mBox">
-						<div>${me.mmName}</div>
+						<div>${me.mmName} </div>
+						<div>${ce.mmCount} 개</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
 					
