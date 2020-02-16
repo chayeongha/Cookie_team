@@ -102,6 +102,11 @@
 			</div>		
 		</c:if>
 		
+		<c:if test="${member.kind ne null}">
+		<div class="e3">
+			<a class="bt" href="${pageContext.request.contextPath}/calendar/calmain">출석체크 하러가기</a>
+		</div>		
+		</c:if>
 		
 		<div class="box2">
 			<div class="box3_inner">
