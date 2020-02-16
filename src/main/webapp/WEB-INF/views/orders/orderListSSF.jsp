@@ -57,6 +57,7 @@
 					<c:forEach items="${ce.menuVOs}" var="me">
 					<div class="mBox">
 						<div>${me.mmName}</div>
+						<div>${ce.mmCount} 개</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
 				

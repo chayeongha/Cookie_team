@@ -55,6 +55,7 @@
 					
 						<div class="mBox">
 						<div class="mNameCol">${me.mmName}</div>
+						<div>${ce.mmCount} 개</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
 
