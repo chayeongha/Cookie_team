@@ -91,6 +91,8 @@
 				
 				<input type="hidden" class="olNum" value="${vo.olNum}">
 				<a href="javascript:void(0)" class="btn_review">후기작성</a>
+				<a href="javascript:void(0)" class="review_update">후기수정</a>
+				<a href="../review/reviewDelete?olNum=${vo.olNum}" class="review_delete">후기삭제</a>
 			</div>
 		<%-- </c:if> --%>
 	</c:forEach>
@@ -141,6 +143,14 @@
 
 	//리뷰 등록
 	$('.btn_review').click(function(){
+		var olNum = $(this).parent().find('input.olNum').val();
+		var ssNum = $(this).parent().find('input.ssNum').val();
+		//alert(olNum);
+		//alert(ssNum);
+		openWin = window.open("../review/reviewWrite?olNum="+olNum+"&ssNum="+ssNum, "reviewForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
+	});
+
+	$('.review_update').click(function(){
 		var olNum = $(this).parent().find('input.olNum').val();
 		var ssNum = $(this).parent().find('input.ssNum').val();
 		//alert(olNum);

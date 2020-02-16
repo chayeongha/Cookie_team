@@ -9,12 +9,9 @@
 <c:import url="../template/boot.jsp" />
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/board/reviewWrite.css" rel="stylesheet">
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </head>
 <body>
-	<form name="frm" action="reviewWrite" method="post">
+<!-- 	<form name="frm" action="reviewWrite" method="post"> -->
 		<div id="popWrap" style="width: 660px;">
 			<div id="popHead">
 				<div class="popHeadEnd">
@@ -41,19 +38,18 @@
 										<div class="con_area">
 											<c:forEach items="${order.cartVOs}" var="cart">
 												<c:forEach items="${cart.menuVOs}" var="menu">
-													<p id="prdName" class="tit">메뉴명 : ${menu.mmName}</p>
-													<p id="prdName" class="tit">메뉴수량 : ${cart.mmCount}</p>
-													
-													<c:forEach items="${menu.menuOptions}" var="opt">
-														<p class="option">옵션명 : ${opt.optName}</p>
-														<c:forEach items="${menu.cartOptionVOs}" var="optc">
-															<c:if test="${opt.optNum eq optc.optNum}">
-																<p class="option">옵션횟수 : ${optc.optCount}</p>
-															</c:if>
-														</c:forEach>
+													<span id="prdName" class="tit">메뉴명 : ${menu.mmName}</span>
+													<span id="prdName" class="tit">/ ${cart.mmCount}</span>
+													<br>
+													<c:forEach items="${menu.menuOptions}" var="opt" varStatus="a">
+														<span class="option">옵션명 : ${opt.optName}</span>
+															<c:forEach items="${menu.cartOptionVOs}" var="optc" varStatus="b">
+																<c:if test="${opt.optNum eq optc.optNum}">
+																	<span class="option">/ ${optc.optCount} &nbsp;&nbsp;</span>
+																</c:if>
+															</c:forEach>
 													</c:forEach>
 												</c:forEach>
-												
 												<p id="prdName" class="tit"></p>
 												<p class="option"></p>
 											</c:forEach>
@@ -65,13 +61,13 @@
 									<td>
 										<div class="starWrap">
 										<!-- 클릭했을 때 class에 good 추가 -->
-											<button type="button" id="lv_1" class="rev_star"><em>불만</em></button>
-											<button type="button" id="lv_2" class="rev_star"><em>보통</em></button>
-											<button type="button" id="lv_3" class="rev_star"><em>보통</em></button>
-											<button type="button" id="lv_4" class="rev_star"><em>만족</em></button>
-											<button type="button" id="lv_5" class="rev_star"><em>만족</em></button>
+											<button type="button" id="1" class="rev_star"><em>최악이에요</em></button>
+											<button type="button" id="2" class="rev_star"><em>별로예요</em></button>
+											<button type="button" id="3" class="rev_star"><em>보통이에요</em></button>
+											<button type="button" id="4" class="rev_star"><em>좋아요</em></button>
+											<button type="button" id="5" class="rev_star"><em>최고예요</em></button>
 											<!-- 별 클릭했을 때 value 값 변경 -->
-											<input type="hidden" name="prdStar" id="" value="">
+											<input type="hidden" name="star" id="star" value="0">
 											<!-- 별 클릭했을 때 내용 변경 -->
 											<!-- 최악이에요 별로예요 보통이에요 좋아요 최고예요 -->
 											<em class="star_cont">별을 클릭하여 상품 만족도를 알려주세요.</em>
@@ -101,7 +97,7 @@
 												<div class="col-sm-1">
 													<input type="button" class="del" value="X">
 												</div>
-<!-- 												<div class="imgs_wrap" style="width: 600px; margin-top: 50px;"></div> -->
+<!-- 												<div class="imgs_wrap" style="width: 200px; margin-top: 50px;"></div> -->
 											</div>
 										</div>
 									</td>
@@ -123,6 +119,7 @@
 					</div>
 					<!-- 버튼 -->
 					<div class="btn_wrap">
+						<input type="hidden" name="olNum" value="${order.olNum}">
 						<input type="hidden" name="writer" value="${writer}">
 						<button id="btnSave" class="popbtn popbtn1" title="확인"><span>확인</span></button>
 						<button id="btnClose" class="popbtn popbtn2" title="닫기"><span>닫기</span></button>
@@ -130,7 +127,7 @@
 				</div>
 			</div>
 		</div>
-	</form>
+<!-- 	</form> -->
 	
 <script type="text/javascript">
    var files = $('#files').html();
@@ -160,76 +157,67 @@
       }
    });
 
+	//별점 주기
+	$('.rev_star').click(function(){
+		var lv = $(this).attr('id');
+		$(this).parent().children('button').removeClass('good');
+		$(this).addClass('good').prevAll('button').addClass('good');
+		//별 클릭했을 때 value 값 변경
+		$('#star').val(lv);
+		//별 클릭했을 때 내용 변경
+		$('.star_cont').text($(this).children().text());
+	});
    
  	//등록 버튼
 	$('#btnSave').click(function(){
-		if($('input[name="secret"]').is(":checked")){
-			$('input[name="secret"]').val(1);
-		}else {
-			$('input[name="secret"]').val(0);
-		}
-		
+	
 		var writer = $('input[name="writer"]').val();
-		var contents = $('#popCont').val();
-		var secret = $('input[name="secret"]').val();
+		var contents = $('#contents').val();
+		var star = $('input[name="star"]').val();
+		var olNum = $('input[name="olNum"]').val();
 
+		
 		if(writer == null || writer == ""){
 			alert("로그인 후 이용하세요");
 			self.close();
 		}else {
 			
 			if(contents != ""){
-				var params = $('#captcha').val();
-				
-				if(params != null && params!=""){
-				
-					$.ajax({
-						type: 'POST',
-						url: 'chkAnswer',
-						data: {
-							answer: params
-						},
-						success: function(data){
-							//alert(data);
-							if(data == 200){
-								alert('입력값이 일치합니다.');
-	
-								$.ajax({
-									type: "POST",
-									url: "./qnaWrite",
-									data: {
-										writer: writer,
-										contents: contents,
-										step: 0,
-										secret: secret
-									},
-									success: function(data){
-										if(data > 0){
-											opener.location.reload();
-											self.close();
-										}else{
-											alert("잠시 후에 다시 시도해주세요.");
-										}
-									},
-									error: function(){
-										alert("잠시 후에 다시 시도해주세요.");
-									}
-								});
-							}else {
-								alert('보안문자 입력값이 일치하지 않습니다.\n다시 입력해주세요.');
-								getImage();
-								$('#captcha').val('');
-							}
-						},
-						error: function() {
-							alert("error");
-						}
-					});
-				}else {
-					alert("보안문자를 입력해주세요.");
+
+				var formData = new FormData();
+				formData.append("writer", writer);
+				formData.append("contents", contents);
+				formData.append("star", star);
+				formData.append("olNum", olNum);
+
+				if($('input[name="files"]').length > 0){
+					var leg = $('input[name="files"]').length;
+					for(var i=0;i<leg;i++){
+						formData.append("files", $('input[name="files"]')[i].files[0]);
+					}
 				}
+				
+				$.ajax({
+					type: "POST",
+					url: "./reviewWrite",
+					processData: false,
+					contentType: false,
+					data: formData,
+					success: function(data){
+						alert(data);
+						if(data > 0){
+							opener.location.reload();
+							self.close();
+						}else{
+							alert("잠시 후에 다시 시도해주세요.");
+						}
+					},
+					error: function(){
+						alert("잠시 후에 다시 시도해주세요.");
+					}
+				});
 			}else {
-				alert("문의내용을 입력해주세요.");
+				alert("상품후기를 입력해주세요.");
 			}
 		}
 	});
@@ -238,43 +226,6 @@
 	$('#btnClose').click(function(){
 		window.close();
 	});
-
-
-// 	$('#input_imgs').change(function() {
-// 		if(this.files && this.files[0]){
-// 			var reader = new FileReader;
-// 			reader.onload = function(data) {
-// 				$('.select_img img').attr("src", data.target.result);
-// 			}
-// 			reader.readAsDataURL(this.files[0]);
-// 		}
-// 	});
-
-	//이미지 미리보기
-// 	var sel_files = [];
- 
-//         $("#input_imgs").on("change", handleImgsFilesSelect);
- 
-//         function handleImgsFilesSelect(e) {
-//             var files = e.target.files;
-//             var filesArr = Array.prototype.slice.call(files);
- 
-//             filesArr.forEach(function(f) {
-//                 if(!f.type.match("image.*")) {
-//                     alert("확장자는 이미지 확장자만 가능합니다.");
-//                     return;
-//                 }
- 
-//                 sel_files.push(f);
- 
-//                 var reader = new FileReader();
-//                 reader.onload = function(e) {
-//                     var img_html = "<img src=\"" + e.target.result + "\" style=\"max-width: 200px;\"/>";
-//                     $(".imgs_wrap").append(img_html);
-//                 }
-//                 reader.readAsDataURL(f);
-//             });
-//         }
 </script>
 </body>
 </html>

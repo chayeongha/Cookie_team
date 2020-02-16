@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.cart.OrderListVO;
+import com.cookie.basic.member.MemberVO;
 import com.cookie.basic.store.StoreVO;
 import com.cookie.basic.util.Pager;
 
@@ -42,7 +43,7 @@ public class ReviewController {
 		}
 		
 		mv.addObject("msg", msg);
-		mv.addObject("path", "reviewList");
+		mv.addObject("path", "../member/memberMypage");
 		mv.setViewName("common/result");
 		
 		return mv;
@@ -92,37 +93,26 @@ public class ReviewController {
 	
 	//글 작성 폼
 	@GetMapping("reviewWrite")
-	public void reviewWrite(OrderListVO orderListVO, StoreVO storeVO, Model model) throws Exception {
+	public void reviewWrite(OrderListVO orderListVO, StoreVO storeVO, Model model, HttpSession session) throws Exception {
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		
 		orderListVO = reviewService.orderSelect(orderListVO);
 		storeVO = reviewService.snameSelect(storeVO);
 		System.out.println(storeVO.getStoreFilesVO().getfName());
 		
 		model.addAttribute("order", orderListVO);
 		model.addAttribute("store", storeVO);
+		model.addAttribute("writer", memberVO.getNickname());
 	}
 	
 	//글 등록
 	@PostMapping("reviewWrite")
-	public ModelAndView reviewWrite(@Valid ReviewVO reviewVO, BindingResult bindingResult,
-										MultipartFile[] files) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public int reviewWrite(ReviewVO reviewVO, MultipartFile[] files) throws Exception {
 		
-		if(bindingResult.hasErrors()) {
-			mv.setViewName("board/boardWrite");
-		}else {
-			System.out.println(files.length);
-			int result = reviewService.reviewWrite(reviewVO, files);
-			String msg = "Write Fail";
-			 
-			if(result>0) {
-				msg = "Write Success";
-			}
-			mv.setViewName("common/result");
-			mv.addObject("msg", msg);
-			mv.addObject("path", "./reviewList");
-		}
+		int result = reviewService.reviewWrite(reviewVO, files);
 		
-		return mv;
+		return result;
 	}
 	
 	//글 하나 조회
@@ -150,17 +140,12 @@ public class ReviewController {
 	
 	//리스트
 	@GetMapping("reviewList")
-	public ModelAndView reviewList(Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
+	public void reviewList(Pager pager, Model model) throws Exception {
 		List<ReviewVO> list = reviewService.reviewList(pager);
 		
-		mv.addObject("list", list);
-		mv.addObject("pager", pager);
-		mv.addObject("boardName", "이용후기");
-		mv.setViewName("board/boardList");
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 		
-		return mv;
 	}
 	
 }
