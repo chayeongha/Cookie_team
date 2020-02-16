@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+.wrap{
+	margin:0 auto;
+	width: 1100px;
+	background: #ffede3;
+	margin-top:40px;
+	margin-bottom: 40px;
+	
+}
+
+.map1{
+	border:none;
+	width:150px;
+	font-family: CookieRun-Regular;
+	background:transparent;
+	font-size:30px;
+	margin-left: 20px;
+	color:#f23600;
+	border-bottom: 1px solid white;
+	height: 60px;
+
+}
+
+.map1 > p {
+	height: 60px;
+	margin-bottom: 10px;
+}
+
+.map1:hover{
+	background: #ff6613;
+	border-radius: 5px;
+	color:white;
+}
+
+
+.e{
+	margin:0 auto;
+	width: 1100px;
+	padding:20px;
+	background: #ffede3;
+}
+
+.bb{
+	font-family: CookieRun-Regular;
+	background:transparent;
+	border:none;
+	width:120px;
+	height: 60px;
+	font-size:28px;
+	color:#f23600;
+	border-bottom: 1px solid white;
+}
+
+.bb:hover{
+	background: #ff6613;
+	border-radius: 5px;
+	color:white;
+}
+
+.a{
+	background: #ff6613;
+	color:white;
+	border-radius: 5px;
+}
+
+.no{
+	font-family: CookieRun-Regular;
+	font-size: 50px;
+	width:1100px;
+	text-align: center;
+	color:#f23600;
+	
+}
+
+.container{
+	min-height: 594px;
+}
+
+/** Store List 3 ***/
+
+.selectBox{
+	width: 1100px;
+	background: transparent;
+	font-family: CookieRun-Regular;
+	font-size: 30px;
+	color:#f23600;
+}
+
+.sel{
+	width:400px;
+	height: 40px;
+	marign-left:300px;
+	border:none;
+	background: transparent;
+	border-bottom: 1px solid white;
+
+}
+
+.btnselect{
+	font-family: CookieRun-Regular;
+	border:none;
+	font-size: 30px;
+	background: #ff6613;
+	color:white;
+	border-radius: 5px;
+	width: 130px;
+	height: 50px;
+	
+}
+
+.sList{
+	width:500px;
+	padding:30px;
+	margin-left:30px;
+	background: #ffede3;
+	display: inline-block;
+	margin-bottom: 20px;
+	
+}
+
+.sList:hover{
+	background: white;
+}
+
+.sList > img{
+	width: 230px;
+	height: 230px;
+}
+
+.volist{
+	font-family: CookieRun-Regular;
+	font-size:20px;
+	width: 190px;
+	text-align: right;
+}
+
+
+.volist > a{
+	text-decoration:none;
+	font-size:27px;
+	color:#f23600;
+}
+
+.volist > a:hover {
+	font-size: 29px;
+	text-decoration:none;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.cookie.basic.board.qna.QnaMapper">
+  	
+  	<delete id="qnaAnswerDelete" parameterType="QnaVO">
+  		delete from qna where num > 0 and num = #{num}
+  	</delete>
+  	
+  	<select id="qnaRefSelect" parameterType="QnaVO" resultType="QnaVO">
+  		select * from qna
+  		where num > 0 and ref = ${ref} and step = #{step}
+  	</select>
+  	
+  	<update id="qnaAnswerCheck" parameterType="QnaVO">
+  		update qna set acheck = #{acheck} where num > 0 and num = #{ref}
+  	</update>
+  	
+  	<delete id="qnaDelete" parameterType="QnaVO">
+  		delete from qna where num > 0 and ref = #{ref}
+  	</delete>
+  	
+  	<update id="qnaUpdate" parameterType="QnaVO">
+  		update qna set contents = #{contents}, secret = #{secret}
+  		where num > 0 and num = #{num} and step = #{step}
+  	</update>
+  	
+  	<select id="qnaSelect" parameterType="QnaVO" resultType="QnaVO">
+  		select * from qna
+  		where num > 0 and num = #{num}
+  	</select>
+  	
+  	<insert id="qnaWrite" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+  		insert into qna
+  			values(0, #{writer}, #{contents}, now(), #{ref}, #{step}, 0, #{secret}, 0)
+  	</insert>
+  	<update id="qnaRef" parameterType="QnaVO">
+  		update qna set ref = #{num} where num > 0 and num = #{num}
+  	</update>
+  	
+  	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
+  		select num, writer, REGEXP_REPLACE(writer, <![CDATA['(?<=.{3}).']]>, '*') as writerS, contents, regDate, ref, step, depth, secret, acheck from qna
+  		where num > 0
+  		order by ref desc, step asc LIMIT #{startRow}, #{perPage}
+  	</select>
+
+  	<select id="qnaCount" resultType="Integer">
+  		select count(ref) from qna where num > 0
+  	</select>
+  </mapper>
