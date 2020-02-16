@@ -46,9 +46,11 @@
 													
 													<c:forEach items="${menu.menuOptions}" var="opt">
 														<p class="option">옵션명 : ${opt.optName}</p>
-													</c:forEach>
-													<c:forEach items="${menu.cartOptionVOs}" var="optc">
-														<p class="option">옵션횟수 : ${optc.optCount}</p>
+														<c:forEach items="${menu.cartOptionVOs}" var="optc">
+															<c:if test="${opt.optNum eq optc.optNum}">
+																<p class="option">옵션횟수 : ${optc.optCount}</p>
+															</c:if>
+														</c:forEach>
 													</c:forEach>
 												</c:forEach>
 												
