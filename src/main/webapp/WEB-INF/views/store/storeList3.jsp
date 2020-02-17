@@ -33,7 +33,7 @@
 					</c:if>
 					<c:if test="${vo.sOn eq 0}">
 						<div class="sList" style="opacity: 0.5">
-						<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}">
+						<img src="${pageContext.request.contextPath}/upload/${vo.storeFilesVO.fName}" onerror="this.src='../images/header/mm.png'">
 						<div style="float:right">
 							<div class="volist">
 								<br><br><br><br>
