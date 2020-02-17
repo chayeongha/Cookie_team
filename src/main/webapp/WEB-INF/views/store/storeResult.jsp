@@ -252,7 +252,8 @@
 								location.reload();
 							},
 							error: function() {
-								alert("에러");
+								alert("로그인 후에 가능합니다.");
+								location.href="../member/memberLogin";
 							}
 						});
 // 					//로그인 X
