@@ -131,6 +131,17 @@
 	var QnaT =  $(".storesidebar > #QnaT");
 	var ssNum = $("#ssNum").val();
 
+
+
+	/* 리뷰관리  */
+	
+		$("#QnaT").click(function(){
+			location.href = "../review/reviewList";
+			})
+
+
+
+	
 	/*돈*/
 
 	
