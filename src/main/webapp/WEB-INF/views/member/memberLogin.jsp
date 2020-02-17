@@ -122,7 +122,7 @@
 
 		//회원가입하러가기
 		$("#join_go").click(function(){
-			location.href="joinAgree";
+			location.href="selectJoin";
 		});
 
 		//아이디 기억하기

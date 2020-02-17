@@ -18,9 +18,8 @@
 	   	
 	    <div>
 		    <img alt="이미지를 넣어주세요!" onerror="this.src='../images/header/mm.png'" src="../upload/${sm.storeFilesVO.fName}" style="width: 200px; height: 200px;">
-		   <p><a href="../store/storeGoods?ssNum=${sm.ssNum}">${sm.sName}</a></p>
+		   <p> ${sm.sName}</p>
 		   <p> ${sm.roadFullAddr}</p>
-		      <p> ${sm.ssNum}</p>
 	    </div>
 	    
 	   	</c:forEach>
@@ -34,9 +33,9 @@
 
 		        auto: true, // 자동으로 애니메이션 시작
 
-		        speed: 800,  // 애니메이션 속도
+		        speed: 1000,  // 애니메이션 속도
 
-		        pause: 4500,  // 애니메이션 유지 시간 (1000은 1초)
+		        pause: 3500,  // 애니메이션 유지 시간 (1000은 1초)
 
 		        mode: 'horizontal', // 슬라이드 모드 ('fade', 'horizontal', 'vertical' 이 있음)
 
