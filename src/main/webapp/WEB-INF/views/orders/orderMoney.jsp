@@ -41,7 +41,7 @@
 
    <div class="circles-container bg-white">
            <div class="MoneyT">
-<p>우리카페 목표금액 : 2,500,000원</p>
+<p>우리카페 목표금액 : 25,000,000원</p>
 <div class="TMWrap"><input type="text" value="현재 누적 매출은 ?"><div class="TodayM"></div><div class="Mw">원</div></div>
 <div class="totalMoney" style="display: none;"></div>
 
@@ -79,7 +79,7 @@
 		
 		//하루 총 목표 금액이 250만원이라면  평균 퍼센테이지 구할수 있음
 
-		var avg = (first/2500000)*100;
+		var avg = (first/25000000)*100;
 		//avg = Math.floor(avg);
 		alert(avg+"%"); 
 		
