@@ -30,13 +30,13 @@ public class CaptchaUtil {
 		fontList.add(new Font("", Font.PLAIN, 40));
 		
 		List<Color> colorList = new ArrayList<Color>();
-		colorList.add(Color.BLACK);
+		colorList.add(Color.GREEN);
 		
 		Captcha captcha = new Captcha.Builder(width, height)
 				// .addText() 또는 아래와 같이 정의 : 6자리 숫자와 폰트 및 컬러 설정
-				.addText()
-				//.addText(new NumbersAnswerProducer(6), new DefaultWordRenderer(colorList, fontList))
-				.addNoise().addBorder()
+				//.addText()
+				.addText(new NumbersAnswerProducer(6), new DefaultWordRenderer(colorList, fontList))
+				.addNoise().addNoise().addNoise().addBorder()
 				.addBackground(new GradiatedBackgroundProducer())
 				.build();
 		
