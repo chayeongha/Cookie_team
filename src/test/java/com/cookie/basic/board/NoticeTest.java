@@ -35,7 +35,7 @@ class NoticeTest {
 		
 	}
 
-	//@Test
+	@Test
 	void noticeWriteTest() throws Exception {
 		for(int i=0;i<60;i++) {
 			NoticeVO noticeVO = new NoticeVO();

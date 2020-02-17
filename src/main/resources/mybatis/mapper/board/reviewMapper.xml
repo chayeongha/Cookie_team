@@ -48,6 +48,7 @@
   		<id column="olNum" property="olNum"/>
   		<result column="ocNum" property="ocNum"/>
   		<collection property="cartVOs" javaType="List" ofType="CartVO">
+  			<id column="cartNum" property="cartNum"/>
 	  		<result column="mmNum" property="mmNum"/>
 	  		<result column="mmCount" property="mmCount"/>
 	  		<result column="nickname" property="nickname"/>
@@ -55,9 +56,11 @@
 	  		<collection property="menuVOs" javaType="List" ofType="MenuVO">
 		  		<result column="mmName" property="mmName"/>
 		  		<collection property="menuOptions" javaType="List" ofType="MoptVO">
+		  			<id column="optNum" property="optNum"/>
 			  		<result column="optName" property="optName"/>
 	  			</collection>
 	  			<collection property="cartOptionVOs" javaType="List" ofType="CartOptionVO">
+	  				<result column="optNum" property="optNum"/>
 			  		<result column="optCount" property="optCount"/>
 	  			</collection>
   			</collection>
@@ -65,13 +68,13 @@
   	</resultMap>
   	
   	<select id="orderSelect" parameterType="OrderListVO" resultMap="OLselect">
-  		select OL.olNum, OL.ocNum, C.mmNum, C.nickname, C.ssNum, M.mmName, C.mmCount, O.optName, CO.optCount
+  		select OL.olNum, OL.ocNum, C.cartNum, C.mmNum, C.nickname, C.ssNum, M.mmName, C.mmCount, O.optNum, O.optName, ifnull(CO.optCount, 0) optCount
 			from orderList OL
 				left outer join cart C on OL.ocNum = C.ocNum
-		        left outer join menu M on C.mmNum = M.mmNum
-		        left outer join mopt O on M.mmNum = O.mmNum
-		        left outer join cartOption CO on O.optNum = CO.optNum
-	        where OL.olNUm = #{olNum};
+				left outer join menu M on C.mmNum = M.mmNum
+				left outer join mopt O on M.mmNum = O.mmNum
+				left outer join cartOption CO on C.cartNum = CO.cartNum and O.optNum = CO.optNum
+			where OL.olNum = #{olNum} order by cartNum, optNum
   	</select>
   	
   	<resultMap type="ReviewVO" id="Select">
@@ -110,11 +113,11 @@
   	</select>
   	
   	<insert id="reviewWrite" parameterType="ReviewVO" useGeneratedKeys="true" keyProperty="num">
-  		insert into review values(0, #{title}, #{writer}, #{contents}, now())
+  		insert into review values(0, #{writer}, #{contents}, now(), #{star}, #{olNum})
   	</insert>
   	
   	<select id="reviewList" parameterType="Pager" resultType="reviewVO">
-  		select * from review
+  		select *, REGEXP_REPLACE(writer, <![CDATA['(?<=.{3}).']]>, '*') as writerS from review
   		<include refid="bs"></include> num > 0
   		order by num desc LIMIT #{startRow}, #{perPage}
   	</select>

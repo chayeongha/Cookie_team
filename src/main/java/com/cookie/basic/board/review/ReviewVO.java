@@ -1,6 +1,6 @@
 package com.cookie.basic.board.review;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class ReviewVO{
@@ -20,11 +20,18 @@ public class ReviewVO{
 	private String contents;
 	private Date regDate;
 	private int star;
-	private String product;
+	private int olNum;
+	private String writerS;
 	
 	private List<ReviewFilesVO> reviewFilesVO;
 
 	
+	public String getWriterS() {
+		return writerS;
+	}
+	public void setWriterS(String writerS) {
+		this.writerS = writerS;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -55,11 +62,11 @@ public class ReviewVO{
 	public void setStar(int star) {
 		this.star = star;
 	}
-	public String getProduct() {
-		return product;
+	public int getOlNum() {
+		return olNum;
 	}
-	public void setProduct(String product) {
-		this.product = product;
+	public void setOlNum(int olNum) {
+		this.olNum = olNum;
 	}
 	public List<ReviewFilesVO> getReviewFilesVO() {
 		return reviewFilesVO;
