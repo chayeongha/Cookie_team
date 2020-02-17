@@ -79,12 +79,12 @@
   	
   	<resultMap type="ReviewVO" id="Select">
   		<id column="num" property="num"/>
-  		<result column="title" property="title"/>
   		<result column="writer" property="writer"/>
   		<result column="contents" property="contents"/>
   		<result column="regDate" property="regDate"/>
-  		<result column="ssNum" property="ssNum"/>
-  		<result column="mmNum" property="mmNum"/>
+  		<result column="star" property="star"/>
+  		<result column="olNum" property="olNum"/>
+  		<result column="writerS" property="writerS"/>
   		<collection property="reviewFilesVO" javaType="List" ofType="ReviewFilesVO">
 	  		<id column="fnum" property="fnum"/>
 	  		<result column="oname" property="oname"/>
@@ -93,23 +93,19 @@
   	</resultMap>
   	
   	<delete id="reviewDelete" parameterType="ReviewVO">
-  		delete from review where num = #{num}
+  		delete from review where olNum = #{olNum}
   	</delete>
   	
   	<update id="reviewUpdate" parameterType="ReviewVO">
-  		update review set title = #{title}, writer = #{writer}, contents = #{contents}
-  		where num = #{num}
+  		update review set contents = #{contents}, star = #{star}
+  		where olNum = #{olNum}
   	</update>
   	
   	<select id="reviewSelect" parameterType="ReviewVO" resultMap="Select">
-  		select N.*, F.fnum, F.fname, F.oname
-  		from (select *, lag(num,1) over(order by num) prev,
-  				lag(title,1) over(order by num) prevT,
-           		lead(num,1) over(order by num) next,
-            	lead(title,1) over(order by num) nextT
-		from review) N left outer join reviewFiles F
-  		on N.num = F.num
-  		where N.num = #{num}
+  		select R.*, F.fnum, F.fname, F.oname
+  		from review R left outer join reviewFiles F
+  		on R.num = F.num
+  		where R.olNum = #{olNum}
   	</select>
   	
   	<insert id="reviewWrite" parameterType="ReviewVO" useGeneratedKeys="true" keyProperty="num">
