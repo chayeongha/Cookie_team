@@ -95,7 +95,7 @@
 			<div class="e3">
 					<a class="bt" id="mDel">회원탈퇴</a>
 					<a class="bt" id="mUp">회원수정</a>	
-					<c:if test="${member.grade eq 1 }">
+					<c:if test="${member.grade ne 9999 }">
 						<a class="bt" href="${pageContext.request.contextPath}/calendar/calmain">출석체크 하러가기</a>
 					</c:if>
 			</div>		
@@ -114,7 +114,7 @@
 
 				<h1>포인트 내역</h1> <div class=""></div>
 
-				<c:if test="${member.grade ne 8888}">	
+				<c:if test="${member.grade ne 9999}">	
     		<div class="point">
       			<label for="name"> 적립금</label>
       			<input type="text" class="point2" id="memPoint" value="${member.memPoint}포인트" readonly="readonly">
