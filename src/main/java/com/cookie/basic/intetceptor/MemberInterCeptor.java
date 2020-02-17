@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.cookie.basic.member.MemberVO;
+
 @Component
 public class MemberInterCeptor extends HandlerInterceptorAdapter {
 	
@@ -25,7 +27,5 @@ public class MemberInterCeptor extends HandlerInterceptorAdapter {
 		}	
 	}
 
-	//관리자로 로그인하지않았을 경우 못가도록 ADMIN관리페이지나 어드민메인페이지못들어가도록..해야함.
-	
 }
 
