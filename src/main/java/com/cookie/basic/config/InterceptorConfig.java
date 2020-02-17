@@ -5,8 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.cookie.basic.intetceptor.AdminInterCeptor;
 import com.cookie.basic.intetceptor.BoardInterceptor;
 import com.cookie.basic.intetceptor.MemberInterCeptor;
+
 import com.cookie.basic.intetceptor.StoreInterCeptor;
 
 @Configuration								
@@ -18,7 +20,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	private StoreInterCeptor storeInterCeptor;
 	@Autowired
 	private BoardInterceptor boardInterceptor;
-	
+	@Autowired
+	private AdminInterCeptor adminInterCeptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -80,6 +83,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/qna/qnaSelect")
 		;
 		
-		
+		//어드민 인터셉터
+		registry.addInterceptor(adminInterCeptor)
+		.addPathPatterns("/admin/*");
 	}
 }
