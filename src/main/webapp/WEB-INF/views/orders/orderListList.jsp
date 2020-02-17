@@ -11,13 +11,9 @@
 
 </head>
 <body>
-<c:if test="${member.nickname ne nick}">
-<h1>정상적인 접근경로가 아닙니다</h1>
-</c:if>
-<c:if test="${member.nickname eq nick}">
 <input type="hidden" value="${store.ssNum}">
 	
-	<c:forEach items="${lists}" var="vo" varStatus="voStatus">
+	<c:forEach items="${lists}" var="vo">
 		<%-- <c:if test="${vo.ordersVO.nickname eq vo.cartVO.nickname}"> --%>
 		<div class="orderBox">
 			<div class="orderBox2">
@@ -38,24 +34,21 @@
 					</c:if> 
 					<input type="hidden" value="${vo.ordersVO.ooStatus}">
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
-					 <div class="ListWait">제조 대기</div>
+					 <div>제조 대기</div>
 					</c:if> 
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
-					 <div class="ListWait">제조 완료</div>
+					 <div>제조 완료</div>
 					</c:if> 
 					
 					<input type="hidden" id="hoonum" value="${vo.ordersVO.ooNum}">
 				<input type="hidden" id="hssnum" value="${vo.ordersVO.ssNum}">
-				<div class="phoneBox2">
-				<input type="hidden" id="hphone" value="${vo.ordersVO.phone}">
-					</div>
+				<input type="text" id="hphone" value="${vo.ordersVO.phone}">
 					</div>
 					<c:forEach items="${vo.cartVOs}" var="ce">
 					<!--메뉴 옵션-->
 					<c:forEach items="${ce.menuVOs}" var="me">
-					<div class="mBox">
-						<div>${me.mmName} </div>
-						<div>${ce.mmCount} 개</div>
+					
+						<div>${me.mmName}</div>
 						<div>가격 : ${me.mmPrice}</div>
 						<div style="display: none;">${me.mmNum}</div>
 					
@@ -64,33 +57,24 @@
 						
 						<c:forEach items="${lists2}" var="opt">
 						<c:forEach items="${opt.moptVOs}" var="opm">
-						<c:if test="${(me.mmNum eq opm.mmNum) and (ce.cartNum eq opt.cartNum)}">
-							<div class="optC">　${opt.optCount}개</div>
-							<div class="optN">${opm.optName}</div>
-							
+						<c:if test="${me.mmNum eq opm.mmNum}">
+							<div>${opm.optName}</div>
 							<div style="display: none;">${opm.optPrice}</div>
 						<div style="display: none;">${opm.mmNum}</div>
 						</c:if>
 						</c:forEach>
 						</c:forEach>
-						</div>
 					
-	<input type="hidden" class="ssNum" value="${me.ssNum}">
 					</c:forEach>
 					</c:forEach>
-	
 					<c:if test="${vo.ordersVO.ooStatus eq 1}">
-					<div class="finish">주문 완료!</div>
+					<div>주문 완료!</div>
 					</c:if>
 					
 					<c:if test="${vo.ordersVO.ooStatus eq 2}">
-					 <div class="finish">음료 제조 완료!</div>
+					 <div>음료 제조 완료!</div>
 					</c:if> 
 				</div>
-				<!-- 후기작성 -->
-				
-				<input type="hidden" class="olNum" value="${vo.olNum}">
-				<a href="javascript:void(0)" class="btn_review">후기작성</a>
 			</div>
 		<%-- </c:if> --%>
 	</c:forEach>
@@ -137,18 +121,10 @@
 
 	date.setTime(orderDate);
 	dateString = date.toLocale
-///////////////////////////////////////////////////////
 
-	//리뷰 등록
-	$('.btn_review').click(function(){
-		var olNum = $(this).parent().find('input.olNum').val();
-		var ssNum = $(this).parent().find('input.ssNum').val();
-		//alert(olNum);
-		//alert(ssNum);
-		openWin = window.open("../review/reviewWrite?olNum="+olNum+"&ssNum="+ssNum, "reviewForm", "top=100, left=10, width=920, height=700, resizable = no, scrollbars = no");
-	});
+
 </script>
-</c:if>
+
 
 </body>
 </html>

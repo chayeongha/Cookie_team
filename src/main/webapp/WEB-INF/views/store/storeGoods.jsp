@@ -19,7 +19,6 @@
 
 </head>
 <body>
-
 	<div class="body_main">
 		<div class="b"></div>
 		<!-- 서브 타이틀 -->
