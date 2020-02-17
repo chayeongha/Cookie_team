@@ -103,8 +103,8 @@
 			</c:if>
 		</ul>
 	</div>
-		<c:import url="../layout/footer.jsp" />
 </div>	
+		<c:import url="../layout/footer.jsp" />
 <script type="text/javascript">
 	var kind = '${pager.kind}';
 	if (kind == '') {

@@ -55,7 +55,7 @@
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
 												<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">${cMonth} 월 매출 </div>
-												<div class="h5 mb-0 font-weight-bold text-gray-800"> ${mEarn}</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800 abc"> ${mEarn}</div>
 											</div>
 											<div class="col-auto">
 												<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -72,7 +72,7 @@
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
 												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">${cYear}년 총 매출</div>
-												<div class="h5 mb-0 font-weight-bold text-gray-800">${yEarn}</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800 abc2">${yEarn}</div>
 											</div>
 											<div class="col-auto">
 												<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -515,7 +515,21 @@
 	    }
 	  }
 	});
-		
+
+	//,찍어주는 정규식 함수
+	function addComma(price) {
+	  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+	  return price.toString().replace(regexp, ',');
+	}
+
+	var abc = $('.abc').text();
+	var abc2 = $('.abc2').text();
+
+	$('.abc').text(addComma(abc));
+	$('.abc2').text(addComma(abc2));
+	
+
+	
 	</script>
 </body>
 </html>

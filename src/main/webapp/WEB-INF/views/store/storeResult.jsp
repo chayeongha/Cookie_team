@@ -98,9 +98,9 @@
 			
 			if (minusNum <= 0) {
 				$(this).parent().find('input.ocount').val(0);
-				//$(this).parent().parent().find('input.optNum').removeAttr("name");
+				$(this).parent().parent().find('input.optNum').removeAttr("name");
 				price = 0;
-			} else {
+			}else {
 				$(this).parent().find('input.ocount').val(minusNum);
 				$(this).parent().parent().find('input.optNum').attr("name", "optNum");
 				
@@ -174,6 +174,7 @@
 			
 
 	
+
 			
 			for(var i=0;i<optNum.length;i++){
 				
@@ -183,8 +184,8 @@
 						optCount.shift();
 
 						}else{
-					optNum.splice(i,i);
-					optCount.splice(i,i);
+						optNum.splice(i,i);
+						optCount.splice(i,i);
 						}
 				}
 			}
@@ -251,7 +252,8 @@
 								location.reload();
 							},
 							error: function() {
-								alert("에러");
+								alert("로그인 후에 가능합니다.");
+								location.href="../member/memberLogin";
 							}
 						});
 // 					//로그인 X
