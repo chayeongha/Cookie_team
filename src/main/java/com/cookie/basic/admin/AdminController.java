@@ -136,7 +136,8 @@ public class AdminController {
 		//memNum으로 찾은후 memberVO에 있는 grade를 가져옴.
 		memberVO = adminService.pmemberSearch(memberVO);
 		adminService.pmemberDelete(memberVO);
-		mv.setViewName("redirect:./adminMemberList?grade="+memberVO.getGrade());
+		//mv.setViewName("redirect:./adminMemberList?grade="+memberVO.getGrade());
+		mv.setViewName("redirect:./adminMain");
 		return mv;
 		
 	}
