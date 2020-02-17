@@ -50,10 +50,12 @@ public class CartController {
 		cartVO.setCartTotal(ct);
 		cartVO.setSsNum(ssNum);
 		if(optNum==null) {
+			
 			lot = mmNum;
 			cartVO.setLot(lot);
 			if(cartService.cartOne(cartVO)==null) {
 				cartService.cartOptNo(cartVO);
+				
 			}else {
 				cartVO = cartService.cartOne(cartVO);
 				int count = cartVO.getMmCount();
@@ -61,6 +63,7 @@ public class CartController {
 				cartVO.setCartTotal(cartVO.getCartTotal()+ct);
 				cartVO.setMmCount(count+Integer.parseInt(mmCount));
 				cartService.cartAdd(cartVO);
+				
 			}
 		}
 		
