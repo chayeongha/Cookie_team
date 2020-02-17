@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cookie.basic.member.MemberVO;
+import com.cookie.basic.store.StoreService;
+import com.cookie.basic.store.StoreVO;
 
 @Controller
 @RequestMapping("/cart/**")
@@ -21,6 +23,9 @@ public class CartController {
 
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private StoreService storeService;
 
 	//카트 중복 검사
 	public void cartSelect(CartVO cartVO, CartOptionVO[] cartOptionVO) throws Exception {
@@ -109,6 +114,10 @@ public class CartController {
 		CartVO cartVO = new CartVO();
 		cartVO.setSsNum(ssNum);
 		
+		StoreVO storeVO = new StoreVO();
+		storeVO.setSsNum(ssNum);
+		storeVO = storeService.storeGoods(storeVO);
+		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		cartVO.setNickname(memberVO.getNickname());
 		
@@ -116,6 +125,7 @@ public class CartController {
 		mv.addObject("cartList", ar);
 		mv.addObject("memberVO",memberVO);
 		mv.addObject("point", memberVO.getMemPoint());
+		mv.addObject("storeVO",storeVO);
 		return mv;
 	}
 	

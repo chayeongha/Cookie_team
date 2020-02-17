@@ -30,6 +30,7 @@
 		<div class="order">
 			<img src="${pageContext.request.contextPath}/images/menu/cart.png">
 			<h3 style="display: inline-block;">장바구니</h3>
+			
 			<div class="orderBox">
 				<c:if test="${not empty cartVO}">
 				
@@ -80,7 +81,12 @@
 					
 				</c:if>
 			</div>
+			<c:if test="${storeVO.sOn eq 1}">
 			<button class="order2"><a href="${pageContext.request.contextPath}/cart/cartList?ssNum=${storeVO.ssNum}">주 문 하 기</a></button>
+			</c:if>
+			<c:if test="${storeVO.sOn eq 0}">
+			<button class="order2" style="letter-spacing: 0px">영업시간이 아닙니다.</a></button>
+			</c:if>
 		</div>
 		<div class="innerBox">
 			<div class="box1">
