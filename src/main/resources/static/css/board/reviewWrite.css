@@ -37,8 +37,6 @@ em {
 }
 .reviewWrap {
 	position: relative;
-    width: 630px;
-    height: 600px;
     overflow-y: scroll;
     overflow-x: hidden;
 	scrollbar-face-color: #fff;
