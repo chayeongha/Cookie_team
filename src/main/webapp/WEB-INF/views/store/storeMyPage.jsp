@@ -139,8 +139,6 @@
 			location.href = "../review/reviewList";
 			})
 
-
-
 	
 	/*돈*/
 
