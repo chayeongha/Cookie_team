@@ -92,11 +92,11 @@
 	</select>
 	
 	<select id="cartOne" parameterType="CartVO" resultType="CartVO">
-		select * from cart where lot=#{lot} and nickname=#{nickname} 
+		select * from cart where lot=#{lot} and nickname=#{nickname} and cartStatus=0
 	</select>
 	
 	<update id="cartAdd" parameterType="CartVO">
-		update cart set mmCount=#{mmCount} where cartNum=#{cartNum}
+		update cart set mmCount=#{mmCount}, cartStatus=0 where cartNum=#{cartNum}
 	</update>
 	
 	<update id="cartUpdate" parameterType="CartVO">
