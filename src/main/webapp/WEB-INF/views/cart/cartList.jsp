@@ -181,7 +181,12 @@
 						</script>
 <!-- ------------------------------------------------------------ -->
 							<div class="product_info_btn_wrap">
+							<c:if test="${storeVO.sOn eq 1}">
 								<button type="button" id="btn_now${cartList.cartNum}">바로구매</button>
+							</c:if>
+							<c:if test="${storeVO.sOn eq 0}">
+								<div class="nono">구매불가</div>
+							</c:if>
 							</div>
 							
 						<script type="text/javascript">
@@ -486,9 +491,15 @@
 			
 				<div class="btn_wrap">
 					<input type="hidden" class="">
+					<c:if test="${storeVO.sOn eq 1}">
 					<button class="btn_buy">결제하기</button>
+					</c:if>
 				</div>
 				
+				<c:if test="${storeVO.sOn eq 0}">
+				<div class="nonono">영업시간이 아닙니다.</div>
+				</c:if>
+					
 			<script type="text/javascript">
 
 
