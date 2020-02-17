@@ -51,44 +51,27 @@ public class ReviewController {
 	
 	//글 수정 폼
 	@GetMapping("reviewUpdate")
-	public ModelAndView reviewUpdate(ReviewVO reviewVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public void reviewUpdate(OrderListVO orderListVO, StoreVO storeVO, ReviewVO reviewVO, Model model, HttpSession session) throws Exception {
+		System.out.println("들어왔니?");
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		
+		orderListVO = reviewService.orderSelect(orderListVO);
+		storeVO = reviewService.snameSelect(storeVO);
 		reviewVO = reviewService.reviewSelect(reviewVO);
 		
-		mv.addObject("update", reviewVO);
-		mv.addObject("boardName", "이용후기");
-		mv.setViewName("board/boarddUpdate");
-		
-		return mv;
+		model.addAttribute("order", orderListVO);
+		model.addAttribute("store", storeVO);
+		model.addAttribute("writer", memberVO.getNickname());
+		model.addAttribute("update", reviewVO);
 	}
 	
 	//글 수정
-	@PostMapping("noticeUpdate")
-	public ModelAndView noticeUpdate(@Valid ReviewVO reviewVO, BindingResult bindingResult,
-										MultipartFile[] files, int[] fnums) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println("fnum 들어왔냡");
-		//System.out.println(noticeVO.getNum());
+	@PostMapping("reviewUpdate")
+	@ResponseBody
+	public int reviewUpdate(ReviewVO reviewVO, MultipartFile[] files, int[] fnums) throws Exception{
+		int result = reviewService.reviewUpdate(reviewVO, files, fnums);
 		
-		if(bindingResult.hasErrors()) {//에러가 생겼을 때 다시 form으로 돌아가게끔
-			reviewVO = reviewService.reviewSelect(reviewVO);
-			mv.addObject("update", reviewVO);
-			mv.addObject("boardName", "이용후기");
-			mv.setViewName("board/boardUpdate");// '/WEB-INF/views/'와 '.jsp'를 붙여줌
-		}else {
-			int result = reviewService.reviewUpdate(reviewVO, files, fnums);
-			String msg = "Update Fail";
-			
-			if(result>0) {
-				msg = "Update Success";
-			}
-			mv.setViewName("common/result");
-			mv.addObject("msg", msg);
-			mv.addObject("path", "./reviewSelect?num="+reviewVO.getNum());
-		}
-		
-		return mv;
+		return result;
 	}
 	
 	//글 작성 폼
