@@ -25,8 +25,11 @@
 <c:if test="${member.grade ne 8888}">
 <c:import url="../error/400error.jsp" />
 </c:if>
+<c:if test="${store.ssNum ne param.ssNum}">
+<c:import url="../error/400error.jsp" />
+</c:if>
 
-<c:if test="${member.grade eq 8888}">
+<c:if test="${member.grade eq 8888 and store.ssNum eq param.ssNum}">
 
 
 	<div class="storeHeader">
