@@ -98,9 +98,9 @@
 			
 			if (minusNum <= 0) {
 				$(this).parent().find('input.ocount').val(0);
-				//$(this).parent().parent().find('input.optNum').removeAttr("name");
+				$(this).parent().parent().find('input.optNum').removeAttr("name");
 				price = 0;
-			} else {
+			}else {
 				$(this).parent().find('input.ocount').val(minusNum);
 				$(this).parent().parent().find('input.optNum').attr("name", "optNum");
 				
@@ -183,8 +183,8 @@
 						optCount.shift();
 
 						}else{
-					optNum.splice(i,i);
-					optCount.splice(i,i);
+						optNum.splice(i,i);
+						optCount.splice(i,i);
 						}
 				}
 			}
