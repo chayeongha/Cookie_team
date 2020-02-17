@@ -1,0 +1,96 @@
+@charset "UTF-8";
+.subTitle_wrap {
+    width: 100%;
+    height: 98px;
+    background: #ffd6bf;
+    margin-top:-20px;
+}
+.subTitle_inner {
+	width: 1100px;
+	height: 91px;
+    margin: 0 auto;
+    position: relative;
+}
+.subTitle_wrap h2 {
+	font-weight: bold;
+	font-size: 30px;
+    color: #222222;
+    padding-top: 30px;
+    position: relative;
+}
+/* 본문 */
+.review_list {
+	width: auto;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+}
+.review_list li {
+	padding-top: 15px;
+}
+.review_list li div {
+	border-bottom: 1px solid #ccc;
+}
+.cfix {
+	display: block;
+    zoom: 1;
+}
+.review_list .bbs_top {
+	float: left;
+    width: 100%;
+}
+div.top_l {
+	float: left;
+}
+
+/* 상품평가 */
+input[type='button'], button {
+	cursor: pointer;
+    border: 0 none;
+}
+em {
+	font-style: normal;
+}
+.starWrap {
+	margin: 8px 0 8px 0;
+}
+.rev_star {
+	display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(../../images/board/review_star.png) no-repeat -25px 0;
+}
+.rev_star.good {
+	background-position: 0 0;
+}
+.rev_star em {
+	display: block;
+    text-indent: -9999px;
+}
+.star_cont {
+	display: inline-block;
+    margin: 0 0 0 10px;
+    font-size: 12px;
+    color: #4d4d4d;
+}
+/*************************************/
+div.top_r {
+	float: right;
+    padding-right: 2px;
+}
+strong.writer {
+	color: #666;
+    font-weight: normal;
+}
+span.date {
+	display: inline-block;
+    font-size: 12px;
+    color: #666;
+}
+
+
+
+
+
+
+
+

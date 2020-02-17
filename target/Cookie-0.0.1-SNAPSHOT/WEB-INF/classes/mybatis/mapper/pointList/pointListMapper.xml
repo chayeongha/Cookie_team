@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cookie.basic.pointList.PointListMapper">
+  
+  
+  <insert id="pointInsert" parameterType="PointListVO" useGeneratedKeys="true" keyProperty="poNum">
+  	insert into pointList values(null, #{nickname}, #{ssNum}, #{poDate}, #{poChange}, #{poUse})
+  </insert>
+  
+  <resultMap type="PointListVO" id="pointListJoin">
+		<id column="poNum" property="poNum" />
+		<result column="poDate" property="poDate" />
+		<result column="nickname" property="nickname" />
+		<result column="poChange" property="poChange" />
+		<result column="poUse" property="poUse"/>
+		<collection property="storeVO" javaType="StoreVO">
+			<id column="ssNum" property="ssNum" />
+			<result column="sName" property="sName" />
+		</collection>
+	</resultMap>
+  
+  
+  <select id="pointList" parameterType="PointListVO" resultMap="pointListJoin">
+    select PO.*, ST.sName
+        from pointList PO
+        left outer join store ST on PO.ssNum = ST.ssNum
+        where PO.nickname = #{nickname} order By poDate desc
+
+  </select>
+  
+
+   
+  </mapper>
