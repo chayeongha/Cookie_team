@@ -21,3 +21,5 @@
 
 *풀캘린더 api를 사용하여 출석체크기능 구현
 
+역할분담
+/src/main/resources/static/images/Division of Works.JPG
