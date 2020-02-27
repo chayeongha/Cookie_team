@@ -23,4 +23,5 @@
 
 역할분담
 
-![introduce_image](/src/main/resources/static/images/Division of Works.JPG)
+![캡처](https://user-images.githubusercontent.com/55524960/75436557-1b87b100-5998-11ea-82b0-0681d20db80a.JPG)
+
