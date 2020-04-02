@@ -21,7 +21,7 @@
 
 *풀캘린더 api를 사용하여 출석체크기능 구현
 
-역할분담
+
 
 ![캡처](https://user-images.githubusercontent.com/55524960/75436557-1b87b100-5998-11ea-82b0-0681d20db80a.JPG)
 
