@@ -189,7 +189,7 @@
 		var nickname= $("#nickname").val();
 		
 		$(".pointbtn").click(function(){
-			location.href="http://localhost/member/pointList?nickname="+nickname
+			location.href="http://localhost:8090/member/pointList?nickname="+nickname
 			})
 		
 		
